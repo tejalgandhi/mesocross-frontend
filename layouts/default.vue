@@ -2,7 +2,7 @@
   <div>
     <ThemeHeader />
     <CommonSearch v-show="search" style="padding-top: 80px" @click="isClicked(false)" />
-    <div v-show="!search" class="mccm-content" style="padding-top: 80px" @click="isClicked(false)">
+    <div v-show="!search" class="mccm-content" style="padding-top: 148px" @click="isClicked(false)">
       <Nuxt />
     </div>
     <ThemeFooter />
@@ -24,5 +24,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "./assets/css/common.scss";
 </style>

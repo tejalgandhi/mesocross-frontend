@@ -1,0 +1,12 @@
+$base-color: #000000;
+.main-banner {
+  background: url("assets/img/banne-bg.png") no-repeat right bottom;
+  min-height: 528px;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  .banner-text {
+    font: normal normal normal 40px Vanitas-Black;
+    letter-spacing: 2px;
+  }
+}

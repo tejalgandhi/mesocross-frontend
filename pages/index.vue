@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="slider">
-      <div class="container-fluid detail-slider">
+      <div class="main-banner">
         <!-- <div > -->
-        <VueSlickCarousel v-if="sliderIteams.length" :arrows="true" :dots="true" class="pro_slider">
+<!--        <VueSlickCarousel v-if="sliderIteams.length" :arrows="true" :dots="true" class="pro_slider">
           <div v-for="(iteams, index) in sliderIteams" :key="index">
             <img :src="iteams.image" alt="aa">
             <div class="content_text">
@@ -12,24 +12,18 @@
               <LinkSetByType :item="iteams" :title="'Discover'" />
             </div>
           </div>
-        </VueSlickCarousel>
-      </div>
-    </div>
+        </VueSlickCarousel>-->
 
-    <div v-if="treatmentSolutions.length" class="treatment">
-      <div class="container-fluid treatment-items">
-        <h2>Treatment Solutions</h2>
-        <VueSlickCarousel v-show="treatmentSolutions.length > 0" v-bind="settings" :arrows="false" :dots="true" class="pro_slider">
-          <div v-for="(val, index) in treatmentSolutions" :key="index" class="treatment-item mx-auto text-center">
-            <nuxt-link :to="`/products/ts/${val.slug}`">
-              <img :src="val.image" alt="" class="mx-auto">
-              <span style="white-space: nowrap !important;">{{ val.name }}</span>
-            </nuxt-link>
+        <div class="row mx-0 px-0 py-4">
+          <div class="col-md-6 pl-md-5 text-center text-white banner-text">
+            <h1>Lorem ipsum dolor sit</h1>
+            <p class="text-white mt-3 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis elementum elit quis mi accumsan tristique.</p>
+            <button class="btn bg-white text-dark">DISCOVER</button>
           </div>
-        </VueSlickCarousel>
+          <div class="col-md-6 px-0"></div>
+        </div>
       </div>
     </div>
-
     <HomeBlogs />
     <BestSeller />
     <HomeNewReleases />
@@ -37,18 +31,14 @@
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
 import { mapActions, mapGetters } from 'vuex'
 import BestSeller from '~/components/home/BestSeller.vue'
 import HomeBlogs from '~/components/home/Blogs.vue'
-import LinkSetByType from '~/components/home/LinkSetByType.vue'
 
 export default {
   components: {
     HomeBlogs,
-    BestSeller,
-    VueSlickCarousel,
-    LinkSetByType
+    BestSeller
   },
   data () {
     return {
@@ -125,24 +115,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" type="text/css">
-.treatment-item {
-  height: 50px !important;
-  width: 100% !important;
-  margin: 20px 0 !important;
-}
-
-.treatment-item img {
-  height: 50px !important;
-  width: 85px !important;
-  object-fit: scale-down;
-}
-
-.treatment-items .slick-dots {
-  bottom: -50px !important;
-}
-.treatment-item span {
-  white-space: nowrap !important;
-}
-</style>

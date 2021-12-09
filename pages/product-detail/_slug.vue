@@ -1,11 +1,12 @@
 <template>
   <div class="product-page slug">
-    <Bredcrumb :items="breadcrumbs" />
+<!--    <Bredcrumb :items="breadcrumbs" />-->
+<!--
     <div class="prod_detail_box">
       <div class="container-fluid position-relative">
         <div class="row">
           <div class="col-lg-7 detail-slider">
-            <!-- eslint-disable-next-line vue/attribute-hyphenation -->
+            &lt;!&ndash; eslint-disable-next-line vue/attribute-hyphenation &ndash;&gt;
             <VueSlickCarousel
               ref="slider-big"
               v-bind="{
@@ -40,9 +41,9 @@
               </div>
               <label v-show="ref_number">Ref:{{ ref_number }}</label>
               <span v-show="isLoggedin && price">{{ price }}€</span>
-              <!-- eslint-disable vue/no-v-html -->
+              &lt;!&ndash; eslint-disable vue/no-v-html &ndash;&gt;
               <div v-html="product.product_content" />
-              <!--eslint-enable-->
+              &lt;!&ndash;eslint-enable&ndash;&gt;
               <div class="size">
                 <p><span>Size</span>({{ product.product_size.length }} size available)</p>
                 <select v-model="size" @change="changeSize">
@@ -53,8 +54,8 @@
               </div>
               <div class="add_cart d-flex align-items-center mt-5">
                 <div v-if="isLoggedin" class="position-relative mr-3">
-                  <!-- <span>Disponível apenas por encomenda</span> -->
-                  <button type="button" class="btn btn-1 position-absolute" @click="qty > 1 ? qty--: qty=qty">
+                  &lt;!&ndash; <span>Disponível apenas por encomenda</span> &ndash;&gt;
+                  <button type="button" class="btn btn-1 position-absolute" @click="qty > 1 ? qty&#45;&#45;: qty=qty">
                     -
                   </button>
                   <input type="text" disabled :value="qty" class="text-center py-1" style="height: 45px; width: 110px">
@@ -67,7 +68,7 @@
             </div>
           </div>
           <div class="col-lg-7 product-image-list">
-            <!-- eslint-disable-next-line vue/attribute-hyphenation -->
+            &lt;!&ndash; eslint-disable-next-line vue/attribute-hyphenation &ndash;&gt;
             <VueSlickCarousel
               ref="slider-thumb"
               :class="'slider-thumb'"
@@ -83,7 +84,9 @@
         </div>
       </div>
     </div>
+-->
 
+<!--
     <div class="product_info mb-5">
       <div class="container-fluid">
         <b-tabs content-class="nav nav-tabs">
@@ -99,19 +102,29 @@
         </b-tabs>
       </div>
     </div>
+-->
+
+    <div class="container-fluid pt-5">
+      <div class="row">
+        <div class="col-md-7 text-center">
+          <img src="@/assets/img/slug.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7">
+
+        </div>
+      </div>
+    </div>
+
+    <ProductBanner />
     <template v-if="otherSolutions.length">
-      <ProductOtherList :products="otherSolutions" :title="`Other Solutions`" />
+      <ProductOtherList :products="otherSolutions" :title="`RECOMMENDED FOR YOU`" />
     </template>
   </div>
 </template>
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
 import { mapActions, mapState } from 'vuex'
 import { showPricePopup } from 'assets/js/custom'
 export default {
-  components: {
-    VueSlickCarousel
-  },
   async asyncData ({ params, $axios }) {
     const { data } = await $axios.$get(`/product-detail/${params.slug}`)
     const product = data

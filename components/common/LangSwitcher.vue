@@ -2,7 +2,7 @@
   <div>
     <button class="bg-transparent d-flex align-items-center text-white" @click="$bvModal.show('lang')">
       {{ userCountryCode }}{{ $i18n.locale.toUpperCase() }}
-      <img src="../../assets/img/angel-down.svg" class="icon-down ml-2" alt="">
+      <img src="../../assets/img/down-arrow.svg" class="icon-down ml-2" alt="">
     </button>
 
     <b-modal

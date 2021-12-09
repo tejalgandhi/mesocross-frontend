@@ -2,12 +2,12 @@
   <div class="product-page">
     <ProductBanner />
     <Bredcrumb :items="breadcrumbs" />
-    <div class="filter_result">
+    <div class="container-fluid pl-4 mb-5">
+      <p class="text-white pl-2 mb-5">56 Products</p>
+    </div>
+<!--    <div class="filter_result">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3">
-            <label>Filters</label>
-          </div>
           <div class="col-lg-6">
             <div v-if="selectedFilters && selectedFilters.length >0" class="selected_filter">
               <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
@@ -33,18 +33,18 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="filter_bar">
       <div class="container-fluid">
         <div class="row">
-          <ProductFilter ref="prodcuFilter" @fetchProducts="fetchProducts" />
+<!--          <ProductFilter ref="prodcuFilter" @fetchProducts="fetchProducts" />-->
           <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
         </div>
       </div>
     </div>
 
-    <div v-show="isLoggedin" class="recommended mt-4">
+<!--    <div v-show="isLoggedin" class="recommended mt-4">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 offset-md-6">
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>

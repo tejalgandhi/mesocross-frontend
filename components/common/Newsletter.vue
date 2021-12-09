@@ -1,8 +1,21 @@
 <template>
   <div class="newsletter">
-    <h3>Subscribe to our newsletter</h3>
-    <button @click="$bvModal.show('subscribeModal')">
-      Subscribe
+    <div class="banner-list py-5 my-5 d-flex align-items-center justify-content-center">
+      <div class="row mx-0 align-items-center justify-content-center w-100">
+        <div class="col-md-4 text-center text-white">
+          HOW TO SHOP?
+        </div>
+        <div class="col-md-4 side-border text-center text-white">
+          FAQs
+        </div>
+        <div class="col-md-4 text-center text-white">
+          NEED HELP?
+        </div>
+      </div>
+    </div>
+    <h3>GET STARTED SHAKING THE WORLD OF BEAUTY!</h3>
+    <button class="mb-4" @click="$bvModal.show('subscribeModal')">
+      SUBSCRIBE TO OUR NEWSLETTER
     </button>
     <b-modal
       id="subscribeModal"

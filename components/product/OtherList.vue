@@ -1,18 +1,18 @@
 <template>
-  <div class="best_seller">
-    <div class="container">
-      <h2>{{ title }}</h2>
-      <div class="row justify-content-center">
-        <div v-for="(product, index) in products" :key="index" class="col-lg-3">
-          <div class="prod_box">
+  <div class="best_seller mt-5 pt-5">
+    <div class="container mt-5">
+      <h2 class="text-white title mb-5">{{ title }}</h2>
+      <div class="row justify-content-center pt-5">
+        <div v-for="(product, index) in products" :key="index" class="col-lg-4">
+          <div class="prod_box text-center mb-5 pb-3">
             <nuxt-link
               :to="`/product-detail/${product.slug}`"
             >
-              <img :src="product.feature_image" alt="">
-              <div class="desc_box">
-                <span>{{ product.name }}</span>
-                <p>{{ product.short_description }}</p>
-                <span v-if="isLoggedin">{{ productPrice(product) }}€</span>
+              <img src="@/assets/img/product-1.png" alt="">
+              <div class="desc_box mt-5">
+                <h5 class="text-white product-title">{{ product.name }}</h5>
+                <p class="text-white font-14 ">{{ product.short_description }}</p>
+                <span v-if="isLoggedin" class="text-white">{{ productPrice(product) }}€</span>
               </div>
             </nuxt-link>
           </div>

@@ -2,11 +2,11 @@
   <footer>
     <CommonNewsletter />
     <div class="container-fluid footer-main">
-      <div class="footer_logo">
-        <img src="@/assets/img/logo.svg" alt="brand">
-      </div>
+<!--      <div class="footer_logo">-->
+<!--        <img src="@/assets/img/logo.svg" alt="brand">-->
+<!--      </div>-->
       <div class="footer_links">
-        <div class="row">
+        <div class="row pt-5">
           <div class="col-lg-3">
             <ul>
               <h2>HELP & SUPPORT</h2>
@@ -173,17 +173,28 @@
             </ul>
           </div>
           <div class="col-lg-3">
-            <ul>
-              <h2>Costumer Service</h2>
+            <ul class="select-footer">
+              <h2>DELIVERY DESTINATION OR REGION</h2>
               <li>
-                <nuxt-link to="/under-construction">
-                  Contact Us
-                </nuxt-link>
+                <select class="custom-select">
+                  <option selected value="1">
+                    Portugal (EUR)
+                  </option>
+                  <option value="1">
+                    India (INR)
+                  </option>
+                </select>
               </li>
               <li>
-                <nuxt-link to="/under-construction">
-                  FAQ´s
-                </nuxt-link>
+                <h2 class="mb-2 mt-5">Language</h2>
+                <select class="mt-0 custom-select">
+                  <option selected value="1">
+                    Português
+                  </option>
+                  <option value="2">
+                    Hindi
+                  </option>
+                </select>
               </li>
             </ul>
           </div>
@@ -223,9 +234,3 @@ export default {
   }
 }
 </script>
-
-<style type="text/css">
-.footer-main {
-  width: 90% !important;
-}
-</style>

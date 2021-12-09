@@ -131,13 +131,13 @@ nav ul li a{padding: 15px 15px;display: inline-block;color: #FFFFFF;font-size: 1
 #lang .modal-body{ padding: 0px !important; }
 #lang .modal-content { border-radius: 0px !important;}
 
-footer .newsletter{background: #25282A; padding: 39px; text-align: center;float: left; width: 100%;}
+footer .newsletter{background: #000000; padding: 39px 0; text-align: center; width: 100%;}
 footer .newsletter h3{font-size: 34px; color: #fff;margin-bottom: 30px;}
-footer .newsletter button{background: #fff; border-radius: 4px; color: #25282A;width: 224px; padding: 12px; cursor: pointer;}
+footer .newsletter button{background: transparent; border: 1px solid white; border-radius: 0; color: white; padding: 12px; cursor: pointer;}
 footer .footer_logo{text-align: center;padding: 100px 0;float: left; width: 100%;}
 footer .footer_links h2{font-size: 18px; color: #25282A;margin-bottom: 25px;font-weight: 500;}
 footer .footer_links ul li a{font-size: 16px;margin-bottom: 5px;color: #25282A; display: inline-block;line-height: 32px;}
-footer .footer_bottom{margin-top: 100px;}
+footer .footer_bottom{margin-top: 60px;}
 footer .f_links ul {text-align: center;}
 footer .f_links ul li {display: inline-block;margin: 0 15px;}
 footer .f_links ul li a{font-size: 16px;color: #25282A; display: inline-block;line-height: 32px;}
@@ -232,16 +232,14 @@ footer .f_links ul li a{font-size: 16px;color: #25282A; display: inline-block;li
 .home_category .box p{font-size: 16px;color: #54565A;margin: 15px 0;max-width: 444px;}
 .home_category .box a{text-align: center;padding: 10px; color: #000; border: 1px solid #000; border-radius: 4px; background: transparent;width: 164px; display: inline-block;margin-top: 20px;}
 
-.best_seller {float: left;width: 100%; margin:150px 0 50px;}
 .best_seller h2{text-align: center;display: block;font-size: 40px;font-weight: 500;color: #25282A;margin-bottom: 40px;}
 .best_seller .prod_box {position: relative;}
-.best_seller .prod_box img{width: 332px; height: 410px; object-fit: cover;}
 .best_seller .prod_box .desc_box{text-align: center;margin-top: 15px;}
 .best_seller .prod_box .desc_box > a{font-size: 18px; font-weight: 500;}
 .best_seller .prod_box .desc_box p{font-size: 16px;color: #54565A;margin: 5px 0;}
 .best_seller .prod_box .desc_box span{font-size: 14px;color: #54565A;}
 .best_seller a.see_all{text-align: center;padding: 10px; color: #000; border: 1px solid #000; border-radius: 4px; background: transparent;width: 224px;display: block; margin: 50px auto 0;}
-.best_seller.new_release{margin:100px 0 50px;}
+.best_seller.new_release{padding:100px 0 50px;}
 .best_seller .prod_box .new{width: 54px; height: 54px;position: absolute;top: 10px; left: 10px;}
 
 /*Product listing*/
@@ -253,8 +251,8 @@ footer .f_links ul li a{font-size: 16px;color: #25282A; display: inline-block;li
 .banner .content p{font-size:20px;color: #25282A; font-weight: 300; max-width: 458px;}
 .breadcrumb{background: transparent;}
 .breadcrumb ul li{display: inline-block;}
-.breadcrumb ul li.active{color: #54565A; font-size: 14px;padding: 15px;}
-.breadcrumb ul li a{color: #54565A; font-size: 14px; position: relative;padding: 15px; text-decoration: underline;}
+.breadcrumb ul li.active{color: #cecece; font-size: 14px;padding: 15px;}
+.breadcrumb ul li a{color: white; font-size: 14px; position: relative;padding: 15px; text-decoration: underline;}
 .breadcrumb ul li.first a{padding-left: 0;}
 .breadcrumb ul li a:after{background: url('../img/breadcrumb-arrow.svg'); background-repeat: no-repeat; width: 8px; height: 8px; content: ''; position: absolute; transform: rotate(270deg );top: 20px; right: -10px;}
 
@@ -327,8 +325,6 @@ footer .f_links ul li a{font-size: 16px;color: #25282A; display: inline-block;li
 }
 .product_box{position: relative;margin-bottom: 20px;}
 .product_box a{position: absolute;top: 0; right: 0; height: 100%; width: 100%;}
-.img_box{width: 100%;height: 427px;}
-.img_box img{width: 100%; height: 100%; object-fit: cover;}
 .content_box{margin-top: 15px;text-align: center;}
 .content_box label{color: #54565A; font-size: 18px; font-weight: 500;}
 .content_box p{color: #54565A; font-size: 16px; font-weight: 300;margin:5px 0;}

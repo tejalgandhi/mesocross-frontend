@@ -1,21 +1,13 @@
 <template>
   <div class="banner">
-    <div class="container-fluid position-relative">
-      <img v-if="data.banner" :src="data.banner" alt="">
-      <img v-else :src="data.image" alt="">
-      <div class="content">
-        <h1 v-if="data.title">
-          {{ data.title }}
-        </h1>
-        <h1 v-else>
-          {{ data.name }}
-        </h1>
-        <p v-if="data.message">
-          {{ data.message }}
-        </p>
-        <p v-else>
-          {{ data.description }}
-        </p>
+    <div class="position-relative product-banner">
+      <div class="row mx-0">
+        <div class="col-md-6 pl-md-5 align-self-center text-center text-white banner-text">
+          <h1>Lorem ipsum dolor</h1>
+        </div>
+        <div class="col-md-6 px-0">
+          <img src="@/assets/img/product-banner.png" alt="">
+        </div>
       </div>
     </div>
   </div>

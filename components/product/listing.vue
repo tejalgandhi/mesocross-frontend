@@ -1,26 +1,22 @@
 <template>
-  <div class="col-lg-9">
+  <div class="col-lg-12">
     <div class="row">
-      <div v-for="(product, index) in products" :key="index" class="col-lg-4">
-        <div
-          class="product_box"
-          @mouseover="hoveredImage = index"
-          @mouseleave="hoveredImage = '' "
-        >
+      <div v-for="(product, index) in products" :key="index" class="col-lg-4 mb-5">
+        <div class="product_box">
           <nuxt-link
             :to="`/product-detail/${product.slug}`"
           />
-          <div class="img_box">
+          <div class="img_box text-center mb-5 pb-3">
             <img
-              :src="hoveredImage === index ? product.hover_image : product.feature_image"
+              src="@/assets/img/product-1.png"
               alt=""
             >
           </div>
           <div class="content_box d-flex align-items-end justify-content-center">
-            <div style="min-height: 120px; display: inline-grid">
-              <label>{{ product.name }}</label>
-              <p>{{ product.short_description }}</p>
-              <span v-if="isLoggedin">{{ productPrice(product) }}€</span>
+            <div style="min-height: 120px; display: inline-grid" class="text-white">
+              <label class="text-white">{{ product.name }}</label>
+              <p class="text-white">{{ product.short_description }}</p>
+              <span v-if="isLoggedin" class="text-white">{{ productPrice(product) }}€</span>
             </div>
           </div>
         </div>
@@ -29,7 +25,7 @@
         <h3>No Products found</h3>
       </div>
       <div v-if="paginate.meta && paginate.meta.last_page > paginate.meta.current_page" class="view_more">
-        <a @click="viewMore">View more</a>
+        <a @click="viewMore" class="text-white">Show more</a>
       </div>
     </div>
   </div>

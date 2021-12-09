@@ -864,7 +864,7 @@
                 to="/wishlist"
                 class="position-relative"
               >
-                <img src="@/assets/img/heart.svg" alt="herat">
+                <img src="@/assets/img/star.svg" alt="herat">
                 <span v-show="wishList.length && isLoggedin" class="badge badge-secondary">{{ wishList.length }}</span>
               </NuxtLink>
             </li>

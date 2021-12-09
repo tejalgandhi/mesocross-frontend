@@ -8,7 +8,7 @@
     <b-tabs content-class="nav nav-tabs">
       <b-tab title="Orders" active>
         <div id="one" class="tab-pane w-100 pb-3 fade show active" role="tabpanel">
-          <div class="accordion-div mb-3">
+          <div class=" accordion-div mb-3">
             <div class="d-flex align-items-start">
               <a class="child-a w-100 a position-relative" :class="showTreatment ? 'mb-3' : 'arrowUp'" @click="showTreatment = !showTreatment">
                 <h5>Order Nº 4054580 - 800€</h5>

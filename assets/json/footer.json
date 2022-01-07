@@ -1,0 +1,100 @@
+{
+    "footer": {
+        "short_links": [
+            {
+                "name": "HOW TO SHOP?",
+                "path": "#"
+            },
+            {
+                "name": "FAQs",
+                "path": "#"
+            },
+            {
+                "name": "NEED HELP?",
+                "path": "#"
+            }
+        ],
+        "title": "GET STARTED SHAKING THE WORLD OF BEAUTY!",
+        "main_link": {
+            "name": "SUBSCRIBE TO OUR NEWSLETTER",
+            "path": "#"
+        },
+        "title_coin": "DELIVERY DESTINATION OR REGION",
+        "title_lang": "Language",
+        "menu": [
+            {
+                "title": "HELP & SUPPORT",
+                "items": [
+                    {
+                        "name": "Help & Contact Us",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    }
+                ]
+            },{
+                "title": "ABOUT MESOCROSS",
+                "items": [
+                    {
+                        "name": "Help & Contact Us",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    }
+                ]
+            },{
+                "title": "PAYMENT METHODS",
+                "items": [
+                    {
+                        "name": "Help & Contact Us",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Orders & shipping",
+                        "path": "#"
+                    },
+                    {
+                        "name": "Payemnt & pricing",
+                        "path": "#"
+                    }   
+                ]
+            }
+        ]
+    }
+}

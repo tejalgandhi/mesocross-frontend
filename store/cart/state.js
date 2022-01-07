@@ -1,4 +1,3 @@
-export default {
-  products: [],
-  wishList: []
-}
+export default () => ({
+    boolean: false
+})

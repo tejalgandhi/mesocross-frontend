@@ -1,4 +1,4 @@
-# mccm
+# mesocross
 
 ## Build Setup
 

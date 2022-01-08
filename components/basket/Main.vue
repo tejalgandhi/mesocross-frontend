@@ -60,6 +60,7 @@ export default {
     },
     methods: {
         totalPrice(){
+            this.total = 0
             this.products_list.forEach(product => {
                 this.total += parseFloat(product.price * product.qty)
             });

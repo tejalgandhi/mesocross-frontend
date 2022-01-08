@@ -8,7 +8,7 @@
             </div>
             <section>
                 <h1 class="xxs-title">{{ data.title }}</h1>
-                <a :href="data.main_link.path" class="retangular-button">{{ data.main_link.name }}</a>
+                <button class="retangular-button" @click="show = !show">{{ data.newsletter }}</button>
             </section>
         </div>
         <div class="footer__bottom container-52">
@@ -30,16 +30,23 @@
             </div>
             <p class="credits text">© Copyright {{new Date().getFullYear()}} Mesocross Limited. All rights reserved.</p>
         </div>
+        <Newsletter v-if="show" :data="newsletter"/>
     </footer>
 </template>
 
 <script>
 // Data
 import content from "assets/json/footer.json";
+import Newsletter from "../global/newsletter.vue"
 export default {
+    components: {
+        Newsletter
+    },
     data(){
         return {
-            data: content.footer
+            data: content.footer,
+            newsletter: content.newsletter,
+            show: false
         }
     }
 }

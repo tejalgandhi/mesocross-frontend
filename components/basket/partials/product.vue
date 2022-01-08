@@ -61,7 +61,6 @@ export default {
                 is_update: isUpdate
             }).then((response) => {
                 this.$emit('update')
-                this.$emit('alert', response.data.message)
             });
         },
         addWishlist(){

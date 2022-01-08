@@ -62,7 +62,7 @@ export default {
       else this.alerts.push(data)
       setTimeout(function(){
         this.alerts = [];
-      }.bind(this), 4000)
+      }.bind(this), 1500)
     }
   }
 }

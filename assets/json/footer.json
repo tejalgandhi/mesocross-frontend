@@ -15,10 +15,7 @@
             }
         ],
         "title": "GET STARTED SHAKING THE WORLD OF BEAUTY!",
-        "main_link": {
-            "name": "SUBSCRIBE TO OUR NEWSLETTER",
-            "path": "#"
-        },
+        "newsletter": "SUBSCRIBE TO OUR NEWSLETTER",
         "title_coin": "DELIVERY DESTINATION OR REGION",
         "title_lang": "Language",
         "menu": [
@@ -94,6 +91,39 @@
                         "path": "#"
                     }   
                 ]
+            }
+        ]
+    },
+    "newsletter": {
+        "title": "Subscribe to our Newsletter and we will send you information about news and trends.",
+        "button": "Subscribe",
+        "form": [
+            {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+            },
+            {
+                "name": "surname",
+                "type": "text",
+                "label": "Surname"
+            },
+            {
+                "name": "phone",
+                "type": "number",
+                "label": "Phone Number",
+                "prefix": true
+            },
+            {
+                "name": "email",
+                "type": "email",
+                "label": "Email"
+            },
+            {
+                "name": "country",
+                "type": "select",
+                "label": "Country",
+                "country": true
             }
         ]
     }

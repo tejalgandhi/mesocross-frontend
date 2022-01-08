@@ -10,13 +10,14 @@
         <Accordion :acc="data.characteristics" :data="product"/>
       </div>
       <div class="right">
-        <Details v-if="Object.keys(product).length" :data="data" :product="product"/>
+        <Details v-if="Object.keys(product).length" :data="data" :product="product" @alert="alertHandeler"/>
       </div>
     </div>
     <div></div>
     <BannerContainer :data="data.banner" />
         <!-- <PromotedProducts :data="products.products"/> -->
     <FooterContainer/>
+    <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
   </div>
 </template>
 
@@ -29,6 +30,7 @@ import FooterContainer from "../../components/layouts/footer.vue";
 import Details from "../../components/detail/details.vue"
 import Accordion from "../../components/detail/accordion.vue"
 import BannerContainer from "../../components/sections/banner.vue";
+import Alert from "../../components/global/alert.vue";
 
 import api from '../../assets/js/api'
 export default {
@@ -38,17 +40,30 @@ export default {
     Details,
     Accordion,
     // PromotedProducts,
-    BannerContainer
+    BannerContainer,
+    Alert
   },
   data(){
     return {
         data: contentProduct,
         product: {},
+        alerts: [],
+        status: false
     }
   },
   async mounted(){
       const response = await api.get('product-detail/'+this.$route.params.slug)
       this.product = response.data.data
+  },
+  methods: {
+    alertHandeler(data){
+      this.status = true
+      if(typeof data === 'object') this.alerts = Object.values(data) 
+      else this.alerts.push(data)
+      setTimeout(function(){
+        this.alerts = [];
+      }.bind(this), 4000)
+    }
   }
 }
 </script>

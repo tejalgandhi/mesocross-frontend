@@ -1,7 +1,7 @@
 <template>
     <div>
     <HeaderContainer/>
-      <Baseket :data="data" :user="user"/>
+      <Wishlist :data="data" :user="user"/>
     <FooterContainer/>
     </div>
 </template>
@@ -13,17 +13,17 @@ import { mapGetters } from 'vuex';
 import HeaderContainer from "../../components/layouts/headers/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 
-import Baseket from "../../components/basket/Main.vue";
+import Wishlist from "../../components/wish-list/Main.vue";
 
 export default {
   components: {
     HeaderContainer,
     FooterContainer,
-    Baseket
+    Wishlist
   },
   data(){
     return {
-        data: content.shopping_basket,
+        data: content.wishlist,
         user: {}
     }
   },

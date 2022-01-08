@@ -1,5 +1,8 @@
 <template>
     <article>
+        <button v-if="wishlist" @click="remove()">
+            <img src="/imgs/close.png" alt="">
+        </button>
         <NuxtLink :to="'/product-detail/'+product.slug">
             <figure>
                 <img :src="product.feature_image" alt="image">
@@ -20,6 +23,16 @@ export default {
             required: false,
             default: () => {}
         },
+        wishlist: {
+            type: Boolean,
+            required: false,
+            default: () => {}
+        },
+    },
+    methods: {
+        remove(){
+            this.$emit('update', this.product.product_id)
+        }
     }
 }
 </script>
@@ -28,12 +41,25 @@ export default {
 
 
     article {
+        position: relative;
 
         &:hover {
             img {
                 transform: scale(1.1);
             }
         }
+
+        button {
+            filter: brightness(1) invert(1);
+            position: absolute;
+            right: 1.25rem;
+            top: 1.25rem;
+
+            img {
+                width: 20px;
+            }
+        }
+
         figure {
             height: 26.5rem;
             display: flex;

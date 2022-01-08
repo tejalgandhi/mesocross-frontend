@@ -44,12 +44,18 @@ export default {
                 product_id: this.product.id,
                 qty: 1,
                 size_id: this.size,
-            })
+                flag: 1
+            }).then((response) => {
+                this.$emit('alert', response.data.message)
+            });
         },
         async addWishlist(){
             await api.post('wishlist', {
                 product_id: this.product.id,
-            })
+                flag: 1
+            }).then((response) => {
+                this.$emit('alert', response.data.message)
+            });
         }
     }
 }   

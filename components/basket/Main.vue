@@ -1,23 +1,38 @@
 <template>
     <div class="container">
         <h1>{{ data.title }}</h1>
-        <Empty v-if="!products_list.length" :data="data" :user="user"/>
-        <div v-else class="shopping-bag">
+        <div v-if="products_list.length && Object.keys(user).length" class="shopping-bag">
             <div class="product-list">
-                <Product v-for="product in products_list" :key="product.id" :product="product"/>
+                <div>
+                    <div class="product-list__header">
+                        <p>{{ data_basket.product_list.item_title }}</p>
+                        <p>{{ data_basket.product_list.qty_title }}</p>
+                        <p>{{ data_basket.product_list.price_title }}</p>
+                        <p>{{ data_basket.product_list.total_title }}</p>
+                    </div>
+                    <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @update="getProducts" @alert="alertHandeler"/>
+                </div>
             </div>
+            <Process :data="data_basket.process" :products_length="products_list.length" :total="total"/>
         </div>
+        <Empty v-else :data="data" :user="user"/>
+        <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
     </div>
 </template>
 
 <script>
 import api from '../../assets/js/api';
+import content from '../../assets/json/basket';
 import Empty from "../../components/basket/partials/empty.vue";
 import Product from "../../components/basket/partials/product.vue";
+import Process from "../../components/basket/partials/process.vue";
+import Alert from "../../components/global/alert.vue";
 export default {
     components: {
         Empty,
-        Product
+        Product,
+        Process,
+        Alert
     },
     props: {
         data: {
@@ -33,13 +48,37 @@ export default {
     },
     data(){
         return {
-            products_list: []
+            products_list: [],
+            data_basket: content,
+            total: 0,
+            alerts: [],
+            status: false
         }
     },
-    async mounted() {
-        const response = await api.get('cart')
-        this.products_list.push(...response.data.data)
+    mounted() {
+        this.getProducts()
     },
+    methods: {
+        totalPrice(){
+            this.products_list.forEach(product => {
+                this.total += parseFloat(product.price * product.qty)
+            });
+        },
+        async getProducts() {
+            this.products_list = []
+            const response = await api.get('cart')
+            this.products_list.push(...response.data.data)
+            this.totalPrice()
+        },
+        alertHandeler(data){
+            this.status = true
+            if(typeof data === 'object') this.alerts = Object.values(data) 
+            else this.alerts.push(data)
+            setTimeout(function(){
+                this.alerts = [];
+            }.bind(this), 2000)
+        }
+    }
 }
 </script>
 
@@ -60,9 +99,23 @@ export default {
     @extend .container-52;
     width: 100%;
     display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
 }
 
 .product-list {
-    width: 75%;
+    width: 65%;
+
+    &__header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        margin-bottom: .75rem;
+
+        p {
+            @extend .text;
+            text-align: center;
+            color: rgba($white, .4);
+        }
+    }
 }
 </style>

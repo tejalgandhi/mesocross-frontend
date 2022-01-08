@@ -10,7 +10,7 @@
         </div>
         <AuthForm v-show="!active" :data="data.signin" @alertHandeler="alertHandeler"/>
         <AuthForm v-show="active" :data="data.regist" @alertHandeler="alertHandeler"/>
-        <AuthAlert v-show="alerts.length" :alerts="alerts" :status="status"/>
+        <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
       </div>
     </div>
     <FooterContainer/>
@@ -22,12 +22,13 @@ import content from "assets/json/auth.json";
 
 import HeaderContainer from "../../components/layouts/headers/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
+import Alert from "../../components/global/alert.vue";
 
 export default {
   components: {
     HeaderContainer,
     FooterContainer,
-    // Alerts
+    Alert
   },
   data(){
     return {

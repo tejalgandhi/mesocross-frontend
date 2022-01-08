@@ -3,7 +3,7 @@
   <div>
     <HeaderContainer/>
     <BannerContainer :data="data.banner" />
-    <PromotedProducts :data="products.products" :title="data.title_products"/>
+    <PromotedProducts  :title="data.title_products"/>
     <HilightedProducts :data="data.cat"/>
     <FooterContainer/>
   </div>
@@ -11,7 +11,6 @@
 
 <script>
 import content from "assets/json/homepage.json";
-import contentProducts from "assets/json/products.json";
 
 import HeaderContainer from "../components/layouts/headers/header.vue";
 import BannerContainer from "../components/sections/banner.vue";
@@ -29,7 +28,6 @@ export default {
   data(){
     return {
       data: content,
-      products: contentProducts,
     }
   }
 }

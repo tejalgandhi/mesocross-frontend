@@ -17,7 +17,7 @@
                 <template v-else>
                     <a href="/">Ja registado</a>
                 </template>
-                <NuxtLink to="/shopping-bag">
+                <NuxtLink to="/wishlist">
                     <img src="/svgs/wishlist.svg" alt="bag">
                 </NuxtLink>
                 <NuxtLink to="/shopping-bag">

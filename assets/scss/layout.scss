@@ -32,6 +32,7 @@ a {
     &:hover {
         background-color: transparent;
         color: $white;
+        border: 1px solid $white;
     }
 
     &__inverted {
@@ -54,7 +55,10 @@ button {
 input,
 button,
 select,
-option {
+option,
+form {
+    border: none;
+    
     &:focus {
         border: none;
         outline: none;

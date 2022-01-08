@@ -1,5 +1,5 @@
 <template>
-    <ul class="alert" :class="{'error' : status === false}">
+    <ul class="alert" :class="{'error' : !status}">
         <li v-for="(item, i) in data" :key="i">
             {{ item }}
         </li>

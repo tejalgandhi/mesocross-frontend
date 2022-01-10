@@ -10,8 +10,8 @@
             </section>
         </figure>
         <div class="quantity">
-            <button @click="sub(product.qty)"><img src="/svgs/sub.svg" alt="button"></button>
-            <p>{{ product.qty }}</p>
+            <button @click="sub()"><img src="/svgs/sub.svg" alt="button"></button>
+            <p>{{ qty }}</p>
             <button @click="add()"><img src="/svgs/sub.svg" alt="button"></button>
         </div>
         <p>€ {{ product.price }}</p>
@@ -38,16 +38,23 @@ export default {
             default: () => {}
         },
     },
+    data(){
+        return {
+            qty: this.product.qty
+        }
+    },
     methods: {
-        sub(qty) {
-            if(parseInt(qty) === 1) {
+        sub() {
+            if(parseInt(this.qty) === 1) {
                 this.apiMethod(null, null)
             } else {
                 this.apiMethod(2, 1)
             }
+            this.qty--
         },
         add() {
             this.apiMethod(1, 1)
+            this.qty++
         },
         deleteItem() {
             this.apiMethod(null, null)
@@ -60,7 +67,7 @@ export default {
                 flag: flagVal,
                 is_update: isUpdate
             }).then((response) => {
-                this.$emit('update')
+                if(flagVal === null) this.$emit('update')
             });
         },
         addWishlist(){

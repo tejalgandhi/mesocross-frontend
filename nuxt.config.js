@@ -40,7 +40,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/i18n'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -49,7 +50,15 @@ export default {
       lang: 'en'
     }
   },
-
+  i18n: {
+    locales: [
+      { code: 'pt', file: 'pt.js' },
+      { code: 'en', file: 'en.js' },
+    ],
+    lazy: true,
+    defaultLocale: 'en',
+    langDir: 'langs/',
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

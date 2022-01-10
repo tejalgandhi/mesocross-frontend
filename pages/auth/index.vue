@@ -8,8 +8,9 @@
           <button :class="{ 'active' : active == false }" @click="toggle()">{{ data.signin.title }}</button>
           <button  :class="{ 'active' : active == true }" @click="toggle()">{{ data.regist.title }}</button>
         </div>
-        <AuthForm v-show="!active" :data="data.signin" @alertHandeler="alertHandeler"/>
+        <AuthForm v-show="!active" :data="data.signin" @alertHandeler="alertHandeler" @resetPass="resetActive = !resetActive"/>
         <AuthForm v-show="active" :data="data.regist" @alertHandeler="alertHandeler"/>
+        <AuthReset v-show="resetActive" :data="data.reset_pass"/>
         <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
       </div>
     </div>
@@ -35,7 +36,8 @@ export default {
       data: content,
       active: false,
       alerts: [],
-      status: false
+      status: false,
+      resetActive: false
     }
   },
   methods: {

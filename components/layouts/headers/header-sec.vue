@@ -1,10 +1,6 @@
 <template>
     <div>
     <header class="header">
-        <div v-if="getMessage" class="header__cta">
-            <a :href="data.link.to">{{data.link.text}}</a>
-            <button @click="close()"><img src="/imgs/close.png" alt="close"></button>
-        </div>
         <div class="header__top">
             <div class="lang">
                 <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
@@ -14,30 +10,9 @@
                     {{ data.logo }}
                 </NuxtLink>
             <div class="side-buttons">
-                <template v-if="!Object.keys(getUser).length">
-                    <a href="/auth">{{ data.sign_in }}</a>
-                </template>
-                <template v-else>
-                    <a href="/">Ja registado</a>
-                </template>
-                <NuxtLink to="/wishlist">
-                    <img src="/svgs/wishlist.svg" alt="bag">
-                </NuxtLink>
-                <NuxtLink to="/shopping-bag">
-                    <img src="/svgs/bag.svg" alt="bag">
-                </NuxtLink>
-                <button><img src="/svgs/search.svg" alt="search"></button>
+                
             </div>
         </div>
-        <nav>
-            <ul>
-                <li v-for="(item, i) in data.menu" :key="i">
-                    <NuxtLink :to="'/'+item.path">
-                        {{item.name}}
-                    </NuxtLink>
-                </li>
-            </ul>
-        </nav>
     </header>
     <div class="blank"></div>
     </div>
@@ -63,16 +38,12 @@ export default {
         })
     },
     mounted(){
-        this.blankHeight();
+        this.blankHeight()
     },
     methods:{
         ...mapMutations({
         setMessage: 'user/setMessage',
         }),
-        close(){
-            this.setMessage(false)
-            this.blankHeight()
-        },
         blankHeight(){
             const test = document.querySelector('header');
             const blank = document.querySelector('.blank');

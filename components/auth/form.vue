@@ -8,12 +8,12 @@
             </div>
         </template>
         <p v-if="data.policies" class="policies">{{ data.policies }}</p>
-        <button v-if="data.forgot_password" class="password">{{ data.forgot_password }}</button>
+        <button v-if="data.forgot_password" class="password" @click="resetPass()">{{ data.forgot_password }}</button>
         <template  v-for="(input, i) in data.form">
           <div v-if="input.type == 'checkbox'" :key="i" class="checkbox-container">
-            <label  class="checkbox">
+            <label class="checkbox">
                 {{ input.label }}
-                <input type="checkbox" :name="input.label" required>
+                <input v-model="form[input.name]" :type="input.type" :name="input.name">
                 <span class="checkmark"></span>
             </label>
           </div>
@@ -62,7 +62,7 @@ export default {
             if(response.data.status){
               this.setUser(response.data.user)
               localStorage.loginToken = response.data.access_token
-              this.$router.push({path: '/products'})
+              this.$router.push({path: '/reserved'})
             }
           break;
       
@@ -71,7 +71,10 @@ export default {
               this.setUser(response.data.user)
             }
           break;
-      }
+      };
+      // if(this.form.keep_signin) {
+      //   localStorage.authData = this.form
+      // }
     },
     togglePassword(name){
       if(this.$refs[name][0].type === 'text') this.$refs[name][0].type = 'password'
@@ -79,6 +82,9 @@ export default {
     },
     alertsHandeler(data){
       this.$emit('alertHandeler', data.message, data.status)
+    },
+    resetPass(){
+      this.$emit('resetPass')
     }
   }
 }

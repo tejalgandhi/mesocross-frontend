@@ -12,7 +12,9 @@
             <p><span>{{ data.discount_text }}</span> € 0</p>
             <p><span>{{ data.delivery_text }}</span> € 0</p>
             <p class="total"><span>{{ data.total_text }}</span> € {{ total }}</p>
-            <button class="retangular-button ">{{ data.button }}</button>
+                <NuxtLink to="checkout" class="retangular-button ">
+                    {{ data.button }}
+                </NuxtLink>
         </div>
     </aside>
 </template>

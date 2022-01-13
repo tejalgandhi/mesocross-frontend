@@ -5,6 +5,8 @@ export default {
         delivery: "Delivery",
         billing: "Payment",
         review: "Review",
+        goback: "BACK",
+        delivery_label: "SELECT YOUR DELIVERY ADDRESS OR ADD A NEW ONE"
     },
     reserved: {
         order: "Orders & Returns",
@@ -17,5 +19,12 @@ export default {
         cancel_address: "CANCEL",
         personal_data_title: "Personal data",
         personal_data_submit: "UPDATE PERSONAL DATA",
-    }
+        edit_address: "EDIT ADDRESS",
+        save_address: "EDIT ADDRESS",
+        remove_address: "REMOVE"
+    },
+    billing: {
+        title: "Payment methods",
+        add_payment: "ADD NEW PAYMENT"
+    },
 }

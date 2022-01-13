@@ -100,30 +100,33 @@
         "form": [
             {
                 "name": "name",
+                "label": "Name *",
                 "type": "text",
-                "label": "Name"
+                "width": "100"
             },
             {
                 "name": "surname",
+                "label": "Surname *",
                 "type": "text",
-                "label": "Surname"
+                "width": "100"
             },
             {
-                "name": "phone",
-                "type": "number",
-                "label": "Phone Number",
-                "prefix": true
+                "name": "phone_no",
+                "label": "Phone Number *",
+                "type": "text",
+                "width": "100"
             },
             {
                 "name": "email",
+                "label": "Email *",
                 "type": "email",
-                "label": "Email"
+                "width": "100"
             },
             {
                 "name": "country",
+                "label": "Country *",
                 "type": "select",
-                "label": "Country",
-                "country": true
+                "width": "100"
             }
         ]
     }

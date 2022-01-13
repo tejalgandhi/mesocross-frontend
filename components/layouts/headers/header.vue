@@ -18,7 +18,7 @@
                     <a href="/auth">{{ data.sign_in }}</a>
                 </template>
                 <template v-else>
-                    <a href="/">Ja registado</a>
+                    <a href="/reserved">Ja registado</a>
                 </template>
                 <NuxtLink to="/wishlist">
                     <img src="/svgs/wishlist.svg" alt="bag">
@@ -47,6 +47,7 @@
 // Data
 import content from "assets/json/header.json";
 import { mapGetters, mapMutations } from 'vuex';
+import api from "../../../assets/js/api.js";
 // Components
 export default {
     data(){
@@ -62,12 +63,24 @@ export default {
             getMessage: 'user/getMessage'
         })
     },
+    async created(){
+        if (typeof window !== 'undefined') {
+            if(localStorage.loginToken){
+                const response = await api.get('user')
+                this.setUser(response.data)
+                this.close()
+            }
+        }
+    },
     mounted(){
         this.blankHeight();
     },
     methods:{
         ...mapMutations({
         setMessage: 'user/setMessage',
+        }),
+        ...mapMutations({
+            setUser: 'user/setUser',
         }),
         close(){
             this.setMessage(false)

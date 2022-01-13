@@ -30,7 +30,7 @@
             </div>
             <p class="credits text">© Copyright {{new Date().getFullYear()}} Mesocross Limited. All rights reserved.</p>
         </div>
-        <Newsletter v-if="show" :data="newsletter"/>
+        <Newsletter v-if="show" :data="newsletter" @closeNewsletter="show = !show"/>
     </footer>
 </template>
 
@@ -58,7 +58,6 @@ export default {
     &__top {
         background-color: $black;
         padding-bottom: 5rem;
-        padding-top: 3rem;
 
         section {
             margin: 5rem auto 0;

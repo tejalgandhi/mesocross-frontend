@@ -2,8 +2,11 @@
     <div>
     <HeaderContainer/>
         <div class="big-container">
-            <Address :data="data.reserved.address_form"/>
             <PersonalData :data="data.reserved.personaldata_form"/>
+            <Address :data="data.reserved.address_form" @alert="alertHandeler"/>
+            <Billing :data="data.reserved.add_payment"/>
+            <!-- <LoginData :data="data.reserved.login"/> -->
+            <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
         </div>
     <FooterContainer/>
     </div>
@@ -12,23 +15,40 @@
 <script>
 import content from "assets/json/reserved.json";
 // import api from '../../assets/js/api';
-import HeaderContainer from "../../components/layouts/headers/header-sec.vue";
+import HeaderContainer from "../../components/layouts/headers/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 import Address from "../../components/reserved/address.vue";
 import PersonalData from "../../components/reserved/personal-data.vue";
+import Billing from "../../components/reserved/billing.vue";
+import Alert from "../../components/global/alert.vue";
 export default {
     components: {
         HeaderContainer,
         FooterContainer,
         Address,
-        PersonalData
+        PersonalData,
+        Billing,
+        Alert
     },
     data(){
         return {
             data: content,
-            user: {}
+            user: {},
+            alerts: [],
+            status: false,
         }
     },
+    methods: {
+        alertHandeler(data){
+            if(data.code === 200) this.status = true
+            else this.status = false
+            if(typeof data === 'object') this.alerts = Object.values(data) 
+            else this.alerts.push(data.message)
+            setTimeout(function(){
+                this.alerts = [];
+            }.bind(this), 4000)
+        }
+    }
 }
 </script>
 
@@ -40,25 +60,32 @@ export default {
     padding-bottom: 8.75rem;
 }
 
+
 .container {
+    background-color: $white;
+    margin-bottom: 0.25rem;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
     .button {
         @extend .text;
         color: $black;
-        padding: 1rem;
+        padding: 0 1.5rem;
         background-color: $white;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-}
-.container {
-    background-color: $white;
-    margin-bottom: 0.25rem;
 
-    section {
+    > section {
         margin-top: 6px;
-        padding: 2.25rem;
+        padding: 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
     }
 
     form {

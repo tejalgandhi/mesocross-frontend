@@ -1,28 +1,32 @@
 <template>
-    <div v-if="(input.type === 'text' || input.type === 'number' || input.type === 'email') && input.name !== 'phone'" :class="'input-container input-container-'+input.width">
-        <label :for="input.name">{{ input.label }}</label>
+    <div v-if="(input.type === 'text' || input.type === 'number' || input.type === 'email' || input.type === 'password') && (input.name !== 'phone_no' && input.name !== 'phone_number')" :class="'input-container input-container-'+input.width">
+        <label v-if="input.label" :for="input.name">{{ input.label }}</label>
         <input v-model="inputModel[input.name]" :type="input.type" :name="input.name">
     </div>
-    <div v-else-if="input.name === 'phone'" :class="'input-container input-container-'+input.width">
+    <div v-else-if="input.name === 'phone_no' || input.name === 'phone_number'" :class="'input-container input-container-'+input.width">
         <label :for="input.name">{{ input.label }}</label>
         <div class="phone">
             <client-only placeholder="loading...">
-                <vue-country-code :preferred-countries="['gb', 'pt', 'es']"  @onSelect="onSelect"></vue-country-code>
+                <vue-country-code :default-country="fillform.iso_alpha2" @onSelect="onSelect"></vue-country-code>
             </client-only>
             <input v-model="inputModel[input.name]" :type="input.type" :name="input.name">
         </div>
     </div>
     <div v-else-if="input.type === 'select'" :class="'input-container input-container-'+input.width">
         <label :for="input.name">{{ input.label }}</label>
-        <select v-model="inputModel[input.name]" :name="input.name">
-            <option v-for="(country, x) in countries" :key="x" :value="country.iso_code">{{ country.label }}</option>
+        <select v-model="inputModel[input.name]" :name="input.name" @change="countryChange(inputModel)">
+            <template v-if="input.options">
+                <option v-for="(option, x) in input.options" :key="x" :value="option">{{ option }}</option>
+            </template>
+            <template v-else>
+                <option v-for="(country, x) in countries" :key="x" :value="country.iso_code">{{ country.label }}</option>
+            </template>
         </select>
     </div>
 </template>
 
 <script>
 import VueCountryCode from "vue-country-code";
-import api from '../../assets/js/api';
 export default {
     components: {
         VueCountryCode,
@@ -38,10 +42,17 @@ export default {
             required: false,
             default: () => {}
         },
+        fillform: {
+            type: Object,
+            required: false,
+            default: () => {}
+        },
     },
     data() {
         return {
-            inputModel: {}
+            inputModel: {
+                brand: 'Visa'
+            }
         }
     },
     watch: {
@@ -50,12 +61,13 @@ export default {
             handler(val){
                 this.$emit('modelUpdate', val)
             }
-        }
-    },
-    async mounted() {
-        if(localStorage.loginToken) {
-            const response = await api.get('user')
-            this.inputModel = response.data;
+        },
+        fillform:{
+            immediate: true,
+            deep: true,
+            handler(val){
+                this.inputModel = val;
+            }
         }
     },
     methods: {
@@ -63,6 +75,9 @@ export default {
             this.inputModel.dial_code = dialCode
             this.inputModel.iso_alpha2 = iso2
             this.$emit('modelUpdate', this.inputModel)
+        },
+        countryChange() {
+            if(this.countries) this.inputModel.country = this.inputModel.country_code
         },
     }
 }

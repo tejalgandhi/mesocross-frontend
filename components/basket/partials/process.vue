@@ -12,9 +12,9 @@
             <p><span>{{ data.discount_text }}</span> € 0</p>
             <p><span>{{ data.delivery_text }}</span> € 0</p>
             <p class="total"><span>{{ data.total_text }}</span> € {{ total }}</p>
-                <NuxtLink to="checkout" class="retangular-button ">
-                    {{ data.button }}
-                </NuxtLink>
+            <NuxtLink to="checkout" class="retangular-button ">
+                {{ data.button }}
+            </NuxtLink>
         </div>
     </aside>
 </template>
@@ -60,6 +60,7 @@ export default {
                 display: flex;
                 flex-direction: column;
                 padding: 1.25rem;
+                width: 100%;
 
                 label {
                     @extend .md-text;
@@ -92,6 +93,10 @@ export default {
                     padding-top: 1rem;
                     border-top: 1px solid rgba($white, .4);
                 }
+            }
+
+            .retangular-button {
+                text-align: center;
             }
         }
     }

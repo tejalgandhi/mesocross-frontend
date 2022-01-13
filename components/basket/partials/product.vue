@@ -105,6 +105,10 @@ export default {
                 min-height: 100%;
                 min-width: 100%;
             }
+
+            section {
+                padding: 0;
+            }
         }
 
         section {

@@ -7,7 +7,7 @@
         <section v-show="active">
             <form>
                 <template v-for="(input, i) in data">
-                    <Input :key="i" :input="input" :countries="countries" @modelUpdate="modelUpdate"/>
+                    <Input :key="i" :input="input" :fillform="user" @modelUpdate="modelUpdate"/>
                 </template>
                 <button class="retangular-button black" type="button" @click="submit()">{{ $t('reserved.personal_data_submit') }}</button>
             </form>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import api from '../../assets/js/api';
 import Input from '../../components/global/input.vue';
 export default {
@@ -32,27 +33,37 @@ export default {
     data(){
         return {
             form: {},
-            countries: [],
-            active: false
+            active: false,
+            user: {}
         }
     },
-    async mounted() {
-        const response = await api.get('countries')
-        this.countries = response.data.countries
+    computed: {
+        ...mapGetters({
+            getUser: 'user/getUser'
+        })
+    },
+    watch: {
+        getUser: {
+            immediate: true,
+            deep: true,
+            handler(val){
+                this.user = {
+                    name: val.first_name,
+                    surname : val.last_name,
+                    email: val.email,
+                    phone_number: val.phone_number,
+                    iso_alpha2: val.iso_alpha2,
+                    dial_code: val.dial_code
+                }
+            }
+        }
     },
     methods: {
         toggle(){
             this.active = !this.active
         },
         async submit(){
-            await api.post('change-personal-details', this.form)            
-            // await api.post('change-personal-details', {
-            //     password:"123456",
-            //     email: "testjl@gmail.com",
-            //     name: "Mendes",
-            //     surname: "Memon",
-            //     phone_number: "+918141809038"
-            // })
+            await api.post('change-personal-details', this.form)
         },
         modelUpdate(val){
             const obj = {}

@@ -52,6 +52,7 @@ export default {
         // padding-bottom: 5.75rem;
         display: flex;
         align-items: center;
+        flex-direction: row;
         gap: 2rem;
 
         figure {

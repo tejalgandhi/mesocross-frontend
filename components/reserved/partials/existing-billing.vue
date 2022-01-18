@@ -1,13 +1,10 @@
 <template>
     <section class="existing-billing" :class="{ active : active }" @click="makeDefault()">
-        <div class="name"> 
+        <label class=" name">
             <input :id="data.id" type="radio" name="radio">
-            <!-- <img src="/imgs/visa.png" alt=""> -->
-            <label :for="data.id">
-                <p>Jenifer Arruda</p>
-                <span>{{data.number}}</span>
-            </label>
-        </div>
+            <span class="checkmark"></span>
+            {{data.number}}
+        </label>
         <div class="buttons">
             <button @click="removeBilling">{{ $t('reserved.remove_address') }}</button>
         </div>
@@ -85,4 +82,50 @@ export default {
             }
         }
     }
+.name {
+  display: flex;
+  padding-left: 2rem;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.name input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  height: 20px;
+  width: 20px;
+  border: 1px solid $black;
+  border-radius: 50%;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.name input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.name .checkmark:after {
+ 	top: 50%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: $black;
+}
 </style>

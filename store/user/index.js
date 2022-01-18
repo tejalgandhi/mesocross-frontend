@@ -2,6 +2,7 @@ export const state = () => ({
     user: {},
     message: true,
     cat: null,
+    cart: [],
 })
   
 export const mutations = {
@@ -12,6 +13,9 @@ export const mutations = {
         state.message = payload
     },
     setCat(state, payload) {
+        state.cat = payload
+    },
+    setCart(state, payload) {
         state.cat = payload
     }
 }
@@ -24,6 +28,9 @@ export const getters = {
         return state.message
     },
     getCat(state) {
+        return state.cat
+    },
+    getCart(state) {
         return state.cat
     }
 }

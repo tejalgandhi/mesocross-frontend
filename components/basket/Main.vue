@@ -10,7 +10,7 @@
                         <p>{{ data_basket.product_list.price_title }}</p>
                         <p>{{ data_basket.product_list.total_title }}</p>
                     </div>
-                    <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @update="getProducts" @alert="alertHandeler"/>
+                    <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @update="deleteProduct" @alert="alertHandeler"/>
                 </div>
             </div>
             <Process :data="data_basket.process" :products_length="products_list.length" :total="total"/>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations  } from 'vuex';
 import api from '../../assets/js/api';
 import content from '../../assets/json/basket';
 import Empty from "../../components/basket/partials/empty.vue";
@@ -55,10 +56,18 @@ export default {
             status: false
         }
     },
+    computed: {
+        ...mapGetters({
+            getCart: 'user/getCart'
+        })
+    },
     mounted() {
         this.getProducts()
     },
     methods: {
+        ...mapMutations({
+            setCart: 'user/setCart',
+        }),
         totalPrice(){
             this.total = 0
             this.products_list.forEach(product => {
@@ -68,8 +77,14 @@ export default {
         async getProducts() {
             this.products_list = []
             const response = await api.get('cart')
-            this.products_list.push(...response.data.data)
             this.totalPrice()
+            this.setCart(response.data.data)
+            this.products_list = this.getCart
+        },
+        deleteProduct(data){
+            console.log(data)
+            // const i = this.getCart.map(item => item.id).indexOf(data);
+            // this.getCart.someArrayofObjects.splice(i, 1);
         },
         alertHandeler(data){
             this.status = true

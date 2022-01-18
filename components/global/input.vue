@@ -18,7 +18,7 @@
             <template v-if="input.options">
                 <option v-for="(option, x) in input.options" :key="x" :value="option">{{ option }}</option>
             </template>
-            <template v-else>
+            <template v-else-if="countries">
                 <option v-for="(country, x) in countries" :key="x" :value="country.iso_code">{{ country.label }}</option>
             </template>
         </select>
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             inputModel: {
-                brand: 'Visa'
+                // brand: 'Visa'
             }
         }
     },

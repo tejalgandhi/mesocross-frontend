@@ -67,7 +67,7 @@ export default {
                 flag: flagVal,
                 is_update: isUpdate
             }).then((response) => {
-                if(flagVal === null) this.$emit('update')
+                if(flagVal === null) this.$emit('update', this.product.product_id)
             });
         },
         addWishlist(){

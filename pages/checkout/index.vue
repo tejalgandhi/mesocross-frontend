@@ -8,12 +8,13 @@
             <span class="line"></span>
             <Step :position="3" :name="'checkout.review'" :active="active"/>
         </div>
-        <Delivery/>
+        <Delivery :data="data.reserved.address_form"/>
     <!-- <FooterContainer/> -->
     </div>
 </template>
 
 <script>
+import content from "assets/json/reserved.json";
 import HeaderContainer from "../../components/layouts/headers/header.vue";
 // import FooterContainer from "../../components/layouts/footer.vue";
 import Step from "../../components/checkout/step.vue"
@@ -27,6 +28,7 @@ export default {
     },
     data(){
         return {
+            data: content,
             active: 1
         }
     }

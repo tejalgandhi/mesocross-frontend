@@ -1,20 +1,20 @@
 <template>
     <form>
         <h4>{{ data.title }}</h4>
-        <button class="close" @click="close()"><img src="/imgs/close.png" alt="close"></button>
-        <template v-for="(input, i) in data.form">
+        <button type="button" class="close" @click="close()"><img src="/imgs/close.png" alt="close"></button>
+        <!-- <template v-for="(input, i) in data.form">
             <Input :key="i" :input="input" :countries="countries" @modelUpdate="modelUpdate"/>
-        </template>
+        </template> -->
         <button class="retangular-button black">{{ data.button }}</button>
     </form>
 </template>
 
 <script>
 import api from '../../assets/js/api'
-import Input from '../../components/global/input.vue';
+// import Input from '../../components/global/input.vue';
 export default {
     components: {
-        Input,
+        // Input,
     },
     props: {
         data: {
@@ -32,6 +32,8 @@ export default {
     async mounted() {
         const response = await api.get('countries')
         this.countries = response.data.countries
+
+        console.log(this.data)
     },
     methods: {
         modelUpdate(val){

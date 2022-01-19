@@ -10,10 +10,10 @@
                         <p>{{ data_basket.product_list.price_title }}</p>
                         <p>{{ data_basket.product_list.total_title }}</p>
                     </div>
-                    <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @update="deleteProduct" @alert="alertHandeler"/>
+                    <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @quantity="quantityUpdate" @update="deleteProduct" @alert="alertHandeler"/>
                 </div>
             </div>
-            <Process :data="data_basket.process" :products_length="products_list.length" :total="total"/>
+            <Process :data="data_basket.process" :total="total"/>
         </div>
         <Empty v-else :data="data" :user="user"/>
         <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
@@ -51,7 +51,10 @@ export default {
         return {
             products_list: [],
             data_basket: content,
-            total: 0,
+            total:{
+                price: 0,
+                items: 0,
+            },
             alerts: [],
             status: false
         }
@@ -67,32 +70,43 @@ export default {
     methods: {
         ...mapMutations({
             setCart: 'user/setCart',
+            deleteFromCart: 'user/deleteFromCart',
+            updateQuantity: 'user/updateQuantity'
         }),
-        totalPrice(){
-            this.total = 0
-            this.products_list.forEach(product => {
-                this.total += parseFloat(product.price * product.qty)
+        getDetails(){
+            this.products_list = this.getCart
+            this.total.price = 0
+            this.total.items = 0
+            this.getCart.forEach(product => {
+                this.total.items += product.qty
+                this.total.price += parseFloat(product.price * product.qty)
             });
         },
         async getProducts() {
             this.products_list = []
             const response = await api.get('cart')
-            this.totalPrice()
             this.setCart(response.data.data)
-            this.products_list = this.getCart
+            this.getDetails()
         },
         deleteProduct(data){
-            console.log(data)
-            // const i = this.getCart.map(item => item.id).indexOf(data);
-            // this.getCart.someArrayofObjects.splice(i, 1);
+            this.deleteFromCart(data)
+            this.getDetails()
+        },
+        quantityUpdate(qty, id) {
+            const obj = {
+                qty,
+                id
+            }
+            this.updateQuantity(obj)
+            this.getDetails()
         },
         alertHandeler(data){
             this.status = true
             if(typeof data === 'object') this.alerts = Object.values(data) 
             else this.alerts.push(data)
-            setTimeout(function(){
+            setTimeout(() => {
                 this.alerts = [];
-            }.bind(this), 2000)
+            }, 2000)
         }
     }
 }
@@ -102,6 +116,7 @@ export default {
 .container {
     background-color: $black;
     padding: 6.5rem 0 12.5rem;
+    margin-bottom: 0;
 
      h1 {
          @extend .xxs-title;

@@ -3,6 +3,7 @@ export const state = () => ({
     message: true,
     cat: null,
     cart: [],
+    wishlist: [],
 })
   
 export const mutations = {
@@ -16,8 +17,23 @@ export const mutations = {
         state.cat = payload
     },
     setCart(state, payload) {
-        state.cat = payload
-    }
+        state.cart = payload
+    },
+    deleteFromCart(state, payload) {
+        const i = state.cart.indexOf(el => el.product_id === payload)
+        state.cart.splice(i, 1)
+    },
+    updateQuantity(state, payload) {
+        const i = state.cart.findIndex(item => item.product_id === payload.id);
+        state.cart[i].qty = parseInt(state.cart[i].qty) + parseInt(payload.qty);
+    },
+    setWishlist(state, payload) {
+        state.wishlist = payload
+    },
+    deleteFromWishlist(state, payload) {
+        const i = state.wishlist.indexOf(el => el.product_id === payload)
+        state.wishlist.splice(i, 1)
+    },
 }
 
 export const getters = {
@@ -31,6 +47,9 @@ export const getters = {
         return state.cat
     },
     getCart(state) {
-        return state.cat
+        return state.cart
+    },
+    getWishlist(state) {
+        return state.wishlist
     }
 }

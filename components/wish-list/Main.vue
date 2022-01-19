@@ -2,13 +2,14 @@
     <div class="container">
         <h1>{{ data.title }}</h1>
         <div v-if="products_list.length && Object.keys(user).length" class="product-list">
-            <Product v-for="product in products_list" :key="product.id" :product="product" :wishlist="true" @update="remove"/>
+            <Product v-for="product in getWishlist" :key="product.id" :product="product" :wishlist="true" @update="remove"/>
         </div>
         <Empty v-else :data="data" :user="user"/>
     </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations  } from 'vuex';
 import api from '../../assets/js/api';
 import Empty from "../../components/basket/partials/empty.vue";
 import Product from "../../components/cards/product.vue";
@@ -34,22 +35,30 @@ export default {
             products_list: []
         }
     },
+    computed: {
+        ...mapGetters({
+            getWishlist: 'user/getWishlist',
+        })
+    },
     mounted(){
-        this.getWishlist()
+        this.wishlist()
     },
     methods: {
-        async getWishlist() {
+        ...mapMutations({
+            setWishlist: 'user/setWishlist',
+            deleteFromWishlist: 'user/deleteFromWishlist'
+        }),
+        async wishlist() {
             this.products_list = []
             const response = await api.get('wishlist')
-            this.products_list.push(...response.data.data)
+            this.setWishlist(response.data.data)
+            this.products_list = this.getWishlist
         },
         remove(id) {
             api.post('wishlist', {
                 product_id: id,
-            }).then(() => {
-                this.getWishlist()
-            });
-
+            })
+            this.deleteFromWishlist(id)
         }
     },
 }

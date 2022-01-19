@@ -1,11 +1,9 @@
 <template>
     <div class="hilighted-products container-52">
         <article v-for="(cat, i) in cats" :key="i" @click="showCat(cat)">
-            <!-- <a :href="cat.slug"> -->
-                <figure>
-                    <img :src="cat.image" alt="image">
-                </figure>
-            <!-- </a> -->
+            <figure>
+                <img :src="cat.image" alt="image">
+            </figure>
             <section>
                 <h1 class="xxs-title">{{ cat.title }}</h1>
                 <p class="text">{{ cat.title }}</p>
@@ -57,6 +55,7 @@ export default {
     gap: 3rem 1.25rem;
 
     article {
+        cursor: pointer;
         
         &:hover {
             img {

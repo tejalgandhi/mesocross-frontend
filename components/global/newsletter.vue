@@ -32,8 +32,6 @@ export default {
     async mounted() {
         const response = await api.get('countries')
         this.countries = response.data.countries
-
-        console.log(this.data)
     },
     methods: {
         modelUpdate(val){

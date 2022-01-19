@@ -8,10 +8,10 @@
             </form>
         </section>
         <div>
-            <p><span>{{ products_length }} {{ data.products_text }}</span> {{ total }}</p>
+            <p><span>{{ total.items }} {{ data.products_text }}</span> €{{ total.price }}</p>
             <p><span>{{ data.discount_text }}</span> € 0</p>
             <p><span>{{ data.delivery_text }}</span> € 0</p>
-            <p class="total"><span>{{ data.total_text }}</span> € {{ total }}</p>
+            <p class="total"><span>{{ data.total_text }}</span> € {{ total.price }}</p>
             <NuxtLink to="checkout" class="retangular-button ">
                 {{ data.button }}
             </NuxtLink>
@@ -27,13 +27,8 @@ export default {
             required: false,
             default: () => {}
         },
-        products_length: {
-            type: Number,
-            required: false,
-            default: () => {}
-        },
         total: {
-            type: Number,
+            type: Object,
             required: false,
             default: () => {}
         }

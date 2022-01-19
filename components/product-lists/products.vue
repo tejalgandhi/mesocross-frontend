@@ -76,16 +76,18 @@ export default {
         }
     },
     created(){
-        
-        if(this.getCat !== null) {
-            this.addFilter(this.getCat)
-            this.filter()
-        }
     },
     mounted(){
         this.filters.forEach(filter => {
             this.getFilters(filter)
         });
+        
+        if(this.getCat !== null) {
+            const cat = this.getCat
+            console.log(cat.id)
+            this.addFilter(cat.id)
+            this.filter()
+        }
     },
     methods: {
         async getData(page) {

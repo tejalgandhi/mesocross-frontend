@@ -40,21 +40,23 @@ export default {
     },
     data(){
         return {
-            qty: this.product.qty
+            qty: this.product.qty,
         }
     },
     methods: {
         sub() {
             if(parseInt(this.qty) === 1) {
                 this.apiMethod(null, null)
-            } else {
+            } else if(parseInt(this.qty) > 1) {
+                this.qty--
+                this.$emit('quantity', -1, this.product.product_id)
                 this.apiMethod(2, 1)
             }
-            this.qty--
         },
         add() {
             this.apiMethod(1, 1)
             this.qty++
+            this.$emit('quantity', 1, this.product.product_id)
         },
         deleteItem() {
             this.apiMethod(null, null)

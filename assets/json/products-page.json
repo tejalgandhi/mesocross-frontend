@@ -35,12 +35,6 @@
             "name": "SEARCH BY CATEGORY",
             "api": "categories",
             "slug": "categories"
-        },
-        
-        {
-            "name": "SEARCH BY CATEGORY",
-            "api": "categories",
-            "slug": "categories"
         }
     ]
 }

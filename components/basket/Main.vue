@@ -13,7 +13,7 @@
                     <Product v-for="product in products_list" :key="product.id" :product="product" :data="data_basket.product" @quantity="quantityUpdate" @update="deleteProduct" @alert="alertHandeler"/>
                 </div>
             </div>
-            <Process :data="data_basket.process" :total="total"/>
+            <Process :data="data_basket.process" :basket="true"/>
         </div>
         <Empty v-else :data="data" :user="user"/>
         <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
@@ -75,12 +75,6 @@ export default {
         }),
         getDetails(){
             this.products_list = this.getCart
-            this.total.price = 0
-            this.total.items = 0
-            this.getCart.forEach(product => {
-                this.total.items += product.qty
-                this.total.price += parseFloat(product.price * product.qty)
-            });
         },
         async getProducts() {
             this.products_list = []

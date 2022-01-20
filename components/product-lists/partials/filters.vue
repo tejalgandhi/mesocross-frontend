@@ -16,16 +16,18 @@
                     </button>
                     <ul v-if="i == active">
                         <li v-for="button in filter.data" :key="button.id">
-                            <button class="text" @click="handleFilter(button, i)">
+                            <label class="text name" @click="handleFilter(button.id)">
                                 {{ button.name }}
-                            </button>
+                                <input ref="checkbox" type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
         <div>
-            <button class="md-text">{{ text.clean }}</button>
+            <button class="md-text" @click="cleanFilters()">{{ text.clean }}</button>
             <button class="md-text" @click="applyFilters()">{{ text.apply }}</button>
         </div>
     </aside>
@@ -60,8 +62,8 @@ export default {
         close() {
             this.$emit('close')
         },
-        handleFilter(cat, i){
-            this.$emit('filterProducts', cat)
+        handleFilter(id){
+            this.$emit('filterProducts', id)
         },
         applyFilters(){
             this.$emit('applyFilters')
@@ -69,6 +71,12 @@ export default {
         showFilters(i) {
             if(this.active === i) this.active = null
             else this.active = i
+        },
+        cleanFilters(){
+            this.$refs.checkbox.forEach(element => {
+                element.checked = false
+            });
+            this.$emit('cleanFilters')
         }
     }
 }
@@ -137,7 +145,7 @@ aside {
                     width: 100%;
 
                     &.main-button {
-                            position: sticky;
+                        position: sticky;
                         top: 0;
                         background-color: white;
                         z-index: 1;
@@ -164,10 +172,11 @@ aside {
                         
 
                         li {
-                            &.active {
-                                button {
-                                    font-weight: medium;
-                                }
+                            padding-right: 10px;
+                            label {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
                             }
                         }
                     }
@@ -204,5 +213,53 @@ aside {
 
         }
     }
+}
+
+    
+.name {
+  display: flex;
+  padding-left: 2rem;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.name input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  height: 20px;
+  width: 20px;
+  border: 1px solid $black;
+  border-radius: 50%;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.name input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.name .checkmark:after {
+ 	top: 50%;
+	left: 50%;
+    transform: translate(-50%, -50%);
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: $black;
 }
 </style>

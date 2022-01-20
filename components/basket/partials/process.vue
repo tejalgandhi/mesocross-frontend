@@ -1,25 +1,27 @@
 <template>
-    <aside>
+    <aside :class="{ checkout : !basket }">
         <section>
-            <h1>{{ data.process_title }}</h1>
+            <h1>{{ $t('process.title') }}</h1>
             <form action="">
-                <label for="">{{ data.promo_title }}</label>
-                <input type="text" :placeholder="data.promo_text">
+                <label for="">{{ $t('process.promo') }}</label>
+                <input type="text" :placeholder="$t('process.placeholder')">
             </form>
         </section>
         <div>
-            <p><span>{{ total.items }} {{ data.products_text }}</span> €{{ total.price }}</p>
-            <p><span>{{ data.discount_text }}</span> € 0</p>
-            <p><span>{{ data.delivery_text }}</span> € 0</p>
-            <p class="total"><span>{{ data.total_text }}</span> € {{ total.price }}</p>
-            <NuxtLink to="checkout" class="retangular-button ">
-                {{ data.button }}
+            <p><span>{{ items }} {{ $t('process.product_text') }}</span> €{{ price }}</p>
+            <p><span>{{ $t('process.discount_text') }}</span> € 0</p>
+            <p><span>{{ $t('process.delivery_text') }}</span> € 0</p>
+            <p class="total"><span>{{ $t('process.total_text') }}</span> € {{ price }}</p>
+            <NuxtLink v-if="basket" to="checkout" class="retangular-button ">
+                {{ $t('process.process') }}
             </NuxtLink>
+            <button v-else class="retangular-button retangular-button__inverted" @click="nextStep()">{{ $t('process.save_button') }}</button>
         </div>
     </aside>
 </template>
 
 <script>
+import { mapGetters  } from 'vuex';
 export default {
     props: {
         data: {
@@ -27,10 +29,49 @@ export default {
             required: false,
             default: () => {}
         },
-        total: {
-            type: Object,
+        basket: {
+            type: Boolean,
             required: false,
-            default: () => {}
+        }
+        // total: {
+        //     type: Object,
+        //     required: false,
+        //     default: () => {}
+        // }
+    },
+    data(){
+        return {
+            items: 0,
+            price: 0,
+        }
+    },
+    computed: {
+        ...mapGetters({
+            getCart: 'user/getCart'
+        })
+    },
+    watch: {
+        getCart: {
+            deep: true,
+            handler(){
+                this.getDetails()
+            }
+        },
+    },
+    mounted() {
+        this.getDetails()
+    },
+    methods: {
+        getDetails() {
+            this.price = 0
+            this.items = 0
+            this.getCart.forEach(product => {
+                this.items += product.qty
+                this.price += parseFloat(product.price * product.qty)
+            });
+        },
+        nextStep() {
+            this.$emit('nextStep')
         }
     }
 }
@@ -84,6 +125,10 @@ export default {
                 display: flex;
                 justify-content: space-between;
 
+                &:first-of-type {
+                    font-weight: 700;
+                }
+
                 &.total {
                     padding-top: 1rem;
                     border-top: 1px solid rgba($white, .4);
@@ -94,5 +139,29 @@ export default {
                 text-align: center;
             }
         }
+
+        &.checkout {
+            section, div, form {
+                h1, label, p, input {
+                    color: $black;
+                }
+            }
+
+            form {
+                background-color: rgba($black, .1);
+            }
+
+            input {
+                background-color: $white;
+            }
+
+            .total {
+                border-top-color: $black;
+            }
+            button {
+                @extend .black;
+            }
+        }
+
     }
 </style>

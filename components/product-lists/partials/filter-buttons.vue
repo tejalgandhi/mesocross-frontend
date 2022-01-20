@@ -4,7 +4,7 @@
         <div>
             <button class="md-text">{{text.sort}}</button>
             <button class="md-text" @click="toggleFilters" >{{text.filters}}</button>
-            <FiltersModule :filters="filters" :text="text" :show="show" @filterProducts="filter" @close="toggleFilters" @applyFilters="applyFilters"/>
+            <FiltersModule :filters="filters" :text="text" :show="show" @cleanFilters="cleanFilters" @filterProducts="filter" @close="toggleFilters" @applyFilters="apply"/>
         </div>
     </div>
 </template>
@@ -41,11 +41,14 @@ export default {
         toggleFilters() {
             this.show = !this.show
         },
-        filter(cat) {
-            this.$emit('filterProducts', cat)
+        filter(id) {
+            this.$emit('filterProducts', id)
         },
-        applyFilters(){
+        apply(){
             this.$emit('applyFilters')
+        },
+        cleanFilters(){
+            this.$emit('cleanFilters')
         }
     }
 }

@@ -27,4 +27,16 @@ export default {
         title: "Payment methods",
         add_payment: "ADD NEW PAYMENT"
     },
+    process: {
+        title: "Order summary",
+        promo: "Insert your promo code",
+        placeholder: "Enter promo code",
+        product_text: "products",
+        discount_text: "Discount",
+        delivery_text: "Delivery",
+        total_text: "Total",
+        vat: "VAT included",
+        process: "GO TO CHECKOUT",
+        save_button: "SAVE AND CONTINUE"
+    },
 }

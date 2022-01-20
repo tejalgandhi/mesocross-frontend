@@ -94,10 +94,9 @@ export default {
 
 <style lang="scss" scoped>
 .big-container {
-    padding: 0 3rem;
+    background-color: $white;
 
     > section {
-        margin-top: 5rem;
 
         h1 {
             margin-top: 2rem;
@@ -107,7 +106,6 @@ export default {
     }
 
     > div {
-        width: 65%;
         margin-top: 2rem;
 
         form {

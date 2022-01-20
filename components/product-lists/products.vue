@@ -2,7 +2,7 @@
 <div class="products-container container-52">
     <div>
         <Breadcrumbs :data="breadcrumbs"/>
-        <Filters :filters="filter_fields" :text="text" :count="products_list.length" @filterProducts="addFilter" @applyFilters="filter"/>
+        <Filters :filters="filter_fields" :text="text" :count="products_list.length" @filterProducts="addFilter" @applyFilters="filter" @cleanFilters="cleanFilters"/>
     </div>
     <div class="products-list">
         <ProductCard v-for="(product, i) in products_list" :key="i" :product="product"/> 
@@ -75,16 +75,12 @@ export default {
             else this.getData(1)
         }
     },
-    created(){
-    },
     mounted(){
         this.filters.forEach(filter => {
             this.getFilters(filter)
         });
-        
         if(this.getCat !== null) {
             const cat = this.getCat
-            console.log(cat.id)
             this.addFilter(cat.id)
             this.filter()
         }
@@ -101,12 +97,15 @@ export default {
             const response = await api.get(`${data.api}`)
             this.filter_fields.push({data: response.data.data, name: data.name})
         },
-        addFilter(cat) {
-            this.catregories.push(cat.id)
+        addFilter(id) {
+            this.catregories.push(id)
         },
         filter(){
             const message = this.catregories.join()
             this.category = message
+        },
+        cleanFilters(){
+            this.category = '';
         }
     },
 }

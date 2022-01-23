@@ -1,20 +1,22 @@
 <template>
+<div class="overlay">
     <form>
         <h4>{{ data.title }}</h4>
         <button type="button" class="close" @click="close()"><img src="/imgs/close.png" alt="close"></button>
-        <!-- <template v-for="(input, i) in data.form">
-            <Input :key="i" :input="input" :countries="countries" @modelUpdate="modelUpdate"/>
-        </template> -->
-        <button class="retangular-button black">{{ data.button }}</button>
+        <template v-for="(input, i) in data.form">
+            <Input :key="i" :input="input" :fillform="form" :countries="countries" @modelUpdate="modelUpdate"/>
+        </template>
+        <button type="button" class="retangular-button black" @click="submit()">{{ data.button }}</button>
     </form>
+</div>
 </template>
 
 <script>
 import api from '../../assets/js/api'
-// import Input from '../../components/global/input.vue';
+import Input from '../../components/global/input.vue';
 export default {
     components: {
-        // Input,
+        Input,
     },
     props: {
         data: {
@@ -44,21 +46,34 @@ export default {
         },
         close() {
             this.$emit('closeNewsletter')
+        },
+        submit() {
+            api.post('store', this.form)
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba($black, .5);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 4rem 0;
+}
     form {
         width: 33%;
-        position: fixed;
+        position: absolute;
         left: 50%;
         top: 4rem;
         transform: translate(-50%);
         background-color: $white;
-        z-index: 100;
-        padding: 4rem 2.5rem 2.5rem;
+        padding: 5rem 2.5rem 2.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -76,6 +91,7 @@ export default {
 
         h4 {
             @extend .text;
+            font-size: 24px;
             color: $black;
             text-align: center;
             margin-bottom: 2rem;

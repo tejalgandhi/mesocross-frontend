@@ -7,7 +7,7 @@
         <label :for="input.name">{{ input.label }}</label>
         <div class="phone">
             <client-only placeholder="loading...">
-                <vue-country-code :default-country="fillform.iso_alpha2" @onSelect="onSelect"></vue-country-code>
+                <vue-country-code  @onSelect="onSelect"></vue-country-code>
             </client-only>
             <input v-model="inputModel[input.name]" :type="input.type" :name="input.name">
         </div>
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             inputModel: {
-                // brand: 'Visa'
+                brand: 'Visa'
             }
         }
     },

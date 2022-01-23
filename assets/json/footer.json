@@ -102,31 +102,31 @@
                 "name": "name",
                 "label": "Name *",
                 "type": "text",
-                "width": "50"
+                "width": "100"
             },
             {
                 "name": "surname",
                 "label": "Surname *",
                 "type": "text",
-                "width": "50"
+                "width": "100"
             },
             {
                 "name": "phone_number",
                 "label": "Phone *",
                 "type": "text",
-                "width": "150"
+                "width": "100"
             },
             {
                 "name": "email",
                 "label": "Email *",
                 "type": "text",
-                "width": "150"
+                "width": "100"
             },
             {
-                "name": "password",
-                "label": "Password *",
-                "type": "password",
-                "width": "150"
+                "name": "country_code",
+                "label": "Pais *",
+                "type": "select",
+                "width": "100"
             }
         ]
     }

@@ -6,7 +6,9 @@ export default {
         billing: "Payment",
         review: "Review",
         goback: "BACK",
-        delivery_label: "SELECT YOUR DELIVERY ADDRESS OR ADD A NEW ONE"
+        delivery_label: "SELECT YOUR DELIVERY ADDRESS OR ADD A NEW ONE",
+        selected_address: "BILLING ADDRESS",
+        selected_billing: "Payment method",
     },
     reserved: {
         order: "Orders & Returns",
@@ -39,4 +41,11 @@ export default {
         process: "GO TO CHECKOUT",
         save_button: "SAVE AND CONTINUE"
     },
+    product_card: {
+        qty: "Quantity",
+        price: "Price",
+        total: "Total",
+        ref: "Ref",
+        delete: "Delete",
+    }
 }

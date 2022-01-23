@@ -33,11 +33,6 @@ export default {
             type: Boolean,
             required: false,
         }
-        // total: {
-        //     type: Object,
-        //     required: false,
-        //     default: () => {}
-        // }
     },
     data(){
         return {

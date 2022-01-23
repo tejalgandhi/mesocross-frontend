@@ -9,7 +9,7 @@
         </section>
         <div>
             <div v-if="!addAddress" class="address-container">
-                <ExistingAddress v-for="(address, i) in existing_address" :key="i" :data="address" :checkout="true" @selectPayment="selectPayment" @editAddress="update"/>
+                <ExistingBilling v-for="(address, i) in existing_address" :key="i" :data="address" :checkout="true" @selectPayment="selectPayment" @editAddress="update"/>
             </div>
             <form v-if="addAddress">
                 <template v-for="(input, i) in data">
@@ -22,7 +22,7 @@
                 <button class="retangular-button retangular-button__inverted" type="button" @click="toggleAddress()">{{ $t('reserved.cancel_address') }}</button>
             </form>
             <button v-show="!addAddress" class="new-address retangular-button retangular-button__inverted" @click="toggleAddress()">
-                {{ $t('reserved.add_address') }}
+                {{ $t('billing.add_payment') }}
             </button>
         </div>
     </div>
@@ -31,20 +31,15 @@
 <script>
 import { mapMutations  } from 'vuex';
 import api from '../../assets/js/api';
-import ExistingAddress from '../reserved/partials/existing-address.vue';
+import ExistingBilling from '../reserved/partials/existing-billing.vue';
 export default {
     components: {
         // Input,
-        ExistingAddress,
+        ExistingBilling,
     },
     props: {
         data: {
             type: Array,
-            required: false,
-            default: () => {}
-        },
-        edit: {
-            type: Object,
             required: false,
             default: () => {}
         },
@@ -58,24 +53,16 @@ export default {
             selected_payment: {}
         }
     },
-    watch: {
-        edit: {
-            deep: true,
-            handler(val){
-                this.update(val)
-            }
-        }
-    },
     async mounted() {
         const countries = await api.get('countries')
         this.countries = countries.data.countries
 
-        const address = await api.get('address')
+        const address = await api.get('stripe/card-list')
         this.existing_address = address.data.data
     },
     methods: {
         ...mapMutations({
-            setAddressForm: 'checkout/setAddressForm',
+            setBillingForm: 'checkout/setBillingForm',
         }),
         update(data){
             this.edit_address = data;
@@ -104,7 +91,7 @@ export default {
                 obj[propertie] = val[key]
                 this.selected_payment[propertie] = obj[propertie]
             }
-            this.setAddressForm(this.selected_payment)
+            this.setBillingForm(this.selected_payment)
         }
     }
 }

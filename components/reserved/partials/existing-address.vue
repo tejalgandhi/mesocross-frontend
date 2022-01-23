@@ -1,8 +1,8 @@
 <template>
     <section class="existing-address" :class="{ active : active }" @click="makeDefault()">
-        <label class=" name">
-            <input :id="data.id" type="radio" name="radio">
-            <span class="checkmark"></span>
+        <label class="name">
+            <input v-if="!selected" :id="data.id" type="radio" name="radio">
+            <span  v-if="!selected" class="checkmark"></span>
             {{data.address_first_line}}, {{data.address_second_line}}
         </label>
         <p>{{data.country}}</p>
@@ -27,10 +27,16 @@ export default {
             required: false,
             default: () => {}
         },
+        selected: {
+            type: Boolean,
+            required: false,
+            default: () => {}
+        }
     },
     data(){
         return {
-            active: false
+            active: false,
+            form: {}
         }
     },
     methods: {
@@ -42,7 +48,7 @@ export default {
             this.$emit('editAddress', this.data)
         },
         makeDefault(){
-            this.active = true
+            if(!this.selected) this.active = true
             if(this.checkout) {
                 this.$emit('selectPayment', this.data)
             }

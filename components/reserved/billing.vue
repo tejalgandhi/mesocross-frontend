@@ -28,11 +28,11 @@
 
 <script>
 import api from '../../assets/js/api';
-import Input from '../../components/global/input.vue';
+// import Input from '../../components/global/input.vue';
 import ExistingBilling from '../reserved/partials/existing-billing.vue';
 export default {
     components: {
-        Input,
+        // Input,
         ExistingBilling
     },
     props: {

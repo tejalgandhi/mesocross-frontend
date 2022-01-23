@@ -1,8 +1,9 @@
 <template>
-    <div class="step" :class="{active : active === position}">
-        <div>
+    <div class="step" :class="{'active' : active < position}">
+        <div v-if="active <= position">
             <span>{{position}}</span>
         </div>
+        <img  v-if="active > position" src="/svgs/chekmark.svg" alt="chemark">
         <p>{{ $t(`${name}`) }}</p>
     </div>
 </template>
@@ -25,7 +26,7 @@ export default {
             required: false,
             default: () => {}
         },
-    }
+    },
 }
 </script>
 
@@ -35,10 +36,10 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        opacity: .4;
-
+        
         &.active {
-            opacity: 1;
+            
+        opacity: .4;
         }
 
         > div {

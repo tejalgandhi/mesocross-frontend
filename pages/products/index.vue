@@ -1,5 +1,4 @@
 <template>
-  <!-- <Tutorial/> -->
   <div>
     <HeaderContainer/>
     <Banner :data="data.banner"/>

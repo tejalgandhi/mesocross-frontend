@@ -1,8 +1,8 @@
 <template>
     <section class="existing-billing" :class="{ active : active }" @click="makeDefault()">
         <label class=" name">
-            <input :id="data.id" type="radio" name="radio">
-            <span class="checkmark"></span>
+            <input v-if="!selected" :id="data.id" type="radio" name="radio">
+            <span v-if="!selected" class="checkmark"></span>
             {{data.number}}
         </label>
         <div class="buttons">
@@ -19,6 +19,16 @@ export default {
             required: false,
             default: () => {}
         },
+        checkout: {
+            type: Boolean,
+            required: false,
+            default: () => {}
+        },
+        selected: {
+            type: Boolean,
+            required: false,
+            default: () => {}
+        }
     },
     data(){
         return {
@@ -27,11 +37,12 @@ export default {
     },
     methods: {
         makeDefault(){
-            this.active = true
+            if(!this.selected) this.active = true
+            if(this.checkout) {
+                this.$emit('selectPayment', this.data)
+            }
         },
-        removeBilling(){
-
-        }
+        removeBilling(){}
     }
 }
 </script>

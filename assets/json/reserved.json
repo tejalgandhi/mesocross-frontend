@@ -116,17 +116,29 @@
             },
             {
                 "name": "cvc",
-                "label": "Expiration date *",
+                "label": "Cvc *",
                 "type": "text",
                 "width": "150"
             }
         ],
         "login": [
             {
-                "name": "brand",
-                "label": "Add payment method *",
-                "type": "select",
-                "width": "100"
+                "name": "password",
+                "label": "Password *",
+                "type": "password",
+                "width": "150"
+            },
+            {
+                "name": "new_password",
+                "label": "Nova Password *",
+                "type": "password",
+                "width": "50"
+            },
+            {
+                "name": "confirm_password",
+                "label": "Repetir Password *",
+                "type": "password",
+                "width": "50"
             }
         ]
     }

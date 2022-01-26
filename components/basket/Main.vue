@@ -79,7 +79,7 @@ export default {
         async getProducts() {
             this.products_list = []
             const response = await api.get('cart')
-            this.setCart(response.data.data)
+            if(response.data.data) this.setCart(response.data.data)
             this.getDetails()
         },
         deleteProduct(data){

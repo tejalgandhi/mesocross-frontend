@@ -12,7 +12,7 @@
 <script>
 import content from "assets/json/homepage.json";
 
-import HeaderContainer from "../components/layouts/headers/header.vue";
+import HeaderContainer from "../components/layouts/header.vue";
 import BannerContainer from "../components/sections/banner.vue";
 import PromotedProducts from "../components/sections/promoted-products.vue";
 import HilightedProducts from "../components/sections/hilighted-products.vue";

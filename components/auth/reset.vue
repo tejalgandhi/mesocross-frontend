@@ -1,8 +1,11 @@
 <template>
     <aside>
-        <h2>{{$t(data.title)}}</h2>
-        <input type="email" name="email" :placeholder="data.label" v-model="form['email']">
-        <button class="retangular-button retangular-button__inverted" @click="submit()">{{$t('test')}}</button>
+        <button type="button" class="button">
+            <img src="/imgs/close.png" alt="close" @click="close">
+        </button>
+        <h2>{{$t('auth.forgot_pw')}}</h2>
+        <input v-model="form['email']" type="email" name="email" :placeholder="data.label">
+        <button type="button" class="retangular-button retangular-button__inverted" @click="submit()">{{$t('auth.submit')}}</button>
     </aside>
 </template>
 
@@ -24,6 +27,9 @@ export default {
     methods: {
         async submit(){
             await api.post('forgot-password', this.form)
+        },
+        close() {
+            this.$emit('close')
         }
     }
 }
@@ -35,8 +41,18 @@ export default {
         top: 50%;
         transform: translate(-50%, -50%);
         background-color: $white;
-        padding: 2rem;
+        padding: 4rem 2rem 2rem;
         width: 33%;
+
+        .button {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translate(-50%);
+            img {
+                width: 16px;
+            }
+        }
 
         h2 {
             @extend .xxs-title;

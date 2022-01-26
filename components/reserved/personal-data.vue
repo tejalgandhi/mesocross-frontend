@@ -2,9 +2,9 @@
     <div class="container">
         <button class="button" @click="toggle()">
             {{ $t('reserved.personal_data_title') }}
-            <img src="/svgs/bag.svg" alt="bag">
+            <img src="/svgs/chevron.svg" alt="image">
         </button>
-        <section v-show="active">
+        <section v-show="active === 0">
             <form>
                 <template v-for="(input, i) in data">
                     <Input :key="i" :input="input" :fillform="user" @modelUpdate="modelUpdate"/>
@@ -29,11 +29,14 @@ export default {
             required: false,
             default: () => {}
         },
+        active: {
+            type: Number,
+            default: () => {}
+        },
     },
     data(){
         return {
             form: {},
-            active: false,
             user: {}
         }
     },
@@ -60,10 +63,13 @@ export default {
     },
     methods: {
         toggle(){
-            this.active = !this.active
+            let val = 0
+            if(this.active === 0) val = null
+            this.$emit('close', val)
         },
         async submit(){
-            await api.post('change-personal-details', this.form)
+            const response = await api.post('change-personal-details', this.form)
+            this.$emit('alert', response.data)
         },
         modelUpdate(val){
             const obj = {}
@@ -78,4 +84,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button {
+    img {
+        transform: rotate(-90deg);
+    }
+}
 </style>

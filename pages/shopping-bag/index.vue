@@ -10,7 +10,7 @@
 import content from "assets/json/basket.json";
 import { mapGetters } from 'vuex';
 
-import HeaderContainer from "../../components/layouts/headers/header.vue";
+import HeaderContainer from "../../components/layouts/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 
 import Baseket from "../../components/basket/Main.vue";
@@ -32,8 +32,13 @@ export default {
       getUser: 'user/getUser',
     }),
   },
-  mounted(){
-    if(Object.keys(this.getUser).length) this.user = this.getUser
-  },
+  watch: {
+      getUser: {
+        immediate: true,
+        handler(val) {
+            if(Object.keys(val).length) this.user = val
+        }
+      }
+  }
 }
 </script>

@@ -38,7 +38,7 @@ export default {
             setCat: 'user/setCat',
         }),
         showCat(cat){
-            this.setCat(cat)
+            this.setCat(cat.id)
             this.$router.push({path: '/products', params: cat})
         },
     }

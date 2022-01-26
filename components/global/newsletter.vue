@@ -48,7 +48,7 @@ export default {
             this.$emit('closeNewsletter')
         },
         submit() {
-            api.post('store', this.form)
+            api.post('subscribe/store', this.form)
         }
     }
 }
@@ -64,20 +64,21 @@ export default {
     height: 100%;
     overflow-y: auto;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 4rem 0;
 }
     form {
         width: 33%;
-        position: absolute;
-        left: 50%;
-        top: 4rem;
-        transform: translate(-50%);
         background-color: $white;
         padding: 5rem 2.5rem 2.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: .5rem;
+        position: relative;
+        box-shadow: 0px 6px 12px rgba($black, .1);
 
         .close {
             position: absolute;

@@ -30,7 +30,9 @@
             </div>
             <p class="credits text">© Copyright {{new Date().getFullYear()}} Mesocross Limited. All rights reserved.</p>
         </div>
-        <Newsletter v-show="show" :data="newsletter" @closeNewsletter="show = !show"/>
+        <transition name="fade">
+            <Newsletter v-show="show" :data="newsletter" @closeNewsletter="show = !show"/>
+        </transition>
     </footer>
 </template>
 

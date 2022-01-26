@@ -2,20 +2,18 @@
     <div class="container">
         <button class="button" @click="toggle()">
             {{ $t('billing.title') }}
-            <img src="/svgs/bag.svg" alt="bag">
+            <img src="/svgs/chevron.svg" alt="bag">
         </button>
-        <section v-show="active">
+        <section v-show="active === 2">
             <section v-show="!addPayment" class="address-container">
                 <ExistingBilling v-for="(billing, i) in existing_billing" :key="i" :data="billing"/>
             </section>
             <form v-if="addPayment">
                 <template v-for="(input, i) in data">
-                    <Input :key="i" :input="input" @modelUpdate="modelUpdate"/>
+                    <Input :key="i" :input="input" :fillform="form" @modelUpdate="modelUpdate"/>
                 </template>
                 <button class="retangular-button black" type="button" @click="submit()">
-                    {{ $t('reserved.add_address') }}
-                    <!-- <span v-if="!Object.keys(edit_address).length">{{ $t('reserved.add_address') }}</span>
-                    <span v-else>{{ $t('reserved.save_address') }}</span> -->
+                    {{ $t('billing.add_payment') }}
                 </button>
                 <button class="retangular-button retangular-button__inverted" type="button" @click="togglePayment()">{{ $t('reserved.cancel_address') }}</button>
             </form>
@@ -28,11 +26,9 @@
 
 <script>
 import api from '../../assets/js/api';
-// import Input from '../../components/global/input.vue';
 import ExistingBilling from '../reserved/partials/existing-billing.vue';
 export default {
     components: {
-        // Input,
         ExistingBilling
     },
     props: {
@@ -41,10 +37,13 @@ export default {
             required: false,
             default: () => {}
         },
+        active: {
+            type: Number,
+            default: () => {}
+        },
     },
     data(){
         return {
-            active: false,
             form: {},
             addPayment: false,
             existing_billing: {}
@@ -56,7 +55,9 @@ export default {
     },
     methods: {
         toggle(){
-            this.active = !this.active
+            let val = 2
+            if(this.active === 2) val = null
+            this.$emit('close', val)
         },
         togglePayment(){
             this.addPayment = !this.addPayment
@@ -70,15 +71,24 @@ export default {
             }
         },
         async submit(){
-            const response = await api.post('stripe/create-card', {
-                brand: "Visa",
-                expiry_date: "12/2032",
-                id: "card_1KHF3EAorcrWvyC1YxCzcDuj",
-                name: null,
-                number: "4242424242424242",
-            })
+            // const response = await api.post('stripe/create-card', {
+            //     brand: "Visa",
+            //     expiry_date: "12/2032",
+            //     id: "card_1KHF3EAorcrWvyC1YxCzcDuj",
+            //     name: null,
+            //     number: "4242424242424242",
+            // })
+            const response = await api.post('stripe/create-card', this.form)
             this.$emit('alert', response.data)
         },
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.button {
+    img {
+        transform: rotate(-90deg);
+    }
+}
+</style>

@@ -36,7 +36,7 @@
 import { mapMutations, mapGetters  } from 'vuex';
 import content from "assets/json/reserved.json";
 import api from '../../assets/js/api';
-import HeaderContainer from "../../components/layouts/headers/header.vue";
+import HeaderContainer from "../../components/layouts/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 import Step from "../../components/checkout/step.vue";
 import Delivery from "../../components/checkout/delivery.vue";
@@ -81,6 +81,7 @@ export default {
             deleteFromCart: 'user/deleteFromCart',
         }),
         async getProducts() {
+            
             const response = await api.get('cart')
             this.setCart(response.data.data)
         },
@@ -89,6 +90,8 @@ export default {
                 this.active++
             } else if(this.active === 2 && Object.keys(this.getBillingForm).length) {
                 this.active++
+            } else if(this.active === 3) {
+                api.get('order/store')
             }
         },
         remove(id){

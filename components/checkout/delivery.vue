@@ -1,10 +1,10 @@
 <template>
     <div class="big-container">
         <section>
-            <button>
+            <NuxtLink to="shopping-bag">
                 <img src="/svgs/chevron.svg" alt="">
                 {{$t('checkout.goback')}}
-            </button>
+            </NuxtLink>
             <h1>{{$t('checkout.delivery_label')}}</h1>
         </section>
         <div>
@@ -116,10 +116,35 @@ export default {
 
     > section {
 
+        a {
+            @extend .text;
+            color: $black;
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+
+            img {
+                margin-right: 6px;
+                transition: .3s;
+            }
+
+            &:hover {
+                img {
+                    margin-right: 12px;
+                }
+            }
+        }
+
         h1 {
             margin-top: 2rem;
             @extend .text;
             color: $black;
+        }
+
+        button {
+            @extend .text;
+            color: $black;
+            text-transform: uppercase;
         }
     }
 

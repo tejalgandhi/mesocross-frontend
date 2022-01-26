@@ -1,8 +1,11 @@
 <template>
-    <section class="existing-billing" :class="{ active : active }" @click="makeDefault()">
-        <label class=" name">
+    <section class="existing-billing" :class="{ active : active }">
+        <label class="name" @click="makeDefault()">
             <input v-if="!selected" :id="data.id" type="radio" name="radio">
             <span v-if="!selected" class="checkmark"></span>
+            <img v-if="data.brand === 'Visa'" src="/imgs/visa.png" alt="">
+            <img v-if="data.brand === 'Martercad'" src="/imgs/mastercard.png" alt="">
+            <img v-if="data.brand === 'AmericanExpress'" src="/imgs/americanexpress.png" alt="">
             {{data.number}}
         </label>
         <div class="buttons">
@@ -65,15 +68,17 @@ export default {
             display: flex;
             align-items: center;
             gap: 1rem;
+            @extend .text;
+            color: $black;
+            font-weight: bold;
 
-            label {
-                @extend .text;
-                color: $black;
-                font-weight: bold;
+            p {
+                font-weight: 400;
+            }
 
-                p {
-                    font-weight: 400;
-                }
+            img {
+                max-width: 120px;
+                max-height: 100px;
             }
         }
 

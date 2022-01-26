@@ -51,7 +51,7 @@ export default {
         async wishlist() {
             this.products_list = []
             const response = await api.get('wishlist')
-            this.setWishlist(response.data.data)
+            if(response.data.data) this.setWishlist(response.data.data)
             this.products_list = this.getWishlist
         },
         remove(id) {

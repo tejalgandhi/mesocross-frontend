@@ -9,7 +9,7 @@
 
 <script>
 import content from "assets/json/products-page.json";
-import HeaderContainer from "../../components/layouts/headers/header.vue";
+import HeaderContainer from "../../components/layouts/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 
 import Banner from "../../components/product-lists/banner.vue"

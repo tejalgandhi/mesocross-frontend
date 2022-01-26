@@ -8,7 +8,7 @@
             </div>
         </template>
         <p v-if="data.policies" class="policies">{{ data.policies }}</p>
-        <button v-if="data.forgot_password" class="password" @click="resetPass()">{{ data.forgot_password }}</button>
+        <button v-if="data.forgot_password" type="button" class="password" @click="resetPass()">{{ data.forgot_password }}</button>
         <template  v-for="(input, i) in data.form">
           <div v-if="input.type == 'checkbox'" :key="i" class="checkbox-container">
             <label class="checkbox">
@@ -46,13 +46,10 @@ export default {
       getUser: 'user/getUser',
     }),
   },
-  watch: {
-    getUser(val){
-    }
-  },
   methods: {
     ...mapMutations({
       setUser: 'user/setUser',
+      setSignIn: 'user/setSignIn',
     }),
     async submit(){
       const response = await api.post(this.data.api, this.form)
@@ -62,6 +59,7 @@ export default {
             if(response.data.status){
               this.setUser(response.data.user)
               localStorage.loginToken = response.data.access_token
+              this.setSignIn(this.form.keep_signin || false)
               this.$router.push({path: '/reserved'})
             }
           break;
@@ -69,12 +67,10 @@ export default {
         case 'regist':
             if(response.data.status){
               this.setUser(response.data.user)
+              this.setSignIn(this.form.keep_signin || false)
             }
           break;
       };
-      // if(this.form.keep_signin) {
-      //   localStorage.authData = this.form
-      // }
     },
     togglePassword(name){
       if(this.$refs[name][0].type === 'text') this.$refs[name][0].type = 'password'

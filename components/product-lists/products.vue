@@ -9,13 +9,13 @@
     </div>
     <div class="loadmore">
         <p class="md-text">{{products_list.length}} of {{total}} {{text.viwed}}</p>
-        <button class="retangular-button retangular-button__inverted" @click="current_page += 1">{{text.show_more}}</button>
+        <button class="retangular-button black" @click="current_page += 1">{{text.show_more}}</button>
     </div>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import api from '../../assets/js/api';
 import ProductCard from "../../components/cards/product.vue";
 import Breadcrumbs from "./partials/breadcrumbs.vue";
@@ -64,7 +64,11 @@ export default {
         current_page: {
             immediate: true,
             handler(val) {
-                this.getData(val)
+                if(this.getCat !== null) {
+                    this.addFilter(this.getCat)
+                    this.filter()
+                    this.getData(this.getCat)
+                } else this.getData(val)
             }
         },
         category(val) {
@@ -79,13 +83,11 @@ export default {
         this.filters.forEach(filter => {
             this.getFilters(filter)
         });
-        if(this.getCat !== null) {
-            const cat = this.getCat
-            this.addFilter(cat.id)
-            this.filter()
-        }
     },
     methods: {
+        ...mapMutations({
+            setCat: 'user/setCat',
+        }),
         async getData(page) {
             const response = await api.get(`products?limit=${this.per_page}&category=${this.category}&page=${page}`)
             if(!this.total) this.total = response.data.meta.total

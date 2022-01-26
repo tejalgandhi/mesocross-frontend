@@ -10,7 +10,7 @@
         </div>
         <AuthForm v-show="!active" :data="data.signin" @alertHandeler="alertHandeler" @resetPass="resetActive = !resetActive"/>
         <AuthForm v-show="active" :data="data.regist" @alertHandeler="alertHandeler"/>
-        <AuthReset v-show="resetActive" :data="data.reset_pass"/>
+        <AuthReset v-show="resetActive" :data="data.reset_pass" @close="resetActive = !resetActive"/>
         <Alert v-show="alerts.length" :alerts="alerts" :status="status"/>
       </div>
     </div>
@@ -21,7 +21,7 @@
 <script>
 import content from "assets/json/auth.json";
 
-import HeaderContainer from "../../components/layouts/headers/header.vue";
+import HeaderContainer from "../../components/layouts/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 import Alert from "../../components/global/alert.vue";
 

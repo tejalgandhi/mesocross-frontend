@@ -12,7 +12,7 @@
         <div class="quantity">
             <button @click="sub()"><img src="/svgs/sub.svg" alt="button"></button>
             <p>{{ qty }}</p>
-            <button @click="add()"><img src="/svgs/sub.svg" alt="button"></button>
+            <button @click="add()"><img src="/svgs/plus_2.svg" alt="button"></button>
         </div>
         <p>€ {{ product.price }}</p>
         <p>€ {{ product.price * product.qty }}</p>

@@ -1,6 +1,14 @@
 export default {
-    test: "Lorem Ipsum",
-    forgot_pw: "Forgot Password?",
+    header: {
+        welcome: 'hi,'
+    },
+    language: {
+        title: 'Please Select your Language'
+    },
+    auth: {
+        forgot_pw: "Forgot Password?",
+        submit: "Submeter",
+    },
     checkout: {
         delivery: "Delivery",
         billing: "Payment",
@@ -11,6 +19,9 @@ export default {
         selected_billing: "Payment method",
     },
     reserved: {
+        title: "MY ACCOUNT",
+        logout: "LOG OUT",
+        goback: "BACK TO SHOPPING",
         order: "Orders & Returns",
         history: "Invoice history",
         personal: "Personal data",
@@ -23,7 +34,9 @@ export default {
         personal_data_submit: "UPDATE PERSONAL DATA",
         edit_address: "EDIT ADDRESS",
         save_address: "EDIT ADDRESS",
-        remove_address: "REMOVE"
+        remove_address: "REMOVE",
+        update_password: "Login data",
+        update_password_button: "UPDATE LOGIN DATA"
     },
     billing: {
         title: "Payment methods",
@@ -34,6 +47,7 @@ export default {
         promo: "Insert your promo code",
         placeholder: "Enter promo code",
         product_text: "products",
+        items_text: "items",
         discount_text: "Discount",
         delivery_text: "Delivery",
         total_text: "Total",

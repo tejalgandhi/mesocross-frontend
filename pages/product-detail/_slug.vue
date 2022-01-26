@@ -24,7 +24,7 @@
 <script>
 import contentProduct from "assets/json/product.json";
 // import contentProducts from "assets/json/products.json";
-import HeaderContainer from "../../components/layouts/headers/header.vue";
+import HeaderContainer from "../../components/layouts/header.vue";
 import FooterContainer from "../../components/layouts/footer.vue";
 
 import Details from "../../components/detail/details.vue"

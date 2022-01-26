@@ -14,9 +14,9 @@
                         {{ filter.name }}</span>
                         <img src="/svgs/plus-black.svg" alt="Plus">
                     </button>
-                    <ul v-if="i == active">
+                    <ul v-show="i == active">
                         <li v-for="button in filter.data" :key="button.id">
-                            <label class="text name" @click="handleFilter(button.id)">
+                            <label :ref="button.id" class="text name" @click="handleFilter(button.id)">
                                 {{ button.name }}
                                 <input ref="checkbox" type="checkbox">
                                 <span class="checkmark"></span>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
     props: {
         filters: {
@@ -57,6 +58,16 @@ export default {
         return {
             active: null,
         }
+    },
+    computed: {
+        ...mapGetters({
+            getCat: 'user/getCat'
+        }),
+    },
+    mounted() {
+        setTimeout(() => {
+            this.$refs[this.getCat][0].children[0].checked = true
+        }, 250);
     },
     methods: {
         close() {

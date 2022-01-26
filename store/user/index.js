@@ -4,6 +4,8 @@ export const state = () => ({
     cat: null,
     cart: [],
     wishlist: [],
+    keep_signin: true,
+    open_reserved: null,
 })
   
 export const mutations = {
@@ -20,7 +22,7 @@ export const mutations = {
         state.cart = payload
     },
     deleteFromCart(state, payload) {
-        const i = state.cart.indexOf(el => el.product_id === payload)
+        const i = state.cart.findIndex(el => el.product_id === payload)
         state.cart.splice(i, 1)
     },
     updateQuantity(state, payload) {
@@ -33,6 +35,12 @@ export const mutations = {
     deleteFromWishlist(state, payload) {
         const i = state.wishlist.indexOf(el => el.product_id === payload)
         state.wishlist.splice(i, 1)
+    },
+    setSignIn(state, payload) {
+        state.keep_signin = payload
+    },
+    setReserved(state, payload) {
+        state.open_reserved = payload
     },
 }
 
@@ -51,5 +59,11 @@ export const getters = {
     },
     getWishlist(state) {
         return state.wishlist
+    },
+    getSignIn(state) {
+        return state.keep_signin
+    },
+    getReserved(state) {
+        return state.open_reserved
     }
 }

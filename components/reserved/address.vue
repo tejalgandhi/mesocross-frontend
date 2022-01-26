@@ -2,9 +2,9 @@
     <div class="container">
         <button class="button" @click="toggle()">
             {{ $t('reserved.shipping') }}
-            <img src="/svgs/bag.svg" alt="bag">
+            <img src="/svgs/chevron.svg" alt="bag">
         </button>
-        <section v-show="active">
+        <section v-show="active === 1">
             <section v-show="!addAddress" class="address-container">
                 <ExistingAddress v-for="(address, i) in existing_address" :key="i" :data="address" @editAddress="editAddress"/>
             </section>
@@ -40,10 +40,13 @@ export default {
             required: false,
             default: () => {}
         },
+        active: {
+            type: Number,
+            default: () => {}
+        },
     },
     data(){
         return {
-            active: false,
             addAddress: false,
             form: {},
             countries: [],
@@ -60,7 +63,9 @@ export default {
     },
     methods: {
         toggle(){
-            this.active = !this.active
+            let val = 1
+            if(this.active === 1) val = null
+            this.$emit('close', val)
         },
         toggleAddress(){
             this.addAddress = !this.addAddress;
@@ -97,5 +102,11 @@ export default {
 .new-address {
     margin-left: auto;
     width: fit-content;
+}
+
+.button {
+    img {
+        transform: rotate(-90deg);
+    }
 }
 </style>

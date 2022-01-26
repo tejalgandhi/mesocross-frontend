@@ -8,7 +8,7 @@
             </form>
         </section>
         <div>
-            <p><span>{{ items }} {{ $t('process.product_text') }}</span> €{{ price }}</p>
+            <p><span>{{ items }} {{ $t('process.items_text') }} ({{ products }} {{ $t('process.product_text') }})</span> €{{ price }}</p>
             <p><span>{{ $t('process.discount_text') }}</span> € 0</p>
             <p><span>{{ $t('process.delivery_text') }}</span> € 0</p>
             <p class="total"><span>{{ $t('process.total_text') }}</span> € {{ price }}</p>
@@ -37,6 +37,7 @@ export default {
     data(){
         return {
             items: 0,
+            products: 0,
             price: 0,
         }
     },
@@ -60,9 +61,11 @@ export default {
         getDetails() {
             this.price = 0
             this.items = 0
+            this.products = 0
             this.getCart.forEach(product => {
                 this.items += product.qty
-                this.price += parseFloat(product.price * product.qty)
+                this.products += 1
+                this.price += Math.floor(parseFloat(product.price * product.qty) * 10) / 10
             });
         },
         nextStep() {

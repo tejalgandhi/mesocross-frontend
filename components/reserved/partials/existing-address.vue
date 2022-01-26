@@ -1,6 +1,6 @@
 <template>
-    <section class="existing-address" :class="{ active : active }" @click="makeDefault()">
-        <label class="name">
+    <section class="existing-address" :class="{ active : active }">
+        <label class="name" @click="makeDefault()">
             <input v-if="!selected" :id="data.id" type="radio" name="radio">
             <span  v-if="!selected" class="checkmark"></span>
             {{data.address_first_line}}, {{data.address_second_line}}

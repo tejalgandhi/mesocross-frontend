@@ -1,9 +1,0 @@
-{
-    "title": "SHOPPING BASKET",
-    "description": "Your shopping basket is empty",
-    "signin": "Sign in or register to add products to the shopping basket",
-    "link": {
-        "path": "auth",
-        "name": "SIGN IN"
-    }
-}

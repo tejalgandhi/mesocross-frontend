@@ -35,9 +35,9 @@ export default {
     async registerUser (userInfo) {
       const userData = userInfo
       try {
-        const { data } = await this.$axios.post('http://mesocross-api.test/api/register', userData)
+        const { data } = await this.$axios.post('/register', userData)
         if (data.status === true) {
-          this.$router.push({ path: 'http://mesocross-api.test/api/login', redirect: 'actualRoute' })
+          this.$router.push({ path: '/login', redirect: 'actualRoute' })
           this.$toast.success(this.$t('you_have_registred_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
         }
       } catch (err) {

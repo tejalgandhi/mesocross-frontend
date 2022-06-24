@@ -200,7 +200,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {"baseUrl":"https://dev.api.mccm.connectgeneration.app/api","uploadURL":"https://dev.admin.mesosystem.connectgeneration.app/uploads/","frontURL":"http://localhost:3000/","stripePublisableKey":"pk_test_51Juff3AorcrWvyC1319QCtFsO8IZZp0MrVWJgl7xcArQUBO8Fxd3lepvl68SrGr0zEg1op4hRQsGqHcx2uBcGDzO00PnsKYEpC","siteCaptchaKey":"6LdWwPEcAAAAAMg41zjD9e1gfEwbPyqqChFIudhz","stripeAccount":"acct_1Juff3AorcrWvyC1","stripeVersion":"2020-08-27"}
+      env: {"baseUrl":"http://mesocross-api.test/api/","uploadURL":"http://mesosystem-backend.test/uploads/","frontURL":"http://localhost:3000/","stripePublisableKey":"pk_test_51Juff3AorcrWvyC1319QCtFsO8IZZp0MrVWJgl7xcArQUBO8Fxd3lepvl68SrGr0zEg1op4hRQsGqHcx2uBcGDzO00PnsKYEpC","siteCaptchaKey":"6LdWwPEcAAAAAMg41zjD9e1gfEwbPyqqChFIudhz","stripeAccount":"acct_1Juff3AorcrWvyC1","stripeVersion":"2020-08-27"}
     }
     // Only set once
 

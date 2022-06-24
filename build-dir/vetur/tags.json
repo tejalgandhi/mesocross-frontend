@@ -50,14 +50,14 @@
   "AuthLogin": {
     "description": "Auto imported from components/auth/login.vue"
   },
-  "CustomTreatment": {
-    "description": "Auto imported from components/CustomTreatment/index.vue"
+  "BlogFilterOld": {
+    "description": "Auto imported from components/blog/FilterOld.vue"
   },
-  "CustomTreatmentProductList": {
-    "description": "Auto imported from components/CustomTreatment/ProductList.vue"
+  "BlogListing": {
+    "description": "Auto imported from components/blog/listing.vue"
   },
-  "CustomTreatmentProducts": {
-    "description": "Auto imported from components/CustomTreatment/Products.vue"
+  "BlogSingle": {
+    "description": "Auto imported from components/blog/Single.vue"
   },
   "CheckoutAddPaymentMethod": {
     "description": "Auto imported from components/checkout/AddPaymentMethod.vue"
@@ -74,15 +74,6 @@
   "CheckoutTab": {
     "description": "Auto imported from components/checkout/tab.vue"
   },
-  "BlogFilterOld": {
-    "description": "Auto imported from components/blog/FilterOld.vue"
-  },
-  "BlogListing": {
-    "description": "Auto imported from components/blog/listing.vue"
-  },
-  "BlogSingle": {
-    "description": "Auto imported from components/blog/Single.vue"
-  },
   "CommonAccessPrice": {
     "description": "Auto imported from components/common/accessPrice.vue"
   },
@@ -97,6 +88,15 @@
   },
   "CommonSearch": {
     "description": "Auto imported from components/common/Search.vue"
+  },
+  "CustomTreatment": {
+    "description": "Auto imported from components/CustomTreatment/index.vue"
+  },
+  "CustomTreatmentProductList": {
+    "description": "Auto imported from components/CustomTreatment/ProductList.vue"
+  },
+  "CustomTreatmentProducts": {
+    "description": "Auto imported from components/CustomTreatment/Products.vue"
   },
   "DashboardPayment": {
     "description": "Auto imported from components/dashboard/payment.vue"
@@ -170,9 +170,6 @@
   "PagesShipmentMethods": {
     "description": "Auto imported from components/Pages/shipment-methods.vue"
   },
-  "RegisterParticular": {
-    "description": "Auto imported from components/Register/Particular.vue"
-  },
   "ProductBanner": {
     "description": "Auto imported from components/product/Banner.vue"
   },
@@ -193,6 +190,9 @@
   },
   "ProductSingle": {
     "description": "Auto imported from components/product/Single.vue"
+  },
+  "RegisterParticular": {
+    "description": "Auto imported from components/Register/Particular.vue"
   },
   "ShippingAddAddress": {
     "description": "Auto imported from components/shipping/AddAddress.vue"
@@ -272,14 +272,14 @@
   "TrainingDetailSteps": {
     "description": "Auto imported from components/Training/Detail/Steps.vue"
   },
+  "UiCompareSlider": {
+    "description": "Auto imported from components/Ui/CompareSlider/Index.vue"
+  },
   "UiCartHover": {
     "description": "Auto imported from components/Ui/CartHover/Index.vue"
   },
   "UiCartHoverProduct": {
     "description": "Auto imported from components/Ui/CartHover/Product.vue"
-  },
-  "UiCompareSlider": {
-    "description": "Auto imported from components/Ui/CompareSlider/Index.vue"
   },
   "UiMission": {
     "description": "Auto imported from components/Ui/Mission/Index.vue"

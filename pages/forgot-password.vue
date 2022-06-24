@@ -3,7 +3,9 @@
     <div class="container">
       <div>
         <div>
-          <h1>Forgot Password</h1>
+          <h1 class="h2 text-uppercase font-weight-normal">
+            Forgot Password
+          </h1>
         </div>
         <div id="myTabContent" class="tab-content">
           <div id="login" class="tab-pane fade show active" role="tabpanel" aria-labelledby="login-tab">

@@ -3,9 +3,8 @@
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
-          <div :key="i" class="item" @click="selectedMenu = item">
+          <div :key="i" class="item" @click=";goTo(item.custom_slug), $emit('close')">
             <span>{{ item.name }}</span>
-            <span class="arrow" />
           </div>
         </template>
       </div>
@@ -84,6 +83,9 @@ export default {
       this.$router.push('/')
     },
     goTo (url) {
+      if (!url) {
+        return
+      }
       this.$router.push(url)
       this.$emit('close')
     }

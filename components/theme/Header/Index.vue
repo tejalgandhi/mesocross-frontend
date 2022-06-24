@@ -1,5 +1,10 @@
 <template>
   <main class="main-header">
+    <div v-if="tagline" class="header__cta">
+      <a href="#">REGISTER AND ENJOY A WORLD OF BENEFITS</a> <button @click="tagline = false">
+        <img width="20" height="20" src="@/assets/img/close.svg" alt="close">
+      </button>
+    </div>
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
         <div class="lang_part">
@@ -47,12 +52,13 @@ export default {
       headItems: [],
       subItems: [],
       isActive: 0,
-      closedMenu: true
+      closedMenu: true,
+      tagline: true
     }
   },
 
   async fetch () {
-    const { data } = await this.$axios.$get('http://mesocross-api.test/api/header/get-header-data')
+    const { data } = await this.$axios.$get('/header/get-header-data')
     this.headItems = data.parent
     this.subItems = data.children
   },
@@ -79,6 +85,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header__cta {
+        background-color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        a {
+            font: normal normal bold 12px/16px Arial;
+    letter-spacing: 0.6px;
+    color: #221F20;
+    text-transform: uppercase;
+        }
+
+        button {
+                position: absolute;
+    right: 3.25rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    background: transparent;
+    filter: invert(1);
+    @media (max-width:767px) {
+      right: .75rem;
+      img{
+        width: 16px;
+        height: 16px;
+      }
+    }
+        }
+    }
     .slide-enter-active,
     .slide-leave-active {
         animation: slide 0.5s ease-in;
@@ -102,7 +138,7 @@ export default {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding:1rem;
+            padding: 1.5rem;
             padding-bottom: 0;
             position: relative;
         }
@@ -149,7 +185,8 @@ export default {
                         padding-left: 2rem;
                         user-select: none;
                         cursor: pointer;
-
+                        font: normal normal bold 14px/16px Arial;
+                        letter-spacing: 0.7px;
                         &.active {
                             font-weight: 600;
                         }
@@ -183,5 +220,6 @@ export default {
       letter-spacing: 0.07em;
       font-size: 20px;
       margin: 0;
+      cursor: pointer;
     }
 </style>

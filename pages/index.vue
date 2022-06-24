@@ -1,26 +1,16 @@
 <template>
   <div>
-    <div class="slider">
-      <div class="container-fluid detail-slider px-0 px-md-3">
-        <VueSlickCarousel v-if="sliderItems.length" v-bind="settings" class="pro_slider">
-          <div v-for="(item, index) in sliderItems" :key="index" class="align-slider">
-            <div class="overlay" />
-            <nuxt-img
-              preload
-              format="webp"
-              :src="item.image"
-              alt="slider_image"
-              quality="100"
-              sizes="xs:768 md:1366 lg:1920"
-            />
-            <div class="content_text">
-              <h2>{{ item.title }}</h2>
-              <h3>{{ item.message }}</h3>
-              <HomeLinkSetByType :item="item" :title="'Discover'" />
-            </div>
-          </div>
-        </VueSlickCarousel>
-      </div>
+    <div v-if="banner" class="banner mb-5">
+      <section>
+        <h1 class="title font-weight-normal">
+          {{ banner.title }}
+        </h1>
+        <p class="text px-lg-5">
+          {{ banner.message }}
+        </p>
+        <HomeLinkSetByType :item="banner" :title="'Discover'" class="btn-primary" />
+      </section>
+      <img :src="uploadPath + banner.image">
     </div>
 
     <!-- <div v-if="treatmentSolutions.length" class="treatment">
@@ -34,52 +24,27 @@
       </div>
     </div> -->
     <!-- <HomeProductGroup :title="'best_sellers'" :api="'bestsellers'" /> -->
-    <HomeProductGroup :title="'new_releases'" :api="'new-release'" :is-new="true" />
+    <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
     <HomeBlogs />
   </div>
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Index',
-  components: {
-    VueSlickCarousel
-  },
   data () {
     return {
-      sliderItems: [],
-      settings: {
-        dots: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              arrows: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              arrows: true
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false
-            }
-          }
-        ]
-      }
+      banner: []
     }
   },
   async fetch () {
     try {
-      const { data } = await this.$axios.$get('/sliders?type=slider&page=home')
-      this.sliderItems = data
+      const { data } = await this.$axios.$get('/sliders?type=banner&page=home')
+      if (data && data.length) {
+        this.banner = data[0]
+      }
     } catch (e) {
       // console.log(e.message)
     }
@@ -88,7 +53,10 @@ export default {
   computed: {
     ...mapGetters({
       treatmentSolutions: 'product/getHomePageTeatmentSolutions'
-    })
+    }),
+    uploadPath () {
+      return process.env.uploadURL
+    }
   },
   mounted () {
     this.getTreatmentSolutions()
@@ -102,9 +70,11 @@ export default {
       this.$nextTick(async () => {
         try {
           this.$nuxt.$loading.start()
-          const { data } = await this.$axios.$get('/sliders?type=slider&page=home')
+          const { data } = await this.$axios.$get('/sliders?type=banner&page=home')
           this.$nuxt.$loading.finish()
-          this.sliderItems = data
+          if (data && data.length) {
+            this.banner = data[0]
+          }
         } catch (e) {
           // console.log(e.message)
         }
@@ -114,64 +84,49 @@ export default {
 }
 </script>
 
-<style lang="scss" type="text/css">
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: block;
-    background: rgba(255,255,255,0.05);
-}
-
-.treatment-items {
+<style lang="scss" scoped>
+.banner {
+    position: relative;
+    background-color: black;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.treatment-item-1 {
-  height: 50px !important;
-  /*width: 100% !important;*/
-  margin: 20px 0 !important;
-}
+    justify-content: flex-end;
+      @media (max-width:991px) {
+        flex-direction: column;
+      }
 
-.treatment-item-1 img {
-  height: 50px !important;
-  width: 85px !important;
-  object-fit: scale-down;
-}
+    img {
+        width: auto;
+        min-width: 50%;
+        object-fit: cover;
+        height: 33rem;
+        @media (max-width:991px) {
+            min-height: 300px;
+            object-fit: contain;
+            height: auto;
+        }
+    }
 
-.treatment-items .slick-dots {
-  bottom: -50px !important;
-}
+    section {
+        position: absolute;
+        top: 50%;
+        left: 6rem;
+        transform: translate(0, -50%);
+        width: 40%;
+        text-align: center;
+        color: white;
+         @media (max-width:991px) {
+          position: static;
+          width: 100%;
+          transform: none;
+          padding: 2rem;
+         }
+        h1 {
+            margin-bottom: 1rem;
+        }
 
-.swiper {
-  padding: 0 15px;
-  height: 160px;
-}
-.swiper-pagination {
-  bottom: 0 !important;
-}
-
-.swiper-pagination-bullet {
-  display: inline-block;
-  margin: 0 5px;
-  background: transparent;
-  border: 1px solid #000;
-  border-radius: 50%;
-  height: 10px;
-  opacity: 1;
-  width: 10px !important;
-  text-indent: -9999px;
-}
-
-.swiper-pagination-bullet-active {
-  background: #25282A;
-}
-
-.align-slider {
-    display: flex !important;
-    align-items: center;
+        p {
+            margin-bottom: 2rem;
+        }
+    }
 }
 </style>

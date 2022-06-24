@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="bg-transparent d-flex align-items-center text-light" @click="$bvModal.show('lang')">
+    <button class="bg-transparent d-flex align-items-center text-dark" @click="$bvModal.show('lang')">
       {{ userCountryCode }}{{ $i18n.locale.toUpperCase() }}
       <img src="../../assets/img/angel-down.svg" class="icon-down ml-2" alt="image">
     </button>
@@ -14,7 +14,7 @@
       hide-footer
       hide-header
     >
-      <template #default="">
+      <template #default>
         <div class="">
           <div class="">
             <div class="">

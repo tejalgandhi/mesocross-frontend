@@ -1,0 +1,160 @@
+<template>
+  <div class="container-fluid mx-auto shipping-tab mb-5 pb-5">
+    <div class="row mx-0">
+      <div class="col-md-11 mx-auto">
+        <div class="w-100 my-5">
+          <CheckoutTab :tab-index="tabIndex" />
+        </div>
+        <div class="row mx-0">
+          <div class="col-lg-9">
+            <div class="tab-content">
+              <div class="d-flex align-items-center font-16 text-dark w-auto" style="cursor: pointer">
+                <img v-if="tabIndex != 1" src="@/assets/img/left-arrow.svg" class="mr-2 left-arr" alt="image" @click="back">
+                <p v-if="tabIndex != 1" class="text-dark back-text" @click="back">
+                  {{ $t('back') }}
+                </p>
+              </div>
+              <div v-if="tabIndex == 1" id="shipping" class="tab-pane fade show active shipping">
+                <Shipping />
+              </div>
+              <div v-if="tabIndex == 2" id="payment" class="show shipping">
+                <checkout-add-payment-method v-if="isAddPayment" :bodytitle="$t('add_payment_method')" />
+                <checkout-payment v-else :bodytitle="$t('checkout.select_your_payment_method')" />
+              </div>
+              <div v-if="tabIndex == 3" id="review" class="show shipping pt-3">
+                <checkout-review ref="reviewComponent" class="mt-5" @editPayment="callToSecondTab" />
+              </div>
+            </div>
+          </div>
+          <div id="card" />
+          <CheckoutOrderSummary :tabindex="tabIndex" @countinue="continueCheckout" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { mapState, mapGetters, mapMutations } from 'vuex'
+export default {
+  middleware: 'auth',
+
+  data () {
+    return {
+      tabIndex: 1,
+      reviewComponent: '',
+      payment: null
+    }
+  },
+
+  computed: {
+    ...mapState({
+      products: state => state.cart.products,
+      isLoggedin: state => state.user.loggedIn,
+      isAddPayment: state => state.user.isAddPayment,
+      selectedCard: state => state.user.selectedCard,
+      shippingProductCode: state => state.cart.shippingProductCode,
+      shippingCharge: state => state.cart.shippingCharge,
+      shippingLocalProductCode: state => state.cart.shippingLocalProductCode,
+      discountPrice: state => state.cart.discount,
+      shippingProductName: state => state.cart.shippingProductName
+    }),
+    ...mapGetters({
+      address: 'user/getUserAddress',
+      totalProductPrice: 'cart/totalProductPrice',
+      subTotal: 'cart/subTotal',
+      getOrderProducts: 'cart/getOrderProducts'
+    })
+  },
+
+  mounted () {
+    if (!this.$auth.loggedIn) {
+      this.$router.push('/login')
+    }
+    this.$axios.get('/stripe/create-customer')
+    this.$store.dispatch('cart/applyDiscount', false)
+  },
+
+  methods: {
+    continueCheckout () {
+      if (this.tabIndex === 3) { // PLACE AN ORDER
+        const orderPayload = {
+          address_id: this.address.id,
+          selected_card: this.selectedCard,
+
+          productCode: this.shippingProductCode,
+          localproductCode: this.shippingLocalProductCode,
+          promo_code: '',
+          discount_type: '',
+          discount_price: this.discountPrice,
+          shipping_price: this.shippingCharge,
+          sub_total: this.subTotal,
+          total: this.totalProductPrice,
+          products: this.getOrderProducts,
+          ali_pay: this.selectedCard === 1,
+          wechat_pay: this.selectedCard === 2,
+          shipping_mode: this.shippingProductName
+        }
+        this.$axios.post('/order/store', orderPayload).then(({ data }) => {
+          if (orderPayload.ali_pay || orderPayload.wechat_pay) {
+            this.handlePayment(data, orderPayload)
+          } else if (data.status) {
+            this.setCartProduct([])
+            this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
+            this.$router.push({ path: '/thankyou' })
+          }
+        }).catch((err) => {
+          this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+        })
+      } else if (!this.address && this.tabIndex === 1) {
+        this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right' })
+      } else if (this.tabIndex === 2 && this.selectedCard === 'add_card') {
+        this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right' })
+      } else {
+        this.tabIndex++
+      }
+      // else if (this.tabIndex === 2 && this.selectedCard === 0) {
+      // this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right' })
+      // }
+    },
+    handlePayment (data, orderPayload) {
+      if (orderPayload.ali_pay) {
+        this.$refs.reviewComponent.aliPay(data.client_secret)
+      } else if (orderPayload.wechat_pay) {
+        this.$refs.reviewComponent.wechatPay(data.client_secret)
+      }
+    },
+    callToSecondTab () {
+      this.setIsAddPayment(false)
+      this.tabIndex = 2
+    },
+    back () {
+      // this.tabIndex
+      if (this.tabIndex === 2) { this.setIsAddPayment(false) }
+
+      if (this.tabIndex > 1) {
+        this.tabIndex--
+      }
+    },
+    ...mapMutations({
+      setCartProduct: 'cart/setCartProduct',
+      setIsAddPayment: 'user/setIsAddPayment'
+    })
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+    #card {
+        position: absolute;
+        width: 100%;
+    }
+</style>
+
+<style>
+.back-text {
+  text-decoration: underline;
+}
+.left-arr {
+  transform: rotate(270deg);
+}
+</style>

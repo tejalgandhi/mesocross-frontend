@@ -1,0 +1,88 @@
+$black: #000;
+$white: #FFF;
+$light:         $black;
+$dark:          $white;
+
+$body-color : $white;
+$body-bg: $black;
+$breadcrumb-bg:                     transparent;
+$breadcrumb-divider-color:          #fff;
+$breadcrumb-active-color:           #fff;
+$breadcrumb-border-radius:          null;
+$input-bg:                              #000;
+$input-disabled-bg:                     rgba(255,255,255,.5);
+$input-disabled-border-color:           null;
+$border-color:                rgba(255,255,255,.4);
+$input-color:                           #fff;
+$input-border-color:                     $border-color;
+$input-focus-border-color: #FFF;
+
+$modal-content-bg:                  $body-bg;
+$modal-backdrop-bg:                 $body-color;
+$modal-backdrop-opacity:            .25;
+$btn-padding-y:              .75rem;
+$btn-padding-x:               1.5rem;
+$btn-font-size: 0.875rem;
+$input-padding-y:                       .5rem;
+$input-padding-x:                       1.25rem;
+// $btn-border-radius:           2px;
+// $modal-content-border-color:        rgba($white, .2);
+
+
+$nav-link-color:                    $white;
+$nav-link-hover-color:              $white;
+$nav-tabs-link-hover-border-color:  transparent;
+
+$dropdown-bg:                       $black;
+$dropdown-border-color:             rgba($white, .15);
+
+
+$theme-colors: (
+  "primary":    #FFF,
+  "secondary":  #FFF,
+  "light":      $light,
+  "dark":       $dark
+);
+
+// Then include the following
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-vue/src/index.scss';
+
+.btn{
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    // min-width: 200px;
+    font: normal normal normal 14px/16px Arial;
+}
+
+.container-fluid {
+    width: 95%;
+    margin: 0 auto;
+
+    @media screen and (min-width: 320px) and (max-width: 1024px){
+        width: 100%;
+    }
+}
+
+
+.semi-bold {
+    font-weight: 500;
+}
+
+.see_all {
+    text-align: center;
+    padding: 10px;
+    color: #25282A;
+    border: 1px solid #25282A;
+    border-radius: 4px;
+    background: transparent;
+    width: 224px;
+    display: block;
+    transition: 0.2s;
+
+    &:hover {
+        border: 1px solid transparent;
+        background: #25282A;
+        color: white;
+    }
+}

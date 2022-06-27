@@ -9,7 +9,7 @@
             <label class="d-none d-md-block">{{ $t('filters') }}</label>
             <button
               v-b-toggle.filter-mobile
-              class="text-dark border-dark btn bg-white d-block w-100 mb-3 d-md-none"
+              class="btn btn-outline-primary d-block w-100 mb-3 d-md-none"
             >
               Filters ({{ selectedFilters.length }})
             </button>

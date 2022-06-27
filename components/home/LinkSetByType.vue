@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-if="item.slug && item.slug" :to="item | slug " class="btn btn-outline-primary">
+  <nuxt-link v-if="item.slug && item.slug" :to="item | slug " class="btn">
     {{ title }}
   </nuxt-link>
 </template>
@@ -38,7 +38,8 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style lang="scss" scoped>
+.btn{
+  min-width: 215px;
+}
 </style>

@@ -97,6 +97,7 @@ export default {
   best_sellers: 'Mais vendidos',
   see_all_products: 'Veja todos os produtos',
   new_releases: 'Novos lançamentos',
+  new_collection: 'Nova coleção',
   months: 'Meses',
   themes: 'Temas',
   view_more: 'Veja mais',

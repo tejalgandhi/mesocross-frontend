@@ -1,10 +1,10 @@
 <template>
-  <div v-if="blogs.length > 0" class="home_category">
+  <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5">
     <div class="container-fluid">
       <div class="row">
         <div v-for="(item, index) in blogs" :key="index" class="col-md-6">
           <article class="box text-center">
-            <figure class="mb-3">
+            <figure class="mb-4">
               <nuxt-img
                 preload
                 format="webp"
@@ -15,11 +15,11 @@
               />
             </figure>
             <div class="desc_box">
-              <h3 class="text-uppercase mb-3">
+              <h2 class="text-uppercase mb-3 font-weight-normal">
                 {{ item.title }}
-              </h3>
-              <p v-html="item.description" />
-              <HomeLinkSetByType class="mx-auto" :center="true" :item="item" />
+              </h2>
+              <p class="mb-4" v-html="item.description" />
+              <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />
             </div>
           </article>
         </div>
@@ -37,7 +37,7 @@ export default {
   },
   async fetch () {
     try {
-      const { data } = await this.$axios.get('/home/blogs')
+      const { data } = await this.$axios.get('/home/blogs/')
       this.blogs = data.data
     } catch (e) {
 

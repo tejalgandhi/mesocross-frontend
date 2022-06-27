@@ -1,6 +1,6 @@
 <template>
   <div class="newsletter">
-    <h2 class="text-uppercase mb-4">
+    <h2 class="text-uppercase mb-4 font-weight-normal">
       {{ $t('subscribe_to_our_newsletter') }}
     </h2>
     <button class="btn btn-outline-primary" @click="$bvModal.show('subscribeModal')">

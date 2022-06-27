@@ -8,7 +8,7 @@
     </div>
     <div class="search_tabs">
       <div class="container">
-        <b-tabs v-model="tabIndex" content-class="nav nav-tabs" @input="searchStr = ''">
+        <!-- <b-tabs v-model="tabIndex" content-class="nav nav-tabs" @input="searchStr = ''">
           <b-tab :title="$t('Products')" active>
             <div class="container">
               <div v-if="products.length > 0" class="results">
@@ -64,7 +64,7 @@
               </div>
             </div>
           </b-tab>
-        </b-tabs>
+        </b-tabs> -->
       </div>
     </div>
   </div>

@@ -2,18 +2,20 @@
   <div>
     <div class="cart">
       <div class="container">
-        <h2>{{ $t('cart.shopping_bag') }}</h2>
+        <h2 class="text-uppercase font-weight-normal text-center mb-3">
+          {{ $t('cart.shopping_bag') }}
+        </h2>
         <div v-if="!isUserLoggedIn" class="text-center">
-          <h4 class="mb-0">
+          <p class="mb-1">
             {{ $t('cart.your_bag_is_empty') }}
-          </h4>
+          </p>
           <p>
             <nuxt-link class="sign-in-text" to="/login">
               {{ $t('cart.sign_in_or_register') }}
             </nuxt-link>
             {{ $t('cart.to_add_products_to_the_bag') }}
           </p>
-          <nuxt-link class="btn d-block mt-4 mb-5 col-md-3 mx-auto sign-in text-white" to="/login">
+          <nuxt-link class="btn btn-primary mt-4 mb-5 col-md-3 mx-auto " to="/login">
             {{ $t('buy_products') }}
           </nuxt-link>
         </div>
@@ -104,8 +106,6 @@ export default {
 <style>
 .sign-in-text {
   text-decoration: underline;
-  font-weight: 500;
-  color: #25282A;
 }
 
 .sign-in {

@@ -1,7 +1,27 @@
 <template>
   <div class="banner">
-    <div v-if="!$fetchState.pending" class="container-fluid position-relative px-0 px-md-3">
+    <div v-if="!$fetchState.pending" class="position-relative">
       <div v-if="isMobile()" class="overlay" />
+      <div v-if="data" class="banner-content" :class="{white: inverse}">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 v-if="data.title">
+                {{ data.title }}
+              </h1>
+              <h1 v-else>
+                {{ data.name }}
+              </h1>
+              <p v-if="data.message">
+                {{ data.message }}
+              </p>
+              <p v-else>
+                {{ data.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <nuxt-img
         v-if="data && data.banner"
         preload
@@ -10,6 +30,7 @@
         alt="banner"
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
       />
       <nuxt-img
         v-else-if="data && data.image"
@@ -19,6 +40,7 @@
         alt="banner"
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
       />
       <nuxt-img
         v-else
@@ -28,21 +50,8 @@
         alt="banner"
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
       />
-      <div v-if="data" class="content" :class="{white: inverse}">
-        <h1 v-if="data.title">
-          {{ data.title }}
-        </h1>
-        <h1 v-else>
-          {{ data.name }}
-        </h1>
-        <p v-if="data.message">
-          {{ data.message }}
-        </p>
-        <p v-else>
-          {{ data.description }}
-        </p>
-      </div>
     </div>
   </div>
 </template>
@@ -73,7 +82,6 @@ export default {
       type: 'product'
     }
   },
-
   async fetch () {
     let url = `/sliders?type=banner&page=${this.pageName}`
     if (this.$route.params && this.$route.params.treatmentSlug) {
@@ -90,30 +98,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.container-fluid {
-    display: flex;
-    align-items: center;
-}
-
-.content {
-    top: unset;
-
-    &.white {
-        color: white;
+.banner-content {
+  text-align: center;
+  padding: 2rem;
+  @media (min-width:992px){
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+      left: 0;
+      right: 0;
+      text-align: left;
     }
-}
-
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: block;
-    background: rgba(255,255,255,0.5);
-}
-.banner .white.content h1,.banner .white.content p {
-  color: #fff
 }
 </style>

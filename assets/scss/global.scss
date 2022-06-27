@@ -47,13 +47,6 @@ $theme-colors: (
 // Then include the following
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
-
-h1{
-    letter-spacing: 2px;
-}
-h2 {
-    letter-spacing: 1.5px;
-}
 .btn{
     text-transform: uppercase;
     letter-spacing: 0.7px;

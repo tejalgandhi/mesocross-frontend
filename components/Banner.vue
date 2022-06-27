@@ -26,7 +26,7 @@
         v-if="data && data.banner"
         preload
         format="webp"
-        :src="uploadPath + data.banner"
+        :src="data.banner"
         alt="banner"
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
@@ -36,7 +36,7 @@
         v-else-if="data && data.image"
         preload
         format="webp"
-        :src="uploadPath+data.image"
+        :src="data.image"
         alt="banner"
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
@@ -93,12 +93,6 @@ export default {
     }
     const { data } = await this.$axios.$get(url)
     this.data = this.type === 'product' ? data[0] : data
-  },
-
-  computed: {
-    uploadPath () {
-      return process.env.uploadURL
-    }
   }
 }
 </script>

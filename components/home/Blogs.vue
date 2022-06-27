@@ -8,7 +8,7 @@
               <nuxt-img
                 preload
                 format="webp"
-                :src="uploadPath+item.image"
+                :src="item.image"
                 alt="image"
                 quality="100"
                 sizes="xs:256 md:512"
@@ -41,11 +41,6 @@ export default {
       this.blogs = data.data
     } catch (e) {
 
-    }
-  },
-  computed: {
-    uploadPath () {
-      return process.env.uploadURL
     }
   },
   fetchOnServer: true

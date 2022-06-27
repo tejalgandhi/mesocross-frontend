@@ -10,20 +10,9 @@
         </p>
         <HomeLinkSetByType :item="banner" :title="'Discover'" class="btn-primary" />
       </section>
-      <img :src="uploadPath + banner.image">
+      <img :src="banner.image">
     </div>
 
-    <!-- <div v-if="treatmentSolutions.length" class="treatment">
-      <div class="container-fluid treatment-items px-0 px-md-3">
-        <h2 class="responsive-treatment-title">
-          {{ $t('treatment_solutions') }}
-        </h2>
-        <client-only>
-          <UiSwiper :data="treatmentSolutions" :template="'image'" />
-        </client-only>
-      </div>
-    </div> -->
-    <!-- <HomeProductGroup :title="'best_sellers'" :api="'bestsellers'" /> -->
     <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
     <HomeBlogs />
   </div>
@@ -53,10 +42,7 @@ export default {
   computed: {
     ...mapGetters({
       treatmentSolutions: 'product/getHomePageTeatmentSolutions'
-    }),
-    uploadPath () {
-      return process.env.uploadURL
-    }
+    })
   },
   mounted () {
     this.getTreatmentSolutions()

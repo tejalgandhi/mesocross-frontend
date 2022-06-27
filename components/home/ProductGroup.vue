@@ -11,7 +11,7 @@
               <nuxt-img
                 preload
                 format="webp"
-                :src="uploadPath + item.feature_image"
+                :src="item.feature_image"
                 alt="product"
                 class="product"
                 quality="100"
@@ -81,10 +81,7 @@ export default {
   computed: {
     ...mapState({
       isLoggedin: state => state.user.loggedIn
-    }),
-    uploadPath () {
-      return process.env.uploadURL
-    }
+    })
   }
 }
 </script>

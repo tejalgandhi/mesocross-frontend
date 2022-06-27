@@ -155,7 +155,8 @@ export default {
     stripeAccount: process.env.STRIPE_ACCOUNT,
     stripeVersion: process.env.STRIPE_VERSION,
     stripeCommisionPer: process.env.STRIPE_COMMISION_PER,
-    STRIPE_PUBLIC: process.env.STRIPE_PUBLIC,
+    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
+    STRIPE_PUBLIC: process.env.STRIPE_PUBLISABLE_KEY,
     THANKYOU_PAGE: process.env.THANKYOU_PAGE,
     BACKEND_API: process.env.BACKEND_API
   },

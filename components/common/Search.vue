@@ -8,19 +8,18 @@
     </div>
     <div class="search_tabs">
       <div class="container">
+        <div v-if="products.length > 0" class="results">
+          {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
+        </div>
+        <div class="row">
+          <ProductSingle v-for="(product, index) in products" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
+          <div v-if="products.length == 0">
+            {{ $t('search_prodcuts') }}
+          </div>
+        </div>
         <!-- <b-tabs v-model="tabIndex" content-class="nav nav-tabs" @input="searchStr = ''">
           <b-tab :title="$t('Products')" active>
-            <div class="container">
-              <div v-if="products.length > 0" class="results">
-                {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
-              </div>
-              <div class="row">
-                <ProductSingle v-for="(product, index) in products" :key="index" :product="product" :class-name="'col-lg-3'" />
-                <div v-if="products.length == 0">
-                  {{ $t('search_prodcuts') }}
-                </div>
-              </div>
-            </div>
+
           </b-tab>
           <b-tab :title="$t('Blog')">
             <div class="container">

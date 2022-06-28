@@ -1,14 +1,18 @@
 <template>
   <div :class="className === 'col-lg-3' ? 'col-lg-3' : className">
-    <div class="prod_box">
+    <div class="productItem">
       <nuxt-link :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="product-image" alt="image">
+        <img :src="product.feature_image" class="productImage" alt="image">
       </nuxt-link>
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close" @click="removeWishlist">
-      <nuxt-link :to="`/product-detail/${product.slug}`">
-        <div class="desc_box">
-          {{ product.name }}
-          <p>{{ product.short_description }}</p>
+      <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
+        <div class="desc_box p-4">
+          <div class="prodcutTitle">
+            {{ product.name }}
+          </div>
+          <p class="productDesc">
+            {{ product.short_description }}
+          </p>
           <span v-if="productPrice">{{ productPrice }}€</span>
         </div>
       </nuxt-link>

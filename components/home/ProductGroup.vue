@@ -5,29 +5,7 @@
         {{ $t(title) }}
       </h2>
       <div class="row justify-content-center">
-        <div v-for="(item,index) in newProducts" :key="index" class="col-md-4" @click="$router.push(`/product-detail/${item.slug}`)">
-          <article class="productItem p-4 text-center cursor-pointer">
-            <figure>
-              <nuxt-img
-                preload
-                format="webp"
-                :src="item.feature_image"
-                alt="product"
-                class="product"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-            </figure>
-            <!-- <img v-if="isNew" src="@/assets/img/new-badge.png" alt="badge" class="badge_new"> -->
-            <div class="desc_box p-4">
-              <div class="product-title mb-3">
-                {{ item.name }}
-              </div>
-              <p>{{ item.short_description }}</p>
-              <span v-if="$auth.loggedIn">{{ item.product_size.price }}€</span>
-            </div>
-          </article>
-        </div>
+        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
       </div>
     </div>
   </main>
@@ -85,23 +63,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.product-title{
-  font: normal normal normal 18px/16px Arial;
-    letter-spacing: 1.25px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  opacity: 1;
-}
-p {
-  color: #FFFFFF;
-  opacity: 0.6;
-  font: normal normal normal 16px/16px Arial;
-
-}
-.productItem{
- img{
-  max-height: 310px;
- }
-}
-</style>

@@ -37,6 +37,8 @@ $dropdown-bg:                       $black;
 $dropdown-border-color:             rgba($white, .15);
 
 
+$card-bg:                           $black;
+
 $theme-colors: (
   "primary":    #FFF,
   "secondary":  #FFF,
@@ -52,7 +54,6 @@ $theme-colors: (
     letter-spacing: 0.7px;
     font-family: Arial;
 }
-
 .container-fluid {
     width: 95%;
     margin: 0 auto;
@@ -84,4 +85,8 @@ $theme-colors: (
         background: #25282A;
         color: white;
     }
+}
+
+.accordion .card  {
+    background-color: inherit;
 }

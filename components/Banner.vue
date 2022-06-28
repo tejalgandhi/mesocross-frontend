@@ -96,18 +96,17 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .banner-content {
-  text-align: center;
-  padding: 2rem;
-  @media (min-width:992px){
-      position: absolute;
-      transform: translateY(-50%);
-      top: 50%;
-      left: 0;
-      right: 0;
-      text-align: left;
-    }
-}
+    text-align: center;
+    padding: 2rem;
+    @media (min-width:992px){
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        right: 0;
+        text-align: left;
+      }
+  }
 </style>

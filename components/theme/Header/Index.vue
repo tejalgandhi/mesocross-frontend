@@ -11,7 +11,7 @@
           <CommonAccessPrice />
           <CommonLangSwitcher />
         </div>
-        <div class="">
+        <div class="navbar-brand">
           <figure class="brand-logo" @mouseover="isActive = 0" @click="goHome">
             Mesocross
           </figure>
@@ -85,6 +85,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  @media (min-width: 1251px) {
+    .lang_part {
+      min-width: 33.33%;
+      width: 33.33%;
+    }
+    .user-tab {
+      min-width: 33.33%;
+      width: 33.33%;
+      display: flex;
+      justify-content: end;
+    }
+  }
 .header__cta {
         background-color: white;
         padding: 1rem;

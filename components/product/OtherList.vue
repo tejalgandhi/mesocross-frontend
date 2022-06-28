@@ -5,57 +5,10 @@
         {{ title }}
       </h2>
       <VueSlickCarousel v-if="products.length" v-bind="settings1" class="pro_slider d-md-none">
-        <div v-for="(product, index) in products" :key="index">
-          <div class="prod_box">
-            <nuxt-link
-              class="text-decoration-none"
-              :to="`/product-detail/${product.slug}`"
-            >
-              <nuxt-img
-                preload
-                format="webp"
-                :src="product.feature_image"
-                alt="image"
-                class="product-image"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-              <div class="desc_box">
-                <span>{{ product.name }}</span>
-                <p>{{ product.short_description }}</p>
-                <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
-              </div>
-            </nuxt-link>
-          </div>
-        </div>
+        <ProductSingle v-for="(product, index) in products" :key="index+product.id" :product="product" :class-name="'product-slide'" />
       </VueSlickCarousel>
       <div class="row justify-content-center d-none d-md-flex">
-        <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6">
-          <div class="productItem">
-            <nuxt-link
-              :to="`/product-detail/${product.slug}`"
-            >
-              <nuxt-img
-                preload
-                format="webp"
-                :src="product.feature_image"
-                alt="image"
-                class="productImage"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-              <div class="desc_box">
-                <h3 class="productTitle">
-                  {{ product.name }}
-                </h3>
-                <p class="productDesc">
-                  {{ product.short_description }}
-                </p>
-                <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
-              </div>
-            </nuxt-link>
-          </div>
-        </div>
+        <ProductSingle v-for="(product, index) in products" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
       </div>
     </div>
   </div>
@@ -107,24 +60,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.product-title{
-  font: normal normal normal 18px/16px Arial;
-    letter-spacing: 1.25px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  opacity: 1;
-}
-p {
-  color: #FFFFFF;
-  opacity: 0.6;
-  font: normal normal normal 16px/16px Arial;
-
-}
-@media (max-width: 991px) {
-  .pro_slider img {
-    height: 260px;
-    margin-bottom: 20px;
-  }
-}
-</style>

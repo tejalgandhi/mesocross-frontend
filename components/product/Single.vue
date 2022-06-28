@@ -1,16 +1,16 @@
 <template>
-  <div :class="className === 'col-lg-3' ? 'col-lg-3' : className">
-    <div class="productItem">
+  <div :class="className === 'col-lg-4' ? 'col-lg-4' : className">
+    <div class="product-item">
       <nuxt-link :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="productImage" alt="image">
+        <img :src="product.feature_image" class="product-image" alt="image">
       </nuxt-link>
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
-        <div class="desc_box p-4">
-          <div class="prodcutTitle">
+        <div class="desc_box py-4">
+          <div class="prodcut-title">
             {{ product.name }}
           </div>
-          <p class="productDesc">
+          <p class="product-desc">
             {{ product.short_description }}
           </p>
           <span v-if="productPrice">{{ productPrice }}€</span>
@@ -68,3 +68,30 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.product-item{
+    padding: 2rem;
+    text-align: center;
+     @media (max-width:991px) {
+      padding: 1rem;
+     }
+    .product-image{
+        height: 315px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+        @media (max-width:991px) {
+          height: 200px;
+        }
+    }
+    .prodcut-title{
+        font: normal normal normal 20px/28px Arial;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+    .productt-desc{
+        color: #FFFFFF;
+        opacity: 0.6;
+        font: normal normal normal 16px/24px Arial;
+    }
+}
+</style>

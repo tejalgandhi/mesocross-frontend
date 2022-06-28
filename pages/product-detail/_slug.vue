@@ -417,4 +417,17 @@ export default {
     margin-bottom: 20px;
   }
 }
+
+.banner-content {
+    text-align: center;
+    padding: 2rem;
+    @media (min-width:992px){
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        right: 0;
+        text-align: left;
+      }
+  }
 </style>

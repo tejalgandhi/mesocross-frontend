@@ -1,70 +1,102 @@
 <template>
   <div class="product-page slug product-detail">
-    <Bredcrumb :items="breadcrumbs" />
+    <!-- <Bredcrumb :items="breadcrumbs" /> -->
     <div class="prod_detail_box">
       <div class="container-fluid position-relative">
         <div class="row">
-          <div class="col-lg-7 detail-slider">
+          <div class="col-lg-7 product-image p-4">
             <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-            <VueSlickCarousel
-              ref="slider-big"
-              v-bind="{
-                fade: true,
-                infinite: false,
-                settings:{
-                  arrows: true,
-                  dots: true,
-                },
-                responsive: [{
-                  breakpoint: 640,
-                  settings: {
-                    dots: true,
-                    infinite: false,
-                  }
-                }]
-              }"
-              @beforeChange="syncSliders"
-            >
-              <div v-for="(image, index) in productImages" :key="index" class="images">
-                <nuxt-img
-                  preload
-                  format="webp"
-                  :src="image"
-                  alt="product_image"
-                  quality="100"
-                  sizes="md:512"
-                />
+            <div v-for="(image, index) in productImages" :key="index" class="images main-image">
+              <nuxt-img
+                class="mx-auto d-block"
+                preload
+                format="webp"
+                :src="image"
+                alt="product_image"
+                quality="100"
+                sizes="md:512"
+              />
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="accordion" role="tablist">
+                  <b-card no-body class="mb-1">
+                    <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
+                      <b-button v-b-toggle.accordion-1 block variant="default" class="text-left">
+                        {{ $t('Main_Characteristics_and_Effects') }}
+                      </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                      <b-card-body>
+                        <div v-html="product.characteristics_effect" />
+                      </b-card-body>
+                    </b-collapse>
+                  </b-card>
+
+                  <b-card no-body class="mb-1">
+                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                      <b-button v-b-toggle.accordion-2 block variant="default" class="text-left">
+                        {{ $t('application_protocol') }}
+                      </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                      <b-card-body>
+                        <div v-html="product.application" />
+                      </b-card-body>
+                    </b-collapse>
+                  </b-card>
+
+                  <b-card no-body class="mb-1">
+                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                      <b-button v-b-toggle.accordion-3 block variant="default" class="text-left">
+                        {{ $t('additional_information') }}
+                      </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                      <b-card-body>
+                        <div v-html="product.additional_info" />
+                      </b-card-body>
+                    </b-collapse>
+                  </b-card>
+
+                  <b-card no-body class="mb-1">
+                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                      <b-button v-b-toggle.accordion-4 block variant="default" class="text-left">
+                        CONTACT A PROFESSIONAL
+                      </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+                      <b-card-body>
+                        <div>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, omnis? Blanditiis vel consectetur fuga hic, nobis odit laborum architecto corporis ut est ratione cum aliquid maxime temporibus, quia minus quis.
+                        </div>
+                      </b-card-body>
+                    </b-collapse>
+                  </b-card>
+                </div>
               </div>
-            </VueSlickCarousel>
-            <div class="col-lg-12 product-image-list order-2 order-md-3 my-3 my-md-0">
-              <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-              <VueSlickCarousel
-                ref="slider-thumb"
-                :class="'slider-thumb'"
-                v-bind="{ slidesToShow: 5 }"
-                :focus-on-select="true"
-                @beforeChange="syncSliders"
-              >
-                <div v-for="(image, index) in productImages" :key="index">
+              <div class="col-md-4">
+                <div v-for="(image, index) in productImages" :key="index" class="p-5">
                   <nuxt-img
+                    style="max-width:225px; max-height:225px"
+                    class="mx-auto d-block"
                     preload
                     format="webp"
                     :src="image"
                     alt="product_image"
                     quality="100"
-                    sizes="xs:128 md:256"
+                    sizes="md:512"
                   />
                 </div>
-              </VueSlickCarousel>
+              </div>
             </div>
           </div>
           <div class="col-lg-5 order-3 order-md-2">
-            <div class="prod_desc">
-              <a v-if="isLoggedin" href="javascript:void(0)" @click="addToWishlist">
-                <img :src="isProductInWishList ? require('@/assets/img/Heart_icon_selected.svg') : require('@/assets/img/heart-icon.svg')" alt="image" class="fav">
-              </a>
-              <div class="d-flex align-items-center justify-content-between">
-                <h1>{{ product.name }}</h1>
+            <div class="prod_desc text-center">
+              <div class="">
+                <h1 class="h2 text-uppercase font-weight-normal mb-2">
+                  {{ product.name }}
+                </h1>
               </div>
               <label v-show="ref_number">Ref:{{ ref_number }}</label>
               <span v-show="isLoggedin && price">{{ price }}€</span>
@@ -73,7 +105,7 @@
                 {{ $t('get_a_personalized_treatment') }}
               </nuxt-link>
               <!-- eslint-disable vue/no-v-html -->
-              <div class="mt-3" v-html="product.product_content" />
+              <div class="" v-html="product.product_content" />
               <!--eslint-enable-->
               <div class="size">
                 <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p>
@@ -93,43 +125,21 @@
                   </nuxt-link>
                 </li>
               </ul>
-              <div class="add_cart d-flex align-items-center mt-5 float-none">
+              <div class="add_cart d-flex align-items-center mt-5 justify-content-center">
+                <a v-if="isLoggedin" class="btn btn-wishlist mr-3" href="javascript:void(0)" @click="addToWishlist">
+                  <img :src="isProductInWishList ? require('@/assets/img/Heart_icon_selected.svg') : require('@/assets/img/heart-icon.svg')" alt="image">
+                </a>
                 <div v-if="isLoggedin" class="position-relative mr-3">
                   <!-- <span>Disponível apenas por encomenda</span> -->
                   <button type="button" class="btn btn-1 position-absolute" @click="qty > 1 ? qty--: qty=qty">
                     -
                   </button>
-                  <input type="text" disabled :value="qty" class="text-center py-1" style="height: 45px; width: 110px">
+                  <input type="text" disabled :value="qty" class="qty-input py-1">
                   <button type="button" class="btn btn-2 position-absolute" @click="qty++">
                     +
                   </button>
                 </div>
-                <a href="javascript:void(0)" class="" @click="cart">{{ $t('add_to_cart') }}</a>
-              </div>
-              <div class="share-network-list mt-3 float-none">
-                <label>{{ $t('Share') }}</label>
-                <ShareNetwork
-                  v-for="network in networks"
-                  :key="network.network"
-                  :network="network.network"
-                  :url="currentUrl"
-                  :title="product.name"
-                  :description="product.short_description"
-                  :twitter-user="loggedinUser.full_name"
-                >
-                  <img :src="require(`~/assets/img/${network.icon}`)" alt="image">
-                </ShareNetwork>
-                <ShareNetwork
-                  v-if="shareMessenger"
-                  network="messenger"
-                  :url="currentUrl"
-                  :title="product.name"
-                >
-                  <img src="@/assets/img/share_messanger.svg" alt="image">
-                </ShareNetwork>
-                <a @click="copy()">
-                  <img src="@/assets/img/Caminho_copy.svg" alt="image">
-                </a>
+                <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart">{{ $t('add_to_cart') }}</a>
               </div>
               <ul v-if="complementry.length > 0" class="complementry">
                 <h3>{{ $t('Similar_Products') }}</h3>
@@ -144,20 +154,25 @@
         </div>
       </div>
     </div>
-
-    <div class="product_info mb-5">
-      <div class="container-fluid">
-        <b-tabs content-class="nav nav-tabs">
-          <b-tab :title="$t('Main_Characteristics_and_Effects')" active>
-            <div id="one" class="tab-pane pb-3 fade show active" role="tabpanel" v-html="product.characteristics_effect" />
-          </b-tab>
-          <b-tab :title="$t('application_protocol')">
-            <div id="one" class="tab-pane pb-3 fade show active" role="tabpanel" v-html="product.application" />
-          </b-tab>
-          <b-tab :title="$t('additional_information')">
-            <div id="one" class="tab-pane pb-3 fade show active" role="tabpanel" v-html="product.additional_info" />
-          </b-tab>
-        </b-tabs>
+    <div class="banner-section py-lg-5">
+      <div class="banner">
+        <div class="position-relative">
+          <div class="banner-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <h2 class="h1 text-center font-weight-normal">
+                    Lorem ipsum
+                  </h2>
+                  <p class="text-center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor scelerisque purus non volutpat. Etiam luctus fringilla velit, eu bibendum dolor dictum vel. Pellentesque ut fringilla ante, quis consectetur neque.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img src="@/assets/img/default.png" class="ml-auto d-block">
+        </div>
       </div>
     </div>
     <template v-if="otherSolutions.length">
@@ -166,14 +181,11 @@
   </div>
 </template>
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
 import { mapActions, mapState } from 'vuex'
 import { showPricePopup } from 'assets/js/custom'
 
 export default {
-  components: {
-    VueSlickCarousel
-  },
+
   async asyncData ({ params, $axios }) {
     const { data } = await $axios.$get(`/product-detail/${params.slug}`)
     const product = data
@@ -352,96 +364,57 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#__BVID__158__BV_tab_container-fluid_ {
-  border-bottom: none !important;
+<style lang="scss" scoped>
+.product-detail{
+  padding: 80px 0;
 }
-
-.slick-track {
-  margin: 0;
+.prod_detail_box{
+  padding: 80px 0;
 }
-
-.tab-pane >>> td, .tab-pane >>> th {
-  padding: 10px !important;
-  border: none !important;
+.main-image {
+    margin-bottom: 150px;
 }
-
-.tab-pane >>> table {
-  width: 100% !important;
+.add_cart .btn {
+    height: 48px;
 }
-
-.tab-pane {
-  overflow-x: auto;
+.qty-input{
+    height: 48px;
+    width: 110px;
+    background: transparent;
+    border-color: rgb(255 255 255 / 12%);
+    color: #FFF;
+    text-align: center;
 }
-
-/* .tab-pane >>> tr td:first-child {
-  width: 250px !important;
-  display: inline-table;
-  margin-bottom: 20px;
-} */
-.tab-pane >>> tr td:last-child {
-  width: 100% !important;
-  margin-bottom: 20px;
+.btn-wishlist{
+  border-color: rgb(255 255 255 / 12%);
 }
-.tab-pane >>> tr td:first-child p {
-  font-weight: bold !important;
-}
-.slick-slider {
-  max-width: 550px;
-  max-height: 550px;
-  margin: auto;
-}
-
-.btn:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-.btn {
-  height: 45px;
-}
-.btn-2 {
-  right: 0;
-}
-
-  .share-network-list {
-    margin-top: 40px;
+@media (min-width: 992px) {
+  .prod_desc {
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
   }
-
-  .share-network-list label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #25282A;
+}
+@media (max-width: 991px) {
+  .main-image {
+    margin-bottom: 50px;
   }
-
-  .share-network-list img{
-    margin-right: 15px;
-    width: 24px;
-    height: 24px;
-    float: left;
+  .prod_detail_box{
+    padding: 0 0 50px;
   }
-
-  a[class^="share-network-"] {
-    flex: none;
-    /* color: #FFFFFF; */
-    /* background-color: #333; */
-    border-radius: 3px;
-    overflow: hidden;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 0 20px 10px 0;
+  .best_seller {
+    padding-top: 50px;
   }
-  a[class^="share-network-"] .fah {
-    /* background-color: rgba(0, 0, 0, 0.2); */
-    padding: 10px;
-    flex: 0 1 auto;
+  .product-detail {
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
-  a[class^="share-network-"] span {
-    padding: 0 10px;
-    flex: 1 1 0%;
-    font-weight: 500;
+  .product-image img {
+    height: 320px;
   }
+  .pro_slider img {
+    height: 260px;
+    margin-bottom: 20px;
+  }
+}
 </style>

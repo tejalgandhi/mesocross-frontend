@@ -5,28 +5,21 @@
     <div class="filter_result">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3">
-            <label class="d-none d-md-block">{{ $t('filters') }}</label>
-            <button
-              v-b-toggle.filter-mobile
-              class="btn btn-outline-primary d-block w-100 mb-3 d-md-none"
-            >
-              Filters ({{ selectedFilters.length }})
-            </button>
+          <div class="col-auto">
+            <p style="white-space: nowrap" class="mr-2">
+              {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
+            </p>
           </div>
-          <div class="col-lg-6">
+          <div class="col">
             <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
               <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
                 {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
               </a>
             </div>
           </div>
-          <div v-if="isLoggedin" class="col-lg-3">
+          <div class="col-auto">
             <div class="sorting d-flex flex-wrap">
-              <p style="white-space: nowrap" class="mr-2">
-                {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
-              </p>
-              <select v-model="priceSorting" class="d-none d-md-block ml-0" @change="sortPrice">
+              <select v-model="priceSorting" class="d-none d-md-block ml-0 bg-dark form-control text-light w-auto" @change="sortPrice">
                 <option value="">
                   {{ $t('default_sorting') }}
                 </option>
@@ -37,6 +30,14 @@
                   {{ $t('high_to_low') }}
                 </option>
               </select>
+
+              <button
+                v-b-toggle.filter-mobile
+                class="btn btn-primary p-2 ml-2 px-3"
+              >
+                <b-icon-filter />
+                {{ $t('filters') }} ({{ selectedFilters.length }})
+              </button>
             </div>
           </div>
         </div>
@@ -47,35 +48,28 @@
       <b-sidebar
         id="filter-mobile"
         v-model="filterSidebar"
+        :title="$t('filters')"
         backdrop
         shadow
+        right
+        header-class="py-3 px-4"
       >
-        <template #header="{ hide }">
-          <div class="d-flex align-items-center position-relative py-2 border-bottom w-100">
-            <h3 class="pl-3 py-2">
-              Filters
-            </h3>
-            <b-button class="bg-transparent border-0 close-sidebar" @click="hide">
-              <i class="fa fa-times font-large text-secondary" />
-            </b-button>
-          </div>
-        </template>
         <template #footer>
           <div class="px-0 pt-2 row mx-0 align-items-center">
             <div class="w-100 col-6 d-block align-self-center text-center">
-              <p class="text-dark" @click="clearAll">
-                Clear all
+              <p class="" @click="clearAll">
+                CLEAN
               </p>
             </div>
             <button class="btn w-100 col-6 py-2 d-block apply-filter-btn" @click="applyMobileFilter">
-              Apply filters
+              APPLY
             </button>
           </div>
         </template>
+        <ProductFilter ref="prodcuFilter" class="p-4" @fetchProducts="fetchProducts" @priceSort="setSorting" />
       </b-sidebar>
       <div class="container-fluid">
         <div class="row">
-          <ProductFilter ref="prodcuFilter" class="d-none d-md-block" @fetchProducts="fetchProducts" @priceSort="setSorting" />
           <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
         </div>
       </div>
@@ -242,23 +236,23 @@ export default {
 }
 </script>
 
-<style lang="css" type="text/css">
+<style lang="scss" type="text/css">
 .close-sidebar {
   position: absolute;
   top: 15px;
   right: 10px;
 }
-
+#filter-mobile{
+  background: #FFF !important;
+  color: #000 !important;
+  .close{
+    svg{
+      fill: #000 !important;
+    }
+  }
+}
 .font-large {
   font-size: 27px;
-}
-
-#filter-mobile {
-  width: 100%;
-}
-
-#filter-mobile .b-sidebar-header {
-  padding: 5px 0 !important;
 }
 
 .apply-filter-btn {

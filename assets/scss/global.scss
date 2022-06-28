@@ -37,6 +37,8 @@ $dropdown-bg:                       $black;
 $dropdown-border-color:             rgba($white, .15);
 
 
+$card-bg:                           $black;
+
 $theme-colors: (
   "primary":    #FFF,
   "secondary":  #FFF,
@@ -53,6 +55,39 @@ $theme-colors: (
     font-family: Arial;
 }
 
+.banner-content {
+    text-align: center;
+    padding: 2rem;
+    @media (min-width:992px){
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        right: 0;
+        text-align: left;
+      }
+  }
+
+
+.productItem{
+    padding: 2rem;
+    text-align: center;
+    .productImage{
+        height: 315px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+    }
+    .prodcutTitle{
+        font: normal normal normal 20px/16px Arial;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+    .productDesc{
+        color: #FFFFFF;
+        opacity: 0.6;
+        font: normal normal normal 16px/16px Arial;
+    }
+}
 .container-fluid {
     width: 95%;
     margin: 0 auto;
@@ -84,4 +119,8 @@ $theme-colors: (
         background: #25282A;
         color: white;
     }
+}
+
+.accordion .card  {
+    background-color: inherit;
 }

@@ -1,11 +1,14 @@
 <template>
   <div class="best_seller">
     <div class="container">
-      <h2>{{ title }}</h2>
+      <h2 class="text-uppercase text-center font-weight-normal mb-5 mb-lg-4">
+        {{ title }}
+      </h2>
       <VueSlickCarousel v-if="products.length" v-bind="settings1" class="pro_slider d-md-none">
         <div v-for="(product, index) in products" :key="index">
           <div class="prod_box">
             <nuxt-link
+              class="text-decoration-none"
               :to="`/product-detail/${product.slug}`"
             >
               <nuxt-img
@@ -27,8 +30,8 @@
         </div>
       </VueSlickCarousel>
       <div class="row justify-content-center d-none d-md-flex">
-        <div v-for="(product, index) in products" :key="index" class="col-lg-3 col-6">
-          <div class="prod_box">
+        <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6">
+          <div class="productItem">
             <nuxt-link
               :to="`/product-detail/${product.slug}`"
             >
@@ -37,13 +40,17 @@
                 format="webp"
                 :src="product.feature_image"
                 alt="image"
-                class="product-image"
+                class="productImage"
                 quality="100"
                 sizes="xs:256 md:512"
               />
               <div class="desc_box">
-                <span>{{ product.name }}</span>
-                <p>{{ product.short_description }}</p>
+                <h3 class="productTitle">
+                  {{ product.name }}
+                </h3>
+                <p class="productDesc">
+                  {{ product.short_description }}
+                </p>
                 <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
               </div>
             </nuxt-link>
@@ -100,3 +107,24 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.product-title{
+  font: normal normal normal 18px/16px Arial;
+    letter-spacing: 1.25px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+p {
+  color: #FFFFFF;
+  opacity: 0.6;
+  font: normal normal normal 16px/16px Arial;
+
+}
+@media (max-width: 991px) {
+  .pro_slider img {
+    height: 260px;
+    margin-bottom: 20px;
+  }
+}
+</style>

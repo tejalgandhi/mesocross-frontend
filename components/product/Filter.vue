@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-3 px-0 px-lg-3 filter-mobile">
+  <div class="filter-mobile">
     <ul class="mainUl">
       <li class="d-md-none">
         <div class="d-flex align-items-center">

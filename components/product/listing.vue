@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-9">
+  <div class="col-lg-12">
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6 position-relative">
         <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
@@ -7,10 +7,11 @@
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
         <nuxt-link
+          class="text-decoration-none"
           :to="`/product-detail/${product.slug}`"
         >
           <div
-            class="product_box"
+            class="product_box p-4"
             @mouseover="hoveredImage = index"
             @mouseleave="hoveredImage = '' "
           >
@@ -25,8 +26,10 @@
               />
             </div>
             <div class="content_box d-flex align-items-end justify-content-center">
-              <div class="inline-box">
-                <label>{{ product.name }}</label>
+              <div class="inline-box text-center">
+                <h3 class="product-title">
+                  {{ product.name }}
+                </h3>
                 <p>{{ product.short_description }}</p>
                 <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
               </div>
@@ -122,19 +125,35 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style lang="scss" scoped>
 .fav-icon {
   position: absolute;
   top: 25px;
   right: 20px;
   z-index: 1;
 }
-.img_box img {
+.product-title{
+  font: normal normal normal 18px/16px Arial;
+    letter-spacing: 1.25px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+p {
+  color: #FFFFFF;
+  opacity: 0.6;
+  font: normal normal normal 16px/16px Arial;
+
+}
+.img_box {
+  height: 307px;
+  margin-bottom: 2rem;
+  img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     transition: 0.6s;
     transform: scale(1.0);
+  }
 }
-</style>
 </style>

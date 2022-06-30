@@ -1,10 +1,5 @@
 <template>
   <div class="shipping">
-    <div class="store mb-5">
-      <h2 class="font-weight-normal mb-3">
-        {{ $t('dashboard.address_book') }}
-      </h2>
-    </div>
     <template v-if="!addressShow">
       <ShippingAddress
         v-for="(address, index) in addresses"
@@ -20,7 +15,7 @@
     </template>
 
     <div class="col-md-4 py-4 mx-auto">
-      <button v-if="!addressShow" class="w-100 d-block btn btn-outline-dark" @click="addAddress">
+      <button v-if="!addressShow" class="w-100 d-block btn btn-outline-dark filter-invert" @click="addAddress">
         {{ $t('checkout.add_new_address') }}
       </button>
     </div>

@@ -1,9 +1,9 @@
 <template>
   <div id="payment" class="tab-pane fade show active shipping">
     <div class="my-3">
-      <p class="font-weight-bold text-dark font-18">
+      <!-- <p class="font-weight-bold text-dark font-18">
         {{ bodytitle }}
-      </p>
+      </p> -->
       <p class="mt-2 mb-2 font-16">
         {{ $t('required_fields') }}*
       </p>
@@ -118,12 +118,12 @@
             </div>
           </div>
           <div class="form-group col-lg-6 mt-3">
-            <button type="submit" class="btn w-100 bg-dark text-white">
+            <button type="submit" class="btn w-100 btn-primary filter-invert">
               {{ $t('save') }}
             </button>
           </div>
           <div class="form-group col-lg-6 mt-3">
-            <button class="btn w-100 btn-outline-dark" @click="setIsAddPayment(false)">
+            <button class="btn w-100 btn-outline-primary filter-invert" @click="setIsAddPayment(false)">
               {{ $t('cancel') }}
             </button>
           </div>
@@ -206,5 +206,6 @@ export default {
 <style scoped>
 .errors {
   color: #cf0000;
+  white-space: nowrap;
 }
 </style>

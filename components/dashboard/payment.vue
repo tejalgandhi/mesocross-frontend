@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-md-4 pt-4 mx-auto">
-      <button class="w-100 d-block btn btn-outline-dark" @click="setIsAddPayment(true)">
+      <button class="w-100 d-block btn btn-outline-primary filter-invert" @click="setIsAddPayment(true)">
         {{ $t('checkout.add_new_method') }}
       </button>
     </div>

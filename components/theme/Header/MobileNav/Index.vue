@@ -119,7 +119,7 @@ export default {
                 span {
                     position: absolute;
                     border-radius: 50%;
-                    background: black;
+                    background: rgb(66, 66, 66);
                     display: flex;
                     justify-content: center;
                     align-items: center;

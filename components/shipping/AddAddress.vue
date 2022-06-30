@@ -3,7 +3,7 @@
     <div class="tab-content">
       <div id="shipping" class="tab-pane fade show active shipping">
         <div class="my-3">
-          <p class="font-weight-bold text-dark font-18">
+          <p class="font-weight-bold text-light font-18">
             {{ $t('edit_delivery_address') }}
           </p>
           <p class="mt-2 mb-2 font-16">
@@ -122,12 +122,12 @@
                 </ValidationProvider>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 bg-dark text-white" type="button" @click="saveAddress">
+                <button class="btn w-100 btn-primary filter-invert" type="button" @click="saveAddress">
                   {{ $t('save') }}
                 </button>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-outline-dark" type="button" @click="$emit('hideAddAdrress')">
+                <button class="btn w-100 btn-outline-primary filter-invert" type="button" @click="$emit('hideAddAdrress')">
                   {{ $t('cancel') }}
                 </button>
               </div>

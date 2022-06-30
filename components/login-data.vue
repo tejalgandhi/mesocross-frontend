@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="text-light">
     <div class="store">
-      <h2 class="font-weight-normal mb-3">
+      <h5 class="font-weight-bold mb-3">
         {{ $t('dashboard.login_data') }}
-      </h2>
+      </h5>
       <small class="text-muted">* {{ $t('required_fields') }}</small>
     </div>
-    <h4 class="font-weight-normal my-4 h4">
+    <h4 class="font-weight-normal mb-4 h4">
       {{ $t('new_password') }}
     </h4>
     <div v-if="errorMessage" class="alert alert-danger" role="alert">
@@ -38,7 +38,7 @@
           </ValidationProvider>
         </div>
         <div class="col-md-12 py-4">
-          <button class="px-4 btn bg-dark text-white">
+          <button class="px-4 btn btn-primary filter-invert">
             {{ $t('dashboard.update_login_date') }}
           </button>
         </div>
@@ -82,32 +82,8 @@ export default {
   }
 }
 </script>
-<style scoped>
-.store h2 {
-  font: normal normal 600 34px Work Sans;
-  letter-spacing: 0px;
-  margin: 0 !important;
-  color: #25282A;
-}
-
-.h4 {
-  font: normal normal 600 24px Work Sans;
-  letter-spacing: 0px;
-  color: #25282A;
-}
-
+<style lang="scss" scoped>
 label {
-  text-align: left;
-  font: normal normal 500 16px Work Sans;
-  letter-spacing: 0px;
   color: #25282A;
-}
-
-.submit-btn {
-  font: normal normal 500 16px Work Sans;
-  letter-spacing: 0.48px;
-  background: #25282A;
-  border-radius: 4px;
-  height: 45px;
 }
 </style>

@@ -2,7 +2,9 @@
   <div class="orders">
     <div v-for="(i, index) in 3" :key="i" class="row justify-content-between mb-3 py-3 order-item" :class="index === 0 ? 'border-bottom': null">
       <div class="col">
-        <h5>Encomenda n.º 52179874575</h5>
+        <h5 class="order-product-title">
+          Encomenda n.º 52179874575
+        </h5>
         <div class="price-detail mb-3">
           7/10/2021
         </div>
@@ -24,7 +26,7 @@
     .order-item{
         border-color: rgba(#000000, 0.12) !important;
     }
-    h5{
+    .order-product-title{
         font: normal normal normal 16px/24px Arial;
 letter-spacing: 0px;
 color: #231F20;

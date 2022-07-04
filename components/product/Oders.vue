@@ -10,7 +10,9 @@
         <div class="sent mb-1">
           SENT
         </div>
-        <h5>Encomenda n.º 52179874575</h5>
+        <h5 class="order-product-title">
+          Encomenda n.º 52179874575
+        </h5>
         <div class="price-detail">
           Entregue a 7/10/2021
           <br>3/10/2021 - 19,95 EUR
@@ -30,7 +32,7 @@
     .order-item{
         border-color: rgba(#000000, 0.12) !important;
     }
-    h5{
+    .order-product-title{
         font: normal normal normal 16px/16px Arial;
 letter-spacing: 0px;
 color: #231F20;

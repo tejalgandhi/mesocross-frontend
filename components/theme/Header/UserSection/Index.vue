@@ -1,6 +1,6 @@
 <template>
   <main>
-    <figure v-click-outside="hideUserTab" class="mb-0" @mouseover="cartPreview = false">
+    <figure v-click-outside="hideUserTab" class="mb-0">
       <img src="@/assets/img/user.svg" alt="user" @click="showUserTab = !showUserTab">
       <transition name="pop">
         <span v-if="$auth.loggedIn" class="info" />
@@ -9,18 +9,17 @@
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
       </transition>
     </figure>
-    <figure class="mb-0" @click="goTo('/wishlist')" @mouseover="cartPreview = false">
+    <figure class="mb-0" @click="goTo('/wishlist')">
       <img src="@/assets/img/star.svg" alt="favs">
       <span v-if="wishlist" class="number">{{ wishlist }}</span>
     </figure>
-    <figure class="mb-0" @click="goTo('/cart')" @mouseover="cartPreview = true">
+    <figure class="mb-0" @click="goTo('/cart')">
       <img src="@/assets/img/basket.svg" alt="cart">
       <span v-if="products" class="number">{{ products }}</span>
     </figure>
-    <figure class="mb-0" @click="setSearch" @mouseover="cartPreview = false">
+    <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
-    <UiCartHover v-if="cartPreview" @close="cartPreview = false" />
   </main>
 </template>
 
@@ -86,7 +85,7 @@ export default {
             span {
                 position: absolute;
                 border-radius: 50%;
-                background: black;
+                background: rgb(66, 66, 66);
                 display: flex;
                 justify-content: center;
                 align-items: center;

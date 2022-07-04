@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
     section {
-        background: #f5f5f5;
+        background: rgba(#FFF, 0.1);
         display: flex;
         padding: 2rem;
 

@@ -10,64 +10,66 @@
       {{ errorMessage }}
     </div>
     <ValidationObserver ref="formObserver" @submit.prevent="updatePersonalData">
-      <form class="w-100 row col-lg-10 col-xl-8 mt-5 px-0">
-        <div class="form-group col-lg-6">
-          <ValidationProvider v-slot="{ errors }" :name="$t('name')" rules="required">
-            <label>{{ $t('name') }}*</label>
-            <input v-model="user.name" type="text" class="form-control">
-            <span class="errors">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <div class="form-group col-lg-6">
-          <ValidationProvider v-slot="{ errors }" :name="$t('surname')" rules="required">
-            <label>{{ $t('surname') }} *</label>
-            <input v-model="user.surname" type="text" class="form-control">
-            <span class="errors">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <div class="form-group col-lg-6">
-          <ValidationProvider v-slot="{ errors }" :name="$t('phone')" rules="required">
-            <label>{{ $t('phone') }} *</label>
-            <div class="d-flex">
-              <vue-country-code
-                :dropdown-options="{
-                enabledCountryCode:true,
-                disabledDialCode: false
-              }"
-                :default-country="user.iso_alpha2"
-                :disabled-fetching-country="false"
-                :enabled-country-code="true"
-                :preferred-countries="['pt','es']"
-                :enable-search-field="true"
-                @onSelect="changeIsoCode"
-              />
-              <input v-model="user.phone_number" type="text" class="form-control phone-input">
-            </div>
-            <span class="errors">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <div class="form-group col-lg-6">
-          <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required|email">
-            <label>{{ $t('email') }} *</label>
-            <input v-model="user.email" type="text" class="form-control">
-            <span class="errors">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <div class="form-group col-lg-12">
-          <div class="col-md-6 pl-0">
-            <ValidationProvider v-slot="{ errors }" :name="$t('password')" rules="required">
-              <label>{{ $t('password') }} *</label>
-              <input v-model="user.password" type="password" class="form-control" placeholder="*********">
+      <div class="col-sm-7">
+        <form class="row">
+          <div class="form-group col-md-6">
+            <ValidationProvider v-slot="{ errors }" :name="$t('name')" rules="required">
+              <label>{{ $t('name') }}*</label>
+              <input v-model="user.name" type="text" class="form-control">
               <span class="errors">{{ errors[0] }}</span>
             </ValidationProvider>
           </div>
-        </div>
-        <div class="form-group col-lg-6 mt-4">
-          <button class="d-block btn submit-btn text-white">
-            {{ $t('dashboard.update_personal_data') }}
-          </button>
-        </div>
-      </form>
+          <div class="form-group col-md-6">
+            <ValidationProvider v-slot="{ errors }" :name="$t('surname')" rules="required">
+              <label>{{ $t('surname') }} *</label>
+              <input v-model="user.surname" type="text" class="form-control">
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group col-lg-6">
+            <ValidationProvider v-slot="{ errors }" :name="$t('phone')" rules="required">
+              <label>{{ $t('phone') }} *</label>
+              <div class="d-flex">
+                <vue-country-code
+                  :dropdown-options="{
+                    enabledCountryCode:true,
+                    disabledDialCode: false
+                  }"
+                  :default-country="user.iso_alpha2"
+                  :disabled-fetching-country="false"
+                  :enabled-country-code="true"
+                  :preferred-countries="['pt','es']"
+                  :enable-search-field="true"
+                  @onSelect="changeIsoCode"
+                />
+                <input v-model="user.phone_number" type="text" class="form-control phone-input">
+              </div>
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group col-lg-6">
+            <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required|email">
+              <label>{{ $t('email') }} *</label>
+              <input v-model="user.email" type="text" class="form-control">
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group col-lg-12">
+            <div class="col-md-6 pl-0">
+              <ValidationProvider v-slot="{ errors }" :name="$t('password')" rules="required">
+                <label>{{ $t('password') }} *</label>
+                <input v-model="user.password" type="password" class="form-control" placeholder="*********">
+                <span class="errors">{{ errors[0] }}</span>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="form-group col-lg-6">
+            <button class="d-block btn submit-btn text-white w-100">
+              {{ $t('dashboard.update_personal_data') }}
+            </button>
+          </div>
+        </form>
+      </div>
     </ValidationObserver>
   </div>
 </template>

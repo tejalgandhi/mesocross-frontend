@@ -54,6 +54,9 @@ $theme-colors: (
     letter-spacing: 0.7px;
     font-family: Arial;
 }
+.filter-invert{
+    filter: invert(1);
+}
 .container-fluid {
     width: 95%;
     margin: 0 auto;

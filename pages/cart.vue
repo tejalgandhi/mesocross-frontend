@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="cart">
-      <div class="container">
-        <h2 class="text-uppercase font-weight-normal text-center mb-3">
+      <div class="container-fluid">
+        <h2 class="text-uppercase font-weight-normal text-center mb-lg-5 mb-4">
           {{ $t('cart.shopping_bag') }}
         </h2>
         <div v-if="!isUserLoggedIn" class="text-center">
@@ -20,31 +20,59 @@
           </nuxt-link>
         </div>
         <div v-else class="row justify-content-center">
-          <h3 v-if="products.length > 0">
-            {{ $t('your_products') }}
-          </h3>
-          <div class="col-lg-9">
+          <div class="col-lg-9 pr-lg-5">
+            <div class="row text-center">
+              <div class="col-4">
+                <label class="th-head">
+                  Item info
+                </label>
+              </div>
+              <div class="col-3">
+                <label class="th-head">
+                  Quantity
+                </label>
+              </div>
+              <div class="col-3">
+                <label class="th-head">
+                  Price
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="th-head">
+                  Total
+                </label>
+              </div>
+            </div>
+
             <div v-for="(product, index) in products" :key="index">
               <ProductCartProduct :product="product" />
             </div>
           </div>
           <div v-if="products.length > 0" class="col-lg-3">
             <div class="summary">
-              <h3>{{ $t('order_summary') }}</h3>
+              <h5 class="mb-3">
+                {{ $t('order_summary') }}
+              </h5>
+              <div class="promo-code p-4 mb-4">
+                <label>Insert your promo code</label>
+                <input type="text" class="form-control border-0" placeholder="Enter promo code">
+              </div>
               <div class="prod_detail">
-                <p class="product">
-                  <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <span>{{ subTotal }} €</span>
-                </p>
-                <p><label>{{ $t('discount') }}</label> <span>0 €</span></p>
-                <p class="total">
-                  <label>{{ $t('total') }}</label> <span>{{ subTotal }} €</span>
-                </p>
-                <nuxt-link to="/checkout" class="checkout">
+                <div class="product d-flex justify-content-between font-weight-bold">
+                  <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <strong>{{ subTotal }} €</strong>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <label>{{ $t('discount') }}</label> <span>0 €</span>
+                </div>
+                <div class="d-flex justify-content-between py-2 mt-2 mb-4 border-top">
+                  <label>{{ $t('total') }}</label> <strong>{{ subTotal }} €</strong>
+                </div>
+                <nuxt-link to="/checkout" class="btn btn-primary btn-block">
                   {{ $t('cart.go_to_checkout') }}
                 </nuxt-link>
-                <nuxt-link to="/checkout" class="continue">
+                <!-- <nuxt-link to="/checkout" class="continue">
                   {{ $t('cart.continue_to_buy') }}
-                </nuxt-link>
+                </nuxt-link> -->
               </div>
             </div>
           </div>
@@ -103,12 +131,20 @@ export default {
 }
 </script>
 
-<style>
-.sign-in-text {
-  text-decoration: underline;
+<style lang="scss" scoped>
+.cart{
+  margin: 84px 0;
+  @media (max-width:768px) {
+    margin: 42px 0;
+  }
 }
-
-.sign-in {
-  background-color: #25282A;
+.promo-code {
+  background: rgba(#fff, 0.12) ;
+}
+.th-head{
+  font: normal normal normal 14px/16px Arial;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 0.4;
 }
 </style>

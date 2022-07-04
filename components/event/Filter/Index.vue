@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
     .filter_bar {
-        background: #F5F5F5;
+          background: rgba(#FFF,0.1);
         padding: 10px;
     }
 </style>
@@ -53,15 +53,23 @@ export default {
 .child-a {
   font: normal normal 600 18px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #fff;
   text-transform: capitalize;
 }
 
 .child-b {
   font: normal normal 600 16px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #fff;
   text-transform: capitalize;
+}
+
+.product-page .child-a {
+  color: #000;
+ }
+
+.product-page  .child-b {
+  color: #000;
 }
 
 .a:after {

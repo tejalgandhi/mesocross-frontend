@@ -133,7 +133,7 @@ export default {
   z-index: 1;
 }
 .product-title{
-  font: normal normal normal 18px/16px Arial;
+  font: normal normal normal 20px/28px Arial;
     letter-spacing: 1.25px;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -142,7 +142,7 @@ export default {
 p {
   color: #FFFFFF;
   opacity: 0.6;
-  font: normal normal normal 16px/16px Arial;
+  font: normal normal normal 16px/22px Arial;
 
 }
 .img_box {

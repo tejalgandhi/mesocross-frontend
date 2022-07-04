@@ -149,7 +149,7 @@
           <span v-if="isCaptchaError" class="errors text-danger">Please Select Captcha</span>
           <div class="row space-top">
             <div class="col-12">
-              <button type="submit" class="btn btn-theme-dark">
+              <button type="submit" class="btn btn-primary px-5">
                 {{ $t('Send') }}
               </button>
             </div>

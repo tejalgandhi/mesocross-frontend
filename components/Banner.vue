@@ -6,10 +6,10 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
-              <h1 v-if="data.title">
+              <h1 v-if="data.title" class="text-uppercase font-weight-normal">
                 {{ data.title }}
               </h1>
-              <h1 v-else>
+              <h1 v-else class="text-uppercase font-weight-normal">
                 {{ data.name }}
               </h1>
               <p v-if="data.message">

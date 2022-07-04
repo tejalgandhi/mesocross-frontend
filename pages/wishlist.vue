@@ -4,8 +4,8 @@
       <h2 class="text-uppercase font-weight-normal text-center mb-4">
         {{ $t('Wishlist') }}
       </h2>
-      <div v-if="!isUserLoggedIn" class="text-center my-5">
-        <h3>{{ $t('looking_for_your_wishlist') }}? {{ $t('sign_in_to_pick_up_where_you_left_off') }} </h3>
+      <div v-if="!isUserLoggedIn" class="text-center">
+        <p>{{ $t('looking_for_your_wishlist') }}? {{ $t('sign_in_to_pick_up_where_you_left_off') }} </p>
         <nuxt-link class="btn d-block mt-4 mb-5 col-md-3 mx-auto sign-in text-white" to="/login">
           {{ $t('sign_in') }}
         </nuxt-link>

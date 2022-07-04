@@ -2,16 +2,16 @@
   <div class="col-lg-3">
     <div class="filter_bar">
       <ul class="mainUl">
-      <li>
-    <a :class="yearFilter ? 'mb-3' : 'arrowUp'" :aria-expanded="yearFilter ? 'true' : 'false'" aria-controls="year_div`" @click="yearFilter = !yearFilter">{{ $t('Years') }}</a>
-    <b-collapse id="year_div" v-model="yearFilter">
-      <template v-for="year in Object.keys(eventsByYears)">
-        <BlogFilterItems :key="year" :title="year" :data="eventsByYears[year]" @checked="handleChecks" />
-      </template>
-    </b-collapse>
-    </li>
-    <BlogFilterTreatment @checked="handleTreatment" />
-    </ul>
+        <li>
+          <a :class="yearFilter ? 'mb-3' : 'arrowUp'" :aria-expanded="yearFilter ? 'true' : 'false'" aria-controls="year_div`" @click="yearFilter = !yearFilter">{{ $t('Years') }}</a>
+          <b-collapse id="year_div" v-model="yearFilter">
+            <template v-for="year in Object.keys(eventsByYears)">
+              <BlogFilterItems :key="year" :title="year" :data="eventsByYears[year]" @checked="handleChecks" />
+            </template>
+          </b-collapse>
+        </li>
+        <BlogFilterTreatment @checked="handleTreatment" />
+      </ul>
     </div>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
     .filter_bar {
-        background: #F5F5F5;
+        background: rgba(#FFF,0.1);
         padding: 10px;
     }
 </style>
@@ -65,14 +65,14 @@ export default {
 .child-a {
   font: normal normal 600 18px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #fff;
   text-transform: capitalize;
 }
 
 .child-b {
   font: normal normal 600 16px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #fff;
   text-transform: capitalize;
 }
 

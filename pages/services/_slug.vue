@@ -51,11 +51,10 @@ export default {
         { label: this.$t('contact_us'), component: 'contact-us', slug: 'contact-us', static: true },
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
-        { label: this.$t('payment_methods'), component: 'pages-content', slug: 'payment-methods' },
-        { label: 'Secure Payments', component: 'pages-content', slug: 'secure-payments' },
+        { label: 'Secure Payments', component: 'pages-content', slug: 'payment-methods' },
         { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
-        { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-and-condition' },
+        { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-condition' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' }

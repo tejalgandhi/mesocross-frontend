@@ -6,7 +6,7 @@
       <span v-else class="white" />
     </figure>
     <article>
-      <h2 class="text-uppercase" :class="{color: !data.media}">
+      <h2 :class="['text-uppercase', {color: !data.media}]">
         {{ data.title }}
       </h2>
       <button v-if="data.action_link" @click="goTo(data.action_link)">

@@ -64,12 +64,10 @@ export default {
             flex-direction: column;
             gap: 1rem;
             justify-content: center;
-            padding: 0 0;
             text-align: center;
 
             @media screen and (max-width: 1200px){
                 width: 100%;
-                padding: 0;
             }
 
             h2 {

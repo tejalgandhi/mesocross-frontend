@@ -25,8 +25,6 @@
           </div>
         </div>
         <div class="col-12 col-md-8 col-xl-9">
-          <!-- Tab panes -->
-          <!-- {{ callApi }} -->
           <div class="tab-content mt-0">
             <div :id="pagecurrentComponent" class="tab-paneb active">
               <component :is="pagecurrentComponent" :data="data" :temp-title="components.filter(el => el.slug === selectedTab)[0].label" />

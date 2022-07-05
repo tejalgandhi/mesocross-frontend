@@ -166,7 +166,6 @@ export default {
       this.footerLinks = data.data.data
     },
     redirectToPage (name) {
-      console.log('name', name)
       if(name === 'subscription'){
         this.$bvModal.show('subscribeModal');
         return

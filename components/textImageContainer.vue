@@ -4,7 +4,9 @@
       <img :src="data.media" alt="image">
     </figure>
     <article>
-      <h2>{{ data.title }}</h2>
+      <h2 class="font-weight-normal text-uppercase">
+        {{ data.title }}
+      </h2>
       <span v-html="data.content" />
     </article>
   </section>
@@ -78,7 +80,6 @@ export default {
 
             h2 {
                 font-size: 3.125rem;
-                font-weight: 600;
             }
         }
     }

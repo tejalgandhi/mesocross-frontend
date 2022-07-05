@@ -48,14 +48,12 @@ export default {
       selectedTab: this.$route.params.slug,
       pagesDashboard: [
         { label: this.$t('contact_us'), component: 'contact-us', slug: 'contact-us', static: true },
-        { label: this.$t('become_partner'), component: 'become-partner', slug: 'become-partner', static: true },
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
         { label: this.$t('payment_methods'), component: 'pages-content', slug: 'payment-methods' },
         { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
-        { label: this.$t('footer.ccpa'), component: 'pages-content', slug: 'ccpa' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' }
       ],
@@ -138,7 +136,7 @@ export default {
     .selected {
         width: 100%;
         padding: 10px 0;
-        background: #F5F5F5;
+        background: rgba(#fff, 0.15);
         text-align: center;
         font-weight: 500;
     }
@@ -147,12 +145,12 @@ export default {
         width: 100%;
         display: flex;
         flex-direction: column;
-        border: solid 1px #F5F5F5;
+        border: solid 1px rgba(#fff, 0.15);
 
         a {
             text-align: center;
             padding: 10px;
-            border-bottom: solid 1px #F5F5F5;
+            border-bottom: solid 1px rgba(#fff, 0.15);
 
             &:last-of-type {
                 border-bottom: none;

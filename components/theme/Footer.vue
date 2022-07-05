@@ -9,9 +9,9 @@
             </button>
           </div>
           <div class="col-4 border-right">
-            <button class="btn btn-default w-100 px-0">
+            <nuxt-link to="/services/faq" class="btn btn-default w-100 px-0">
               FAQs
-            </button>
+            </nuxt-link>
           </div>
           <div class="col-4">
             <button class="btn btn-default w-100 px-0">

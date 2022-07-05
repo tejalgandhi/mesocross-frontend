@@ -886,3 +886,8 @@ wishlist .prod_box {position: relative;display: flex;flex-direction: column;alig
 .certificate {margin-bottom:30px;}
 .certificate ul{display: flex;justify-content: center;flex-wrap: wrap;}
 .certificate ul img{max-width: 210px; max-height: 130px;filter: grayscale(100%);}
+
+.__nuxt-error-page {
+  position: static;
+  background: #000;
+}

@@ -95,7 +95,7 @@ export default {
       min-width: 33.33%;
       width: 33.33%;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 .header__cta {

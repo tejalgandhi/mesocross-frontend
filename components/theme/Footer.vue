@@ -171,7 +171,7 @@ export default {
         this.$bvModal.show('subscribeModal');
         return
       }
-      //this.$router.push(`/services/${name}`)
+      this.$router.push(`/services/${name}`)
     },
   }
 }

@@ -30,18 +30,10 @@ export default {
 <style lang="scss" scoped>
     section {
         margin: 0 auto;
-        display: flex;
-        align-items: center;
         gap: 4rem;
         width: 80%;
         max-width: 1600px;
         padding: 80px 0;
-
-        @media screen and (max-width: 1200px){
-            flex-direction: column;
-            width: 85%;
-            padding: 40px 0;
-        }
 
         &.reverse {
             flex-direction: row-reverse;
@@ -52,7 +44,7 @@ export default {
         }
 
         figure {
-            width: 50%;
+            width: 100%;
 
             @media screen and (max-width: 1200px){
                 width: 100%;
@@ -62,16 +54,18 @@ export default {
                 width: 100%;
                 object-fit: cover;
                 -webkit-user-drag: none;
+                margin-bottom: 1rem;
             }
         }
 
         article {
-            width: 50%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 1rem;
             justify-content: center;
-            padding: 0 80px;
+            padding: 0 0;
+            text-align: center;
 
             @media screen and (max-width: 1200px){
                 width: 100%;
@@ -79,7 +73,7 @@ export default {
             }
 
             h2 {
-                font-size: 3.125rem;
+                font-size: 2.125rem;
             }
         }
     }

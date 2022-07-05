@@ -12,6 +12,7 @@
             <div v-else class="mobile">
               <div class="selected" @click="selectPage = !selectPage">
                 <span>{{ components.filter(el => el.slug === selectedTab)[0].label }}</span>
+                <span class="arrow" :class="{opened: selectPage}" />
               </div>
               <div v-if="selectPage" class="toSelect">
                 <template v-for="(component,i) in components.filter(el => el.slug !== selectedTab)">
@@ -25,10 +26,10 @@
         </div>
         <div class="col-12 col-md-8 col-xl-9">
           <!-- Tab panes -->
-          {{ callApi }}
+          <!-- {{ callApi }} -->
           <div class="tab-content mt-0">
             <div :id="pagecurrentComponent" class="tab-paneb active">
-              <component :is="pagecurrentComponent" :data="data" />
+              <component :is="pagecurrentComponent" :data="data" :temp-title="components.filter(el => el.slug === selectedTab)[0].label" />
             </div>
           </div>
         </div>
@@ -51,8 +52,10 @@ export default {
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
         { label: this.$t('payment_methods'), component: 'pages-content', slug: 'payment-methods' },
+        { label: 'Secure Payments', component: 'pages-content', slug: 'secure-payments' },
         { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
+        { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-and-condition' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' }
@@ -68,26 +71,32 @@ export default {
       selectedPageComponent: state => state.selectedPageComponent,
       selectedPageComponentIndex: state => state.selectedPageComponentIndex,
       pagecurrentComponent: state => state.pagecurrentComponent
-    }),
-    callApi () {
-      const currentComponent = this.pagesDashboard[this.selectedPageComponentIndex]
-      if (currentComponent.slug && !currentComponent.static) {
-        this.getApiData(currentComponent.slug)
-      }
-      return ''
-    }
+    })
   },
   watch: {
-    $route (val) {
-      this.setPage()
-      this.selectedTab = val.params.slug
-      if (this.isMobile()) { this.selectPage = false }
+    $route: {
+      immediate: true,
+      handler (val) {
+        this.setPage()
+        this.callApi()
+        this.selectedTab = val.params.slug
+        if (this.isMobile()) { this.selectPage = false }
+      }
     }
+
   },
   mounted () {
     this.setPage()
   },
   methods: {
+    callApi () {
+      const currentComponent = this.pagesDashboard[this.selectedPageComponentIndex]
+
+      if (currentComponent.slug && !currentComponent.static) {
+        this.getApiData(currentComponent.slug)
+      }
+    },
+
     setPage () {
       const { slug } = this.$route.params
       if (slug) {

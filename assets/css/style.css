@@ -891,3 +891,10 @@ wishlist .prod_box {position: relative;display: flex;flex-direction: column;alig
   position: static;
   background: #000;
 }
+
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus,
+input.form-control:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}

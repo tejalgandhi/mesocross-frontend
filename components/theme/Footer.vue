@@ -79,88 +79,6 @@
                     </b-card-body>
                   </b-collapse>
                 </div>
-
-              <!-- <b-card-header v-b-toggle.accordion-2 class="panel panel-default" header-tag="header" role="tab">
-                <h3 class="panel-title">
-                  <a block variant="info">
-                    {{ $t('training') }}
-                  </a>
-                </h3>
-              </b-card-header>
-              <b-collapse id="accordion-2">
-                <b-card-body>
-                  <ul>
-                    <li>
-                      <nuxt-link to="/exhibitions-and-events">
-                        {{ $t('exhibitions_and_events') }}
-                      </nuxt-link>
-                    </li>
-                    <li>
-                      <nuxt-link to="/about-training">
-                        {{ $t('footer.training_app') }}
-                      </nuxt-link>
-                    </li>
-                    <li>
-                      <nuxt-link to="/documents">
-                        {{ $t('footer.downloads') }}
-                      </nuxt-link>
-                    </li>
-                  </ul>
-                </b-card-body>
-              </b-collapse>
-
-              <b-card-header v-b-toggle.accordion-3 class="panel panel-default" header-tag="header" role="tab">
-                <h3 class="panel-title">
-                  <a block variant="info">
-                    {{ $t('footer.online_shop') }}
-                  </a>
-                </h3>
-              </b-card-header>
-              <b-collapse id="accordion-3">
-                <b-card-body>
-                  <ul>
-                    <li>
-                      <nuxt-link to="/pages?page=shipping-methods">
-                        {{ $t('footer.shipment_methods') }}
-                      </nuxt-link>
-                    </li>
-                    <li>
-                      <nuxt-link to="/pages?page=payment-methods">
-                        {{ $t('footer.payment_methods') }}
-                      </nuxt-link>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" @click="redirectToPage('return-exchange')">
-                        {{ $t('footer.returns_and_exchanges') }}
-                      </a>
-                    </li>
-                  </ul>
-                </b-card-body>
-              </b-collapse>
-
-              <b-card-header v-b-toggle.accordion-4 class="panel panel-default" header-tag="header" role="tab">
-                <h3 class="panel-title">
-                  <a block variant="info">
-                    {{ $t('footer.costumer_service') }}
-                  </a>
-                </h3>
-              </b-card-header>
-              <b-collapse id="accordion-4">
-                <b-card-body>
-                  <ul>
-                    <li>
-                      <a href="javascript:void(0)" @click="redirectToPage('contact-us')">
-                        {{ $t('contact_us') }}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)" @click="redirectToPage('faq')">
-                        {{ $t('footer.FAQ_s') }}
-                      </a>
-                    </li>
-                  </ul>
-                </b-card-body>
-              </b-collapse> -->
               </b-card>
             </div>
 
@@ -168,9 +86,9 @@
               <h2>{{ link.name }}</h2>
               <ul>
                 <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                  <NuxtLink :to="child.slug">
+                  <a href="javascript:void(0);" @click="redirectToPage(child.slug)">
                     {{ child.name }}
-                  </NuxtLink>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -223,18 +141,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 export default {
-  filters: {
-    removeBase (val) {
-      return val
-    }
-  },
   data () {
     return {
       socialLinks: [],
       currentYear: '',
-      accordianCollapse: [true, true, true, true],
       baseUrl: process.env.baseUrl,
       footerLinks: null
     }
@@ -255,12 +166,13 @@ export default {
       this.footerLinks = data.data.data
     },
     redirectToPage (name) {
-      this.setSelectedPageComponent({ slug: name })
-      this.$router.push(`/services/${name}`)
+      console.log('name', name)
+      if(name === 'subscription'){
+        this.$bvModal.show('subscribeModal');
+        return
+      }
+      //this.$router.push(`/services/${name}`)
     },
-    ...mapMutations({
-      setSelectedPageComponent: 'setSelectedPageComponent'
-    })
   }
 }
 </script>

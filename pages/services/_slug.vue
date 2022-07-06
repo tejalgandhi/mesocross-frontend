@@ -12,6 +12,7 @@
             <div v-else class="mobile">
               <div class="selected" @click="selectPage = !selectPage">
                 <span>{{ components.filter(el => el.slug === selectedTab)[0].label }}</span>
+                <span class="arrow" :class="{opened: selectPage}" />
               </div>
               <div v-if="selectPage" class="toSelect">
                 <template v-for="(component,i) in components.filter(el => el.slug !== selectedTab)">
@@ -24,11 +25,9 @@
           </div>
         </div>
         <div class="col-12 col-md-8 col-xl-9">
-          <!-- Tab panes -->
-          {{ callApi }}
           <div class="tab-content mt-0">
             <div :id="pagecurrentComponent" class="tab-paneb active">
-              <component :is="pagecurrentComponent" :data="data" />
+              <component :is="pagecurrentComponent" :data="data" :temp-title="components.filter(el => el.slug === selectedTab)[0].label" />
             </div>
           </div>
         </div>
@@ -48,14 +47,13 @@ export default {
       selectedTab: this.$route.params.slug,
       pagesDashboard: [
         { label: this.$t('contact_us'), component: 'contact-us', slug: 'contact-us', static: true },
-        { label: this.$t('become_partner'), component: 'become-partner', slug: 'become-partner', static: true },
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
-        { label: this.$t('payment_methods'), component: 'pages-content', slug: 'payment-methods' },
+        { label: 'Secure Payments', component: 'pages-content', slug: 'payment-methods' },
         { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
+        { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-condition' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
-        { label: this.$t('footer.ccpa'), component: 'pages-content', slug: 'ccpa' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' }
       ],
@@ -70,26 +68,32 @@ export default {
       selectedPageComponent: state => state.selectedPageComponent,
       selectedPageComponentIndex: state => state.selectedPageComponentIndex,
       pagecurrentComponent: state => state.pagecurrentComponent
-    }),
-    callApi () {
-      const currentComponent = this.pagesDashboard[this.selectedPageComponentIndex]
-      if (currentComponent.slug && !currentComponent.static) {
-        this.getApiData(currentComponent.slug)
-      }
-      return ''
-    }
+    })
   },
   watch: {
-    $route (val) {
-      this.setPage()
-      this.selectedTab = val.params.slug
-      if (this.isMobile()) { this.selectPage = false }
+    $route: {
+      immediate: true,
+      handler (val) {
+        this.setPage()
+        this.callApi()
+        this.selectedTab = val.params.slug
+        if (this.isMobile()) { this.selectPage = false }
+      }
     }
+
   },
   mounted () {
     this.setPage()
   },
   methods: {
+    callApi () {
+      const currentComponent = this.pagesDashboard[this.selectedPageComponentIndex]
+
+      if (currentComponent.slug && !currentComponent.static) {
+        this.getApiData(currentComponent.slug)
+      }
+    },
+
     setPage () {
       const { slug } = this.$route.params
       if (slug) {
@@ -138,7 +142,7 @@ export default {
     .selected {
         width: 100%;
         padding: 10px 0;
-        background: #F5F5F5;
+        background: rgba(#fff, 0.15);
         text-align: center;
         font-weight: 500;
     }
@@ -147,12 +151,12 @@ export default {
         width: 100%;
         display: flex;
         flex-direction: column;
-        border: solid 1px #F5F5F5;
+        border: solid 1px rgba(#fff, 0.15);
 
         a {
             text-align: center;
             padding: 10px;
-            border-bottom: solid 1px #F5F5F5;
+            border-bottom: solid 1px rgba(#fff, 0.15);
 
             &:last-of-type {
                 border-bottom: none;

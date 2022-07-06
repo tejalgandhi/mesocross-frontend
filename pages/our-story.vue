@@ -2,9 +2,18 @@
   <div class="about-page">
     <Banner :page-name="'our-story'" />
     <template v-if="data.length">
-      <UiMission :data="ourMission" :first="true" />
-      <text-image-container :data="solution1" />
-      <text-image-container :data="solution2" :reverse="true" />
+      <UiMission class="py-5 my-5" :data="ourMission" :first="true" />
+
+      <div class="container py-5 my-5">
+        <div class="row">
+        <div class="col-lg-6">
+            <text-image-container :data="solution1" />
+        </div>
+        <div class="col-lg-6">
+            <text-image-container :data="solution2" :reverse="true" />
+        </div>
+      </div>
+      </div>
     </template>
   </div>
 </template>

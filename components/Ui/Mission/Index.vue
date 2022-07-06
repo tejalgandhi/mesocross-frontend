@@ -6,7 +6,7 @@
       <span v-else class="white" />
     </figure>
     <article>
-      <h2 :class="{color: !data.media}">
+      <h2 :class="['text-uppercase', {color: !data.media}]">
         {{ data.title }}
       </h2>
       <button v-if="data.action_link" @click="goTo(data.action_link)">
@@ -99,7 +99,7 @@ export default {
                 text-align: center;
 
                 &.color {
-                    color: #212529;
+                    color: #fff;
                 }
 
                 @media screen and (max-width: 1200px){
@@ -118,7 +118,7 @@ export default {
                 &:hover {
                     border: solid 1px transparent;
                     background: white;
-                    color: #212529;
+                    color: #fff;
                 }
             }
         }

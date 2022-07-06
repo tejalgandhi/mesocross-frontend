@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid mx-auto shipping-tab mb-5 pb-5">
+  <div class="container-fluid mx-auto shipping-tab mb-0 pb-5">
     <div class="row mx-0">
       <div class="col-md-11 mx-auto">
         <div class="w-100 my-5">

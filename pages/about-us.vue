@@ -2,9 +2,17 @@
   <div class="about-page">
     <Banner :page-name="'about-us'" />
     <template v-if="!$fetchState.pending">
-      <text-image-container :data="solutionTes()" />
-      <UiMission :data="ourMission" />
-      <text-image-container :data="solution2" :reverse="true" />
+      <UiMission class="py-5 my-5" :data="ourMission" />
+      <div class="container py-5 my-5">
+        <div class="row">
+        <div class="col-lg-6">
+            <text-image-container :data="solutionTes()" />
+        </div>
+        <div class="col-lg-6">
+            <text-image-container :data="solution2" :reverse="true" />
+        </div>
+      </div>
+      </div>
     </template>
     <AboutUsCertificate />
   </div>

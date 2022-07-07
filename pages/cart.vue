@@ -21,7 +21,7 @@
         </div>
         <div v-else class="row justify-content-center">
           <div class="col-lg-9 pr-lg-5">
-            <div class="row text-center">
+            <div v-if="products.length > 0" class="row text-center">
               <div class="col-4">
                 <label class="th-head">
                   Item info
@@ -43,13 +43,12 @@
                 </label>
               </div>
             </div>
-
             <div v-for="(product, index) in products" :key="index">
               <ProductCartProduct :product="product" />
             </div>
           </div>
           <div v-if="products.length > 0" class="col-lg-3">
-            <div class="summary">
+            <div class="">
               <h5 class="mb-3">
                 {{ $t('order_summary') }}
               </h5>

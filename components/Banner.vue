@@ -100,6 +100,7 @@ export default {
 .banner-content {
     text-align: center;
     padding: 2rem;
+    color: #FFF;
     @media (min-width:992px){
         position: absolute;
         transform: translateY(-50%);

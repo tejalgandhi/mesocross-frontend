@@ -17,17 +17,17 @@
             </div>
           </div>
           <div class="col-4 user-tab">
-            <div class="d-flex justify-content-end">
+            <div class="d-lg-flex d-none justify-content-end">
               <a href="#" class="mr-3">NEED HELP?</a>
               <a href="#">+351789505960</a>
             </div>
           </div>
         </div>
       </div>
-      <div v-show="!search" class="myaccount mccm-content" @click="isClicked(false)">
+      <div v-show="!search" :class="['myaccount mccm-content', {dashboard: $route.name === 'dashboard'}]" @click="isClicked(false)">
         <Nuxt />
       </div>
-      <ThemeFooter class="myaccount-footer" />
+      <ThemeFooter :class="['myaccount-footer', {'dashboard-ft': $route.name === 'dashboard'}]" />
     </b-overlay>
   </div>
 </template>
@@ -68,12 +68,15 @@ export default {
     ...mapMutations({
       setCartProduct: 'cart/setCartProduct',
       setWishListData: 'cart/setWishListData'
-    })
+    }),
+     goHome () {
+      this.$router.push('/')
+    },
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 .brand-logo{
   font-weight: bold;
   color: #fff;
@@ -83,11 +86,22 @@ export default {
   margin: 0;
 }
 .myaccount {
-  background-color: #F5F5F5;
+  background-color: #fff;
+  color: #000;
+  &.dashboard{
+     background-color: #F5F5F5;
+  }
 }
-.myaccount-footer .support-links {
-  background-color: #F5F5F5;
-  border-color: rgba(0,0,0,0.12157) !important;
+.myaccount-footer {
+    .support-links {
+      background-color: #fff;
+      border-color: rgba(0,0,0,0.12157) !important;
+    }
+    &.dashboard-ft {
+      .support-links {
+      background-color: #F5F5F5;
+    }
+  }
 }
 .myaccount-footer .support-links .border-right {
   border-color: rgba(0,0,0,0.12157) !important;
@@ -97,5 +111,23 @@ export default {
 }
 .myaccount-footer .support-links .btn:hover {
   opacity: .5;
+}
+.shipping-tab {
+  .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link {
+   background-color: transparent;
+  }
+  .fill-detail-from select, input, textarea{
+      background: #ffffff 0% 0% no-repeat padding-box;
+      border-color: #adadad;
+      color: #203032;
+  }
+  .summary{
+        background: #f5f5f5;
+        padding: 15px 10px
+  }
+  .text-dark{
+    color: #25282a !important
+  }
 }
 </style>

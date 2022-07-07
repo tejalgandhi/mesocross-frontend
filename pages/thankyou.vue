@@ -3,7 +3,7 @@
     <div class="row mx-0">
       <div class="col-md-11 mx-auto text-center">
         <h3 class="text-center thank-you-heading">
-          {{ $t('thank_you_for') }} <br> {{ $t('purchasing') }} MCCM!
+          {{ $t('thank_you_for') }} <br> {{ $t('purchasing') }} MESOCROSS!
         </h3>
         <p class="pr-1">
           {{ $t('upload_your_receipt_of_payment_on_the') }} <a href="#" class="text-underline">{{ $t('invoice_history') }}</a> {{ $t('page') }}.

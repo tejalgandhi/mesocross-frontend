@@ -33,13 +33,13 @@ export default {
 
   computed: {
     ourMission () {
-      return this.data.find(val => val.slug === 'mccm-our-story-1')
+      return this.data.find(val => val.slug === 'mesocross-our-story-1')
     },
     solution1 () {
-      return this.data.find(val => val.slug === 'mccm-our-story-2')
+      return this.data.find(val => val.slug === 'mesocross-our-story-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mccm-our-story-3')
+      return this.data.find(val => val.slug === 'mesocross-our-story-3')
     }
   },
   methods: {

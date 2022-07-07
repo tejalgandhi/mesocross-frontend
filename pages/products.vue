@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <div v-show="isLoggedin" class="recommended mt-4">
+    <!-- <div v-show="isLoggedin" class="recommended mt-4">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 offset-md-6">
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

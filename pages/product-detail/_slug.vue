@@ -22,7 +22,7 @@
                 <div class="accordion" role="tablist">
                   <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
-                      <b-button v-b-toggle.accordion-1 block variant="default" class="text-left">
+                      <b-button v-b-toggle.accordion-1 block variant="default" class="text-left btn-plus">
                         {{ $t('Main_Characteristics_and_Effects') }}
                       </b-button>
                     </b-card-header>
@@ -35,7 +35,7 @@
 
                   <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-2 block variant="default" class="text-left">
+                      <b-button v-b-toggle.accordion-2 block variant="default" class="text-left btn-plus">
                         {{ $t('application_protocol') }}
                       </b-button>
                     </b-card-header>
@@ -48,7 +48,7 @@
 
                   <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-3 block variant="default" class="text-left">
+                      <b-button v-b-toggle.accordion-3 block variant="default" class="text-left btn-plus">
                         {{ $t('additional_information') }}
                       </b-button>
                     </b-card-header>
@@ -61,7 +61,7 @@
 
                   <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-4 block variant="default" class="text-left">
+                      <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
                         CONTACT A PROFESSIONAL
                       </b-button>
                     </b-card-header>
@@ -125,7 +125,7 @@
                   </nuxt-link>
                 </li>
               </ul>
-              <div class="add_cart d-flex align-items-center mt-5 justify-content-center">
+              <div class="add_cart d-flex align-items-center mt-3 justify-content-center">
                 <a v-if="isLoggedin" class="btn btn-wishlist mr-3" href="javascript:void(0)" @click="addToWishlist">
                   <img :src="isProductInWishList ? require('@/assets/img/Heart_icon_selected.svg') : require('@/assets/img/heart-icon.svg')" alt="image">
                 </a>
@@ -155,25 +155,7 @@
       </div>
     </div>
     <div class="banner-section py-lg-5">
-      <div class="banner">
-        <div class="position-relative">
-          <div class="banner-content">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-6">
-                  <h2 class="h1 text-center font-weight-normal">
-                    Lorem ipsum
-                  </h2>
-                  <p class="text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor scelerisque purus non volutpat. Etiam luctus fringilla velit, eu bibendum dolor dictum vel. Pellentesque ut fringilla ante, quis consectetur neque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <img src="@/assets/img/default.png" class="ml-auto d-block">
-        </div>
-      </div>
+      <Banner :page-name="'product'" />
     </div>
     <template v-if="otherSolutions.length">
       <ProductOtherList :products="otherSolutions" :title="$t('other_solutions')" />

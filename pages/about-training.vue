@@ -59,12 +59,12 @@ export default {
         },
         {
           path: '/',
-          label: 'About Mccm',
+          label: 'About Mesocross',
           active: 0
         },
         {
           path: '/',
-          label: 'Mccm Training',
+          label: 'Mesocross Training',
           active: 1
         }
       ]
@@ -72,16 +72,16 @@ export default {
   },
   computed: {
     mainFeatures () {
-      return this.data.find(val => val.slug === 'mccm-training-about-1')
+      return this.data.find(val => val.slug === 'mesocross-training-about-1')
     },
     solutions () {
-      return this.data.find(val => val.slug === 'mccm-training-about-2')
+      return this.data.find(val => val.slug === 'mesocross-training-about-2')
     },
     mobileApp () {
-      return this.data.find(val => val.slug === 'mccm-training-about-3')
+      return this.data.find(val => val.slug === 'mesocross-training-about-3')
     },
     head () {
-      return this.data.find(val => val.slug === 'mccm-training-about-4')
+      return this.data.find(val => val.slug === 'mesocross-training-about-4')
     },
     ...mapGetters({
       getIsSubscribed: 'training/getIsSubscribed'

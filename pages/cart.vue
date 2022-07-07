@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="cart">
+    <div class="cart page-space">
       <div class="container-fluid">
-        <h2 class="text-uppercase font-weight-normal text-center mb-lg-5 mb-4">
+        <h2 class="text-uppercase font-weight-normal text-center mb-4">
           {{ $t('cart.shopping_bag') }}
         </h2>
         <div v-if="!isUserLoggedIn" class="text-center">
@@ -15,7 +15,7 @@
             </nuxt-link>
             {{ $t('cart.to_add_products_to_the_bag') }}
           </p>
-          <nuxt-link class="btn btn-primary mt-4 mb-5 col-md-3 mx-auto " to="/login">
+          <nuxt-link class="btn btn-primary mt-4 mb-5 col-md-2 mx-auto " to="/login">
             {{ $t('buy_products') }}
           </nuxt-link>
         </div>
@@ -132,9 +132,9 @@ export default {
 
 <style lang="scss" scoped>
 .cart{
-  margin: 84px 0;
+  margin: 50px 0;
   @media (max-width:768px) {
-    margin: 42px 0;
+    margin: 25px 0;
   }
 }
 .promo-code {

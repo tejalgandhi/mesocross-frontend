@@ -3,7 +3,7 @@
     <b-overlay :show="loading" rounded="sm">
       <ThemeHeader />
       <CommonSearch v-show="search" @click="isClicked(false)" />
-      <div v-show="!search" class="mccm-content" @click="isClicked(false)">
+      <div v-show="!search" class="mesocross-content" @click="isClicked(false)">
         <Nuxt />
       </div>
       <ThemeFooter />

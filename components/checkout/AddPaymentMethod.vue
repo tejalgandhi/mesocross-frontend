@@ -22,7 +22,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for1">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for1">
+              <label class="form-check-label font-16  ml-3 py-2" for="for1">
                 <img src="@/assets/img/card_mastercard.svg" height="60px" width="90px" alt="image">
               </label>
             </div>
@@ -41,7 +41,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for2">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for2">
+              <label class="form-check-label font-16  ml-3 py-2" for="for2">
                 <img src="@/assets/img/card_visa.svg" height="60px" width="90px" alt="image">
               </label>
             </div>
@@ -60,7 +60,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for3">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for3">
+              <label class="form-check-label font-16  ml-3 py-2" for="for3">
                 <img src="@/assets/img/card_american_express.svg" height="60px" width="90px" alt="image">
               </label>
             </div>

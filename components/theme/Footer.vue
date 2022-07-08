@@ -170,7 +170,7 @@ export default {
         this.$bvModal.show('subscribeModal');
         return
       }
-      this.$router.push(`/services/${name}`)
+      this.$router.push(name)
     },
   }
 }
@@ -216,6 +216,6 @@ export default {
 
 #footer{
   background: #FFFFFF;
-  margin-top: 100px;
+  margin-top: 0;
 }
 </style>

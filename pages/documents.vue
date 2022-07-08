@@ -1,6 +1,6 @@
 <template>
   <div class="product-page mb-5">
-    <Banner :page-name="'documents'" :text-color="'white'" :defualt-image-name="'CG-EN-MCCM-2020-23.webp'" />
+    <Banner :page-name="'documents'" :text-color="'white'" :defualt-image-name="'CG-EN-MESOCROSS-2020-23.webp'" />
     <Bredcrumb :items="breadcrumbs" />
     <div class="filter_result">
       <div class="container-fluid">

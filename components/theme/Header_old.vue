@@ -304,7 +304,7 @@
             </li>
             <li class="d-xl-none">
               <input id="showMega51" type="checkbox">
-              <label for="showMega51" class="mobile-item">{{ $t('header.about_mccm') }}</label>
+              <label for="showMega51" class="mobile-item">{{ $t('header.about_mesocross') }}</label>
               <div class="mega-box px-0 bg-white">
                 <div class="row pb-4 col-12 px-0 mx-auto">
                   <div class="col-md-3 hover-div">
@@ -314,8 +314,8 @@
                     <ul class="list-unstyled">
                       <li><a href="#">{{ $t('about_us') }}</a></li>
                       <li><a href="#">{{ $t('our_story') }}</a></li>
-                      <li><a href="#">{{ $t('header.mccm_medical_spa') }}</a></li>
-                      <li><a href="#">{{ $t('mccm_solutions') }}</a></li>
+                      <li><a href="#">{{ $t('header.mesocross_medical_spa') }}</a></li>
+                      <li><a href="#">{{ $t('mesocross_solutions') }}</a></li>
                       <li><a href="#">{{ $t('expansion') }}</a></li>
                     </ul>
                   </div>
@@ -329,7 +329,7 @@
                           {{ $t('exhibitions_and_events') }}
                         </nuxt-link>
                       </li>
-                      <li><a href="#">{{ $t('header.mccm_training') }}</a></li>
+                      <li><a href="#">{{ $t('header.mesocross_training') }}</a></li>
                       <li><a href="#">{{ $t('header.documents') }}</a></li>
                     </ul>
                   </div>
@@ -636,7 +636,7 @@ export default {
       isProducts: false,
       isProfessional: false,
       isEuquipment: false,
-      isMccm: false,
+      isMesocross: false,
       isForum: false,
       isProfileClicked: false,
       Clicked: false,

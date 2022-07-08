@@ -1,12 +1,12 @@
 <template>
-  <div class="wishlist">
+  <div class="wishlist page-space">
     <div class="container">
       <h2 class="text-uppercase font-weight-normal text-center mb-4">
         {{ $t('Wishlist') }}
       </h2>
       <div v-if="!isUserLoggedIn" class="text-center">
-        <p>{{ $t('looking_for_your_wishlist') }}? {{ $t('sign_in_to_pick_up_where_you_left_off') }} </p>
-        <nuxt-link class="btn d-block mt-4 mb-5 col-md-3 mx-auto sign-in text-white" to="/login">
+        <p class="mx-auto col-lg-4">{{ $t('looking_for_your_wishlist') }}? {{ $t('sign_in_to_pick_up_where_you_left_off') }} </p>
+        <nuxt-link class="btn btn-primary d-block mt-4 mb-5 col-md-3 mx-auto sign-in" to="/login">
           {{ $t('sign_in') }}
         </nuxt-link>
       </div>
@@ -60,7 +60,7 @@ export default {
 }
 </script>
 <style scoped>
-.sign-in {
+/* .sign-in {
   background-color: #25282A;
-}
+} */
 </style>

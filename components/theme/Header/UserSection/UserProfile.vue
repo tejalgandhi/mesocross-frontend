@@ -60,6 +60,7 @@ export default {
         box-shadow: 0px 32px 64px #00000033;
         width: fit-content;
         border-radius: 5px;
+        z-index: 100;
 
         &:before {
             content: "";

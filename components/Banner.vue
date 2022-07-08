@@ -68,7 +68,7 @@ export default {
     },
     defualtImageName: {
       type: String,
-      default: () => 'CG-EN-MCCM-2020-23.svg'
+      default: () => 'banner.png'
     },
     inverse: {
       type: Boolean,

@@ -9,12 +9,12 @@ export default {
     payment_methods: 'Métodos de pago',
     shipment_methods: 'Métodos de envío',
     downloads: 'Descargas',
-    mccm_formation: 'MCCM Formation',
+    mesocross_formation: 'MESOCROSS Formation',
     online_shop: 'Tienda online',
     costumer_service: 'Servicio al Cliente',
     exhibitions_and_events: 'Exposiciones y eventos',
     documents: 'Documentos',
-    MCCM_medical_spa: 'MCCM balneario medico',
+    MESOCROSS_medical_spa: 'MESOCROSS balneario medico',
     training_app: 'aplicación de entrenamiento',
     ccpa: 'CCPA'
   }

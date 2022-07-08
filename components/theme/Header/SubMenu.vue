@@ -9,7 +9,7 @@
               <nuxt-img
                 preload
                 format="webp"
-                src="https://admin.mesosystem.connectgeneration.app/uploads/mccm/img/628cf394523a0-1653404564.jpg"
+                src="https://admin.mesosystem.connectgeneration.app/uploads/mesocross/img/628cf394523a0-1653404564.jpg"
                 :alt="tab.slug"
                 quality="100"
                 sizes="xs:256 md:512"

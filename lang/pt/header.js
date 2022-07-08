@@ -3,7 +3,7 @@ export default {
     products: 'Produtos',
     professional_treatments: 'Tratamentos profissionais',
     equipment: 'Equipamento',
-    about_mccm: 'Sobre o MCCM',
+    about_mesocross: 'Sobre o MESOCROSS',
     forum: 'Fórum',
     blogs: 'Blogues',
     login_register: 'Conecte-se / Registro',
@@ -44,8 +44,8 @@ export default {
     perfomance: 'Perfomance',
     treatment_recommender: 'Treatment Recommender',
     treatments_results: 'Treatments Results',
-    mccm_medical_spa: 'MCCM Medical Spa',
-    mccm_training: 'MCCM Training',
+    mesocross_medical_spa: 'MESOCROSS Medical Spa',
+    mesocross_training: 'MESOCROSS Training',
     documents: 'Documents',
     customer_service: 'Customer Service'
   }

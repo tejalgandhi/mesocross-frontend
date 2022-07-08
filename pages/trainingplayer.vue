@@ -10,7 +10,7 @@ export default {
       flag: true,
       option: {
         url: 'https://artplayer.org/assets/sample/video.mp4'
-        // poster: '/assets/img/CG-EN-MCCM-2020-23.webp'
+        // poster: '/assets/img/CG-EN-MESOCROSS-2020-23.webp'
       },
       style: {
         width: '1400px',

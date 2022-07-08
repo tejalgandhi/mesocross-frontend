@@ -13,7 +13,7 @@
         </div>
         <div class="row">
           <ProductSingle v-for="(product, index) in products" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
-          <div v-if="products.length == 0">
+          <div class="col-12" v-if="products.length == 0">
             {{ $t('search_prodcuts') }}
           </div>
         </div>

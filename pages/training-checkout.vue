@@ -44,9 +44,9 @@
           <img src="@/assets/img/close.svg" alt="image" class="close" @click="hideModal()">
           <client-only>
             <div class="container my-5 text-center training-modal-content">
-              <h4>Welcome to MCCM trainings!</h4>
+              <h4>Welcome to MESOCROSS trainings!</h4>
               <p class="my-4">
-                You have just signed up for MCCM’s <b>basic training package</b>. If you change your mind, you can change your package in the <a href="#" class="text-underline font-weight-bold">Trainings panel</a>.
+                You have just signed up for MESOCROSS’s <b>basic training package</b>. If you change your mind, you can change your package in the <a href="#" class="text-underline font-weight-bold">Trainings panel</a>.
                 <b class="d-block mt-3">Let’s go learn together!</b>
               </p>
               <div class="row">

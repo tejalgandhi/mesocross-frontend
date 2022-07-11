@@ -10,7 +10,7 @@
                 Discover our new equipment.
               </h2>
               <h3 class="mx-4 mx-md-0">
-                MCCM medical cosmetics professional solutions for acne and seborrheic prone skin
+                MESOCROSS medical cosmetics professional solutions for acne and seborrheic prone skin
               </h3>
               <button class="btn bg-transparent border-dark text-dark px-3 px-md-5 py-2">
                 Buy DLE

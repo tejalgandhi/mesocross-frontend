@@ -6,8 +6,8 @@
         :style="{height: '300px'}"
       >
         <div class="px-2 content-data">
-          <h1>Welcome to MCCM trainings.</h1>
-          <span class="name">Watch the trainings that MCCM has available for you and increase your knowledge.</span>
+          <h1>Welcome to MESOCROSS trainings.</h1>
+          <span class="name">Watch the trainings that MESOCROSS has available for you and increase your knowledge.</span>
           <button class="btn mt-3 bg-white px-5 text-dark">
             Watch trainings
           </button>

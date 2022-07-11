@@ -1,11 +1,9 @@
 <template>
   <div :class="className === 'col-lg-4' ? 'col-lg-4' : className">
     <div class="product-item">
-      <nuxt-link :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="product-image" alt="image">
-      </nuxt-link>
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
+      <img :src="product.feature_image" class="product-image" alt="image"></img>
         <div class="desc_box py-4">
           <div class="prodcut-title">
             {{ product.name }}
@@ -70,7 +68,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .product-item{
-    padding: 2rem;
+    padding: 3rem;
     text-align: center;
      @media (max-width:991px) {
       padding: 1rem;
@@ -88,7 +86,7 @@ export default {
         text-transform: uppercase;
         margin-bottom: .5rem;
     }
-    .productt-desc{
+    .product-desc{
         color: #FFFFFF;
         opacity: 0.6;
         font: normal normal normal 16px/24px Arial;

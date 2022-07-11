@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="welcome page-space">
     <client-only>
       <div class="container">
         <AuthLogin />

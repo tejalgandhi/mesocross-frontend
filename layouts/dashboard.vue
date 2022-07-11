@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div v-show="!search" :class="['myaccount mccm-content', {dashboard: $route.name === 'dashboard'}]" @click="isClicked(false)">
+      <div v-show="!search" :class="['myaccount mesocross-content', {dashboard: $route.name === 'dashboard'}]" @click="isClicked(false)">
         <Nuxt />
       </div>
       <ThemeFooter :class="['myaccount-footer', {'dashboard-ft': $route.name === 'dashboard'}]" />

@@ -119,7 +119,7 @@
           <div class="row py-3 justify-content-between">
             <div class="col-lg-3 order-3 order-md-0">
               <div class="copyright">
-                <p>&copy; {{ currentYear }} MCCM Medical Cosmetics</p>
+                <p>&copy; {{ currentYear }} MESOCROSS Medical Cosmetics</p>
               </div>
             </div>
             <div class="col-lg-3 py-3 py-md-0">
@@ -216,5 +216,6 @@ export default {
 
 #footer{
   background: #FFFFFF;
+  margin-top: 100px;
 }
 </style>

@@ -23,18 +23,18 @@ export default {
   fetchOnServer: true,
   computed: {
     // solution1 () {
-    //   return this.data.find(val => val.slug === 'mccm-solution-1')
+    //   return this.data.find(val => val.slug === 'mesocross-solution-1')
     // },
     ourMission () {
-      return this.data.find(val => val.slug === 'mccm-expansion-2')
+      return this.data.find(val => val.slug === 'mesocross-expansion-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mccm-expansion-3')
+      return this.data.find(val => val.slug === 'mesocross-expansion-3')
     }
   },
   methods: {
     solutionTes () {
-      return this.data.find(val => val.slug === 'mccm-expansion-1')
+      return this.data.find(val => val.slug === 'mesocross-expansion-1')
     }
   }
 }

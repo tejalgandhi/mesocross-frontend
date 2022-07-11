@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div v-if="banner" class="banner mb-5">
+    <div v-if="banner" class="banner">
       <section>
-        <h1 class="title font-weight-normal">
-          {{ banner.title }}
-        </h1>
-        <p class="text px-lg-5">
-          {{ banner.message }}
-        </p>
+        <div class="banner-content">
+          <h1 class="title font-weight-normal">
+            {{ banner.title }}
+          </h1>
+          <p class="text col-lg-10 mx-auto">
+            {{ banner.message }}
+          </p>
+        </div>
         <HomeLinkSetByType :item="banner" :title="'Discover'" class="btn-primary" />
       </section>
       <img :src="banner.image">
@@ -76,8 +78,15 @@ export default {
     background-color: black;
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 88px;
       @media (max-width:991px) {
         flex-direction: column;
+        padding-bottom: 60px;
+      }
+
+      .banner-content {
+        max-width: 520px;
+        margin-left: auto;
       }
 
     img {

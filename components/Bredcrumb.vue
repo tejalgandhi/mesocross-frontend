@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumb px-0 px-md-3 mb-0 mb-md-3">
-    <div class="container-fluid pl-md-0">
+    <div class="container-fluid">
       <ul class="d-flex">
         <li v-for="(item, index) in items" :key="index" :class="{'first': index == 0, 'active': item.active == 1}">
           <nuxt-link v-if="item.active != 1" :to="item.path">

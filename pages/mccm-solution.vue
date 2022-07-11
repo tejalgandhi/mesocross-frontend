@@ -1,6 +1,6 @@
 <template>
   <div class="about-page">
-    <Banner :page-name="'mccm-solution'" />
+    <Banner :page-name="'mesocross-solution'" />
     <template v-if="!$fetchState.pending">
       <text-image-container :data="solutionTes()" :position="'left'" />
       <aboutus-our-mission :data="ourMission" />
@@ -16,25 +16,25 @@ export default {
     }
   },
   async fetch () {
-    const url = '/get-page-content?page=mccm-solution'
+    const url = '/get-page-content?page=mesocross-solution'
     const { data } = await this.$axios.$get(url)
     this.data = data
   },
   fetchOnServer: true,
   computed: {
     // solution1 () {
-    //   return this.data.find(val => val.slug === 'mccm-solution-1')
+    //   return this.data.find(val => val.slug === 'mesocross-solution-1')
     // },
     ourMission () {
-      return this.data.find(val => val.slug === 'mccm-solution-2')
+      return this.data.find(val => val.slug === 'mesocross-solution-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mccm-solution-3')
+      return this.data.find(val => val.slug === 'mesocross-solution-3')
     }
   },
   methods: {
     solutionTes () {
-      return this.data.find(val => val.slug === 'mccm-solution-1')
+      return this.data.find(val => val.slug === 'mesocross-solution-1')
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <h2 class="heading py-5">
-          Mccm trainings
+          Mesocross trainings
         </h2>
       </div>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="about-page">
-    <Banner :page-name="'brand'" />
+    <Banner :page-name="'our-story'" />
     <template v-if="data.length">
       <UiMission class="py-5 my-5" :data="ourMission" :first="true" />
 
@@ -26,20 +26,20 @@ export default {
   },
 
   async fetch () {
-    const url = '/get-page-content?page=brand'
+    const url = '/get-page-content?page=our-story'
     const { data } = await this.$axios.$get(url)
     this.data = data
   },
 
   computed: {
     ourMission () {
-      return this.data.find(val => val.slug === 'mesocross-brand-1')
+      return this.data.find(val => val.slug === 'mccm-our-story-1')
     },
     solution1 () {
-      return this.data.find(val => val.slug === 'mesocross-brand-2')
+      return this.data.find(val => val.slug === 'mccm-our-story-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mesocross-brand-3')
+      return this.data.find(val => val.slug === 'mccm-brand-3')
     }
   },
   methods: {

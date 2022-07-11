@@ -34,18 +34,18 @@ export default {
 
   computed: {
     solution1 () {
-      return this.data.find(val => val.slug === 'mesocross-about-us-1')
+      return this.data.find(val => val.slug === 'mccm-about-us-1')
     },
     ourMission () {
-      return this.data.find(val => val.slug === 'mesocross-about-us-2')
+      return this.data.find(val => val.slug === 'mccm-about-us-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mesocross-about-us-3')
+      return this.data.find(val => val.slug === 'mccm-about-us-3')
     }
   },
   methods: {
     solutionTes () {
-      return this.data.find(val => val.slug === 'mesocross-about-us-1')
+      return this.data.find(val => val.slug === 'mccm-about-us-1')
     }
   }
 }

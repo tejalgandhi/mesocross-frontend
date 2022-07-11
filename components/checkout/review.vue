@@ -13,7 +13,7 @@
           <div v-for="(product, index) in products" :key="index" class="panel-body mb-4">
             <div class="row border-bottom mb-3">
               <div class="col-md-3 align-self-center pr-md-0 mx-auto text-center">
-                <img :src="product.feature_image" class="img-fluid" alt="image">
+                <img :src="product.feature_image" class="img-fluid product-thumb" alt="image">
               </div>
               <div class="col-md-9 pl-md-0 text-left">
                 <div class="mt-4">
@@ -198,3 +198,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.product-thumb{
+  max-height: 150px;
+  max-width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>

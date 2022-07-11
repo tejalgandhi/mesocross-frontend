@@ -6,12 +6,12 @@
         <div class="row">
           <div class="col-lg-7 product-image p-4">
             <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-            <div v-for="(image, index) in productImages" :key="index" class="images main-image">
+            <div v-if="productImages[0] !== undefined"  class="images main-image">
               <nuxt-img
                 class="mx-auto d-block"
                 preload
                 format="webp"
-                :src="image"
+                :src="productImages[0]"
                 alt="product_image"
                 quality="100"
                 sizes="md:512"
@@ -76,13 +76,13 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <div v-for="(image, index) in productImages" :key="index" class="p-5">
+                <div v-if="productImages[1] !== undefined" class="p-5">
                   <nuxt-img
                     style="max-width:225px; max-height:225px"
                     class="mx-auto d-block"
                     preload
                     format="webp"
-                    :src="image"
+                    :src="productImages[1]"
                     alt="product_image"
                     quality="100"
                     sizes="md:512"
@@ -141,14 +141,6 @@
                 </div>
                 <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart">{{ $t('add_to_cart') }}</a>
               </div>
-              <ul v-if="complementry.length > 0" class="complementry">
-                <h3>{{ $t('Similar_Products') }}</h3>
-                <li v-for="(item, index) in complementry" :key="index">
-                  <nuxt-link :to="`/product-detail/${item.slug}`">
-                    <img :src="item.feature_image" height="30" width="30">
-                  </nuxt-link>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -157,8 +149,11 @@
     <div class="banner-section py-lg-5">
       <Banner :page-name="'product'" />
     </div>
-    <template v-if="otherSolutions.length">
-      <ProductOtherList :products="otherSolutions" :title="$t('other_solutions')" />
+    <template v-if="complementry.length > 0">
+      <h3 class="text-uppercase font-weight-normal text-center mb-4">{{ $t('Similar_Products') }}</h3>
+      <div class="row">
+        <ProductSingle v-for="(product, index) in complementry" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
+      </div>
     </template>
   </div>
 </template>

@@ -11,7 +11,7 @@
           </div>
           <div class="col-4 text-center">
             <div class="navbar-brand mx-auto py-0">
-              <figure class="brand-logo mb-0" @mouseover="isActive = 0" @click="goHome">
+              <figure class="brand-logo mb-0 cursor-pointer" @mouseover="isActive = 0" @click="goHome">
                 Mesocross
               </figure>
             </div>
@@ -88,6 +88,7 @@ export default {
 .myaccount {
   background-color: #fff;
   color: #000;
+  padding-bottom: 80px;
   &.dashboard{
      background-color: #F5F5F5;
   }

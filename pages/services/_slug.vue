@@ -2,7 +2,7 @@
   <section class="tab-all-content">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-md-4 col-xl-3">
+        <div class="col-12 col-lg-auto">
           <div class="custom-tabs">
             <ul v-if="!isMobile()" class="nav nav-pills flex-column" role="tablist">
               <li v-for=" (component, index ) in components" :key="index" class="nav-item">
@@ -24,7 +24,9 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-8 col-xl-9">
+        <div class="col-12 col-lg">
+          <!-- Tab panes -->
+          <!-- {{ callApi }} -->
           <div class="tab-content mt-0">
             <div :id="pagecurrentComponent" class="tab-paneb active">
               <component :is="pagecurrentComponent" :data="data" :temp-title="components.filter(el => el.slug === selectedTab)[0].label" />
@@ -49,10 +51,10 @@ export default {
         { label: this.$t('contact_us'), component: 'contact-us', slug: 'contact-us', static: true },
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
-        { label: 'Secure Payments', component: 'pages-content', slug: 'payment-methods' },
+        { label: this.$t('secure_payments'), component: 'pages-content', slug: 'payment-methods' },
         { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
-        { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-condition' },
+        { label: this.$t('terms_condition'), component: 'pages-content', slug: 'terms-condition' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' }
@@ -140,23 +142,48 @@ export default {
 .mobile {
     margin-bottom: 40px;
     .selected {
-        width: 100%;
-        padding: 10px 0;
-        background: rgba(#fff, 0.15);
-        text-align: center;
-        font-weight: 500;
+      width: 100%;
+      padding: 1rem;
+      background: #F5F5F5;
+      text-align: center;
+      font-weight: 500;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      white-space: nowrap;
+      padding-right: 3rem;
+      min-width: 220px;
+        .arrow {
+            position: absolute;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            margin-bottom: 5px;
+            border-right: solid 1px black;
+            border-bottom: solid 1px black;
+            transform: rotate(45deg);
+            transition: 0.2s;
+
+            &.opened {
+                transform: rotate(-135deg);
+                margin-bottom: 0px;
+                margin-top: 5px;
+            }
+        }
     }
 
     .toSelect {
         width: 100%;
         display: flex;
         flex-direction: column;
-        border: solid 1px rgba(#fff, 0.15);
+        border: solid 1px #F5F5F5;
 
         a {
             text-align: center;
             padding: 10px;
-            border-bottom: solid 1px rgba(#fff, 0.15);
+            border-bottom: solid 1px #F5F5F5;
 
             &:last-of-type {
                 border-bottom: none;

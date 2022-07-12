@@ -118,7 +118,7 @@ export default {
                         content: '';
                         width: 0%;
                         height: 2px;
-                        background: black;
+                        background: #fff;
                         position: absolute;
                         left: 15px;
                         bottom: 0;

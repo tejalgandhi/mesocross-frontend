@@ -142,6 +142,8 @@ export default {
   faqs: 'FAQs',
   shipping_methods: 'Métodos de envío',
   payment_methods: 'Métodos de pago',
+  terms_condition:"Términos y Condiciones",
+  secure_payments: 'Pagos Seguros',
   returns_and_exchanges: 'Devoluciones y Cambios',
   quality_policy: 'Política de calidad',
   privacy_policy: 'Política de privacidad',

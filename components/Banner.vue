@@ -97,7 +97,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.banner-content {
+.banner {
+  min-height: 400px;
+  .banner-content {
     text-align: center;
     padding: 2rem;
     color: #FFF;
@@ -110,4 +112,5 @@ export default {
         text-align: left;
       }
   }
+}
 </style>

@@ -10,7 +10,7 @@
             MY ACCOUNT
           </h2>
         </div>
-        <b-button variant="default" class="filter-invert px-0">
+        <b-button @click="Logout" variant="default" class="filter-invert px-0">
           <u>LOG OUT</u>
         </b-button>
       </div>

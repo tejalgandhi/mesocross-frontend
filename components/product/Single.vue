@@ -1,7 +1,7 @@
 <template>
   <div :class="className === 'col-lg-4' ? 'col-lg-4' : className">
     <div class="product-item">
-      <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close" @click="removeWishlist">
+      <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close cursor-pointer" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
       <img :src="product.feature_image" class="product-image" alt="image"></img>
         <div class="desc_box py-4">

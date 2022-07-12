@@ -6,7 +6,7 @@
           <img src="@/assets/img/hamburguer.svg" alt="search">
         </template>
         <template v-else>
-          <img src="@/assets/img/close.svg" alt="search">
+          <img src="@/assets/img/close.svg" style="padding: .125rem" alt="search">
         </template>
       </figure>
       <figure @click="setSearch">
@@ -110,6 +110,9 @@ export default {
                 position: relative;
                 width: 1.5rem;
                 height: 1.5rem;
+                @media (max-width: 1249px) {
+                  margin-bottom: 0;
+                }
 
                 img {
                     width: 100%;
@@ -138,6 +141,9 @@ export default {
                 width: auto;
                 height: 2.5rem;
                 margin: 0;
+                @media (max-width: 1249px) {
+                  height: 1.875rem;
+                }
 
                 img {
                     width: 100%;

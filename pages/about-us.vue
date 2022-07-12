@@ -2,17 +2,10 @@
   <div class="about-page">
     <Banner :page-name="'about-us'" />
     <template v-if="!$fetchState.pending">
-      <UiMission class="py-5 my-5" :data="ourMission" />
-      <div class="container py-5 my-5">
-        <div class="row">
-        <div class="col-lg-6">
-            <text-image-container :data="solutionTes()" />
-        </div>
-        <div class="col-lg-6">
-            <text-image-container :data="solution2" :reverse="true" />
-        </div>
-      </div>
-      </div>
+      <text-image-container :data="whoweare" />
+      <!-- <UiMission :data="ourMission" /> -->
+      <text-image-container :data="philosophy" :first="true" :reverse="true" />
+      <text-image-container v-if="last_content.content" :data="last_content" />
     </template>
     <AboutUsCertificate />
   </div>
@@ -33,19 +26,17 @@ export default {
   },
 
   computed: {
-    solution1 () {
-      return this.data.find(val => val.slug === 'mccm-about-us-1')
+    whoweare () {
+      return this.data.find(val => val.slug === 'mesocross-about-us-1')
     },
     ourMission () {
-      return this.data.find(val => val.slug === 'mccm-about-us-2')
+      return this.data.find(val => val.slug === 'mesocross-about-us-2')
     },
-    solution2 () {
-      return this.data.find(val => val.slug === 'mccm-about-us-3')
-    }
-  },
-  methods: {
-    solutionTes () {
-      return this.data.find(val => val.slug === 'mccm-about-us-1')
+    philosophy () {
+      return this.data.find(val => val.slug === 'mesocross-about-us-3')
+    },
+    last_content () {
+      return this.data.find(val => val.slug === 'mesocross-about-us-4')
     }
   }
 }

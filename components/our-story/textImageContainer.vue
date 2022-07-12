@@ -2,10 +2,10 @@
   <section class="alternative-item bg-white">
     <div class="container">
       <div :class="{'row al-child align-items-center': position== 'left', 'row flex-row-reverse align-items-center': position== 'right'}">
-        <div class="col-12">
+        <div class="col-12 col-md-6">
           <img class="alternative-bild d-table ml-auto" :class="{'mr-auto': position== 'left'}" :src="data.media" alt="image">
         </div>
-        <div class="col-12">
+        <div class="col-12 col-md-6">
           <div class="alter-info">
             <h2 class="title-40">
               {{ data.title }}

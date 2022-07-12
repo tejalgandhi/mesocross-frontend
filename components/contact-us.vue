@@ -237,7 +237,14 @@ export default {
 </script>
 <style scoped>
   .custom-file-input {
-    color: #203032
+    color: #fff;
+    opacity: 1;
+    background-color: transparent;
+    height: auto;
+    
+  }
+  .custom-file-input:hover:before {
+    color: #000;
   }
 
   .vue-country-select {

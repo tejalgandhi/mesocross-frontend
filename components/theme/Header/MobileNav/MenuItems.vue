@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="mobile-navigation">
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
@@ -94,6 +94,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .header__cta + nav + .mobile-navigation {
+      top: 128px;
+      height: calc(100vh - 128px);
+  }
     .slide-enter-active,
     .slide-leave-active {
         animation: slide 0.5s ease-in;
@@ -107,14 +111,14 @@ export default {
     section {
         position: fixed;
         width: 100vw;
-        height: calc(100vh - 100px);
-        top: 100px;
+        height: calc(100vh - 80px);
+        top: 80px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         z-index: 70;
-            background: black;
-    border: 0.5px solid #4a4a4a;
+        background: black;
+    // border: 0.5px solid #4a4a4a;
         padding: 1rem 3rem;
 
         .items {
@@ -132,6 +136,7 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                text-transform: uppercase;
 
                 .arrow {
                     width: 10px;
@@ -168,7 +173,7 @@ export default {
             flex-direction: column;
             align-items: flex-start;
             gap: 0.5rem;
-            margin-bottom: 100px;
+            margin-bottom: 0;
 
             .logged {
                 width: 100%;

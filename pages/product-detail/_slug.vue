@@ -94,25 +94,26 @@
           <div class="col-lg-5 order-3 order-md-2">
             <div class="prod_desc text-center">
               <div class="">
-                <h1 class="h2 text-uppercase font-weight-normal mb-2">
+                <h1 class="h2 text-uppercase font-weight-normal mb-1">
                   {{ product.name }}
                 </h1>
               </div>
-              <label v-show="ref_number">Ref:{{ ref_number }}</label>
-              <span v-show="isLoggedin && price">{{ price }}€</span>
-              <nuxt-link v-if="isLoggedin" to="/customize-treatment">
+              <!-- <label v-show="ref_number">Ref:{{ ref_number }}</label> -->
+              <div class="" v-html="product.product_content" />
+              <!-- <span v-show="isLoggedin && price">{{ price }}€</span> -->
+              <!-- <nuxt-link v-if="isLoggedin" to="/customize-treatment">
                 <img src="@/assets/img/custom_treatment.svg" alt="image">
                 {{ $t('get_a_personalized_treatment') }}
-              </nuxt-link>
+              </nuxt-link> -->
               <!-- eslint-disable vue/no-v-html -->
-              <div class="" v-html="product.product_content" />
+              <!-- <div class="" v-html="product.product_content" /> -->
               <!--eslint-enable-->
               <div class="size">
-                <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p>
+                <!-- <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p> -->
                 <div class="size_box float-none">
                   <ul class="float-none">
-                    <li v-for="(s, i) in product.product_size" :key="i" :class="{'active': s.size_id == size}">
-                      <a @click="changeSize(s.size_id)">{{ s.name }}</a>
+                    <li class="mr-0" v-for="(s, i) in product.product_size" :key="i" :class="{'active': s.size_id == size}">
+                      <a @click="changeSize(s.size_id)" class="p-1">{{ s.name }}</a>
                     </li>
                   </ul>
                 </div>
@@ -125,12 +126,13 @@
                   </nuxt-link>
                 </li>
               </ul>
+              <span v-show="isLoggedin && price">{{ price }}€</span>
               <div class="add_cart d-flex align-items-center mt-3 justify-content-center">
                 <a v-if="isLoggedin" class="btn btn-wishlist mr-3" href="javascript:void(0)" @click="addToWishlist">
                   <img :src="isProductInWishList ? require('@/assets/img/Heart_icon_selected.svg') : require('@/assets/img/heart-icon.svg')" alt="image">
                 </a>
-                <div v-if="isLoggedin" class="position-relative mr-3">
                   <!-- <span>Disponível apenas por encomenda</span> -->
+                <!-- <div v-if="isLoggedin" class="position-relative mr-3">
                   <button type="button" class="btn btn-1 position-absolute" @click="qty > 1 ? qty--: qty=qty">
                     -
                   </button>
@@ -138,8 +140,12 @@
                   <button type="button" class="btn btn-2 position-absolute" @click="qty++">
                     +
                   </button>
-                </div>
+                </div> -->
                 <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart">{{ $t('add_to_cart') }}</a>
+              </div>
+              <div class="clearfix"></div>
+              <div class="mt-4">
+                <p class="d-block mb-2 delivery-text">Delivery time 2-5 business days.<br /> returns</p>
               </div>
             </div>
           </div>
@@ -347,6 +353,12 @@ export default {
 }
 .prod_detail_box{
   padding: 80px 0;
+  .delivery-text{
+    font-size: 14px;
+    opacity: 0.4;
+    text-transform: none;
+    line-height: 24px;
+  }
 }
 .main-image {
     margin-bottom: 150px;
@@ -368,7 +380,7 @@ export default {
 @media (min-width: 992px) {
   .prod_desc {
       position: sticky;
-      top: 50%;
+      top: calc(50% + 80px);
       transform: translateY(-50%);
   }
 }

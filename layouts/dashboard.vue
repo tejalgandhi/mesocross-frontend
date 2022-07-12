@@ -18,8 +18,8 @@
           </div>
           <div class="col-4 user-tab">
             <div class="d-lg-flex d-none justify-content-end">
-              <a href="#" class="mr-3">NEED HELP?</a>
-              <a href="#">+351789505960</a>
+              <a href="tel:+351789505960" class="mr-3">NEED HELP?</a>
+              <a href="tel:+351789505960">+351789505960</a>
             </div>
           </div>
         </div>

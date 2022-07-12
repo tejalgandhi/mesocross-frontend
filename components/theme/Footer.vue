@@ -14,9 +14,10 @@
             </nuxt-link>
           </div>
           <div class="col-4">
-            <button class="btn btn-default w-100 px-0">
+            <!-- <button class="btn btn-default w-100 px-0">
               NEED HELP?
-            </button>
+            </button> -->
+            <a class="btn btn-default w-100 px-0" href="tel:+351789505960">NEED HELP?</a>
           </div>
         </div>
       </div>

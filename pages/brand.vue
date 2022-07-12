@@ -2,18 +2,9 @@
   <div class="about-page">
     <Banner :page-name="'our-story'" />
     <template v-if="data.length">
-      <UiMission class="py-5 my-5" :data="ourMission" :first="true" />
-
-      <div class="container py-5 my-5">
-        <div class="row">
-        <div class="col-lg-6">
-            <text-image-container :data="solution1" />
-        </div>
-        <div class="col-lg-6">
-            <text-image-container :data="solution2" :reverse="true" />
-        </div>
-      </div>
-      </div>
+      <!-- <UiMission :data="ourMission" :first="true" /> -->
+      <text-image-container :data="solution1" />
+      <text-image-container :data="solution2" :reverse="true" />
     </template>
   </div>
 </template>
@@ -33,13 +24,13 @@ export default {
 
   computed: {
     ourMission () {
-      return this.data.find(val => val.slug === 'mccm-our-story-1')
+      return this.data.find(val => val.slug === 'mesocross-our-story-1')
     },
     solution1 () {
-      return this.data.find(val => val.slug === 'mccm-our-story-2')
+      return this.data.find(val => val.slug === 'mesocross-our-story-2')
     },
     solution2 () {
-      return this.data.find(val => val.slug === 'mccm-brand-3')
+      return this.data.find(val => val.slug === 'mesocross-our-story-3')
     }
   },
   methods: {

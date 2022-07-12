@@ -42,7 +42,7 @@
       <b-card-header v-b-toggle.accordion-2 class="panel panel-default" header-tag="header" role="tab">
         <h3 class="panel-title">
           <a block variant="info">
-            {{ $t('shipping') }} 11
+            {{ $t('shipping') }}
           </a>
         </h3>
       </b-card-header>

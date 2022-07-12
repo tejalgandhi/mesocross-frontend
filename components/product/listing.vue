@@ -2,6 +2,10 @@
   <div class="col-lg-12">
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6 position-relative">
+       <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
+          <img v-if="isInWhishlist(product)" :src="require('@/assets/img/Heart_icon_selected.svg')" alt="image" class="wishicon">
+          <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
+        </a>
         <ProductSingle :key="index" :product="product" :class-name="'products'" />
       </div>
       <div v-if="products.length == 0 && loadingFinish">

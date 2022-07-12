@@ -17,9 +17,9 @@
             </div>
           </div>
           <div class="col-4 user-tab">
-            <div class="d-lg-flex d-none justify-content-end">
-              <a href="tel:+351789505960" class="mr-3">NEED HELP?</a>
-              <a href="tel:+351789505960">+351789505960</a>
+            <div class="d-lg-flexjustify-content-end">
+              <a href="tel:+351789505960" class="mr-lg-3">NEED HELP?</a>
+              <a class="d-lg-inline-block d-none" href="tel:+351789505960">+351789505960</a>
             </div>
           </div>
         </div>
@@ -84,6 +84,9 @@ export default {
   letter-spacing: 0.07em;
   font-size: 20px;
   margin: 0;
+  @media (max-width:991px) {
+      font-size: 16px;
+  }
 }
 .myaccount {
   background-color: #fff;
@@ -118,7 +121,8 @@ export default {
   .nav-tabs .nav-item.show .nav-link {
    background-color: transparent;
   }
-  .fill-detail-from select, input, textarea{
+  .fill-detail-from select, input, textarea,
+  .fill-detail-from select:focus, input:focus, textarea:focus{
       background: #ffffff 0% 0% no-repeat padding-box;
       border-color: #adadad;
       color: #203032;

@@ -42,6 +42,7 @@ export default {
       const { data } = await this.$axios.$post('/shipping-charges', { countryCode: userAddress.iso_alpha2, postalCode: userAddress.post_code, cityName: userAddress.city, dhlProductCode: userAddress.dhl_prodct_code, dhlLocalProductCode: userAddress.dhl_local_product_code })
       commit('setLoading', false, { root: true })
       commit('setShippingCharge', data)
+      commit('setShippingDays', data[0])
       commit('setUserShippingCharge', data[0])
     } catch (e) {
       commit('setLoading', false, { root: true })

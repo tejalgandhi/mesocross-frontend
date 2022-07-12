@@ -12,6 +12,7 @@ export default {
     state.shippingProductCode = payload.productCode
     state.shippingLocalProductCode = payload.localProductCode
     state.shippingCharge = payload.totalPrice
+    state.shippingDays = payload.estimatedDays
     state.shippingProductName = payload.productName
   },
   setDiscount (state, payload) {

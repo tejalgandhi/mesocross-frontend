@@ -158,7 +158,8 @@ export default {
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     STRIPE_PUBLIC: process.env.STRIPE_PUBLISABLE_KEY,
     THANKYOU_PAGE: process.env.THANKYOU_PAGE,
-    BACKEND_API: process.env.BACKEND_API
+    BACKEND_API: process.env.BACKEND_API,
+    TELEPHONE: process.env.TELEPHONE
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

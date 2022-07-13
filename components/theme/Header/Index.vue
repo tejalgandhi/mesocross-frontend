@@ -166,6 +166,9 @@ export default {
               padding: 0;
               min-height: 0;
             }
+            @media (max-width:1249px) {
+              min-height: 80px;
+            }
 
             .menu {
                 display: flex;

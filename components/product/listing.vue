@@ -2,40 +2,11 @@
   <div class="col-lg-12">
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6 position-relative">
-        <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
+       <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
           <img v-if="isInWhishlist(product)" :src="require('@/assets/img/Heart_icon_selected.svg')" alt="image" class="wishicon">
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
-        <nuxt-link
-          class="text-decoration-none"
-          :to="`/product-detail/${product.slug}`"
-        >
-          <div
-            class="product_box p-4"
-            @mouseover="hoveredImage = index"
-            @mouseleave="hoveredImage = '' "
-          >
-            <div class="img_box">
-              <nuxt-img
-                preload
-                format="webp"
-                :src="hoveredImage === index ? product.hover_image : product.feature_image"
-                alt="image"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-            </div>
-            <div class="content_box d-flex align-items-end justify-content-center">
-              <div class="inline-box text-center">
-                <h3 class="product-title">
-                  {{ product.name }}
-                </h3>
-                <p>{{ product.short_description }}</p>
-                <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
-              </div>
-            </div>
-          </div>
-        </nuxt-link>
+        <ProductSingle :key="index" :product="product" :class-name="'products'" />
       </div>
       <div v-if="products.length == 0 && loadingFinish">
         <h3>{{ $t('no_product_found') }}</h3>

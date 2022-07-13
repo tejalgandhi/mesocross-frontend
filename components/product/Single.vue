@@ -11,6 +11,7 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
+          {{product.price}}
           <span v-if="productPrice">{{ productPrice }}€</span>
         </div>
       </nuxt-link>

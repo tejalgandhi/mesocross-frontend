@@ -5,19 +5,20 @@
       <div v-if="data" class="banner-content" :class="{white: inverse}">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6">
-              <h1 v-if="data.title" class="text-uppercase font-weight-normal">
+            <div class="col-md-5 text-center">
+              <h1 v-if="data.title" class="text-uppercase font-weight-normal mb-3">
                 {{ data.title }}
               </h1>
-              <h1 v-else class="text-uppercase font-weight-normal">
+              <h1 v-else class="text-uppercase font-weight-normal mb-3">
                 {{ data.name }}
               </h1>
-              <p v-if="data.message">
+              <p class="px-lg-5 mb-4" v-if="data.message">
                 {{ data.message }}
               </p>
-              <p v-else>
+              <p class="px-lg-5 mb-4" v-else>
                 {{ data.description }}
               </p>
+              <HomeLinkSetByType :item="data" :title="'Discover'" class="btn-primary" />
             </div>
           </div>
         </div>

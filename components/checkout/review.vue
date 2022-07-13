@@ -65,9 +65,12 @@
               <p class="font-16 text-dark">
                 {{ shippingProductName }}  - <span class="text-success">{{ shippingCharge }} </span>
               </p>
-              <p class="mb-4 font-14">
+              <p class="mb-4 font-14" v-if="isSingleDay">
                 {{ deliveryDateFrom }} — {{ deliveryDateTo }}
               </p>
+                <p class="mb-4 font-14" v-else>
+                    {{ deliveryDateFrom }}
+                </p>
             </div>
           </div>
         </b-card-body>
@@ -136,7 +139,8 @@ export default {
       selectedCard: state => state.user.selectedCard,
       shippingCharge: state => state.cart.shippingCharge,
       shippingProductName: state => state.cart.shippingProductName,
-      shippingDays: state => state.cart.shippingDays
+      shippingDays: state => state.cart.shippingDays,
+      isSingleDay: state => state.cart.isSingleDay
     }),
     getSelectedCardBody () {
       return this.userCards.find(currentValue => currentValue.id === this.selectedCard)
@@ -206,4 +210,3 @@ export default {
   margin-right: auto;
 }
 </style>
-

@@ -6,6 +6,7 @@ export default () => ({
   shippingLocalProductCode: '',
   shippingProductName: '',
   shippingDays: 0,
+  isSingleDay: 1,
   shippings: [],
   cartData: [],
   discount: 0

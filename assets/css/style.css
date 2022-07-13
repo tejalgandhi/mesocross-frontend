@@ -483,7 +483,7 @@ footer .footer_bottom .copyright {
 
 .customize_treatment{float: left; width: 100%; text-align: center; margin: 100px 0;}
 .customize_treatment h2{font-size: 34px;font-weight: 500;}
-.customize_treatment p{margin: 36px auto 36px;max-width: 500px; color: #54565A; font-weight: 300;font-size: 16px;}
+.customize_treatment p{margin: 36px auto 36px;max-width: 500px; color: rgba(255, 255, 255, 0.80); font-weight: 300;font-size: 16px;}
 .customize_treatment a{border: 1px solid #fff; padding: 10px; border-radius: 4px; width: 164px; display: inline-block;}
 
 /*Quiz*/
@@ -495,13 +495,13 @@ footer .footer_bottom .copyright {
 .quiz h2{font-size: 34px; font-weight: 500;}
 .quiz span{font-size: 16px;}
 .quiz .options{margin-top: 25px;}
-.quiz .options p a{text-transform: capitalize;font-size: 16px; font-weight: 500; text-align: center;width: 448px;padding: 11px;border:1px solid #fff;margin: 0 auto 15px;border-radius: 4px;display: inline-block;}
-.quiz .options p a:hover, .quiz .options p a.active{background-color:#fff; color: #fff; }
+.quiz .options p a{text-decoration: none; text-transform: capitalize;font-size: 16px; font-weight: 500; text-align: center;width: 448px;padding: 11px;border:1px solid #fff;margin: 0 auto 15px;border-radius: 4px;display: inline-block;}
+.quiz .options p a:hover, .quiz .options p a.active{background-color:#fff; color: #000; }
 .quiz .act_btn{margin-top: 50px;}
 .quiz .act_btn a.prev{font-size: 16px; font-weight: 500; text-align: center;border:1px solid #fff;border-radius: 4px;width: 164px;
     padding: 10px; display: inline-block; margin: 0 15px;}
 .quiz .act_btn a.next{font-size: 16px; font-weight: 500; text-align: center;border:1px solid #fff;border-radius: 4px;width: 164px;
-    padding: 10px; display: inline-block; background-color: #fff; color: #fff;}
+    padding: 10px; display: inline-block; background-color: #fff; color: #000;}
 
 /* Shipping details */
 .top-help-text {position: absolute; top: 15px; right: 10%}

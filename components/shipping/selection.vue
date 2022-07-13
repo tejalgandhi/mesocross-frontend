@@ -17,8 +17,9 @@
             </label>
           </div>
         </div>
-        <div class="col-6 col-md-3">
-          <p class="font-16 text-dark m-0"> {{ formatDate(ship.estimatedDeliveryTime) }}</p>
+        <div class="col-6 col-md-6">
+          <p class="font-16 text-dark m-0"  v-if="ship.isSingleDay"> {{  formatDate(ship.estimatedDeliveryTime) }} - {{  formatDay(ship.estimatedDays) }}</p>
+          <p class="font-16 text-dark m-0" v-else> {{  formatDate(ship.estimatedDeliveryTime) }}</p>
         </div>
       </label>
     </div>
@@ -35,6 +36,11 @@ export default {
     formatDate () {
       return (date) => {
         return this.$moment(date).format('dddd D, MMMM')
+      }
+    },
+    formatDay () {
+      return (shippingDays) => {
+        return this.$moment().add(parseInt(shippingDays) + 1, 'days').format('dddd D, MMMM')
       }
     }
   },

@@ -11,7 +11,6 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          {{product.price}}
           <span v-if="productPrice">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
@@ -40,7 +39,6 @@ export default {
   computed: {
     productPrice () {
       if (this.product.price) {
-        // console.log(typeof this.product.price)
         const prices = this.product.price
         return typeof prices === 'object' ? prices[0].price : prices
       }

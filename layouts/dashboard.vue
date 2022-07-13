@@ -18,8 +18,8 @@
           </div>
           <div class="col-4 user-tab">
             <div class="d-lg-flexjustify-content-end">
-              <a href="tel:+351789505960" class="mr-lg-3">NEED HELP?</a>
-              <a class="d-lg-inline-block d-none" href="tel:+351789505960">+351789505960</a>
+              <a :href="`tel:+${telephone}`" class="mr-lg-3">NEED HELP?</a>
+              <a class="d-lg-inline-block d-none" :href="`tel:+${telephone}`">+{{telephone}}</a>
             </div>
           </div>
         </div>
@@ -39,7 +39,10 @@ export default {
     ...mapState({
       search: state => state.search,
       loading: state => state.loading
-    })
+    }),
+    telephone(){
+      return process.env.TELEPHONE
+    }
   },
 
   watch: {

@@ -17,7 +17,7 @@
             <!-- <button class="btn btn-default w-100 px-0">
               NEED HELP?
             </button> -->
-            <a class="btn btn-default w-100 px-0" href="tel:+351789505960">NEED HELP?</a>
+            <a class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">NEED HELP?</a>
           </div>
         </div>
       </div>
@@ -149,6 +149,11 @@ export default {
       currentYear: '',
       baseUrl: process.env.baseUrl,
       footerLinks: null
+    }
+  },
+  computed:{
+    telephone(){
+      return process.env.TELEPHONE
     }
   },
   mounted () {

@@ -209,7 +209,7 @@ export default {
   },
   ssr: true,
   publicRuntimeConfig: {
-    recaptx: {
+    recaptcha: {
       /* reCAPTCHA options */
       siteKey: process.env.RECAPTCHA_SITE_KEY // for example
     }

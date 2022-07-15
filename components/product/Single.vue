@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     productPrice () {
-      if (this.product) {
+      if (this.product && (this.product.price || this.product.product_size)) {
         const prices = this.product.price || this.product.product_size
         return typeof prices === 'object' ? prices[0].price : prices
       }

@@ -30,10 +30,6 @@ export default {
   loading: {
     color: '#25282A'
   },
-  server: {
-    host: process.env.HOST, // default: localhost
-    port: process.env.PORT
-  },
   css: [
     '@/assets/css/style.css',
     '@/assets/css/slick.css',
@@ -190,6 +186,10 @@ export default {
       config.resolve.alias.vue = 'vue/dist/vue.common'
     }
   },
+    server: {
+        host: process.env.HOST, // default: localhost
+        port: process.env.PORT
+    },
   router: {
     linkActiveClass: 'active',
     middleware: ['route-guard'],

@@ -27,7 +27,68 @@
             </div>
           </div>
           <div id="card" />
-          <CheckoutOrderSummary :tabindex="tabIndex" @countinue="continueCheckout" />
+          <CheckoutOrderSummary :tabindex="tabIndex" @countinue="continueCheckout" :order-payload="orderPayload"/>
+          <b-modal
+            id="multibancoModal"
+            class="modal fade multibanco-modal"
+            tabindex="-1"
+            aria-hidden="true"
+            hide-footer
+            hide-header
+            centered
+          >
+            <template #default="">
+              <div class="welcome">
+                <div class="container">
+                  <div id="myTabContent">
+                    <h4 class="my-3">
+                      MultiBanco
+                    </h4>
+                    <p class="my-1">
+                      Entity:  {{ multiBancoResponse.entity }}
+                    </p>
+                    <p class="my-1">
+                      Reference: {{ multiBancoResponse.reference }}
+                    </p>
+                    <p class="my-1">
+                      Amount: {{ multiBancoResponse.amount }} €
+                    </p>
+                    <b-button class="mt-3" block @click="goTo()">
+                      Ok
+                    </b-button>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </b-modal>
+          <b-modal
+            id="bankTransferModal"
+            class="modal fade cash-modal"
+            tabindex="-1"
+            aria-hidden="true"
+            hide-footer
+            hide-header
+            centered
+          >
+            <template #default="">
+              <div class="welcome">
+                <div class="container">
+                  <div id="myTabContent">
+                    <h4 class="my-3">
+                      Bank Transfer
+                    </h4>
+                    <p class="my-3">
+                      We have sent you an bank detail, Please check your mail and pay before conditional day
+                    </p>
+                    <strong>Thank you</strong>
+                    <b-button class="mt-3" block @click="goTo()">
+                      Ok
+                    </b-button>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </b-modal>
         </div>
       </div>
     </div>
@@ -48,6 +109,24 @@ export default {
   },
 
   computed: {
+    orderPayload () {
+      return {
+        address_id: this.address?.id,
+        selected_card: this.selectedCard,
+        productCode: this.shippingProductCode,
+        localproductCode: this.shippingLocalProductCode,
+        promo_code: '',
+        discount_type: '',
+        discount_price: this.discountPrice,
+        shipping_price: this.shippingCharge,
+        sub_total: this.subTotal,
+        total: this.totalProductPrice,
+        products: this.getOrderProducts,
+        ali_pay: this.selectedCard === 1,
+        wechat_pay: this.selectedCard === 2,
+        shipping_mode: this.shippingProductName
+      }
+    },
     ...mapState({
       products: state => state.cart.products,
       isLoggedin: state => state.user.loggedIn,
@@ -67,44 +146,57 @@ export default {
     })
   },
 
-  mounted () {
+  async mounted () {
     if (!this.$auth.loggedIn) {
       this.$router.push('/login')
     }
-    this.$axios.get('/stripe/create-customer')
+    // this.$axios.get('/stripe/create-customer')
     this.$store.dispatch('cart/applyDiscount', false)
+    this.frontPayment = await this.$store.dispatch('payment/payment')
   },
-
   methods: {
+    getSelectedMethod () {
+      const methods = ['alipay', 'wechat_pay', 'multibanco', 'bank_transfer', 'paypal']
+      const index = this.selectedCard - 1
+      return methods.length > index ? methods[index] : 'card'
+    },
+    getPaymentObject () {
+      const paymentMethod = this.getSelectedMethod()
+      const temporaryPaymentObject = {
+        payment_method: paymentMethod,
+        amount: this.orderPayload.total * 100, // here the amount will be in the smallest unit of currency.
+        currency: 'eur'
+      }
+
+      if (paymentMethod === 'card') {
+        temporaryPaymentObject.source = this.selectedCard
+      }
+      return temporaryPaymentObject
+    },
+    goTo () {
+      this.$router.push({ path: '/thankyou' })
+    },
     continueCheckout () {
       if (this.tabIndex === 3) { // PLACE AN ORDER
-        const orderPayload = {
-          address_id: this.address.id,
-          selected_card: this.selectedCard,
-
-          productCode: this.shippingProductCode,
-          localproductCode: this.shippingLocalProductCode,
-          promo_code: '',
-          discount_type: '',
-          discount_price: this.discountPrice,
-          shipping_price: this.shippingCharge,
-          sub_total: this.subTotal,
-          total: this.totalProductPrice,
-          products: this.getOrderProducts,
-          ali_pay: this.selectedCard === 1,
-          wechat_pay: this.selectedCard === 2,
-          shipping_mode: this.shippingProductName
-        }
-        this.$axios.post('/order/store', orderPayload).then(({ data }) => {
-          if (orderPayload.ali_pay || orderPayload.wechat_pay) {
-            this.handlePayment(data, orderPayload)
-          } else if (data.status) {
-            this.setCartProduct([])
-            this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
-            this.$router.push({ path: '/thankyou' })
-          }
+        this.$axios.post('/order/store', this.orderPayload).then(({ data }) => {
+          console.log(data)
+          this.frontPayment.pay({
+            ...this.getPaymentObject(),
+            ...{ additional_info: { order: data.order } }
+          }).then((paymentResponse) => {
+            console.log(data)
+            if (this.orderPayload.ali_pay || this.orderPayload.wechat_pay) {
+              this.handlePayment(data)
+            } else if (data.status) {
+              // this.setCartProduct([])
+              this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
+              this.$router.push({ path: '/thankyou' })
+            }
+          }).catch((err) => {
+            this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+          })
         }).catch((err) => {
-          this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+          console.error('Error while making payment.', err)
         })
       } else if (!this.address && this.tabIndex === 1) {
         this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right' })
@@ -117,10 +209,10 @@ export default {
       // this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right' })
       // }
     },
-    handlePayment (data, orderPayload) {
-      if (orderPayload.ali_pay) {
+    handlePayment (data) {
+      if (this.orderPayload.ali_pay) {
         this.$refs.reviewComponent.aliPay(data.client_secret)
-      } else if (orderPayload.wechat_pay) {
+      } else if (this.orderPayload.wechat_pay) {
         this.$refs.reviewComponent.wechatPay(data.client_secret)
       }
     },

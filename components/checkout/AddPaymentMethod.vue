@@ -1,9 +1,9 @@
 <template>
   <div id="payment" class="tab-pane fade show active shipping">
     <div class="my-3">
-      <!-- <p class="font-weight-bold text-dark font-18">
+      <p class="font-weight-bold text-dark font-18">
         {{ bodytitle }}
-      </p> -->
+      </p>
       <p class="mt-2 mb-2 font-16">
         {{ $t('required_fields') }}*
       </p>
@@ -22,7 +22,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for1">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16  ml-3 py-2" for="for1">
+              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for1">
                 <img src="@/assets/img/card_mastercard.svg" height="60px" width="90px" alt="image">
               </label>
             </div>
@@ -41,7 +41,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for2">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16  ml-3 py-2" for="for2">
+              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for2">
                 <img src="@/assets/img/card_visa.svg" height="60px" width="90px" alt="image">
               </label>
             </div>
@@ -60,7 +60,7 @@
         <label class="address-radio row mx-0 align-items-center mb-3" for="for3">
           <div class="col-12">
             <div class="form-check px-0">
-              <label class="form-check-label font-16  ml-3 py-2" for="for3">
+              <label class="form-check-label font-16 text-dark ml-3 py-2" for="for3">
                 <img src="@/assets/img/card_american_express.svg" height="60px" width="90px" alt="image">
               </label>
             </div>
@@ -86,7 +86,7 @@
           <div class="form-group col-lg-6">
             <label for="">{{ $t('checkout.card_number') }} *</label>
             <div class="position-relative" style="height: 40px">
-              <ValidationProvider v-slot="{ errors }" :name="$t('checkout.card_number')" rules="required">
+              <ValidationProvider v-slot="{ errors }" :name="$t('checkout.card_number')" rules="required|check_card_limit">
                 <input id="number" v-model="paymentObj.number" type="text" class="w-100 px-3 h-100" @input="addSpaceInNumber()">
                 <span class="errors">{{ errors[0] }}</span>
               </ValidationProvider>
@@ -111,19 +111,19 @@
           <div class="form-group col-lg-12">
             <label for="">{{ $t('security_code') }} *</label>
             <div class="position-relative col-lg-3 pl-0" style="height: 40px">
-              <ValidationProvider v-slot="{ errors }" :name="$t('security_code')" rules="required">
+              <ValidationProvider v-slot="{ errors }" :name="$t('security_code')" rules="required|digits:3">
                 <input id="cvc" v-model="paymentObj.cvc" type="text" class="w-100 px-3 h-100" style="background: #e5e6e6 0% 0% no-repeat padding-box;">
                 <span class="errors">{{ errors[0] }}</span>
               </ValidationProvider>
             </div>
           </div>
           <div class="form-group col-lg-6 mt-3">
-            <button type="submit" class="btn w-100 btn-primary filter-invert">
+            <button type="submit" class="card-btn">
               {{ $t('save') }}
             </button>
           </div>
           <div class="form-group col-lg-6 mt-3">
-            <button class="btn w-100 btn-outline-primary filter-invert" @click="setIsAddPayment(false)">
+            <button class="card-btn" @click="setIsAddPayment(false)">
               {{ $t('cancel') }}
             </button>
           </div>
@@ -138,6 +138,7 @@
 </template>
 <script>
 import { mapMutations, mapState } from 'vuex'
+// import Payment from '@immera/payment-frontend'
 export default {
   props: {
     bodytitle: {
@@ -148,6 +149,7 @@ export default {
   data () {
     return {
       formObserver: '',
+      frontPayment: null,
       paymentObj: {
         brand: 'MasterCard',
         name: '',
@@ -159,8 +161,13 @@ export default {
   },
   computed: {
     ...mapState({
-      cardNames: state => state.user.cardNames
+      cardNames: state => state.user.cardNames,
+      loggedinUser: state => state.user.loggedinUser,
+      paymentInstance: state => state.payment.paymentInstance
     })
+  },
+  async mounted () {
+    this.frontPayment = await this.$store.dispatch('payment/payment')
   },
   methods: {
     ...mapMutations({
@@ -181,31 +188,30 @@ export default {
     },
     addSpaceInNumber () {
       const cardNumber = this.paymentObj.number
+      if (this.paymentObj.number.length === 20) {
+        this.paymentObj.number = this.paymentObj.number.substring(0, this.paymentObj.number.length - 1)
+        return false
+      }
       const res = [...cardNumber.replace(/ /g, '')].map((d, i) => (i) % 4 === 0 && (i) !== ' ' ? ' ' + d : d).join('').trim()
       this.paymentObj.number = res
     },
     async addPayment () {
       if (await this.$refs.formObserver.validate()) {
-        try {
-          const response = await this.$axios.post('/stripe/create-card', this.paymentObj)
-          this.$toast.success(response.data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-          this.setIsAddPayment(false)
-        } catch (err) {
-          if (err.response.data.status === 402) {
-            this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
-          } else {
-            this.$toast.error(this.$t('something_went_wrong'), { duration: 3000 })
-            this.setIsAddPayment(false)
-          }
-        }
+        await this.paymentInstance.createNewCard({
+          number: this.paymentObj.number,
+          expiry_date: this.paymentObj.expiry_date,
+          cvc: this.paymentObj.cvc
+        })
+        this.$nuxt.$emit('fetch-cards')
+        this.setIsAddPayment(false)
+        this.$toast.success('Card Added Successfully', { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
       }
     }
   }
 }
 </script>
 <style scoped>
-.errors {
-  color: #cf0000;
-  white-space: nowrap;
-}
+  .errors {
+    color: #cf0000;
+  }
 </style>

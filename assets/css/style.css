@@ -474,7 +474,7 @@ footer .footer_bottom .copyright {
 .wishlist .prod_box .desc_box p{font-size: 16px;color: #fff;margin: 5px 0;}
 .wishlist .prod_box .desc_box span{font-size: 14px;color: #fff;}
 
-.without-card button{float: right;  width: 200px; background:#fff;color: #fff;margin-top: 3px; margin-right:20px;}
+.without-card button{float: right;  width: 200px; background:#25282A;color: #fff;margin-top: 3px; margin-right:20px;}
 .addcard{width: 100%;}
 .addcard label{padding-left: 55px !important;margin-top:5px;}
 .addcard label img{width: 40px;  margin-right: 10px;}
@@ -679,7 +679,8 @@ footer .footer_bottom .copyright {
 
 /* buttons */
 .global-btn-border-white { text-align: center; padding: 10px; color: #fff; border: 1px solid #fff; border-radius: 4px; background: transparent; min-width: 264px; display: inline-block; margin-top: 20px; transition: all 0.3s ease-in; }
-.global-btn-border-white:hover { background-color: #fff; color: #fff; }
+.global-btn-border-white:hover { background-color: #fff; color: #25282A; }
+
 
 .tab-content .form-content .btn-theme-dark{max-width: 100%;}
 .html-content p{margin-bottom:25px;line-height: 30px;}
@@ -909,3 +910,23 @@ footer .footer_bottom .copyright {
 }
 
 .btn-plus.collapsed:after {transform: rotate(90deg);}
+
+.card-btn {
+  background: #25282A;
+  color: #fff;
+  border-radius: 4px;
+  margin-top: 30px;
+}
+
+/* Payment css */
+#multibancoModal .welcome{margin:0;}
+#multibancoModal .welcome h4{color: #000;font-weight: bold;font-size: 16px;}
+#multibancoModal .welcome p{font-size: 18px;}
+#multibancoModal .welcome button{background: #000; color: #fff;}
+
+#bankTransferModal .welcome{margin:0;}
+#bankTransferModal .welcome h4{color: #000;font-weight: bold;font-size: 18px;}
+#bankTransferModal .welcome p{font-size: 18px;}
+#bankTransferModal .welcome button{background: #000; color: #fff;}
+
+#payment label img { max-width: 34px; }

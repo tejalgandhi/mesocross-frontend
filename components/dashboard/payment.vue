@@ -59,18 +59,29 @@ export default {
     }
 
   },
-  mounted () {
-    this.getUserCards()
+  async mounted () {
+    this.frontPayment = await this.$store.dispatch('payment/payment')
+    this.fetchCards()
+    // this.getUserCards()
   },
   methods: {
+    fetchCards () {
+      this.frontPayment.cardList().then(({ data }) => {
+        console.log(data)
+        this.getUserCards({ data })
+      })
+    },
     async deleteCard (card) {
-      const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
-      this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-      if (card === this.selectedCard) {
-        this.setSelectedCard(0)
-      }
+      await this.frontPayment.deleteCard(card)
+      this.fetchCards()
 
-      this.getUserCards()
+      // const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
+      // this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+      // if (card === this.selectedCard) {
+      //   this.setSelectedCard(0)
+      // }
+
+      // this.getUserCards()
     },
     ...mapMutations({
       setIsAddPayment: 'user/setIsAddPayment',

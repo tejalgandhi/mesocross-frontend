@@ -27,6 +27,15 @@ extend('email_exists', {
   immediate: true
 })
 
+extend('check_card_limit', {
+  validate: (value) => {
+    return {
+      valid: value.length === 19
+    }
+  }
+}, {
+  immediate: true
+})
 // Register it globally
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)

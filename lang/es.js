@@ -7,7 +7,8 @@ import checkOutFile from './es/checkoout'
 import customizeTreatmentFile from './es/customize-treatment'
 import dashboardFile from './es/dashboard'
 const CustomMessages = {
-  email_exists: 'Correo electrónico ya tomado'
+  email_exists: 'Correo electrónico ya tomado',
+  check_card_limit: 'La tarjeta debe tener 16 dígitos.'
 }
 export default {
   ...commonFile,

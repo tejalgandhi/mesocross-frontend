@@ -10,9 +10,9 @@ export default {
       commit('setAddress', [])
     }
   },
-  async getUserCards ({ commit }) {
+  async getUserCards ({ commit }, cardList = null) {
     try {
-      const { data } = await this.$axios.get('stripe/card-list')
+      const { data } = cardList != null ? cardList : await this.$axios.get('stripe/card-list')
       commit('setUserCards', data.data)
       if (data.data.length === 1) {
         commit('setSelectedCard', data.data[0].id)

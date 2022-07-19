@@ -8,7 +8,8 @@ import customizeTreatmentFile from './pt/customize-treatment'
 import dashboardFile from './pt/dashboard'
 
 const CustomMessages = {
-  email_exists: 'E-mail já recebido'
+  email_exists: 'E-mail já recebido',
+  check_card_limit: 'O cartão deve ter 16 dígitos'
 }
 
 export default {

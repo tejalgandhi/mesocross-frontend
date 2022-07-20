@@ -12,10 +12,10 @@
         <b-card-body>
           <div v-for="(product, index) in products" :key="index" class="panel-body mb-4">
             <div class="row border-bottom mb-3">
-              <div class="col-md-3 align-self-center pr-md-0 mx-auto text-center">
+              <div class="col-md-3 col-4 align-self-center pr-md-0 mx-auto text-center">
                 <img :src="product.feature_image" class="img-fluid product-thumb" alt="image">
               </div>
-              <div class="col-md-9 pl-md-0 text-left">
+              <div class="col-md-9 col-8 pl-md-0 text-left">
                 <div class="mt-4">
                   <nuxt-link :to="`/product-detail/${product.slug}`">
                     <p class="font-20 text-dark" style="font-weight: 600">
@@ -65,12 +65,12 @@
               <p class="font-16 text-dark">
                 {{ shippingProductName }}  - <span class="text-success">{{ shippingCharge }} </span>
               </p>
-              <p class="mb-4 font-14" v-if="isSingleDay">
+              <p v-if="isSingleDay" class="mb-4 font-14">
                 {{ deliveryDateFrom }} — {{ deliveryDateTo }}
               </p>
-                <p class="mb-4 font-14" v-else>
-                    {{ deliveryDateFrom }}
-                </p>
+              <p v-else class="mb-4 font-14">
+                {{ deliveryDateFrom }}
+              </p>
             </div>
           </div>
         </b-card-body>

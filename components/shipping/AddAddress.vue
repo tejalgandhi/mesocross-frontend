@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-11">
+  <div class="">
     <div class="tab-content">
       <div id="shipping" class="tab-pane fade show active shipping">
         <div class="my-3">

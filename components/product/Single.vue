@@ -3,7 +3,7 @@
     <div class="product-item">
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close cursor-pointer" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
-      <img :src="product.feature_image" class="product-image" alt="image"></img>
+        <img :src="product.feature_image" class="product-image" alt="image"></img>
         <div class="desc_box py-4">
           <div class="prodcut-title">
             {{ product.name }}
@@ -84,6 +84,9 @@ export default {
         font: normal normal normal 20px/28px Arial;
         text-transform: uppercase;
         margin-bottom: .5rem;
+        @media (max-width:767px) {
+          font:normal normal normal 16px/22px Arial;
+        }
     }
     .product-desc{
         color: #FFFFFF;

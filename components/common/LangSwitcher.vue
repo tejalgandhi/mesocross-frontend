@@ -115,18 +115,6 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-div {
-    button {
-        @media screen and (max-width: 1200px){
-            padding: 0 !important;
-        }
-    }
-}
-
-</style>
-
 <style>
 .icon-down{
   height: 15px !important;

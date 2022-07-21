@@ -14,8 +14,8 @@
       <ShippingAddAddress @addressSave="addressSave" @hideAddAdrress="addressShow = false" />
     </template>
 
-    <div class="col-md-4 py-4 mx-auto">
-      <button v-if="!addressShow" class="w-100 d-block btn btn-outline-dark filter-invert" @click="addAddress">
+    <div v-if="!addressShow" class="col-md-4 py-4 mx-auto">
+      <button class="w-100 d-block btn btn-outline-dark filter-invert" @click="addAddress">
         {{ $t('checkout.add_new_address') }}
       </button>
     </div>

@@ -10,7 +10,7 @@
             MY ACCOUNT
           </h2>
         </div>
-        <b-button @click="Logout" variant="default" class="filter-invert px-0">
+        <b-button variant="default" class="filter-invert px-0" @click="Logout">
           <u>LOG OUT</u>
         </b-button>
       </div>
@@ -51,11 +51,11 @@
 
       <b-card v-for="(comonent, index) in dashboardComponents" :key="index" no-body class="mb-1 border-0 text-black accordion-card bg-white">
         <b-card-header header-tag="header" class="p-0 border-0 bg-white" role="tab">
-          <b-button v-b-toggle="`accordion-${index}`" block variant="ff" @click="setComponent(comonent.component)">
+          <b-button v-b-toggle="`dasboardTab-${index}`" block variant="ff" @click="setComponent(comonent.component)">
             {{ comonent.label }}
           </b-button>
         </b-card-header>
-        <b-collapse :id="`accordion-${index}`" visible accordion="my-accordion" role="tabpanel">
+        <b-collapse :id="`dasboardTab-${index}`" visible accordion="my-accordion" role="tabpanel">
           <b-card-body class="accordion-card-body">
             <component :is="selectedDashboardComponent" />
           </b-card-body>
@@ -128,6 +128,26 @@ export default {
   mounted () {
     const { page } = this.$route.query
     this.setDashboardComponents()
+    setTimeout(() => {
+      let activeTab
+      switch (page) {
+        case 'company-data':
+          activeTab = 'dasboardTab-0'
+          break
+        case 'address-book':
+          activeTab = 'dasboardTab-1'
+          break
+        case 'payment-methods':
+          activeTab = 'dasboardTab-2'
+          break
+        case 'login-data':
+          activeTab = 'dasboardTab-3'
+          break
+      }
+      if (activeTab) {
+        this.$root.$emit('bv::toggle::collapse', activeTab)
+      }
+    }, 100)
     if (page) {
       this.setSelectedDashboardComponent(page)
       // this.isActive = this.components.findIndex(val => val.component === page)

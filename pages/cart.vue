@@ -20,7 +20,7 @@
           </nuxt-link>
         </div>
         <div v-else class="row justify-content-center">
-          <div class="col-lg-9 pr-lg-5">
+          <div class="col-lg pr-lg-5">
             <div v-if="products.length > 0" class="row text-center">
               <div class="col-4">
                 <label class="th-head">
@@ -47,8 +47,8 @@
               <ProductCartProduct :product="product" />
             </div>
           </div>
-          <div v-if="products.length > 0" class="col-lg-3">
-            <div class="">
+          <div v-if="products.length > 0" class="col-lg-auto">
+            <div class="text-nowrap summery-w">
               <h5 class="mb-3">
                 {{ $t('order_summary') }}
               </h5>
@@ -58,7 +58,7 @@
               </div>
               <div class="prod_detail">
                 <div class="product d-flex justify-content-between font-weight-bold">
-                  <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <strong>{{ subTotal }} €</strong>
+                  <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <strong class="ml-3">{{ subTotal }} €</strong>
                 </div>
                 <div class="d-flex justify-content-between">
                   <label>{{ $t('discount') }}</label> <span>0 €</span>
@@ -145,5 +145,8 @@ export default {
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 0.4;
+}
+.summery-w{
+  min-width: 320px;
 }
 </style>

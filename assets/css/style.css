@@ -375,7 +375,7 @@ footer .footer_bottom .copyright {
 .prod_detail_box .prod_desc .fav{position: absolute;right: 0; top: 70px; width: 36px; height: 36px;}
 .prod_detail_box .prod_desc h1{color: #FFFFFF;font-size: 30px; font-weight: 500;margin-bottom: 10px;}
 .prod_detail_box .prod_desc label{color: #FFFFFF;font-size: 16px; margin-bottom: 10px;display:block;}
-.prod_detail_box .prod_desc span{color: #FFFFFF;font-size: 20px; margin-bottom: 20px;display:block;}
+.prod_detail_box .prod_desc span{color: #FFFFFF;font-size: 30px; margin-bottom: 20px;display:block;}
 .prod_detail_box .prod_desc p {
   margin-bottom: 20px;
   display: block;

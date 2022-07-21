@@ -11,7 +11,7 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          <span v-if="productPrice">{{ productPrice }}€</span>
+          <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
     </div>
@@ -38,8 +38,8 @@ export default {
   },
   computed: {
     productPrice () {
-      if (this.product.price) {
-        const prices = this.product.price
+      if (this.product && (this.product.price || this.product.product_size)) {
+        const prices = this.product.price || this.product.product_size
         return typeof prices === 'object' ? prices[0].price : prices
       }
       return ''
@@ -92,6 +92,11 @@ export default {
         color: #FFFFFF;
         opacity: 0.6;
         font: normal normal normal 16px/24px Arial;
+    }
+    .price{
+      display: block;
+      font-size: 20px;
+      margin-top: 1rem;
     }
 }
 </style>

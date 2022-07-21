@@ -139,7 +139,6 @@ export default {
 
 <style>
 .errors {
-  color: red;
   font-size: 12px !important;
 }
 </style>

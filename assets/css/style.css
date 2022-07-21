@@ -111,6 +111,10 @@ p{ font-weight: 300;font-size: 16px;font-family: 'Arial', sans-serif;}
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+
+form.radio_btn {
+  filter: invert(1);
+ }
 .filter-list [type="radio"]:checked + label:after,
 .filter-list [type="radio"]:not(:checked) + label:after{
   background: #000 !important;
@@ -216,9 +220,9 @@ footer .footer_bottom .copyright {
 .steps .colmn{display: inline-block;width: 93px;margin: 0 15px; position: relative;}
 .steps .colmn:after{position: absolute;background: #25282A0004D; content: ''; width: 44px; height: 1px; top: 20px; right: -35px;}
 .steps .colmn:last-child:after{display: none; }
-.steps .colmn span{display: block; background: #fff;; border-radius: 50%;width: 42px; height: 42px; opacity: 0.4;color: #fff; text-align: center; vertical-align: middle; line-height: 42px; margin: 0 auto;}
+.steps .colmn span{display: block; background: rgba(255, 255, 255, 0.3);; border-radius: 50%;width: 42px; height: 42px; opacity: 0.4;color: #fff; text-align: center; vertical-align: middle; line-height: 42px; margin: 0 auto;}
 .steps .colmn label{font-size: 14px;color: #fff; opacity: 0.3;font-weight: 500;margin-top: 7px;line-height: 16px;}
-.steps .active span{background: #fff;opacity: 1;}
+.steps .active span{opacity: 1;}
 .steps .active label{color: #fff;opacity: 1;}
 #register .radio_btn {margin-bottom: 50px;}
 #register .radio_btn p{display: inline-block;margin-right: 50px;}

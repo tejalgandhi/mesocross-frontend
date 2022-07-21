@@ -122,10 +122,13 @@ a img.mr-2 {
   width: 77px;
   height: 106px;
   object-fit: contain;
+  margin: 0 auto 1rem;
+  display: block;
 }
 .ref{
   font: normal normal normal 14px/16px Work Sans;
   color: rgba( #fff, 0.4);
+  margin-top: .25rem;
 }
 .cart-qty > * {
   height: 40px;

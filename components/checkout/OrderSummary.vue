@@ -1,7 +1,7 @@
 <template>
-  <div class="col-lg-3 mt-5 pt-5">
+  <div class="col-lg-auto">
     <div class="summary mt-3">
-      <h3 class="mb-3 mt-2">
+      <h3 class="mb-3">
         {{ $t('order_summary') }}
       </h3>
       <!-- <div class="discount">
@@ -11,11 +11,15 @@
         </span>
       </div> -->
       <div class="prod_detail">
-        <p class="product">
+        <p class="product d-flex justify-content-between">
           <label>{{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label><span>{{ subTotal }} €</span>
         </p>
-        <p><label>{{ $t('discount') }}</label> <span>{{ discount }} €</span></p>
-        <p><label>{{ $t('shipping') }}</label> <span>{{ shippingCharge }} €</span></p>
+        <p class="d-flex justify-content-between">
+          <label>{{ $t('discount') }}</label> <span>{{ discount }} €</span>
+        </p>
+        <p class="total d-flex justify-content-between">
+          <label>{{ $t('shipping') }}</label> <span>{{ shippingCharge }} €</span>
+        </p>
         <p class="total">
           <label>{{ $t('total') }}</label> <span>{{ totalProductPrice }} €</span>
         </p>

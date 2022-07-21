@@ -19,7 +19,7 @@
           <div class="col-4 user-tab">
             <div class="d-lg-flexjustify-content-end">
               <a :href="`tel:+${telephone}`" class="mr-lg-3">NEED HELP?</a>
-              <a class="d-lg-inline-block d-none" :href="`tel:+${telephone}`">+{{telephone}}</a>
+              <a class="d-lg-inline-block d-none" :href="`tel:+${telephone}`">+{{ telephone }}</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ export default {
       search: state => state.search,
       loading: state => state.loading
     }),
-    telephone(){
+    telephone () {
       return process.env.TELEPHONE
     }
   },
@@ -72,9 +72,9 @@ export default {
       setCartProduct: 'cart/setCartProduct',
       setWishListData: 'cart/setWishListData'
     }),
-     goHome () {
+    goHome () {
       this.$router.push('/')
-    },
+    }
   }
 }
 </script>
@@ -132,7 +132,7 @@ export default {
   }
   .summary{
         background: #f5f5f5;
-        padding: 15px 10px
+        min-width: 300px;
   }
   .text-dark{
     color: #25282a !important

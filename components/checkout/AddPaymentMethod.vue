@@ -197,14 +197,18 @@ export default {
     },
     async addPayment () {
       if (await this.$refs.formObserver.validate()) {
-        await this.paymentInstance.createNewCard({
-          number: this.paymentObj.number,
-          expiry_date: this.paymentObj.expiry_date,
-          cvc: this.paymentObj.cvc
-        })
-        this.$nuxt.$emit('fetch-cards')
-        this.setIsAddPayment(false)
-        this.$toast.success('Card Added Successfully', { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+        try {
+          await this.paymentInstance.createNewCard({
+            number: this.paymentObj.number,
+            expiry_date: this.paymentObj.expiry_date,
+            cvc: this.paymentObj.cvc
+          })
+          this.$nuxt.$emit('fetch-cards')
+          this.setIsAddPayment(false)
+          this.$toast.success('Card Added Successfully', { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+        } catch (err) {
+          this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000 }, 'top-right')
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link v-if="item.slug && item.slug" :to="item | slug " class="btn">
+  <nuxt-link v-if="item.slug" :to="item | slug " class="btn">
     {{ title }}
   </nuxt-link>
 </template>

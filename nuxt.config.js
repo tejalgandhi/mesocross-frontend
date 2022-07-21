@@ -51,7 +51,8 @@ export default {
     { src: '@/plugins/vue-add-to-calendar.js' },
     // { src: '@/plugins/vue-swiper.js', mode: 'client' },
     { src: '@/plugins/stripePlugins.js', mode: 'client' },
-    { src: '@/plugins/vClickOutside', ssr: false }
+    { src: '@/plugins/vClickOutside', ssr: false },
+    { src: '@/plugins/chat.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -143,6 +144,7 @@ export default {
   },
 
   env: {
+    crispWebsiteId: process.env.CRISP_WEBSITE_ID,
     baseUrl: process.env.BASE_URL,
     uploadURL: process.env.UPLOAD_URL,
     frontURL: process.env.FRONT_END_URL,
@@ -155,7 +157,7 @@ export default {
     STRIPE_PUBLIC: process.env.STRIPE_PUBLISABLE_KEY,
     THANKYOU_PAGE: process.env.THANKYOU_PAGE,
     BACKEND_API: process.env.BACKEND_API,
-    TELEPHONE: process.env.TELEPHONE
+    TELEPHONE: '351789505960'
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-3 mt-5 pt-5">
+  <div class="col-lg-auto mt-5 pt-5">
     <div class="summary mt-3">
       <h3 class="mb-3 mt-2">
         {{ $t('order_summary') }}

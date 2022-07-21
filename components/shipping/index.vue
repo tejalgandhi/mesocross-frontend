@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="select-text mb-4 mt-3 pb-3">
+    <div class="select-text mb-4 mt-4">
       {{ $t('select_your_address') }}
     </div>
     <template v-if="!addressShow">
@@ -22,10 +22,10 @@
       </button>
     </div>
     <template v-if="!addressShow && shippings && shippings.length">
-      <div class="select-text mb-4 mt-3 pb-3">
+      <div class="select-text mb-4 mt-4">
         {{ $t('select_Your_shipping_mode') }}
-        <ShippingSelection />
       </div>
+      <ShippingSelection />
     </template>
   </div>
 </template>

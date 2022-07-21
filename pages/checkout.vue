@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid mx-auto shipping-tab mb-0 pb-5">
-    <div class="row mx-0">
+    <div class="row">
       <div class="col-md-11 mx-auto">
         <div class="w-100 my-5">
           <CheckoutTab :tab-index="tabIndex" />
         </div>
-        <div class="row mx-0">
-          <div class="col-lg-9">
+        <div class="row">
+          <div class="col-lg">
             <div class="tab-content">
               <div class="d-flex align-items-center font-16 text-dark w-auto" style="cursor: pointer">
                 <img v-if="tabIndex != 1" src="@/assets/img/left-arrow.svg" class="mr-2 left-arr" alt="image" @click="back">
@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <div id="card" />
+          <!-- <div id="card" /> -->
           <CheckoutOrderSummary :tabindex="tabIndex" @countinue="continueCheckout" :order-payload="orderPayload"/>
           <b-modal
             id="multibancoModal"
@@ -97,8 +97,8 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
-  middleware: 'auth',
   layout: 'dashboard',
+  middleware: 'auth',
 
   data () {
     return {

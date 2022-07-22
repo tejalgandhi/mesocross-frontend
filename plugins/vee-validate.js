@@ -27,7 +27,7 @@ extend('email_exists', {
   immediate: true
 })
 
-xtend('check_card_limit', {
+extend('check_card_limit', {
   validate: (value) => {
     return {
       valid: (value.length === 19 || value.length === 18)

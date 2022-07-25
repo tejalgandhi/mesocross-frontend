@@ -7,7 +7,8 @@ import checkOutFile from './en/checkoout'
 import customizeTreatmentFile from './en/customize-treatment'
 import dashboardFile from './en/dashboard'
 const CustomMessages = {
-  email_exists: 'Email Already Taken'
+  email_exists: 'Email Already Taken',
+  check_card_limit: 'Card Should be 16 digits.'
 }
 
 export default {

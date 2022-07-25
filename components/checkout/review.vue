@@ -99,13 +99,28 @@
               {{ $t('wechat_pay') }}
             </p>
           </div>
+          <div v-else-if="selectedCard == 3" class="panel-body mb-4">
+            <p class="mb-4 font-14">
+              {{ $t('multibanco') }}
+            </p>
+          </div>
+          <div v-else-if="selectedCard == 4" class="panel-body mb-4">
+            <p class="mb-4 font-14">
+              {{ $t('bank_transfer') }}
+            </p>
+          </div>
+          <div v-else-if="selectedCard == 5" class="panel-body mb-4">
+            <p class="mb-4 font-14">
+              {{ $t('paypal') }}
+            </p>
+          </div>
           <label v-else class="address-radio row mx-0 align-items-center mb-3">
             <div class="col-12">
               <div class="form-check px-0 d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                   <img :src="require(`~/assets/img/card_visa.svg`)" class="mx-3" height="30px" width="50px" alt="image">
                   <label class="ml-2 form-check-label font-16 text-dark">
-                    <span class="d-block font-weight-bold">{{ getSelectedCardBody.name }}</span>
+                    <span class="d-block font-weight-bold">**** **** **** {{ getSelectedCardBody.last4 }}</span>
                     <small>{{ getSelectedCardBody.number }}</small>
                   </label>
                 </div>

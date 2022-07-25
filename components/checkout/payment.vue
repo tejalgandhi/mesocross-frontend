@@ -46,12 +46,34 @@
       </div>
     </label>
     <input
+      id="for12"
+      name="paymethod"
+      class="form-check-input"
+      :checked="selectedCard == 3"
+      type="radio"
+      @change="setSelectedCard(3)"
+    >
+    <label class="address-radio row mx-0 align-items-center mb-3" for="for12">
+      <div class="col-12">
+        <div class="form-check px-0">
+          <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center">
+              <img src="~/assets/img/mb-icon.svg" class="mx-3" alt="image">
+              <label class="ml-2 form-check-label font-16 text-dark" for="for12">
+                <span class="d-block font-weight-bold">{{ $t('multibanco') }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </label>
+    <input
       id="for5"
       name="paymethod"
       class="form-check-input"
-      :checked="selectedCard == 0"
+      :checked="selectedCard == 4"
       type="radio"
-      @change="setSelectedCard(0)"
+      @change="setSelectedCard(4)"
     >
     <label class="address-radio row mx-0 align-items-center mb-3" for="for5">
       <div class="col-12">
@@ -60,6 +82,26 @@
             <img src="~/assets/img/Banktranfer.svg" class="mx-3" alt="image">
             <label class="ml-2 form-check-label font-16 text-dark" for="for5">
               <span class="d-block font-weight-bold">{{ $t('bank_transfer') }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </label>
+    <input
+      id="for13"
+      name="paymethod"
+      class="form-check-input"
+      :checked="selectedCard == 5"
+      type="radio"
+      @change="setSelectedCard(5)"
+    >
+    <label class="address-radio row mx-0 align-items-center mb-3" for="for13">
+      <div class="col-12">
+        <div class="form-check px-0 d-flex">
+          <div class="d-flex align-items-center">
+            <img src="~/assets/img/paypal-icon.svg" class="mx-3" alt="image">
+            <label class="ml-2 form-check-label font-16 text-dark" for="for13">
+              <span class="d-block font-weight-bold">{{ $t('paypal') }}</span>
             </label>
           </div>
         </div>
@@ -78,13 +120,21 @@
         <div class="col-12">
           <div class="form-check px-0 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-              <img :src="require(`~/assets/img/${setBrandImage(card.brand)}`)" class="mx-3" height="30px" width="50px" alt="image">
+              <img
+                :src="require(`~/assets/img/${setBrandImage(card.brand)}`)"
+                class="mx-3"
+                height="30px"
+                width="50px"
+                alt="image"
+              >
               <label class="ml-2 form-check-label font-16 text-dark" :for="`for${index}`">
                 <span class="d-block font-weight-bold">{{ card.name }}</span>
-                <small>{{ card.number }}</small>
+                <small>**** **** **** {{ card.last4 }}</small>
               </label>
             </div>
-            <p class="font-16 text-dark m-0 border-bottom d-inline text-right" @click="deleteCard(card.id)">{{ $t('checkout.delete_method') }}</p>
+            <p class="font-16 text-dark m-0 border-bottom d-inline text-right" @click="deleteCard(card.id)">{{
+              $t('checkout.delete_method')
+              }}</p>
           </div>
         </div>
       </label>
@@ -97,7 +147,13 @@
     <div v-else>
       <label class="address-radio row mx-0 align-items-center mb-3 without-card">
         <div class="addcard">
-          <input id="forAddcart" name="paymethod" class="form-check-input" type="radio" @change="setSelectedCard('add_card')">
+          <input
+            id="forAddcart"
+            name="paymethod"
+            class="form-check-input"
+            type="radio"
+            @change="setSelectedCard('add_card')"
+          >
           <label class="ml-2 form-check-label font-16 text-dark" for="forAddcart">
             <img src="@/assets/img/card_mastercard.svg" alt="image">
             <img src="@/assets/img/card_visa.svg" alt="image">
@@ -118,6 +174,11 @@ export default {
     bodytitle: {
       type: String,
       default: ''
+    }
+  },
+  data () {
+    return {
+      frontPayment: null
     }
   },
   computed: {
@@ -142,18 +203,26 @@ export default {
     }
 
   },
-  mounted () {
-    this.getUserCards()
-  },
-  methods: {
-    async deleteCard (card) {
-      const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
-      this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-      if (card === this.selectedCard) {
-        this.setSelectedCard(0)
-      }
+  async mounted () {
+    this.frontPayment = await this.$store.dispatch('payment/payment')
+    this.fetchCards()
 
-      this.getUserCards()
+    this.$nuxt.$on('fetch-cards', () => {
+      this.fetchCards()
+    })
+  },
+  // beforeUpdate () {
+  //   this.fetchCards()
+  // },
+  methods: {
+    fetchCards () {
+      this.frontPayment.cardList().then(({ data }) => {
+        this.getUserCards({ data })
+      })
+    },
+    async deleteCard (card) {
+      await this.frontPayment.deleteCard(card)
+      this.fetchCards()
     },
     ...mapMutations({
       setIsAddPayment: 'user/setIsAddPayment',

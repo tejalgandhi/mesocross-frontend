@@ -107,7 +107,7 @@
                       </div>
                       <div class="form-group">
                         <label for="DOB">{{ $t('dob') }}</label>
-                        <b-form-datepicker v-model="form.dob" :min="minDate" :max="maxDate" :locale="$i18n.locale" />
+                        <b-form-datepicker v-model="form.dob"  :max="maxDate" :locale="$i18n.locale"></b-form-datepicker>
                       </div>
                       <div class="form-check">
                         <input id="exampleCheck1" v-model="terms" type="checkbox" class="form-check-input" @change="toggleSubmit(terms)">
@@ -146,7 +146,6 @@ export default {
         dob: ''
       },
       maxDate: new Date(),
-      minDate: new Date(),
       terms: false,
       disableButton: true
     }

@@ -140,7 +140,7 @@
       </label>
     </div>
     <div v-if="userCards.length > 0" class="col-md-4 py-4 mx-auto">
-      <button class="w-100 d-block btn btn-outline-dark" @click="setIsAddPayment(true)">
+      <button class="w-100 checkout " @click="setIsAddPayment(true)">
         {{ $t('checkout.add_new_method') }}
       </button>
     </div>
@@ -165,8 +165,43 @@
         </div>
       </label>
     </div>
+    <!--
+  <input
+    id="for13"
+    name="paymethod"
+    class="form-check-input d-none"
+    disabled
+    :checked="selectedCard == 5"
+    type="radio"
+    @change="setSelectedCard(5)"
+  >
+  -->
+    <label class="address-radio row mx-0 align-items-center mb-3 disabled-payment" for="for13">
+      <div class="col-12">
+        <div class="form-check px-0 d-flex">
+          <div class="d-flex align-items-center">
+            <img src="~/assets/img/paypal-icon.svg" class="mx-3" alt="image">
+            <label class="ml-2 form-check-label font-16 text-dark" for="for13">
+              <span class="d-block font-weight-bold">{{ $t('paypal') }}</span>
+            </label>
+          </div>
+          <span class="font-18 disable-msg">({{ $t('checkout.available_soon') }})</span>
+        </div>
+      </div>
+    </label>
   </div>
 </template>
+<style scoped>
+  .address-radio.disabled-payment {
+    background: #f5f5f5;
+    border: #dcdcdc 1px solid;
+  }
+  .disabled-payment .disable-msg {
+    /* width: -webkit-fill-available; */
+    padding-left: 10px;
+    text-align: right;
+  }
+</style>
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex'
 export default {

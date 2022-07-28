@@ -10,6 +10,7 @@ export default {
     please_add_or_select_your_card: 'Please Add or select your Card.',
     cardholder_name: 'Cardholder name',
     card_number: 'Card Number',
-    complete_purchase: 'Complete Purchase'
+    complete_purchase: 'Complete Purchase',
+    available_soon: 'Available soon'
   }
 }

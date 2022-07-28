@@ -23,18 +23,25 @@
         <p class="total">
           <label>{{ $t('total') }}</label> <span>{{ totalProductPrice }} €</span>
         </p>
-        <a href="javascript:void(0)" class="checkout" @click="$emit('countinue')">{{ titleButton }} <i class="fa fa-angle-right ml-3" /></a>
+        <a v-show="selectedCard != 5 || tabindex != 3" href="javascript:void(0)" class="checkout" @click="$emit('countinue')">{{ titleButton }} <i class="fa fa-angle-right ml-3" /></a>
+        <paypal-btn v-if="selectedCard == 5 && tabindex == 3" :amount="Number(totalProductPrice)" :order-payload="orderPayload" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex'
+import PaypalBtn from '../common/PaypalBtn'
 export default {
+  components: { PaypalBtn },
   props: {
     tabindex: {
       type: Number,
       default: 1
+    },
+    orderPayload: {
+      type: Object,
+      default: null
     }
   },
   computed: {
@@ -42,6 +49,7 @@ export default {
       return this.tabindex === 3 ? this.$t('checkout.complete_purchase') : this.$t('continue')
     },
     ...mapState({
+      selectedCard: state => state.user.selectedCard,
       products: state => state.cart.products,
       shippingCharge: state => state.cart.shippingCharge,
       discount: state => state.cart.discount,

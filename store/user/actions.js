@@ -12,7 +12,9 @@ export default {
   },
   async getUserCards ({ commit }, cardList = null) {
     try {
+      console.log('Inside Action', cardList)
       const { data } = cardList != null ? cardList : await this.$axios.get('stripe/card-list')
+      console.log('Inside Action', data)
       commit('setUserCards', data.data)
       if (data.data.length === 1) {
         commit('setSelectedCard', data.data[0].id)

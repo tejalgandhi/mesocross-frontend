@@ -144,7 +144,7 @@ export default {
   shipping_methods: 'Shipment Methods',
   payment_methods: 'Payment methods',
   secure_payments: 'Secure Payments',
-  terms_condition:"Terms and Condition",
+  terms_condition: 'Terms and Condition',
   returns_and_exchanges: 'Returns and Exchanges',
   quality_policy: 'Quality policy',
   privacy_policy: 'Privacy policy',
@@ -209,5 +209,7 @@ export default {
   search_training: 'Search Training',
   search_blogs: 'Search Blogs',
   search_prodcuts: 'Search Prodcuts',
-  trainings: 'Trainings'
+  trainings: 'Trainings',
+  purchasing_with: 'purchasing with MESOCROSS',
+  thank_you_page_receive_msg: 'You will receive a message from us on your email with your order details'
 }

@@ -142,7 +142,7 @@ export default {
   faqs: 'FAQs',
   shipping_methods: 'Métodos de envío',
   payment_methods: 'Métodos de pago',
-  terms_condition:"Términos y Condiciones",
+  terms_condition: 'Términos y Condiciones',
   secure_payments: 'Pagos Seguros',
   returns_and_exchanges: 'Devoluciones y Cambios',
   quality_policy: 'Política de calidad',
@@ -209,5 +209,7 @@ export default {
   search_training: 'Búsqueda Capacitación',
   search_blogs: 'Búsqueda Blogs',
   search_prodcuts: 'Búsqueda Productos',
-  trainings: 'Entrenamientos'
+  trainings: 'Entrenamientos',
+  purchasing_with: 'comprar con MESOCROSS',
+  thank_you_page_receive_msg: 'Recibirá un mensaje en su correo electrónico con los detalles de su pedido'
 }

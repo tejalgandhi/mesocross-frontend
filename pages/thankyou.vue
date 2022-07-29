@@ -3,13 +3,10 @@
     <div class="row mx-0">
       <div class="col-md-11 mx-auto text-center">
         <h3 class="text-center thank-you-heading">
-          {{ $t('thank_you_for') }} <br> {{ $t('purchasing') }} MESOCROSS!
+          {{ $t('thank_you_for') }} <br> {{ $t('purchasing_with') }}!
         </h3>
-        <p class="pr-1">
-          {{ $t('upload_your_receipt_of_payment_on_the') }} <a href="#" class="text-underline">{{ $t('invoice_history') }}</a> {{ $t('page') }}.
-        </p>
         <p class="pr text-secondary">
-          {{ $t('orders_will_only_be_considered_paid_after_sending_receipt_of_payment_and_receiving_the_amount_in_question_on_the_account') }}.
+          {{ $t('thank_you_page_receive_msg') }}.
         </p>
       </div>
     </div>
@@ -36,7 +33,7 @@ h3 {
 .thank-you-heading {
   font: normal normal 500 34px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #FFFFFF;
 }
 .pr-1 {
   font-weight: 500;
@@ -48,7 +45,7 @@ h3 {
 .pr {
   font: normal normal normal 16px Work Sans;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #FFFFFF;
   max-width: 540px;
   width: 100%;
   margin: 0 auto;

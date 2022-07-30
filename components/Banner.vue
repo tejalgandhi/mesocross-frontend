@@ -1,7 +1,7 @@
 <template>
-  <div class="banner">
-    <div v-if="!$fetchState.pending" class="position-relative">
-      <div v-if="isMobile()" class="overlay" />
+  <div class="banner" :class="{'hero-banner':heroBanner}">
+    <template v-if="!$fetchState.pending">
+      <!-- <div v-if="isMobile()" class="overlay" />
       <div v-if="data" class="banner-content" :class="{white: inverse}">
         <div class="container-fluid">
           <div class="row">
@@ -52,8 +52,19 @@
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
         class="ml-auto d-block"
-      />
-    </div>
+      /> -->  
+      <div class="banner-link">
+        <nuxt-link to=''><span>View Lines</span></nuxt-link>
+      </div>
+      <div class="hero-banner-image">
+        <div class="image-container">
+          <img       
+            :src="require(`../assets/img/${bannerNew}`)"
+            alt="banner"
+          />
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -74,13 +85,18 @@ export default {
     inverse: {
       type: Boolean,
       default: () => false
+    },
+    heroBanner: {
+      type: Boolean,
+      default: () => false
     }
   },
 
   data () {
     return {
       data: {},
-      type: 'product'
+      type: 'product',
+      bannerNew: 'bannerNew.jpg'
     }
   },
   async fetch () {
@@ -98,6 +114,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '~/assets/scss/mixins.scss';
 .banner {
   min-height: 400px;
   .banner-content {
@@ -112,6 +129,56 @@ export default {
         right: 0;
         text-align: left;
       }
+  }
+  &.hero-banner{
+    position: relative;
+    height: 500px;
+    min-height: 500px;
+    @media screen and (min-width:768px){
+      height: 400px;
+      min-height: 400px;
+    }
+    @media screen and (min-width:1024px){
+      height: 100vh;
+      min-height: 100vh;
+    }    
+    .hero-banner-image{
+      height: 100%;
+      @include aspect-ratio(59.94,90);
+      @media screen and (min-width:768px){
+          @include aspect-ratio(48,25);
+      }
+      @media screen and (min-width:1024px){
+        @include aspect-ratio(90,59.94);
+      }
+    }
+    .banner-link{
+      position: absolute;      
+      left: 0;
+      right: 0;
+      bottom: 0;
+      @media screen and (min-width:767px){
+        bottom: 10%;
+      }
+      z-index: 1;
+      text-align: center;
+      a{
+        position: relative;      
+        display: inline-block;
+        color: white;
+        font-size: 13px;
+        min-width: 150px;
+        @media screen and (min-width:991px){
+          min-width: 250px;
+          max-height: 40px;
+        }        
+        text-align: center;
+        padding: 8px;
+        border: 1px solid white;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+    }
   }
 }
 </style>

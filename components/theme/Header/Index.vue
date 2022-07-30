@@ -7,8 +7,9 @@
     </div>
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
-        <div class="lang_part">
+        <div class="lang_part d-md-flex">
           <CommonAccessPrice />
+          <CommonCountrySwitcher />
           <CommonLangSwitcher />
         </div>
         <div class="navbar-brand">

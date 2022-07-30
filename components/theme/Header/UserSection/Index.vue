@@ -1,6 +1,6 @@
 <template>
   <main>
-    <figure v-click-outside="hideUserTab" class="mb-0">
+    <!-- <figure v-click-outside="hideUserTab" class="mb-0">
       <img src="@/assets/img/user.svg" alt="user" @click="showUserTab = !showUserTab">
       <transition name="pop">
         <span v-if="$auth.loggedIn" class="info" />
@@ -8,7 +8,7 @@
       <transition name="show">
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
       </transition>
-    </figure>
+    </figure> -->
     <figure class="mb-0" @click="goTo('/wishlist')">
       <img src="@/assets/img/star.svg" alt="favs">
       <span v-if="wishlist" class="number">{{ wishlist }}</span>
@@ -19,6 +19,17 @@
     </figure>
     <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">
+    </figure>
+    <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
+      <caption :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+        Sign in
+      </caption>
+      <transition name="pop">
+        <span v-if="$auth.loggedIn" class="info" />
+      </transition>
+      <transition name="show">
+        <user-tab v-if="showUserTab" @close="showUserTab = false" />
+      </transition>
     </figure>
   </main>
 </template>
@@ -81,7 +92,7 @@ export default {
             position: relative;
             display: flex;
             justify-content: center;
-
+            align-items: center;
             span {
                 position: absolute;
                 border-radius: 50%;
@@ -105,6 +116,17 @@ export default {
                     color: white;
                     font-size: 0.7rem;
                 }
+            }
+
+            caption{
+              position: relative;
+              padding: 0;
+              color: rgba($color: #ffffff, $alpha: 0.8);
+              text-align: left;
+              transition: all ease-in-out 0.2s;
+              &:hover, &:active, &:visited, &.active{
+                color: #ffffff;
+              }
             }
         }
     }

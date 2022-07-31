@@ -726,6 +726,7 @@ footer .footer_bottom .copyright {
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
 }
 .welcome .form-group label{
   display: block;

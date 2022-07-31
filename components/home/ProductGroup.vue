@@ -4,17 +4,24 @@
       <h2 class="text-uppercase font-weight-normal mb-4 mb-lg-5 text-center">
         {{ $t(title) }}
       </h2>
-      <div class="row justify-content-center">
+      <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
+        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
+        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
+      </VueSlickCarousel>
+      <!-- <div class="row justify-content-center">     
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
-      </div>
+      </div> -->
     </div>
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-
+import VueSlickCarousel from 'vue-slick-carousel'
 export default {
+  components:{
+    VueSlickCarousel
+  },
   props: {
     api: {
       type: String,
@@ -63,3 +70,20 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .slick-dots{
+    position: relative;
+    margin-top:50px;
+     li{
+      width: 5px !important;
+      height: 5px;
+      margin: 0 10px;
+      border:unset;
+      border-radius: 0;
+      background: rgba($color: #ffffff, $alpha: 0.5);
+      transform: rotate(45deg);
+      transform-origin: center;
+      cursor: pointer;
+    }
+  }
+</style>

@@ -5,12 +5,20 @@
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
         <img :src="product.feature_image" class="product-image" alt="image" />
         <div class="desc_box py-4">
+          <!-- temporary condition added " v-if="className=='product-slide'" " -->
+          <div class="product-type" v-if="className=='product-slide'"> 
+            <span>core</span>
+          </div>
           <div class="prodcut-title">
             {{ product.name }}
           </div>
           <p class="product-desc">
             {{ product.short_description }}
           </p>
+          <div class="seperator" v-if="className=='product-slide'"></div>
+          <div class="product-categoty" v-if="className=='product-slide'">
+            rejuvenating cream
+          </div>
           <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
@@ -81,22 +89,70 @@ export default {
         }
     }
     .prodcut-title{
-        font: normal normal normal 20px/28px Arial;
+        color: #ffffff;
+        font-size: 20px;
         text-transform: uppercase;
-        margin-bottom: .5rem;
+        margin-bottom: .3rem;        
         @media (max-width:767px) {
           font:normal normal normal 16px/22px Arial;
         }
     }
     .product-desc{
-        color: #FFFFFF;
-        opacity: 0.6;
-        font: normal normal normal 16px/24px Arial;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-weight: 300;
     }
     .price{
       display: block;
       font-size: 20px;
       margin-top: 1rem;
     }
+    .product-type{
+      position: relative;
+      margin-bottom: 8px;
+      span{
+        position: relative;
+        text-transform: uppercase;  
+        font-size: 13px;           
+        &::after, &::before{
+          position: relative;
+          display: inline-block;
+          vertical-align: middle;
+          content: '';
+          width: 3px;
+          height: 3px;
+          border:unset;
+          border-radius: 0;
+          background: #ffffff;
+          transform: rotate(45deg);
+          transform-origin: center;
+        }
+        &::after{
+          margin-left: 10px;
+        }
+        &::before{
+          margin-right: 10px;
+        }
+      }
+    }
+    .product-categoty{
+      position: relative;
+      color: rgba($color: #ffffff, $alpha: 0.6);
+      text-transform: uppercase;
+    }    
+}
+
+.seperator{
+  position: relative;
+  margin: 10px auto;
+  &::before{
+    position: relative;
+    content: '';
+    display: block;
+    background: rgba($color: #ffffff, $alpha: 0.6);
+    width: 30px;
+    height: 1px;  
+    margin: 0 auto;      
+  }
 }
 </style>

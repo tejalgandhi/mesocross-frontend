@@ -1,8 +1,8 @@
 <template>
   <div class="banner" :class="{'hero-banner':heroBanner}">
     <template v-if="!$fetchState.pending">
-      <!-- <div v-if="isMobile()" class="overlay" />
-      <div v-if="data" class="banner-content" :class="{white: inverse}">
+      <div v-if="isMobile()" class="overlay" />
+      <div v-if="data && !heroBanner" class="banner-content" :class="{white: inverse}">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-5 text-center">
@@ -23,6 +23,7 @@
           </div>
         </div>
       </div>
+      <template v-if="!heroBanner">
       <nuxt-img
         v-if="data && data.banner"
         preload
@@ -52,18 +53,21 @@
         quality="100"
         sizes="xs:1024 md:1366 lg:1920"
         class="ml-auto d-block"
-      /> -->  
-      <div class="banner-link">
-        <nuxt-link to=''><span>View Lines</span></nuxt-link>
-      </div>
-      <div class="hero-banner-image">
-        <div class="image-container">
-          <img       
-            :src="require(`../assets/img/${bannerNew}`)"
-            alt="banner"
-          />
+      />
+      </template>
+      <template v-if="heroBanner">
+        <div class="hero-banner-image">
+          <div class="image-container">
+            <img       
+              :src="require(`../assets/img/${bannerNew}`)"
+              alt="banner"
+            />
+          </div>
         </div>
-      </div>
+        <div class="banner-link">
+          <nuxt-link to=''><span>View Lines</span></nuxt-link>
+        </div> 
+      </template>           
     </template>
   </div>
 </template>
@@ -116,6 +120,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/mixins.scss';
 .banner {
+  position: relative;
   min-height: 400px;
   .banner-content {
     text-align: center;
@@ -162,6 +167,7 @@ export default {
       }
       z-index: 1;
       text-align: center;
+      overflow: hidden;
       a{
         position: relative;      
         display: inline-block;

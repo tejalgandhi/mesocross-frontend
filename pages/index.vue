@@ -3,7 +3,7 @@
     <Banner :page-name="'home'" hero-banner />
     <HomeSegmentGroup title="segmentation" />
     <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
-    <HomeBlogs />
+    <!-- <HomeBlogs /> -->
   </div>
 </template>
 

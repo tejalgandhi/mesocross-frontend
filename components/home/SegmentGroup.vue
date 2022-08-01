@@ -15,10 +15,10 @@
 import SegmentSingle from '../product/SegmentSingle.vue'
 export default {
   components: { SegmentSingle },
-    data() {
-        return {
-            segmentList: [
-                {
+  data () {
+    return {
+      segmentList: [
+      {
                     imgicon: require('@/assets/img/segment-timeless.png'),
                     name:'timeless'
                 },

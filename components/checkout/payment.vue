@@ -146,7 +146,6 @@
         </div>
       </label>
     </div>
-    <!--
   <input
     id="for13"
     name="paymethod"
@@ -156,7 +155,6 @@
     type="radio"
     @change="setSelectedCard(5)"
   >
-  -->
     <label class="address-radio row mx-0 align-items-center mb-3 disabled-payment" for="for13">
       <div class="col-12">
         <div class="form-check px-0 d-flex">

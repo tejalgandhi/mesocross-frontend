@@ -55,5 +55,5 @@ export default {
     }
     state.selectedCard = payload
   }
-}
 
+}

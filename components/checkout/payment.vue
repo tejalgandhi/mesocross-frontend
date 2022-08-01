@@ -87,26 +87,7 @@
         </div>
       </div>
     </label>
-    <input
-      id="for13"
-      name="paymethod"
-      class="form-check-input"
-      :checked="selectedCard == 5"
-      type="radio"
-      @change="setSelectedCard(5)"
-    >
-    <label class="address-radio row mx-0 align-items-center mb-3" for="for13">
-      <div class="col-12">
-        <div class="form-check px-0 d-flex">
-          <div class="d-flex align-items-center">
-            <img src="~/assets/img/paypal-icon.svg" class="mx-3" alt="image">
-            <label class="ml-2 form-check-label font-16 text-dark" for="for13">
-              <span class="d-block font-weight-bold">{{ $t('paypal') }}</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </label>
+
     <div v-for="(card, index) in userCards" :key="index">
       <input
         :id="`for${index}`"

@@ -17,7 +17,10 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import PaypalBtn from '../common/PaypalBtn.vue'
+
 export default {
+  components: { PaypalBtn },
   props: {
     tabindex: {
       type: Number,

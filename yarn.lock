@@ -983,10 +983,10 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
-"@immera/payment-frontend@0.0.8":
-  "integrity" "sha512-SZKjEEPQnqBodtiybimnE3iW9pOwEYOPo0rvH9aQ9UJea4HJk8DfDiWMDbJdPk16KhuhL++rHTTfUssbo40Uow=="
-  "resolved" "https://registry.npmjs.org/@immera/payment-frontend/-/payment-frontend-0.0.8.tgz"
-  "version" "0.0.8"
+"@immera/payment-frontend@0.0.15":
+  "integrity" "sha512-LC8o8HmKKCV7CzBw1/Cm6GSw0b4s1kTyUPoAaxjMyfmwxkaz1jkm3NhOBsmiLRvFPuMPSc9vQsOqSdecAnS9xQ=="
+  "resolved" "https://registry.npmjs.org/@immera/payment-frontend/-/payment-frontend-0.0.15.tgz"
+  "version" "0.0.15"
   dependencies:
     "@paypal/paypal-js" "^5.0.6"
 
@@ -12096,7 +12096,7 @@
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
 
-"vuex-persistedstate@^4.0.0":
+"vuex-persistedstate@^4.1.0":
   "integrity" "sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ=="
   "resolved" "https://registry.npmjs.org/vuex-persistedstate/-/vuex-persistedstate-4.1.0.tgz"
   "version" "4.1.0"

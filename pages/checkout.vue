@@ -27,7 +27,7 @@
             </div>
           </div>
           <!-- <div id="card" /> -->
-          <CheckoutOrderSummary :tabindex="tabIndex" @countinue="continueCheckout" :order-payload="orderPayload"/>
+          <CheckoutOrderSummary :tabindex="tabIndex" :order-payload="orderPayload" @countinue="continueCheckout" />
           <b-modal
             id="multibancoModal"
             class="modal fade multibanco-modal"
@@ -156,7 +156,7 @@ export default {
   },
   methods: {
     getSelectedMethod () {
-      const methods = ['alipay', 'wechat_pay', 'multibanco', 'bank_transfer', 'paypal']
+      const methods = ['alipay', 'wechat_pay', 'multibanco', 'cash', 'paypal']
       const index = this.selectedCard - 1
       return methods.length > index ? methods[index] : 'card'
     },
@@ -178,25 +178,26 @@ export default {
     },
     continueCheckout () {
       if (this.tabIndex === 3) { // PLACE AN ORDER
+        this.$store.commit('setLoading', true, { root: true })
         this.$axios.post('/order/store', this.orderPayload).then(({ data }) => {
-          console.log(data)
-          this.frontPayment.pay({
+          return this.frontPayment.pay({
             ...this.getPaymentObject(),
             ...{ additional_info: { order: data.order } }
           }).then((paymentResponse) => {
-            console.log(data)
             if (this.orderPayload.ali_pay || this.orderPayload.wechat_pay) {
               this.handlePayment(data)
             } else if (data.status) {
               // this.setCartProduct([])
-              this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
               this.$router.push({ path: '/thankyou' })
+              this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
             }
           }).catch((err) => {
-            this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+            this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000 }, 'top-right')
           })
         }).catch((err) => {
-          console.error('Error while making payment.', err)
+          this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+        }).finally(() => {
+          this.$store.commit('setLoading', false, { root: true })
         })
       } else if (!this.address && this.tabIndex === 1) {
         this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right' })

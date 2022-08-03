@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer">
+  <footer id="footer" class="mt-5">
     <div class="support-links p-2 border-top border-bottom">
       <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center">
@@ -22,9 +22,9 @@
         </div>
       </div>
     </div>
-    <CommonNewsletter />
-    <div class="footer-main">
-      <div class="container-fluid">
+    <!-- <CommonNewsletter /> -->
+    <div class="footer-main inverse">
+      <div class="container">
         <div v-if="footerLinks" class="footer_links">
           <div class="row pt-3 pt-lg-5">
             <div class="accordion d-md-none accordion-section clearfix mb-3 col-12" role="tablist">
@@ -63,7 +63,6 @@
                       <div class="mb-5 mt-4">
                         <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">
                           Portugal (EUR)
-
                           <b-icon-chevron-down />
                         </button>
                       </div>
@@ -104,26 +103,43 @@
                 </button>
               </div>
               <div class="mb-5">
-                <h2 class="text-capitalize">
-                  Language
-                </h2>
-                <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
-                  {{ $i18n.locale.toUpperCase() }}
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2>
+                      Country
+                    </h2>
+                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('country-modal')">
+                      USA
+                      <b-icon-chevron-down />
+                    </button>
+                  </div>
+                    <div class="col-md-6">
+                      <h2>
+                        Language
+                      </h2>
+                      <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
+                        {{ $i18n.locale.toUpperCase() }}
 
-                  <b-icon-chevron-down />
-                </button>
+                        <b-icon-chevron-down />
+                      </button>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer_bottom mb-0 mt-0 mt-md-5 mb-md-4">
-          <div class="row py-3 justify-content-between">
-            <div class="col-lg-3 order-3 order-md-0">
-              <div class="copyright">
-                <p>&copy; {{ currentYear }} MESOCROSS Medical Cosmetics</p>
+        <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
+          <div class="row pt-5 pb-3 justify-content-between">
+            <div class="col-lg-4 col-md-4 order-1 order-md-0">              
+            </div>
+            <div class="col-lg-4 col-md-4 order-0 order-md-1">
+              <div class="footer-brand">
+                <figure class="brand-logo" @click="goHome">
+                  Mesocross
+                </figure>
               </div>
             </div>
-            <div class="col-lg-3 py-3 py-md-0">
+            <div class="col-lg-4 col-md-4 py-3 py-md-0 order-2 order-md-2">
               <div class="social_links">
                 <ul class="text-left text-md-center">
                   <li v-for="(link,index) in socialLinks" :key="index">
@@ -132,6 +148,13 @@
                     </a>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="copyright">
+                <p>&copy; {{ currentYear }} Mesocross Limited. All rights reserved.</p>
               </div>
             </div>
           </div>
@@ -178,18 +201,63 @@ export default {
       }
       this.$router.push(name)
     },
+    goHome () {
+      this.$router.push('/')
+    },
   }
 }
 </script>
 
-<style type="text/css">
+<style lang="scss">
 .support-links{
   background: #000;
 }
+
+.footer-main{
+  position: relative;
+  &.inverse{
+    background: #000000;
+    .footer_links{
+      h2, ul>li>a{
+        color: #ffffff;
+        opacity: 1;
+        text-transform: uppercase;
+      }
+      h2{
+        font-weight: 500;
+      }
+      ul>li>a{
+        font-size: 13px;
+        opacity: 0.6;
+      }
+    }
+    .custom-btn{
+      position: relative;
+      padding: 0.5rem .75rem;
+      color: #ffffff !important;
+      opacity: 1;
+      border-color: #ffffff !important;
+    }
+    .footer_bottom{
+      position: relative;
+      border-top: 1px solid #ffffff;
+      .copyright{
+        text-align: center;
+        color: #ffffff;
+        opacity: 0.6;
+        margin-top:30px;
+        p{
+          font-size:14px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .footer-main {
     width: 100% !important;
-    float: left;
+    float: left;    
   }
   .footer-main .card-body {
     padding-top: 0 !important;
@@ -215,13 +283,15 @@ export default {
   .accordion-section .panel-default {border-bottom: 2px solid white; padding-top: 15px} */
 }
 .custom-btn{
-    color: #000 !important;
-    opacity:.6;
-    border-color: rgba(0, 0, 0, .6) !important;
+  color: #000 !important;
+  opacity:.6;
+  border-color: rgba(0, 0, 0, .6) !important;
+}
+.footer-brand{
+  position: relative;
+  text-align: center;
+  figure.brand-logo{
+    font-size: 18px;
   }
-
-#footer{
-  background: #FFFFFF;
-  margin-top: 0;
 }
 </style>

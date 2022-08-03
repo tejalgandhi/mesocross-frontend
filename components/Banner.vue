@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div :class = "(data.page == 'home')?' banner home-banner':'banner'">
     <div v-if="!$fetchState.pending" class="position-relative">
       <div v-if="isMobile()" class="overlay" />
       <div v-if="data" class="banner-content" :class="{white: inverse}">
@@ -94,7 +94,6 @@ export default {
     }
     const { data } = await this.$axios.$get(url)
     this.data = this.type === 'product' ? data[0] : data
-    console.log(this.data)
   }
 }
 </script>

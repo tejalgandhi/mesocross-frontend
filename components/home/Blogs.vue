@@ -5,6 +5,7 @@
       <div class="row">
         <div v-for="(item, index) in blogs" :key="index" class="col align-self-center">
           <article class="box text-center">
+            <nuxt-link v-if="item.slug" :to="item | slug ">
             <figure>
               <nuxt-img
                 preload
@@ -14,13 +15,16 @@
                 quality="100"
               />
             </figure>
-            <!-- <div class="desc_box">
-              <h2 class="text-uppercase mb-3 font-weight-normal">
-                {{ item.title }}
-              </h2>
-              <p class="mb-4" v-html="item.description" />
-              <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />
-            </div> -->
+            </nuxt-link>
+
+          <!-- <div class="desc_box">
+            <h2 class="text-uppercase mb-3 font-weight-normal">
+              {{ item.title }}
+            </h2>
+            <p class="mb-4" v-html="item.description" />
+
+          </div> -->
+<!--            <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />-->
           </article>
         </div>
       </div>
@@ -33,6 +37,22 @@ export default {
   data () {
     return {
       blogs: []
+    }
+  },
+  filters: {
+    slug (value) {
+      switch (value.type) {
+        case 'product':
+          return `/product-detail/${value.slug}`
+        case 'treatment':
+          return `/products/ts/${value.slug}`
+        case 'category':
+          return `/products/${value.slug}`
+        case 'blog':
+          return `/blog-detail/${value.slug}`
+        default:
+          return ''
+      }
     }
   },
   async fetch () {
@@ -52,7 +72,7 @@ export default {
     h3{
       letter-spacing: 0px;
       color: #FFFFFF;
-      font-size: 40px; 
+      font-size: 40px;
       text-align:center;
       margin-bottom:100px;
       font-weight:300;

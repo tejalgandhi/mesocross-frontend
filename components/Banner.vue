@@ -24,6 +24,36 @@
         </div>
       </div>
     </div>
+    <nuxt-img
+        v-if="data && data.banner"
+        preload
+        format="webp"
+        :src="data.banner"
+        alt="banner"
+        quality="100"
+        sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
+      />
+      <nuxt-img
+        v-else-if="data && data.image"
+        preload
+        format="webp"
+        :src="data.image"
+        alt="banner"
+        quality="100"
+        sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
+      />
+      <nuxt-img
+        v-else
+        preload
+        format="webp"
+        :src="require(`../assets/img/${defualtImageName}`)"
+        alt="banner"
+        quality="100"
+        sizes="xs:1024 md:1366 lg:1920"
+        class="ml-auto d-block"
+      />
   </div>
 </template>
 
@@ -69,6 +99,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .banner {
+  img{
+    width: 100%;
+  }
   .banner-content {
     text-align: center;
     padding: 2rem;

@@ -1,8 +1,8 @@
 <template>
   <div>
     <Banner :page-name="'home'" />
-    <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
     <HomeBlogs />
+    <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
   </div>
 </template>
 

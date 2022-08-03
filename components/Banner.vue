@@ -44,16 +44,16 @@
         sizes="xs:1024 md:1366 lg:1920"
         class="ml-auto d-block"
       />
-      <nuxt-img
-        v-else
-        preload
-        format="webp"
-        :src="require(`../assets/img/${defualtImageName}`)"
-        alt="banner"
-        quality="100"
-        sizes="xs:1024 md:1366 lg:1920"
-        class="ml-auto d-block"
-      />
+<!--      <nuxt-img-->
+<!--        v-else-->
+<!--        preload-->
+<!--        format="webp"-->
+<!--        :src="require(`../assets/img/${defualtImageName}`)"-->
+<!--        alt="banner"-->
+<!--        quality="100"-->
+<!--        sizes="xs:1024 md:1366 lg:1920"-->
+<!--        class="ml-auto d-block"-->
+<!--      />-->
   </div>
 </template>
 
@@ -94,6 +94,7 @@ export default {
     }
     const { data } = await this.$axios.$get(url)
     this.data = this.type === 'product' ? data[0] : data
+    console.log(this.data)
   }
 }
 </script>

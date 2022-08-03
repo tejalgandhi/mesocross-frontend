@@ -3,8 +3,8 @@
     <Banner :page-name="'our-story'" />
     <template v-if="data.length">
       <!-- <UiMission :data="ourMission" :first="true" /> -->
-      <text-image-container :data="solution1" />
-      <text-image-container :data="solution2" :reverse="true" />
+      <text-image-container :data="solution1"   v-if="solution1.content"/>
+      <text-image-container :data="solution2"  v-if="solution2.content" :reverse="true" />
     </template>
   </div>
 </template>

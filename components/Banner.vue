@@ -34,8 +34,8 @@
     <div v-if="data" class="banner-content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-10 text-center mx-auto">
-            <!-- <h1 v-if="data.title" class="text-uppercase font-weight-normal mb-3">
+          <div class="col-md-10 text-center mx-auto" v-if= "data.page !== 'home'">
+             <h1 v-if="data.title" class="text-uppercase font-weight-normal mb-3">
               {{ data.title }}
             </h1>
             <h1 v-else class="text-uppercase font-weight-normal mb-3">
@@ -46,8 +46,8 @@
             </p>
             <p class="px-lg-5 mb-4" v-else>
               {{ data.description }}
-            </p> -->
-            <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
+            </p>
+            <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" v-if= "data.page == 'home'"/>
           </div>
         </div>
       </div>

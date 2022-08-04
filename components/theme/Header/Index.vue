@@ -7,7 +7,7 @@
     </div>
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
-        <div class="lang_part d-md-flex">
+        <div class="lang_part d-md-flex" @mouseover="isActive = 0">
           <CommonAccessPrice />
           <CommonCountrySwitcher />
           <CommonLangSwitcher />
@@ -30,8 +30,8 @@
             </template>
           </section>
         </section>
+        <ThemeHeaderSubMenu v-if="isActive" :slug="headItems.filter(el => el.id === isActive)" :data="subItems[isActive]" @close="isActive = 0" />
       </nav>
-      <ThemeHeaderSubMenu v-if="isActive" :slug="headItems.filter(el => el.id === isActive)" :data="subItems[isActive]" @close="isActive = 0" />
     </template>
     <template v-else>
       <ThemeHeaderMobileNav :from="isActive" @openMenu="isActive = 1" @closeMenu="isActive = 0" />

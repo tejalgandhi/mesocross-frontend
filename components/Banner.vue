@@ -47,8 +47,10 @@
             <p class="px-lg-5 mb-4" v-else>
               {{ data.description }}
             </p>
-            <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" v-if= "data.page == 'home'"/>
           </div>
+            <div v-if= "data.page == 'home'">
+            <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
+            </div>
         </div>
       </div>
     </div>

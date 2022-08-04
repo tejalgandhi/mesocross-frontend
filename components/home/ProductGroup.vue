@@ -1,11 +1,10 @@
 <template>
   <main v-if="newProducts.length > 0">
     <div class="container-fluid">
-      <h2 class="text-uppercase font-weight-normal mb-4 mb-lg-5 text-center">
+      <h2 class="text-uppercase font-weight-normal mb-4 mt-5 mb-lg-5 text-center">
         {{ $t(title) }}
       </h2>
       <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
-        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
       </VueSlickCarousel>
       <!-- <div class="row justify-content-center">     

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5">
+  <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5 mt-5">
     <div class="container-fluid">
       <h3>SEGMENTATION</h3>
       <div class="row">

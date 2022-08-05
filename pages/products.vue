@@ -19,16 +19,26 @@
           </div>
           <div class="col-auto">
             <div class="sorting d-flex flex-wrap">
-              <select v-model="priceSorting" class="d-none d-md-block ml-0 bg-dark form-control text-light w-auto" @change="sortPrice">
+              <select v-model="sortType" class="d-none d-md-block ml-0 bg-dark form-control text-light w-auto" @change="sortPrice">
                 <option value="">
                   {{ $t('default_sorting') }}
                 </option>
-                <option value="asc">
+                <option value="alpha_a_z">
+                  {{ $t('alpha_a_z') }}
+                </option>
+                <option value="alpha_z_a">
+                  {{ $t('alpha_z_a') }}
+                </option>
+                <option value="best_selling">
+                  {{ $t('best_selling') }}
+                </option>
+                <option value="low_to_high">
                   {{ $t('low_to_high') }}
                 </option>
-                <option value="desc">
+                <option value="high_to_low">
                   {{ $t('high_to_low') }}
                 </option>
+
               </select>
 
               <button
@@ -66,7 +76,7 @@
             </button>
           </div>
         </template>
-        <ProductFilter ref="prodcuFilter" class="p-4" @fetchProducts="fetchProducts" @priceSort="setSorting" />
+        <ProductFilter ref="prodcuFilter" class="p-4" @fetchProducts="fetchProducts" @priceSort="setSorting"  @alphaSorting="setAlphaBeticSort" @bestSellingChanged="setBestSellSort"/>
       </b-sidebar>
       <div class="container-fluid">
         <div class="row">
@@ -112,7 +122,10 @@ export default {
   data () {
     return {
       filters: [],
+      sortType: '',
       priceSorting: '',
+      alphaSorting: '',
+      bestSellSorting: '',
       loadingFinish: false,
       products: [],
       paginate: {},
@@ -180,12 +193,50 @@ export default {
       this.fetchProducts(1, url)
     },
     sortPrice () {
-      this.setPriceSort(this.priceSorting)
+      this.priceSorting ='';
+      this.bestSellSorting ='';
+      this.alphaSorting ='';
+      if(this.sortType == 'alpha_a_z'){
+        this.alphaSorting='asc'
+        this.setAlphaSort(this.alphaSorting)
+      }
+      if(this.sortType == 'alpha_z_a'){
+        this.alphaSorting='desc'
+        this.setAlphaSort(this.alphaSorting)
+      }
+      if(this.sortType == 'best_selling'){
+        this.bestSellSorting='1'
+        this.setBestSellSort(this.bestSellSorting)
+      }
+      if(this.sortType == 'low_to_high'){
+        this.priceSorting='asc'
+        this.setPriceSort(this.priceSorting)
+      }
+      if(this.sortType == 'high_to_low'){
+        this.priceSorting='desc'
+        this.setPriceSort(this.priceSorting)
+      }
       this.fetchProducts(1)
     },
     setSorting (sort) {
       this.priceSorting = sort
+      this.bestSellSorting = ''
+      this.alphaSorting = ''
       this.setPriceSort(this.priceSorting)
+      this.fetchProducts(1)
+    },
+    setAlphaBeticSort (sort) {
+      this.priceSorting = ''
+      this.bestSellSorting = ''
+      this.alphaSorting = sort
+      this.setAlphaSort(this.alphaSorting)
+      this.fetchProducts(1)
+    },
+    setBestSellSort (sort) {
+      this.priceSorting = ''
+      this.bestSellSorting = sort
+      this.alphaSorting = ''
+      this.setBestSellSort(this.bestSellSorting)
       this.fetchProducts(1)
     },
     applyMobileFilter () {
@@ -209,6 +260,12 @@ export default {
         if (this.priceSorting) {
           url = `${url}&price=${this.priceSorting}`
         }
+        if (this.bestSellSorting) {
+          url = `${url}&best_seller=${this.bestSellSorting}`
+        }
+        if (this.alphaSorting) {
+          url = `${url}&alphabetic=${this.alphaSorting}`
+        }
         this.$nuxt.$loading.start()
       }
       const data = await this.$axios.$get(url)
@@ -230,6 +287,8 @@ export default {
     }),
     ...mapMutations({
       setPriceSort: 'product/setPriceSort',
+      setAlphaSort: 'product/setAlphaSort',
+      setBestSellSort: 'product/setBestSellSort',
       setSelectedFilters: 'product/setSelectedFilters'
     })
   }

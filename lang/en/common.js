@@ -164,7 +164,7 @@ export default {
   spa_clinic: 'Spa Clinic',
   distributor: 'Distributor',
   other_please_describe: 'Other (please describe)',
-  additional_information: 'Additional information',
+  additional_information: 'Benefits',
   please_select_captcha: 'Please Select Captcha',
   Send: 'Send',
   subject: 'Subject',
@@ -176,10 +176,10 @@ export default {
   please_select_any_option: 'Please select any Option',
   dob: 'Date of Birth',
   Share: 'Share',
-  Similar_Products: 'Similar Products',
+  Similar_Products: 'Related Products',
   Collection: 'Collection',
-  Main_Characteristics_and_Effects: 'Main Characteristics & Effects',
-  application_protocol: 'Application Protocol',
+  Main_Characteristics_and_Effects: 'Description',
+  application_protocol: 'Details',
   get_a_personalized_treatment: 'Get a personalized treatment',
   application: 'Application',
   contact_a_professional: 'Contact a Professional',
@@ -211,5 +211,10 @@ export default {
   search_prodcuts: 'Search Prodcuts',
   trainings: 'Trainings',
   purchasing_with: 'purchasing with MESOCROSS',
-  thank_you_page_receive_msg: 'You will receive a message from us on your email with your order details'
+  thank_you_page_receive_msg: 'You will receive a message from us on your email with your order details',
+  how_to_apply: 'How to apply',
+  alpha_a_z: 'Alphabetic A-Z',
+  alpha_z_a: 'Alphabetic Z-A',
+  best_selling: 'Best Selling'
+
 }

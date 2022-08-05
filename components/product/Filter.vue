@@ -11,6 +11,15 @@
         <b-collapse id="collapse-1">
           <div class="filter-list">
             <b-form-group v-slot="{ ariaDescribedby }">
+              <b-form-radio v-model="bestSellingSort" :aria-describedby="ariaDescribedby" name="some-radios" value="asc" @change="bestSellingChanged(1)">
+                {{ $t('best_selling') }}
+              </b-form-radio>
+              <b-form-radio v-model="alphabeticSort" :aria-describedby="ariaDescribedby" name="some-radios" value="asc" @change="alphaChanged('asc')">
+                {{ $t('alpha_a_z') }}
+              </b-form-radio>
+              <b-form-radio v-model="alphabeticSort" :aria-describedby="ariaDescribedby" name="some-radios" value="desc" @change="alphaChanged('desc')">
+                {{ $t('alpha_z_a') }}
+              </b-form-radio>
               <b-form-radio v-model="priceSort" :aria-describedby="ariaDescribedby" name="some-radios" value="asc" @change="priceChanged('asc')">
                 {{ $t('low_to_high') }}
               </b-form-radio>
@@ -132,7 +141,9 @@ export default {
       showTreatment: false,
       selectAllTreatment: false,
       selected: '',
-      priceSort: ''
+      priceSort: '',
+      alphabeticSort: '',
+      bestSellingSort: ''
     }
   },
   async fetch () {
@@ -216,6 +227,14 @@ export default {
     priceChanged (price) {
       this.priceSort = price
       this.$emit('priceSort', this.priceSort)
+    },
+    alphaChanged (alpha) {
+      this.alphabeticSort = alpha
+      this.$emit('alphabeticSort', this.alphabeticSort)
+    },
+    bestSellingChanged (sell) {
+      this.bestSellingSort = sell
+      this.$emit('bestSellingSort', this.bestSellingSort)
     },
     selectAllChild (data) {
       data.child = data.child.map((val) => {

@@ -23,7 +23,7 @@
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
 
       <caption  v-if="$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
-        <img src="@/assets/img/user.svg" alt="search" class="mr-3">{{ userName }}
+        <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </caption>
       <caption :class="{'active':showUserTab}" v-else @click="showUserTab = !showUserTab">
         Sign in

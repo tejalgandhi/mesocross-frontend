@@ -24,7 +24,7 @@
     </div>
     <!-- <CommonNewsletter /> -->
     <div class="footer-main inverse">
-      <div class="container">
+      <div class="container-fluid">
         <div v-if="footerLinks" class="footer_links">
           <div class="row pt-3 pt-lg-5">
             <div class="accordion d-md-none accordion-section clearfix mb-3 col-12" role="tablist">
@@ -95,11 +95,11 @@
 
             <div class="col-md-3 d-none d-md-block">
               <div class="mb-5">
-                <h2>DELIVERY DESTINATION OR REGION</h2>
+                <h2>WELCOME TO THE NEW YOUTH</h2>
                 <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">
-                  Portugal (EUR)
+                  SUBSCRIBE TO OUR NEWSLETTER
 
-                  <b-icon-chevron-down />
+                  <b-icon-chevron-right />
                 </button>
               </div>
               <div class="mb-5">

@@ -15,7 +15,7 @@
     </figure>
     <figure class="mb-0" @click="goTo('/cart')">
       <img src="@/assets/img/basket.svg" alt="cart">
-      <span v-if="products" class="number">{{ products.length }}</span>
+      <span v-if="products.length > 0" class="number" >{{ products.length }}</span>
     </figure>
     <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">

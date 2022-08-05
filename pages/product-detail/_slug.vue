@@ -152,9 +152,6 @@
         </div>
       </div>
     </div>
-    <div class="banner-section py-lg-5">
-      <Banner :page-name="'product'" />
-    </div>
     <template v-if="complementry.length > 0">
       <h3 class="text-uppercase font-weight-normal text-center mb-4">{{ $t('Similar_Products') }}</h3>
       <div class="row">

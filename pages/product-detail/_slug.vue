@@ -3,7 +3,7 @@
     <!-- <Bredcrumb :items="breadcrumbs" /> -->
     <div class="prod_detail_box">
       <div class="container-fluid position-relative">
-        <div class="row">
+        <div class="row mb-4">
           <div class="col-lg-7 product-image p-4">
             <!-- eslint-disable-next-line vue/attribute-hyphenation -->
             <div v-if="productImages[0] !== undefined" class="images main-image">

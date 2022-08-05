@@ -1,43 +1,42 @@
 <template>
   <div class="product-page">
     <Banner :page-name="'product'" />
-    <Bredcrumb :items="breadcrumbs" />
     <div class="filter_result">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-auto">
-            <p style="white-space: nowrap" class="mr-2">
-              {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
-            </p>
-          </div>
-          <div class="col col order-2 order-sm-0">
-            <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
-              <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
-                {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
-              </a>
+        <div class="col-lg-10 px-0 mx-auto">
+          <div class="row">
+            <div class="col-auto">
+              <div class="sorting d-flex flex-wrap">
+                <button
+                  v-b-toggle.filter-mobile
+                  class="btn p-2 ml-2 px-3"
+                >
+                  {{ $t('filters') }}
+                  <b-icon-chevron-down />
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="col-auto">
-            <div class="sorting d-flex flex-wrap">
-              <select v-model="priceSorting" class="d-none d-md-block ml-0 bg-dark form-control text-light w-auto" @change="sortPrice">
-                <option value="">
-                  {{ $t('default_sorting') }}
-                </option>
-                <option value="asc">
-                  {{ $t('low_to_high') }}
-                </option>
-                <option value="desc">
-                  {{ $t('high_to_low') }}
-                </option>
-              </select>
-
-              <button
-                v-b-toggle.filter-mobile
-                class="btn btn-primary p-2 ml-2 px-3"
-              >
-                <b-icon-filter />
-                {{ $t('filters') }} ({{ selectedFilters.length }})
-              </button>
+            <div class="col col order-2 order-sm-0">
+              <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
+                <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
+                  {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
+                </a>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="sorting d-flex flex-wrap">
+                <select v-model="priceSorting" class="text-dark p-2" @change="sortPrice">
+                  <option value="">
+                    {{ $t('default_sorting') }}
+                  </option>
+                  <option value="asc">
+                    {{ $t('low_to_high') }}
+                  </option>
+                  <option value="desc">
+                    {{ $t('high_to_low') }}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -51,7 +50,7 @@
         :title="$t('filters')"
         backdrop
         shadow
-        right
+        left
         header-class="py-3 px-4"
       >
         <template #footer>
@@ -142,22 +141,9 @@ export default {
     this.setSelectedFilters([])
   },
   mounted () {
-    if (this.selectedSlugName) {
-      this.breadcrumbs.push(
-        {
-          path: '/',
-          label: this.selectedSlugName,
-          active: 1
-        }
-      )
-    }
-    this.activeLastBreadCrumb()
     showPricePopup(this)
   },
   methods: {
-    activeLastBreadCrumb () {
-      this.breadcrumbs[this.breadcrumbs.length - 1].active = 1
-    },
     removeFilter (index) {
       setTimeout(() => {
         this.$refs.prodcuFilter.removeFilter(this.selectedFilters[index])
@@ -267,5 +253,11 @@ export default {
   color: #25282A;
   background: white;
   border: 1px solid #25282A;
+}
+.sorting{
+  option{
+    color: #000 !important;
+    text-transform: uppercase;
+  }
 }
 </style>

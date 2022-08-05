@@ -57,7 +57,7 @@ img { max-width: 100%; vertical-align: middle; border-radius: 0 }
 :-ms-input-placeholder {color:#B9B9B9;}
 body{color: #fff;font-family: 'Arquitecta', sans-serif; font-weight: 300;}
 h1, h2, h3, h4, h5, h6{margin:0;padding:0}
-p{ font-weight: 300;font-size: 16px;font-family: 'Arquitecta', sans-serif;}
+p{ font-weight: 300;font-family: 'Arquitecta', sans-serif;}
 .trans{transition:300ms all;-webkit-transition:300ms all;}
 /*Custom Checkbox*/
 /*Custom Checkbox*/
@@ -282,7 +282,7 @@ footer .footer_bottom .copyright {
 .treatment ul li img{display: block;margin: 0 auto;}
 .treatment ul li span{font-size: 16px; margin-top: 5px; display: block;}
 
-.filter_result{margin-bottom: 50px;}
+.filter_result{margin-bottom: 80px;}
 .filter_result label{ font-size: 24px;font-weight: 500;}
 .filter_result .selected_filter a{color: #fff; font-size: 14px; border:1px solid #e2e6ef; text-align: center;padding: 3px 10px
 ; display: inline-block;}
@@ -375,15 +375,25 @@ footer .footer_bottom .copyright {
 .recommended h2{font-size: 40px; color: #FFFFFF; font-weight: 500;}
 .recommended p{font-size: 16px; color: #FFFFFF;    margin: 30px 0;}
 .recommended a{font-size: 16px;padding: 10px; width: 224px; display: inline-block; border: 1px solid #54565A; border-radius: 4px;text-align: center;}
-.prod_detail_box .prod_desc{position: relative;}
+.prod_detail_box .prod_desc{position: relative;     max-width: 320px; margin: 0 auto;}
 .prod_detail_box .prod_desc .fav{position: absolute;right: 0; top: 70px; width: 36px; height: 36px;}
-.prod_detail_box .prod_desc h1{color: #FFFFFF;font-size: 30px; font-weight: 500;margin-bottom: 10px;}
+.prod_detail_box .prod_desc h1{color: #FFFFFF;font: normal normal 900 44px/60px Arquitecta;
+  margin-bottom: 10px;}
+  .prod_detail_box .prod_desc h1:after{
+    content: "";
+    width: 62px;
+    height: 1px;
+    background: #FFF;
+    display: block;
+    margin: 1rem auto;
+  }
 .prod_detail_box .prod_desc label{color: #FFFFFF;font-size: 16px; margin-bottom: 10px;display:block;}
 .prod_detail_box .prod_desc span{color: #FFFFFF;font-size: 30px; margin-bottom: 20px;display:block;}
 .prod_detail_box .prod_desc p {
   margin-bottom: 20px;
   display: block;
-  font: normal normal normal 16px/24px Arquitecta;
+  font: normal normal 300 24px/30px Arquitecta;
+
   letter-spacing: 0px;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -912,6 +922,8 @@ footer .footer_bottom .copyright {
 .certificate ul img{max-width: 210px; max-height: 130px;filter: grayscale(100%);}
 .btn-plus {
     position: relative;
+    font-weight: normal;
+    font-size: 1.25rem;
 }
 .btn-plus:before, .btn-plus:after {
     width: 20px;
@@ -945,3 +957,12 @@ footer .footer_bottom .copyright {
 #bankTransferModal .welcome button{background: #000; color: #fff;}
 
 #payment label img { max-width: 34px; }
+  .accordion-detail .card-header button{
+    font: normal normal bold 28px/30px Arquitecta;
+  }
+  .accordion-detail {
+    font: normal normal 300 24px/29px Arquitecta;
+  }
+  .accordion-detail > .card{
+    margin: 1rem 0;
+  }

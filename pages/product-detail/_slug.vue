@@ -208,6 +208,7 @@ export default {
   },
   data () {
     return {
+      upHere: false,
       otherSolutions: [],
       collections: [],
       complementry: [],

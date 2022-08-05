@@ -12,6 +12,8 @@ export default () => ({
   productPaginate: {},
   selectedFilters: [],
   priceSort: '',
+  bestSellingSort: '',
+  alphabeticSort: '',
   searchPreference: {},
   treatmentSolutions: []
 })

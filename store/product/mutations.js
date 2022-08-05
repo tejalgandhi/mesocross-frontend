@@ -14,6 +14,12 @@ export default {
   setPriceSort (state, payload) {
     state.priceSort = payload
   },
+  setAlphaSort (state, payload) {
+    state.alphabeticSort = payload
+  },
+  setBestSellSort (state, payload) {
+    state.bestSellingSort = payload
+  },
   setWishListData (state, payload) {
     state.wishList = payload
   },

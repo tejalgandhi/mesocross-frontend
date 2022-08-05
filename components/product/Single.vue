@@ -15,10 +15,10 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          <div v-if="className=='product-slide'" class="seperator" />
-          <div v-if="className=='product-slide'" class="product-categoty">
-            rejuvenating cream
-          </div>
+          <!--          <div class="seperator" v-if="className=='product-slide'"></div>-->
+          <!--          <div class="product-categoty" v-if="className=='product-slide'">-->
+          <!--            rejuvenating cream-->
+          <!--          </div>-->
           <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>

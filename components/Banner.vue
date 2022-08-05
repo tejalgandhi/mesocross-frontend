@@ -102,7 +102,7 @@ export default {
   }
 }
 .banner {
-
+  padding: 60px 0;
   .banner-content {
     text-align: center;
     padding: 2rem;

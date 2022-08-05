@@ -8,6 +8,7 @@
     <b-modal
       id="lang"
       class="modal fade"
+      dialog-class="lang-modal"
       tabindex="-1"
       aria-hidden="true"
       centered

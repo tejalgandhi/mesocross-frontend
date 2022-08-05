@@ -370,12 +370,12 @@ export default {
     height: 48px;
     width: 110px;
     background: transparent;
-    border-color: rgb(255 255 255 / 12%);
+    border-color: rgba(255,255,255, 0.12);
     color: #FFF;
     text-align: center;
 }
 .btn-wishlist{
-  border-color: rgb(255 255 255 / 12%);
+  border-color: rgba(255,255,255, 0.12);
 }
 @media (min-width: 992px) {
   .prod_desc {

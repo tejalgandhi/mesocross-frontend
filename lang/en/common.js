@@ -98,7 +98,7 @@ export default {
   best_sellers: 'Best sellers',
   see_all_products: 'See all products',
   new_releases: 'New releases',
-  new_collection: 'NEW COLLECTION',
+  new_collection: 'MESOCROSS UNIQUE SPECIALS',
   months: 'Months',
   themes: 'Themes',
   view_more: 'View more',

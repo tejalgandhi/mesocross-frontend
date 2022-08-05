@@ -1,6 +1,6 @@
 <template>
   <main>
-    <figure v-click-outside="hideUserTab" class="mb-0">
+    <!-- <figure v-click-outside="hideUserTab" class="mb-0">
       <img src="@/assets/img/user.svg" alt="user" @click="showUserTab = !showUserTab">
       <transition name="pop">
         <span v-if="$auth.loggedIn" class="info" />
@@ -8,23 +8,38 @@
       <transition name="show">
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
       </transition>
-    </figure>
+    </figure> -->
     <figure class="mb-0" @click="goTo('/wishlist')">
       <img src="@/assets/img/star.svg" alt="favs">
       <span v-if="wishlist" class="number">{{ wishlist }}</span>
     </figure>
     <figure class="mb-0" @click="goTo('/cart')">
       <img src="@/assets/img/basket.svg" alt="cart">
-      <span v-if="products" class="number">{{ products }}</span>
+      <span v-if="products" class="number">{{ products.length }}</span>
     </figure>
     <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">
+    </figure>
+    <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
+
+      <caption  v-if="$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+        <img src="@/assets/img/user.svg" alt="search" class="mr-3">{{ userName }}
+      </caption>
+      <caption :class="{'active':showUserTab}" v-else @click="showUserTab = !showUserTab">
+        Sign in
+      </caption>
+      <transition name="pop">
+        <span v-if="$auth.loggedIn" class="info" />
+      </transition>
+      <transition name="show">
+        <user-tab v-if="showUserTab" @close="showUserTab = false" />
+      </transition>
     </figure>
   </main>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import UserTab from './UserProfile.vue'
 export default {
   components: {
@@ -42,7 +57,23 @@ export default {
     ...mapGetters({
       products: 'cart/totalUnits' || 0,
       wishlist: 'cart/totalFavs' || 0
-    })
+    }),
+    ...mapState({
+      wishList: state => state.cart.wishList,
+      products: state => state.cart.products,
+      isLoggedin: state => state.user.loggedIn,
+      loggedinUser: state => state.user.loggedinUser
+    }),
+    fullName () {
+      return (this.$auth.loggedIn && this.loggedinUser?.full_name) ? `${this.loggedinUser?.full_name.substring(0, 5)}...` : ''
+    },
+    userName () {
+      let userName = this.loggedinUser.full_name
+      if (this.loggedinUser.type === 1 && this.loggedinUser.company_name) {
+        userName = this.loggedinUser.company_name
+      }
+      return userName
+    }
   },
 
   methods: {
@@ -81,7 +112,7 @@ export default {
             position: relative;
             display: flex;
             justify-content: center;
-
+            align-items: center;
             span {
                 position: absolute;
                 border-radius: 50%;
@@ -105,6 +136,17 @@ export default {
                     color: white;
                     font-size: 0.7rem;
                 }
+            }
+
+            caption{
+              position: relative;
+              padding: 0;
+              color: rgba($color: #ffffff, $alpha: 0.8);
+              text-align: left;
+              transition: all ease-in-out 0.2s;
+              &:hover, &:active, &:visited, &.active{
+                color: #ffffff;
+              }
             }
         }
     }

@@ -8,7 +8,7 @@
         </a>
         <ProductSingle :key="index" :product="product" :class-name="'products'" />
       </div>
-      <div v-if="products.length == 0 && loadingFinish">
+      <div v-if="products.length == 0">
         <h3>{{ $t('no_product_found') }}</h3>
       </div>
       <div v-if="paginate.meta && paginate.meta.last_page > paginate.meta.current_page" class="view_more">

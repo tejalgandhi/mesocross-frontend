@@ -4,7 +4,7 @@
     <template v-if="!$fetchState.pending">
       <text-image-container :data="whoweare" />
       <!-- <UiMission :data="ourMission" /> -->
-      <text-image-container :data="philosophy" :first="true" :reverse="true" />
+      <text-image-container :data="philosophy"  v-if="philosophy.content" :first="true" :reverse="true" />
       <text-image-container v-if="last_content.content" :data="last_content" />
     </template>
     <AboutUsCertificate />

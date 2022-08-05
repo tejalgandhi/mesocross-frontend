@@ -31,11 +31,9 @@ export default {
         margin: 0 auto;
         display: flex;
         align-items: center;
-        gap: 4rem;
         width: 80%;
         max-width: 1600px;
-        padding: 80px 0;
-
+        padding: 200px 0;
         @media screen and (max-width: 1200px){
             flex-direction: column;
             width: 85%;
@@ -61,6 +59,7 @@ export default {
                 width: 100%;
                 object-fit: cover;
                 -webkit-user-drag: none;
+                filter: grayscale(100%);
             }
         }
 
@@ -81,6 +80,11 @@ export default {
                 font-size: 2.125rem;
                 font-weight: normal;
             }
+
+            p{
+              margin-bottom: 15px;
+            }
+
         }
     }
 </style>

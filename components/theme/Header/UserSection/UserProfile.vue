@@ -5,7 +5,8 @@
     </template>
     <template v-else>
       <div class="items">
-        <span class="name" @click="goTo('/dashboard')">{{ loggedinUser.full_name }}</span>
+        <span class="name" @click="goTo('/dashboard')" v-if="loggedinUser.full_name">{{ loggedinUser.full_name }}</span>
+        <span class="name" @click="goTo('/dashboard')" v-else>{{ loggedinUser.name }}</span>
         <div class="tabs">
           <span v-if="$auth.user.type === 1" @click="goTo('/dashboard?page=personal-data')">{{ $t('dashboard.personal_data') }}</span>
           <span v-else-if="$auth.user.type === 2" @click="goTo('/dashboard?page=company-data')">{{ $t('dashboard.company_data') }}</span>

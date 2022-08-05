@@ -215,6 +215,6 @@ export default {
   how_to_apply: 'Como aplicar',
   alpha_a_z: 'Alfabética A-Z',
   alpha_z_a: 'Alfabético Z-A',
-  best_selling: 'Mais vendidos'
-
+  best_selling: 'Mais vendidos',
+  virtual_consultation: 'CONSULTA VIRTUAL'
 }

@@ -4,8 +4,8 @@
       <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center">
           <div class="col-4 border-right">
-            <nuxt-link to="/customize-treatment" class="btn btn-default w-100 px-0">
-             VIRTUAL CONSULTATION
+            <nuxt-link to="/virtual-consultation" class="btn btn-default w-100 px-0">
+              {{$t('virtual_consultation')}}
             </nuxt-link>
           </div>
           <div class="col-4 border-right">

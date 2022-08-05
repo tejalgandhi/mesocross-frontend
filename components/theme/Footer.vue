@@ -4,9 +4,9 @@
       <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center">
           <div class="col-4 border-right">
-            <button class="btn btn-default w-100 px-0">
-              HOW TO SHOP?
-            </button>
+            <nuxt-link to="/virtual-consultation" class="btn btn-default w-100 px-0">
+              {{$t('virtual_consultation')}}
+            </nuxt-link>
           </div>
           <div class="col-4 border-right">
             <nuxt-link to="/services/faq" class="btn btn-default w-100 px-0">
@@ -130,7 +130,7 @@
         </div>
         <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
           <div class="row pt-5 pb-3 justify-content-between">
-            <div class="col-lg-4 col-md-4 order-1 order-md-0">              
+            <div class="col-lg-4 col-md-4 order-1 order-md-0">
             </div>
             <div class="col-lg-4 col-md-4 order-0 order-md-1">
               <div class="footer-brand">
@@ -257,7 +257,7 @@ export default {
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .footer-main {
     width: 100% !important;
-    float: left;    
+    float: left;
   }
   .footer-main .card-body {
     padding-top: 0 !important;

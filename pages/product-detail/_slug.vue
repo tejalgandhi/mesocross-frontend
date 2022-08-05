@@ -62,14 +62,12 @@
                   <b-card no-body class="mb-1">
                     <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                       <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
-                        CONTACT A PROFESSIONAL
+                       {{$t('how_to_apply')}}
                       </b-button>
                     </b-card-header>
                     <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
                       <b-card-body>
-                        <div>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, omnis? Blanditiis vel consectetur fuga hic, nobis odit laborum architecto corporis ut est ratione cum aliquid maxime temporibus, quia minus quis.
-                        </div>
+                        <div v-html="product.contact_professional" />
                       </b-card-body>
                     </b-collapse>
                   </b-card>
@@ -141,9 +139,17 @@
                     +
                   </button>
                 </div> -->
-                <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart">{{ $t('add_to_cart') }}</a>
+                <div @mouseover="upHere = true" @mouseleave="upHere = false"  >
+                  <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart" >
+                  {{price}}€
+                 <span v-show="upHere"> {{ $t('add_to_cart') }}</span>
+                  </a>
+                </div>
               </div>
               <div class="clearfix"></div>
+              <div class="mt-4">
+                <p class="d-block mb-2 delivery-text">Ref:{{product.ref_number}}</p>
+              </div>
               <div class="mt-4">
                 <p class="d-block mb-2 delivery-text">Delivery time 2-5 business days.<br /> returns</p>
               </div>
@@ -151,9 +157,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="banner-section py-lg-5">
-      <Banner :page-name="'product'" />
     </div>
     <template v-if="complementry.length > 0">
       <h3 class="text-uppercase font-weight-normal text-center mb-4">{{ $t('Similar_Products') }}</h3>
@@ -176,6 +179,7 @@ export default {
   },
   data () {
     return {
+      upHere: false,
       otherSolutions: [],
       collections: [],
       complementry: [],

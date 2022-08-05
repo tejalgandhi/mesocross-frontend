@@ -21,16 +21,6 @@
         quality="100"
         class="mx-auto d-block"
       />
-<!--      <nuxt-img-->
-<!--        v-else-->
-<!--        preload-->
-<!--        format="webp"-->
-<!--        :src="require(`../assets/img/${defualtImageName}`)"-->
-<!--        alt="banner"-->
-<!--        quality="100"-->
-<!--        sizes="xs:1024 md:1366 lg:1920"-->
-<!--        class="ml-auto d-block"-->
-<!--      />-->
     <div v-if="data" class="banner-content">
       <div class="container-fluid">
         <div class="row">
@@ -48,7 +38,7 @@
               {{ data.description }}
             </p>
           </div>
-            <div v-if= "data.page == 'home'">
+            <div v-if= "data.page == 'home'" class="mx-auto">
             <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
             </div>
         </div>

@@ -6,8 +6,6 @@
       </h2>
       <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
-        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
-        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
       </VueSlickCarousel>
       <!-- <div class="row justify-content-center">
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />

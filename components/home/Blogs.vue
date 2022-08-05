@@ -97,7 +97,7 @@ export default {
         justify-content: center;
         align-items: center;
         img {
-            width: 100%;
+            width: auto;
         }
 
         @media screen and (max-width: 768px){

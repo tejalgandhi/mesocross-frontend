@@ -9,10 +9,10 @@
               <div class="sorting d-flex flex-wrap">
                 <button
                   v-b-toggle.filter-mobile
-                  class="btn p-2 ml-2 px-3"
+                  class="btn p-2 ml-2 px-3 d-flex align-items-center"
                 >
                   {{ $t('filters') }}
-                  <b-icon-chevron-down />
+                  <b-icon-chevron-down class="ml-2" />
                 </button>
               </div>
             </div>
@@ -24,18 +24,18 @@
               </div>
             </div>
             <div class="col-auto">
-              <div class="sorting d-flex flex-wrap">
-                <select v-model="priceSorting" class="text-dark p-2" @change="sortPrice">
-                  <option value="">
-                    {{ $t('default_sorting') }}
-                  </option>
-                  <option value="asc">
+              <div class="sorting short-by d-flex flex-wrap">
+                <b-dropdown variant="link" toggle-class="text-decoration-none d-flex align-items-center" no-caret>
+                  <template #button-content>
+                    <b-icon-chevron-down class="mr-2" /> {{ $t('default_sorting') }}
+                  </template>
+                  <b-dropdown-item href="#" @click="priceSorting = 'asc'">
                     {{ $t('low_to_high') }}
-                  </option>
-                  <option value="desc">
+                  </b-dropdown-item>
+                  <b-dropdown-item href="#" @click="priceSorting = 'desc'">
                     {{ $t('high_to_low') }}
-                  </option>
-                </select>
+                  </b-dropdown-item>
+                </b-dropdown>
               </div>
             </div>
           </div>
@@ -136,6 +136,11 @@ export default {
       pricePopup: state => state.pricePopup,
       isLoggedin: state => state.user.loggedIn
     })
+  },
+  watch: {
+    priceSorting (newVal) {
+      this.sortPrice()
+    }
   },
   beforeDestroy () {
     this.setSelectedFilters([])

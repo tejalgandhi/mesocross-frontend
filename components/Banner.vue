@@ -1,46 +1,46 @@
 <template>
-  <div :class = "(data.page == 'home')?' banner home-banner':'banner'">
+  <div :class="(data.page == 'home')?' banner home-banner':'banner'">
     <div v-if="!$fetchState.pending" class="position-relative">
       <div v-if="isMobile()" class="overlay" />
     </div>
     <nuxt-img
-        v-if="data && data.banner"
-        preload
-        format="webp"
-        :src="data.banner"
-        alt="banner"
-        quality="100"
-        class="mx-auto d-block"
-      />
-      <nuxt-img
-        v-else-if="data && data.image"
-        preload
-        format="webp"
-        :src="data.image"
-        alt="banner"
-        quality="100"
-        class="mx-auto d-block"
-      />
+      v-if="data && data.banner"
+      preload
+      format="webp"
+      :src="data.banner"
+      alt="banner"
+      quality="100"
+      class="mx-auto d-block"
+    />
+    <nuxt-img
+      v-else-if="data && data.image"
+      preload
+      format="webp"
+      :src="data.image"
+      alt="banner"
+      quality="100"
+      class="mx-auto d-block"
+    />
     <div v-if="data" class="banner-content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-10 text-center mx-auto" v-if= "data.page !== 'home'">
-             <h1 v-if="data.title" class="text-uppercase font-weight-normal mb-3">
+          <div v-if="data.page !== 'home'" class="col-md-10 text-center mx-auto">
+            <h1 v-if="data.title" class="text-uppercase font-weight-bold mb-3">
               {{ data.title }}
             </h1>
-            <h1 v-else class="text-uppercase font-weight-normal mb-3">
+            <h1 v-else class="text-uppercase font-weight-bold mb-3">
               {{ data.name }}
             </h1>
-            <p class="px-lg-5 mb-4" v-if="data.message">
+            <p v-if="data.message" class="px-lg-5 mb-4">
               {{ data.message }}
             </p>
-            <p class="px-lg-5 mb-4" v-else>
+            <p v-else class="px-lg-5 mb-4">
               {{ data.description }}
             </p>
           </div>
-            <div v-if= "data.page == 'home'" class="mx-auto">
+          <div v-if="data.page == 'home'" class="mx-auto">
             <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@ export default {
     padding: 2rem;
     color: #FFF;
     p{
-      margin-top: 80px;
+      margin-top: 40px;
       font-size: 30px;
       font-weight: normal;
     }

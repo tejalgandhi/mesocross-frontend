@@ -161,17 +161,12 @@
           </div>
           <div class="col">
             <div v-if="productImages[0] !== undefined">
-              <nuxt-img
+              <img
                 class="mx-auto d-block"
-                preload
-                format="webp"
                 :src="productImages[0]"
                 alt="product_image"
-                quality="100"
-                sizes="md:512"
                 height="40"
-                width="70"
-              />
+              >
             </div>
           </div>
           <div class="col-md-3">
@@ -189,7 +184,7 @@
     </div>
 
     <template v-if="complementry.length > 0">
-      <div class="related-products">
+      <div class="related-products container-fluid">
         <h3 class="text-uppercase font-weight-normal text-center mb-4">
           {{ $t('Similar_Products') }}
         </h3>

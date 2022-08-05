@@ -162,24 +162,24 @@ export default {
 
 <style>
 .heading-item h2 {
-  font: normal normal 500 30px Work Sans;
+  font: normal normal 500 30px Arquitecta;
   margin: 15px 0;
   color: #25282A;
 }
 .recommend h5 {
-  font: normal normal 500 30px Work Sans;
+  font: normal normal 500 30px Arquitecta;
   margin: 15px 0;
   color: #25282A;
 }
 .heading-item p {
-  font: normal normal normal 16px Work Sans;
+  font: normal normal normal 16px Arquitecta;
   color: #54565A;
   margin-bottom: 30px;
 }
 .tab-text {
   max-width: 686px;
   width: 100%;
-  font: normal normal 300 16px Work Sans;
+  font: normal normal 300 16px Arquitecta;
   color: #54565A;
 }
 .training-detail .nav-tabs {
@@ -200,17 +200,17 @@ export default {
 }
 
 .recommend-box h6 {
-  font: normal normal 600 16px Work Sans;
+  font: normal normal 600 16px Arquitecta;
   color: #25282A;
 }
 
 .recommend-box p {
-  font: normal normal normal 14px Work Sans;
+  font: normal normal normal 14px Arquitecta;
   color: #54565A;
 }
 
 .recommend-box small {
-  font: normal normal normal 12px Work Sans;
+  font: normal normal normal 12px Arquitecta;
   color: #54565A;
 }
 
@@ -223,31 +223,31 @@ export default {
   width: 100px;
 }
 .steps .heading {
-  font: normal normal 500 20px Work Sans;
+  font: normal normal 500 20px Arquitecta;
   color: #25282A;
 }
 .steps h3 {
-  font: normal normal 500 20px Work Sans;
+  font: normal normal 500 20px Arquitecta;
   color: #25282A;
 }
 .steps .time {
   background: #F6F6F6;
-  border-radius: 2px;font: normal normal 600 14px Work Sans;
+  border-radius: 2px;font: normal normal 600 14px Arquitecta;
   letter-spacing: -0.34px;
   width: max-content;
   color: #25282A;
 }
 
 .training-product-box h5 {
-  font: normal normal 500 18px Work Sans;
+  font: normal normal 500 18px Arquitecta;
   color: #54565A;
 }
 .training-product-box p {
-  font: normal normal 300 16px Work Sans;
+  font: normal normal 300 16px Arquitecta;
   color: #54565A;
 }
 .training-product-box small {
-  font: normal normal normal 14px Work Sans;
+  font: normal normal normal 14px Arquitecta;
   color: #54565A;
 }
 </style>

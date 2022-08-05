@@ -141,7 +141,7 @@ export default {
   background: rgba(#fff, 0.12) ;
 }
 .th-head{
-  font: normal normal normal 14px/16px Arial;
+  font: normal normal normal 14px/16px Arquitecta;
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 0.4;

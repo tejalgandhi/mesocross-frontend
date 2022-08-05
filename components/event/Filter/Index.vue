@@ -51,14 +51,14 @@ export default {
 
 <style>
 .child-a {
-  font: normal normal 600 18px Work Sans;
+  font: normal normal 600 18px Arquitecta;
   letter-spacing: 0px;
   color: #fff;
   text-transform: capitalize;
 }
 
 .child-b {
-  font: normal normal 600 16px Work Sans;
+  font: normal normal 600 16px Arquitecta;
   letter-spacing: 0px;
   color: #fff;
   text-transform: capitalize;

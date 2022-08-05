@@ -182,7 +182,7 @@ export default {
 }
 .modal-heading {
   font-size: 30px;
-  font-family: Work Sans;
+  font-family: Arquitecta;
   font-weight: 500;
 }
 .close {

@@ -31,7 +31,7 @@ h3 {
   line-height: 33px;
 }
 .thank-you-heading {
-  font: normal normal 500 34px Work Sans;
+  font: normal normal 500 34px Arquitecta;
   letter-spacing: 0px;
   color: #FFFFFF;
 }
@@ -43,7 +43,7 @@ h3 {
   text-decoration: underline;
 }
 .pr {
-  font: normal normal normal 16px Work Sans;
+  font: normal normal normal 16px Arquitecta;
   letter-spacing: 0px;
   color: #FFFFFF;
   max-width: 540px;

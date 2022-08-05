@@ -33,12 +33,12 @@
         border-color: rgba(#000000, 0.12) !important;
     }
     .order-product-title{
-        font: normal normal normal 16px/16px Arial;
+        font: normal normal normal 16px/16px Arquitecta;
 letter-spacing: 0px;
 color: #231F20;
     }
     .sent{
-        font: normal normal bold 12px/16px Arial;
+        font: normal normal bold 12px/16px Arquitecta;
 letter-spacing: 0px;
 color: #F18500;
     }
@@ -50,13 +50,13 @@ color: #F18500;
     }
     }
     .price-detail{
-        font: normal normal normal 14px/18px Work Sans;
+        font: normal normal normal 14px/18px Arquitecta;
 letter-spacing: 0px;
 color: #000000;
 opacity: 0.3;
     }
     .see-link{
-        font: normal normal normal 14px/16px Arial;
+        font: normal normal normal 14px/16px Arquitecta;
 letter-spacing: 0px;
 color: #231F20;
 text-decoration: underline;

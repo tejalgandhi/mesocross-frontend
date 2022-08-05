@@ -3,10 +3,10 @@
     <div class="product-item">
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close cursor-pointer" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="product-image" alt="image" />
+        <img :src="product.feature_image" class="product-image" alt="image">
         <div class="desc_box py-4">
           <!-- temporary condition added " v-if="className=='product-slide'" " -->
-          <div class="product-type" v-if="className=='product-slide'"> 
+          <div v-if="className=='product-slide'" class="product-type">
             <span>core</span>
           </div>
           <div class="prodcut-title">
@@ -15,8 +15,8 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          <div class="seperator" v-if="className=='product-slide'"></div>
-          <div class="product-categoty" v-if="className=='product-slide'">
+          <div v-if="className=='product-slide'" class="seperator" />
+          <div v-if="className=='product-slide'" class="product-categoty">
             rejuvenating cream
           </div>
           <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
@@ -92,9 +92,9 @@ export default {
         color: #ffffff;
         font-size: 20px;
         text-transform: uppercase;
-        margin-bottom: .3rem;        
+        margin-bottom: .3rem;
         @media (max-width:767px) {
-          font:normal normal normal 16px/22px Arial;
+          font:normal normal normal 16px/22px Arquitecta;
         }
     }
     .product-desc{
@@ -112,8 +112,8 @@ export default {
       margin-bottom: 8px;
       span{
         position: relative;
-        text-transform: uppercase;  
-        font-size: 13px;           
+        text-transform: uppercase;
+        font-size: 13px;
         &::after, &::before{
           position: relative;
           display: inline-block;
@@ -139,7 +139,7 @@ export default {
       position: relative;
       color: rgba($color: #ffffff, $alpha: 0.6);
       text-transform: uppercase;
-    }    
+    }
 }
 
 .seperator{
@@ -151,8 +151,8 @@ export default {
     display: block;
     background: rgba($color: #ffffff, $alpha: 0.6);
     width: 30px;
-    height: 1px;  
-    margin: 0 auto;      
+    height: 1px;
+    margin: 0 auto;
   }
 }
 </style>

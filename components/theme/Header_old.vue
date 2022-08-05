@@ -816,7 +816,7 @@ export default {
 }
 
 .hover-div h5 {
-  font: normal normal 600 16px Work Sans;
+  font: normal normal 600 16px Arquitecta;
   letter-spacing: 0px;
   color: #25282A;
 }
@@ -825,7 +825,7 @@ export default {
 }
 
 .hover-div li a {
-  font: normal normal 400 14px Work Sans;
+  font: normal normal 400 14px Arquitecta;
   letter-spacing: 0px;
   display: block;
   padding: 0 0 10px 0 !important;
@@ -859,7 +859,7 @@ export default {
 }
 
 .blog-item p {
-  font: normal normal normal 13px Work Sans;
+  font: normal normal normal 13px Arquitecta;
   letter-spacing: 0px;
   color: #25282A;
 }
@@ -1221,19 +1221,19 @@ nav input {
 }
 
 .cart-bar-footer .price-tag h6 {
-  font: normal normal normal 16px Work Sans;
+  font: normal normal normal 16px Arquitecta;
   color: #25282A;
 }
 
 .cart-bar-footer .price-tag h3 {
-  font: normal normal 600 24px Work Sans;
+  font: normal normal 600 24px Arquitecta;
   color: #25282A;
 }
 
 .cart-purchase-btn {
   background: #25282A;
   border: 1px solid #25282A;
-  font-family: Work Sans;
+  font-family: Arquitecta;
   font-size: 16px !important;
   text-align: center;
   color: #fff;
@@ -1261,7 +1261,7 @@ nav input {
 }
 
 .side-header-title {
-  font: normal normal 600 20px Work Sans;
+  font: normal normal 600 20px Arquitecta;
   color: #25282A;
 }
 
@@ -1286,12 +1286,12 @@ nav input {
 }
 
 .cart-desc p {
-  font: normal normal normal 16px Work Sans;
+  font: normal normal normal 16px Arquitecta;
   color: #00000099;
 }
 
 .cart-desc h6 {
-  font: normal normal 600 20px Work Sans;
+  font: normal normal 600 20px Arquitecta;
   color: #25282A;
 }
 
@@ -1311,7 +1311,7 @@ nav input {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  font: normal normal 600 20px Work Sans;
+  font: normal normal 600 20px Arquitecta;
   color: #25282A;
 }
 

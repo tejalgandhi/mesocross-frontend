@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 .store h2 {
-  font: normal normal 600 34px Work Sans;
+  font: normal normal 600 34px Arquitecta;
   letter-spacing: 0px;
   margin: 0 !important;
   color: #25282A;

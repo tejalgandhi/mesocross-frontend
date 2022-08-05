@@ -159,14 +159,14 @@ export default {
   }
 }
 .all-cat-heading {
-  font: normal normal 600 24px Work Sans;
+  font: normal normal 600 24px Arquitecta;
   color: #25282A;
 }
 .equipment-box{
   background: #F5F5F5;
 }
 .equipment-box h5 {
-  font: normal normal 500 30px Work Sans;
+  font: normal normal 500 30px Arquitecta;
   color: #25282A;
   white-space: nowrap;
   overflow: hidden;

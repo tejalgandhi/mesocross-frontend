@@ -108,7 +108,7 @@ export default {
   }
 }
 .product-title{
-  font: normal normal normal 20px/28px Arial;
+  font: normal normal normal 20px/28px Arquitecta;
     letter-spacing: 1.25px;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -117,7 +117,7 @@ export default {
 p {
   color: #FFFFFF;
   opacity: 0.6;
-  font: normal normal normal 16px/22px Arial;
+  font: normal normal normal 16px/22px Arquitecta;
 
 }
 .img_box {

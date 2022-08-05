@@ -182,8 +182,8 @@ export default {
 
 <style lang="scss">
 .top-banner {height: 433px; background: #25282A}
-.top-banner div h3 {font: normal normal 600 34px Work Sans;}
-.top-banner div p {font: normal normal 300 20px Work Sans;}
+.top-banner div h3 {font: normal normal 600 34px Arquitecta;}
+.top-banner div p {font: normal normal 300 20px Arquitecta;}
 .store .nav-tabs li a.active{font: normal normal bold 24px Lato !important;letter-spacing: 1.44px !important;color: #203032 !important; border: none !important;border-bottom: 4px solid #203032 !important;}
 .store .nav-tabs li a:hover{border: none !important}
 .store .nav-tabs li a.active:hover{border: none !important;}

@@ -309,19 +309,19 @@ export default {
 <style type="text/css">
 
 .content-1 .name {
-  font: normal normal 500 16px Work Sans;
+  font: normal normal 500 16px Arquitecta;
   color: #FFFFFF;
 }
 
 .content-1 h1 {
-  font: normal normal 600 50px Work Sans;
+  font: normal normal 600 50px Arquitecta;
   color: #FFFFFF;
   margin: 15px 0;
 }
 
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .content-1 h1 {
-    font: normal normal 600 35px Work Sans;
+    font: normal normal 600 35px Arquitecta;
   }
 }
 
@@ -348,7 +348,7 @@ export default {
   left: 0;
 }
 .main-content h1 {
-  font: normal normal 600 40px Work Sans;
+  font: normal normal 600 40px Arquitecta;
   color: #25282A;
 }
 .content_box p {
@@ -389,7 +389,7 @@ export default {
   cursor: pointer;
 }
 .treatment-box p {
-  font: normal normal 600 16px Work Sans;
+  font: normal normal 600 16px Arquitecta;
   color: #25282A;
 }
 .sub-badge {

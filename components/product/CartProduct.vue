@@ -126,7 +126,7 @@ a img.mr-2 {
   display: block;
 }
 .ref{
-  font: normal normal normal 14px/16px Work Sans;
+  font: normal normal normal 14px/16px Arquitecta;
   color: rgba( #fff, 0.4);
   margin-top: .25rem;
 }

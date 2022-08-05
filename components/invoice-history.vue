@@ -115,20 +115,20 @@ export default {
 
 <style>
 .store h2 {
-  font: normal normal 600 34px Work Sans;
+  font: normal normal 600 34px Arquitecta;
   letter-spacing: 0px;
   margin: 0 !important;
   color: #25282A;
 }
 
 .note h6 {
-  font: normal normal 500 16px Work Sans;
+  font: normal normal 500 16px Arquitecta;
   letter-spacing: 0px;
   color: #000000;
 }
 
 .note p {
-  font: normal normal normal 14px Work Sans;
+  font: normal normal normal 14px Arquitecta;
   letter-spacing: 0px;
   color: #000000;
 }

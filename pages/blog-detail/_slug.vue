@@ -263,24 +263,24 @@ export default {
 }
 
 .content-1 .name {
-  font: normal normal 500 16px Work Sans;
+  font: normal normal 500 16px Arquitecta;
   color: #FFFFFF;
 }
 
 .content-1 h1 {
-  font: normal normal 600 50px Work Sans;
+  font: normal normal 600 50px Arquitecta;
   color: #FFFFFF;
   margin: 15px 0;
 }
 
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .content-1 h1 {
-    font: normal normal 600 35px Work Sans;
+    font: normal normal 600 35px Arquitecta;
   }
 }
 
 .content-1 .date {
-  font: normal normal 300 16px Work Sans;
+  font: normal normal 300 16px Arquitecta;
   color: #FFFFFF;
 }
 
@@ -329,13 +329,13 @@ export default {
 }
 
 .text-content p {
-  font: normal normal 500 20px Work Sans;
+  font: normal normal 500 20px Arquitecta;
   letter-spacing: 1.4px;
   color: #FFFFFF;
 }
 
 .text-content h1 {
-  font: normal normal 600 30px Work Sans;
+  font: normal normal 600 30px Arquitecta;
   letter-spacing: 1.3px;
   color: #FFFFFF;
 }

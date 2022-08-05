@@ -39,6 +39,7 @@ $dropdown-border-color:             rgba($white, .15);
 
 $card-bg:                           $black;
 
+$font-family-base: 'Arquitecta', sans-serif;
 $theme-colors: (
   "primary":    #FFF,
   "secondary":  #FFF,
@@ -55,7 +56,7 @@ p{
 .btn{
     text-transform: uppercase;
     letter-spacing: 0.7px;
-    font-family: Arial;
+    font-family: Arquitecta;
 }
 .filter-invert{
     filter: invert(1);

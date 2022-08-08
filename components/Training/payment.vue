@@ -90,7 +90,7 @@
       </label>
     </div>
     <div v-if="userCards.length > 0" class="col-md-4 py-4 mx-auto">
-      <button class="w-100 d-block btn btn-outline-dark" @click="setIsAddPayment(true)">
+      <button class="w-100 d-block btn btn-light" @click="setIsAddPayment(true)">
         {{ $t('checkout.add_new_method') }}
       </button>
     </div>
@@ -103,7 +103,7 @@
             <img src="@/assets/img/card_visa.svg" alt="image">
             <img src="@/assets/img/card_american_express.svg" alt="image">
           </label>
-          <button class="d-block btn btn-outline-dark" @click="setIsAddPayment(true)">
+          <button class="d-block btn btn-light" @click="setIsAddPayment(true)">
             {{ $t('checkout.add_new_method') }}
           </button>
         </div>

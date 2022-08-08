@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="store">
+    <!-- <div class="store">
       <h2 class="font-weight-normal mb-3">
         {{ $t('dashboard.company_data') }}
       </h2>
       <small class="text-muted">* {{ $t('required_fields') }}</small>
-    </div>
+    </div> -->
     <ValidationObserver ref="formObserver">
-      <div class="col-sm-7">
+      <div class="col-sm-7 px-0">
         <form class="row" @submit.prevent="storeCompanyData">
           <div class="form-group col-lg-6">
             <label>{{ $t('company_name') }} *</label>
@@ -45,7 +45,7 @@
                   {{ country.label }}
                 </option>
               </select>
-              <img src="../assets/img/angel-down.svg" class="bottom-arrow position-absolute" alt="image">
+              <!-- <img src="../assets/img/angel-down.svg" class="bottom-arrow position-absolute" alt="image"> -->
             </div>
           </div>
           <div class="form-group col-lg-12">
@@ -162,7 +162,7 @@
             </ValidationProvider>
           </div>
           <div class="form-group col-lg-12 mt-4">
-            <button class="d-block btn submit-btn text-white">
+            <button class="d-block btn btn-light submit-btn">
               {{ $t('update_company_data') }}
             </button>
           </div>
@@ -251,7 +251,8 @@ label {
   text-align: left;
   font: normal normal 500 16px Arquitecta;
   letter-spacing: 0px;
-  color: #25282A;
+  color: #fff;
+  opacity: .8;
 }
 
 .submit-btn {

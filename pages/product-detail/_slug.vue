@@ -145,7 +145,7 @@
           <div class="col-md-3">
             <div class="d-flex align-items-center">
               <div class="catIcon mr-3">
-                <img height="37" src="https://dev.admin.mesosystem.connectgeneration.app/uploads/mesocross/img/62ecf24b27fcb-1659695691.png">
+                <img height="37" src="@/assets/img/catIcon.png">
               </div>
               <div class="product-t">
                 {{ product.name }}

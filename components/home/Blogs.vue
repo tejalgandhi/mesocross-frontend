@@ -6,11 +6,12 @@
         <div v-for="(item, index) in blogs" :key="index" class="col align-self-center">
           <article class="box text-center">
             <nuxt-link v-if="item.slug" :to="item | slug ">
-            <figure>
+            <figure  @mouseover="hoveredImage = index"
+                     @mouseleave="hoveredImage = '' ">
               <nuxt-img
                 preload
                 format="webp"
-                :src="item.image"
+                :src="hoveredImage === index ? item.hover_image : item.image"
                 alt="image"
                 quality="100"
               />
@@ -36,7 +37,8 @@
 export default {
   data () {
     return {
-      blogs: []
+      blogs: [],
+      hoveredImage: null
     }
   },
   filters: {

@@ -5,7 +5,6 @@
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
         <img :src="product.feature_image" class="product-image" alt="image">
         <div class="desc_box py-4">
-          <!-- temporary condition added " v-if="className=='product-slide'" " -->
           <div v-if="className=='product-slide'" class="product-type">
             <span>core</span>
           </div>
@@ -15,10 +14,6 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          <!--          <div class="seperator" v-if="className=='product-slide'"></div>-->
-          <!--          <div class="product-categoty" v-if="className=='product-slide'">-->
-          <!--            rejuvenating cream-->
-          <!--          </div>-->
           <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>

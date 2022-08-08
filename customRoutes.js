@@ -14,9 +14,5 @@ const routes = [
     path: '/trainings/:trainingSlug',
     component: 'pages/training-detail/_slug.vue'
   },
-  {
-    path: '/equipments/:categorySlug',
-    component: 'pages/equipments.vue'
-  }
 ]
 export default routes

@@ -1,53 +1,55 @@
 <template>
   <div class="product-page">
     <Banner :page-name="'product'" />
-    <Bredcrumb :items="breadcrumbs" />
     <div class="filter_result">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-auto">
-            <p style="white-space: nowrap" class="mr-2">
-              {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
-            </p>
-          </div>
-          <div class="col col order-2 order-sm-0">
-            <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
-              <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
-                {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
-              </a>
+        <div class="col-lg-10 px-0 mx-auto">
+          <div class="row">
+            <div class="col-auto">
+              <div class="sorting d-flex flex-wrap">
+                <button
+                  v-b-toggle.filter-mobile
+                  class="btn p-2 ml-2 px-3 d-flex align-items-center"
+                >
+                  {{ $t('filters') }}
+                  <b-icon-chevron-down class="ml-2" />
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="col-auto">
-            <div class="sorting d-flex flex-wrap">
-              <select v-model="sortType" class="d-none d-md-block ml-0 bg-dark form-control text-light w-auto" @change="sortPrice">
-                <option value="">
-                  {{ $t('default_sorting') }}
-                </option>
-                <option value="alpha_a_z">
-                  {{ $t('alpha_a_z') }}
-                </option>
-                <option value="alpha_z_a">
-                  {{ $t('alpha_z_a') }}
-                </option>
-                <option value="best_selling">
-                  {{ $t('best_selling') }}
-                </option>
-                <option value="low_to_high">
-                  {{ $t('low_to_high') }}
-                </option>
-                <option value="high_to_low">
-                  {{ $t('high_to_low') }}
-                </option>
+            <div class="col col order-2 order-sm-0">
+              <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
+                <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
+                  {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
+                </a>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="sorting short-by d-flex flex-wrap">
+                <b-dropdown variant="link" toggle-class="text-decoration-none d-flex align-items-center" no-caret>
+                  <template #button-content>
+                    <b-icon-chevron-down class="mr-2" /> {{ $t('default_sorting') }}
+                  </template>
+                  <b-dropdown-item href="#" @click="sortType = 'alpha_a_z'">
+                    {{ $t('alpha_a_z') }}
+                  </b-dropdown-item>
 
-              </select>
+                  <b-dropdown-item href="#" @click="sortType = 'alpha_z_a'">
+                    {{ $t('alpha_z_a') }}
+                  </b-dropdown-item>
 
-              <button
-                v-b-toggle.filter-mobile
-                class="btn btn-primary p-2 ml-2 px-3"
-              >
-                <b-icon-filter />
-                {{ $t('filters') }} ({{ selectedFilters.length }})
-              </button>
+                  <b-dropdown-item href="#" @click="sortType = 'best_selling'">
+                    {{ $t('best_selling') }}
+                  </b-dropdown-item>
+
+                  <b-dropdown-item href="#" @click="sortType = 'low_to_high'">
+                    {{ $t('low_to_high') }}
+                  </b-dropdown-item>
+
+                  <b-dropdown-item href="#" @click="sortType = 'high_to_low'">
+                    {{ $t('high_to_low') }}
+                  </b-dropdown-item>
+                </b-dropdown>
+              </div>
             </div>
           </div>
         </div>
@@ -61,7 +63,7 @@
         :title="$t('filters')"
         backdrop
         shadow
-        right
+        left
         header-class="py-3 px-4"
       >
         <template #footer>
@@ -76,7 +78,14 @@
             </button>
           </div>
         </template>
-        <ProductFilter ref="prodcuFilter" class="p-4" @fetchProducts="fetchProducts" @priceSort="setSorting"  @alphaSorting="setAlphaBeticSort" @bestSellingChanged="setBestSellSort"/>
+        <ProductFilter
+          ref="prodcuFilter"
+          class="p-4"
+          @fetchProducts="fetchProducts"
+          @priceSort="setSorting"
+          @alphaSorting="setAlphaBeticSort"
+          @bestSellingChanged="setBestSellSort"
+        />
       </b-sidebar>
       <div class="container-fluid">
         <div class="row">
@@ -151,26 +160,18 @@ export default {
       isLoggedin: state => state.user.loggedIn
     })
   },
+  watch: {
+    sortType (newVal) {
+      this.sortPrice()
+    }
+  },
   beforeDestroy () {
     this.setSelectedFilters([])
   },
   mounted () {
-    if (this.selectedSlugName) {
-      this.breadcrumbs.push(
-        {
-          path: '/',
-          label: this.selectedSlugName,
-          active: 1
-        }
-      )
-    }
-    this.activeLastBreadCrumb()
     showPricePopup(this)
   },
   methods: {
-    activeLastBreadCrumb () {
-      this.breadcrumbs[this.breadcrumbs.length - 1].active = 1
-    },
     removeFilter (index) {
       setTimeout(() => {
         this.$refs.prodcuFilter.removeFilter(this.selectedFilters[index])
@@ -193,27 +194,27 @@ export default {
       this.fetchProducts(1, url)
     },
     sortPrice () {
-      this.priceSorting ='';
-      this.bestSellSorting ='';
-      this.alphaSorting ='';
-      if(this.sortType == 'alpha_a_z'){
-        this.alphaSorting='asc'
+      this.priceSorting = ''
+      this.bestSellSorting = ''
+      this.alphaSorting = ''
+      if (this.sortType === 'alpha_a_z') {
+        this.alphaSorting = 'asc'
         this.setAlphaSort(this.alphaSorting)
       }
-      if(this.sortType == 'alpha_z_a'){
-        this.alphaSorting='desc'
+      if (this.sortType === 'alpha_z_a') {
+        this.alphaSorting = 'desc'
         this.setAlphaSort(this.alphaSorting)
       }
-      if(this.sortType == 'best_selling'){
-        this.bestSellSorting='1'
+      if (this.sortType === 'best_selling') {
+        this.bestSellSorting = '1'
         this.setBestSellSort(this.bestSellSorting)
       }
-      if(this.sortType == 'low_to_high'){
-        this.priceSorting='asc'
+      if (this.sortType === 'low_to_high') {
+        this.priceSorting = 'asc'
         this.setPriceSort(this.priceSorting)
       }
-      if(this.sortType == 'high_to_low'){
-        this.priceSorting='desc'
+      if (this.sortType === 'high_to_low') {
+        this.priceSorting = 'desc'
         this.setPriceSort(this.priceSorting)
       }
       this.fetchProducts(1)
@@ -326,5 +327,11 @@ export default {
   color: #25282A;
   background: white;
   border: 1px solid #25282A;
+}
+.sorting{
+  option{
+    color: #000 !important;
+    text-transform: uppercase;
+  }
 }
 </style>

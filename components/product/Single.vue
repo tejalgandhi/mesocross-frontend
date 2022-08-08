@@ -3,10 +3,9 @@
     <div class="product-item">
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close cursor-pointer" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="product-image" alt="image" />
+        <img :src="product.feature_image" class="product-image" alt="image">
         <div class="desc_box py-4">
-          <!-- temporary condition added " v-if="className=='product-slide'" " -->
-          <div class="product-type" v-if="className=='product-slide'">
+          <div v-if="className=='product-slide'" class="product-type">
             <span>core</span>
           </div>
           <div class="prodcut-title">
@@ -15,10 +14,6 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-<!--          <div class="seperator" v-if="className=='product-slide'"></div>-->
-<!--          <div class="product-categoty" v-if="className=='product-slide'">-->
-<!--            rejuvenating cream-->
-<!--          </div>-->
           <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
@@ -94,7 +89,7 @@ export default {
         text-transform: uppercase;
         margin-bottom: .3rem;
         @media (max-width:767px) {
-          font:normal normal normal 16px/22px Arial;
+          font:normal normal normal 16px/22px Arquitecta;
         }
     }
     .product-desc{

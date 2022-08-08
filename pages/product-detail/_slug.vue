@@ -3,10 +3,10 @@
     <!-- <Bredcrumb :items="breadcrumbs" /> -->
     <div class="prod_detail_box">
       <div class="container-fluid position-relative">
-        <div class="row">
+        <div class="row mb-4">
           <div class="col-lg-7 product-image p-4">
             <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-            <div v-if="productImages[0] !== undefined"  class="images main-image">
+            <div v-if="productImages[0] !== undefined" class="images main-image">
               <nuxt-img
                 class="mx-auto d-block"
                 preload
@@ -17,82 +17,11 @@
                 sizes="md:512"
               />
             </div>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="accordion" role="tablist">
-                  <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
-                      <b-button v-b-toggle.accordion-1 block variant="default" class="text-left btn-plus">
-                        {{ $t('Main_Characteristics_and_Effects') }}
-                      </b-button>
-                    </b-card-header>
-                    <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
-                      <b-card-body>
-                        <div v-html="product.characteristics_effect" />
-                      </b-card-body>
-                    </b-collapse>
-                  </b-card>
-
-                  <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-2 block variant="default" class="text-left btn-plus">
-                        {{ $t('application_protocol') }}
-                      </b-button>
-                    </b-card-header>
-                    <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-                      <b-card-body>
-                        <div v-html="product.application" />
-                      </b-card-body>
-                    </b-collapse>
-                  </b-card>
-
-                  <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-3 block variant="default" class="text-left btn-plus">
-                        {{ $t('additional_information') }}
-                      </b-button>
-                    </b-card-header>
-                    <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-                      <b-card-body>
-                        <div v-html="product.additional_info" />
-                      </b-card-body>
-                    </b-collapse>
-                  </b-card>
-
-                  <b-card no-body class="mb-1">
-                    <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
-                      <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
-                       {{$t('how_to_apply')}}
-                      </b-button>
-                    </b-card-header>
-                    <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
-                      <b-card-body>
-                        <div v-html="product.contact_professional" />
-                      </b-card-body>
-                    </b-collapse>
-                  </b-card>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div v-if="productImages[1] !== undefined" class="p-5">
-                  <nuxt-img
-                    style="max-width:225px; max-height:225px"
-                    class="mx-auto d-block"
-                    preload
-                    format="webp"
-                    :src="productImages[1]"
-                    alt="product_image"
-                    quality="100"
-                    sizes="md:512"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
           <div class="col-lg-5 order-3 order-md-2">
             <div class="prod_desc text-center">
               <div class="">
-                <h1 class="h2 text-uppercase font-weight-normal mb-1">
+                <h1 class="h2 text-uppercase mb-1">
                   {{ product.name }}
                 </h1>
               </div>
@@ -110,58 +39,158 @@
                 <!-- <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p> -->
                 <div class="size_box float-none">
                   <ul class="float-none">
-                    <li class="mr-0" v-for="(s, i) in product.product_size" :key="i" :class="{'active': s.size_id == size}">
-                      <a @click="changeSize(s.size_id)" class="p-1">{{ s.name }}</a>
+                    <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
+                      <a class="p-1" @click="changeSize(s.size_id)">{{ s.name }}</a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <ul v-if="collections.length > 0" class="collections">
-                <h3>{{ $t('Collection') }}</h3>
-                <li v-for="(item, index) in collections" :key="index">
-                  <nuxt-link :to="`/product-detail/${item.slug}`">
-                    <img :src="item.feature_image" height="30" width="30">
-                  </nuxt-link>
-                </li>
-              </ul>
-              <span v-show="isLoggedin && price">{{ price }}€</span>
-              <div class="add_cart d-flex align-items-center mt-3 justify-content-center">
-                <a v-if="isLoggedin" class="btn btn-wishlist mr-3" href="javascript:void(0)" @click="addToWishlist">
-                  <img :src="isProductInWishList ? require('@/assets/img/Heart_icon_selected.svg') : require('@/assets/img/heart-icon.svg')" alt="image">
+              <span />
+              <div v-show="isLoggedin && price">
+                <a href="javascript:void(0)" class="btn btn-outline-primary d-flex w-100 px-3 button-price mb-2 justify-content-center" @click="cart">
+                  <small>
+                    {{ price }}€
+                  </small>
+                  <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
                 </a>
-                  <!-- <span>Disponível apenas por encomenda</span> -->
-                <!-- <div v-if="isLoggedin" class="position-relative mr-3">
-                  <button type="button" class="btn btn-1 position-absolute" @click="qty > 1 ? qty--: qty=qty">
-                    -
-                  </button>
-                  <input type="text" disabled :value="qty" class="qty-input py-1">
-                  <button type="button" class="btn btn-2 position-absolute" @click="qty++">
-                    +
-                  </button>
-                </div> -->
-                <div @mouseover="upHere = true" @mouseleave="upHere = false"  >
-                  <a href="javascript:void(0)" class="btn btn-primary px-5" @click="cart" >
-                  {{price}}€
-                 <span v-show="upHere"> {{ $t('add_to_cart') }}</span>
-                  </a>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <a v-if="isLoggedin" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist">
+                  {{ isProductInWishList ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
+                </a>
+                <div v-show="ref_number" class="text-uppercase btn px-0">
+                  Ref:{{ ref_number }}
                 </div>
               </div>
-              <div class="clearfix"></div>
-              <div class="mt-4">
-                <p class="d-block mb-2 delivery-text">Ref:{{product.ref_number}}</p>
-              </div>
-              <div class="mt-4">
-                <p class="d-block mb-2 delivery-text">Delivery time 2-5 business days.<br /> returns</p>
-              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-7 product-image p-4">
+            <div v-if="productImages[0] !== undefined" class="images main-image">
+              <nuxt-img
+                class="mx-auto d-block"
+                preload
+                format="webp"
+                :src="productImages[0]"
+                alt="product_image"
+                quality="100"
+                sizes="md:512"
+              />
+            </div>
+          </div>
+          <div class="col-lg-5 order-3 order-md-2">
+            <div class="accordion accordion-detail" role="tablist">
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
+                  <b-button v-b-toggle.accordion-1 block variant="default" class="text-left btn-plus">
+                    DESCRIPTION
+                  </b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <div class="detail-text" v-html="product.characteristics_effect" />
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                  <b-button v-b-toggle.accordion-2 block variant="default" class="text-left btn-plus">
+                    DETAILS
+                  </b-button>
+                </b-card-header>
+                <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <div class="detail-text" v-html="product.application" />
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                  <b-button v-b-toggle.accordion-3 block variant="default" class="text-left btn-plus">
+                    BENEFITS
+                  </b-button>
+                </b-card-header>
+                <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <div class="detail-text" v-html="product.additional_info" />
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
+                  <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
+                    HOW TO APPLY
+                  </b-button>
+                </b-card-header>
+                <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <div class="detail-text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, omnis? Blanditiis vel consectetur fuga hic, nobis odit laborum architecto corporis ut est ratione cum aliquid maxime temporibus, quia minus quis.
+                    </div>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="addtocart-sticky text-uppercase py-2 px-4">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-md-3">
+            <div class="d-flex align-items-center">
+              <div class="catIcon mr-3">
+                <img height="37" src="@/assets/img/catIcon.png">
+              </div>
+              <div class="product-t">
+                {{ product.name }}
+              </div>
+              <div class="size">
+                <ul class="float-none">
+                  <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
+                    <a class="p-1" @click="changeSize(s.size_id)">{{ s.name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div v-if="productImages[0] !== undefined">
+              <img
+                class="mx-auto d-block"
+                :src="productImages[0]"
+                alt="product_image"
+                height="40"
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div v-show="isLoggedin && price">
+              <a href="javascript:void(0)" class="btn btn-outline-primary d-flex w-100 px-3 py-2 button-price mb-2 justify-content-center" @click="cart">
+                <small>
+                  {{ price }}€
+                </small>
+                <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <template v-if="complementry.length > 0">
-      <h3 class="text-uppercase font-weight-normal text-center mb-4">{{ $t('Similar_Products') }}</h3>
-      <div class="row">
-        <ProductSingle v-for="(product, index) in complementry" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
+      <div class="related-products container-fluid">
+        <h3 class="text-uppercase font-weight-normal text-center mb-4">
+          {{ $t('Similar_Products') }}
+        </h3>
+        <div class="row">
+          <ProductSingle v-for="(product, index) in complementry" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
+        </div>
       </div>
     </template>
   </div>
@@ -381,13 +410,7 @@ export default {
 .btn-wishlist{
   border-color: rgba(255,255,255, 0.12);
 }
-@media (min-width: 992px) {
-  .prod_desc {
-      position: sticky;
-      top: calc(50% + 80px);
-      transform: translateY(-50%);
-  }
-}
+
 @media (max-width: 991px) {
   .main-image {
     margin-bottom: 50px;
@@ -423,4 +446,44 @@ export default {
         text-align: left;
       }
   }
+  .addtocart-sticky{
+        background: #1D1A16;
+    top: 153px;
+    position: sticky;
+    z-index: 10;
+    ul{margin-bottom: 0;}
+  }
+  .button-price {
+    font-size: 20px;
+    .add_cart_text{
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+    &:hover{
+      background: transparent;
+      color: #FFF;
+      justify-content: space-between !important;
+      .add_cart_text{
+        opacity: 1;
+        visibility: visible;
+        display: block;
+      }
+    }
+  }
+  .product-t:after {
+    content: "";
+    width: 8px;
+    height: 9px;
+/* UI Properties */
+    background: #E2C8B8 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: inline-block;
+    margin: 0 1rem;
+    transform: rotate(45deg);
+}
+.related-products{
+  margin-top: 80px;
+}
+
 </style>

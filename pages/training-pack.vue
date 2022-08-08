@@ -106,7 +106,7 @@ export default {
 <style type="text/css">
 .heading {
   text-align: center;
-  font: normal normal 500 40px Work Sans;
+  font: normal normal 500 40px Arquitecta;
   letter-spacing: 0px;
   color: #25282A;
 }

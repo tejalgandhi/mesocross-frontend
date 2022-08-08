@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-4 border-right">
             <nuxt-link to="/virtual-consultation" class="btn btn-default w-100 px-0">
-              {{$t('virtual_consultation')}}
+              {{ $t('virtual_consultation') }}
             </nuxt-link>
           </div>
           <div class="col-4 border-right">
@@ -113,16 +113,16 @@
                       <b-icon-chevron-down />
                     </button>
                   </div>
-                    <div class="col-md-6">
-                      <h2>
-                        Language
-                      </h2>
-                      <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
-                        {{ $i18n.locale.toUpperCase() }}
+                  <div class="col-md-6">
+                    <h2>
+                      Language
+                    </h2>
+                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
+                      {{ $i18n.locale.toUpperCase() }}
 
-                        <b-icon-chevron-down />
-                      </button>
-                    </div>
+                      <b-icon-chevron-down />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -130,8 +130,7 @@
         </div>
         <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
           <div class="row pt-5 pb-3 justify-content-between">
-            <div class="col-lg-4 col-md-4 order-1 order-md-0">
-            </div>
+            <div class="col-lg-4 col-md-4 order-1 order-md-0" />
             <div class="col-lg-4 col-md-4 order-0 order-md-1">
               <div class="footer-brand">
                 <figure class="brand-logo" @click="goHome">
@@ -174,8 +173,8 @@ export default {
       footerLinks: null
     }
   },
-  computed:{
-    telephone(){
+  computed: {
+    telephone () {
       return process.env.TELEPHONE
     }
   },
@@ -195,15 +194,15 @@ export default {
       this.footerLinks = data.data.data
     },
     redirectToPage (name) {
-      if(name === 'subscription'){
-        this.$bvModal.show('subscribeModal');
+      if (name === 'subscription') {
+        this.$bvModal.show('subscribeModal')
         return
       }
       this.$router.push(name)
     },
     goHome () {
       this.$router.push('/')
-    },
+    }
   }
 }
 </script>
@@ -277,8 +276,8 @@ export default {
     position: relative;
   }
 /*
-  .accordion-section .panel-default .panel-title a {font: normal normal 500 18px Work Sans;letter-spacing: 1.6px;color: #203032;}
-  .accordion-section .not-collapsed .panel-title a:after {font: normal normal 500 18px Work Sans;content: "\2212";color: #203032;float: right;}
+  .accordion-section .panel-default .panel-title a {font: normal normal 500 18px Arquitecta;letter-spacing: 1.6px;color: #203032;}
+  .accordion-section .not-collapsed .panel-title a:after {font: normal normal 500 18px Arquitecta;content: "\2212";color: #203032;float: right;}
   .accordion-section .collapsed .panel-title a:after {font: normal normal bold 20px Lato;content: "\002B";color: #203032;float: right;}
   .accordion-section .panel-default {border-bottom: 2px solid white; padding-top: 15px} */
 }

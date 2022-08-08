@@ -21,7 +21,7 @@ export default {
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap'
+        href: 'http://fonts.cdnfonts.com/css/arquitecta'
       }
     ]
   },

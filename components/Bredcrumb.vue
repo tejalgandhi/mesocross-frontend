@@ -27,7 +27,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .breadcrumb{
-  font: normal normal normal 12px/16px Arial;
+  font: normal normal normal 12px/16px Arquitecta;
   letter-spacing: 0px;
   text-transform: uppercase;
     a:after{

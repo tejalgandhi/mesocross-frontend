@@ -241,7 +241,7 @@ export default {
 </script>
 <style scoped>
 .store h2 {
-  font: normal normal 600 34px Work Sans;
+  font: normal normal 600 34px Arquitecta;
   letter-spacing: 0px;
   margin: 0 !important;
   color: #25282A;
@@ -249,13 +249,13 @@ export default {
 
 label {
   text-align: left;
-  font: normal normal 500 16px Work Sans;
+  font: normal normal 500 16px Arquitecta;
   letter-spacing: 0px;
   color: #25282A;
 }
 
 .submit-btn {
-  font: normal normal 500 16px Work Sans;
+  font: normal normal 500 16px Arquitecta;
   letter-spacing: 0.48px;
   background: #25282A;
   border-radius: 4px;

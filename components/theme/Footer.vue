@@ -95,12 +95,8 @@
 
             <div class="col-md-3 d-none d-md-block">
               <div class="mb-5">
-                <h2>WELCOME TO THE NEW YOUTH</h2>
-                <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">
-                  SUBSCRIBE TO OUR NEWSLETTER
+                <CommonNewsletter/>
 
-                  <b-icon-chevron-right />
-                </button>
               </div>
               <div class="mb-5">
                 <div class="row">

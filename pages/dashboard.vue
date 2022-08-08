@@ -5,7 +5,7 @@
         <b-tab title="MY ACCOUNT" active>
           <h2 class="mb-4">
             MY ACCOUNT
-            <b-button variant="link" class="float-right p-2 text-capitalize" @click="updateAccount = !updateAccount">
+            <b-button variant="link" class="float-right p-2 text-capitalize shadow-none" @click="updateAccount = !updateAccount">
               {{ updateAccount ? 'Cancel': 'Edit' }}
             </b-button>
           </h2>
@@ -49,9 +49,12 @@
                 >
                   <span class="d-block py-1">900 000 000</span>
                 </b-form-group>
-                <b-button variant="link" class="text-capitalize p-0 border-0 mt-3">
-                  Change Password
+                <b-button variant="link" class="text-capitalize p-2 px-0 shadow-none border-0 mt-3" @click="updatePassword = !updatePassword">
+                  {{ updatePassword ? 'Cancel Change' : 'Change Password' }}
                 </b-button>
+              </div>
+              <div v-if="updatePassword" class="mt-lg-5 mt-4">
+                <login-data />
               </div>
             </div>
           </template>
@@ -108,7 +111,8 @@ export default {
   middleware: 'auth',
   data () {
     return {
-      updateAccount: false
+      updateAccount: false,
+      updatePassword: false
     }
   },
   computed: {

@@ -15,9 +15,7 @@
                 </a>
               </div>
               <b-collapse id="treatment-filter" v-model="showTreatment">
-                <div class="filter_list">
-                  <h1>sfj saudjskaasd</h1>
-                </div>
+                <ProductOrderItem />
               </b-collapse>
             </div>
             <div class="accordion-div mb-3">
@@ -28,9 +26,7 @@
                 </a>
               </div>
               <b-collapse id="treatment-filter" v-model="showTreatment1">
-                <div class="filter_list">
-                  <h1>sfj saudjskaasd</h1>
-                </div>
+                <ProductOrderItem />
               </b-collapse>
             </div>
           </div>
@@ -45,9 +41,7 @@
                 </a>
               </div>
               <b-collapse id="treatment-filter" v-model="showTreatment">
-                <div class="filter_list">
-                  <h1>sfj saudjskaasd</h1>
-                </div>
+                <ProductOrderItem />
               </b-collapse>
             </div>
             <div class="accordion-div mb-3">
@@ -58,9 +52,7 @@
                 </a>
               </div>
               <b-collapse id="treatment-filter" v-model="showTreatment1">
-                <div class="filter_list">
-                  <h1>sfj saudjskaasd</h1>
-                </div>
+                <ProductOrderItem />
               </b-collapse>
             </div>
           </div>
@@ -126,26 +118,7 @@ export default {
   border-radius: 0;
   padding: 18px 24px;
 }
-
-.a:after {
-  position: absolute !important;
-  content: '' !important;
-  transform: rotate(-180deg) !important;
-  background: url(../assets/img/filter-down-arrow.svg) no-repeat !important;
-  width: 20px !important;
-  height: 20px !important;
-  background-size: 20px 20px !important;
-  right: 10px !important;
-  top: 5px !important;
+.a:after{
+  filter: invert(1);
 }
-
-.a.arrowUp:after {
-  transform: rotate(0) !important;
-  width: 20px !important;
-  height: 20px !important;
-  right: 10px !important;
-  top: 10px !important;
-  background-size: 20px 20px !important;
-}
-
 </style>

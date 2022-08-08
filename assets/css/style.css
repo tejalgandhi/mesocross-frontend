@@ -995,10 +995,16 @@ footer .footer_bottom .copyright {
 }
 
 .account-tabs .tabs .account-navbar {
-  min-height: 60vh;
-  width: 300px;
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+}  
+@media (min-width:1024px){
+  .account-tabs .tabs .account-navbar {
+    min-height: 60vh;
+    width: 300px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+  }
 }
+
 
 .account-tabs .tabs .account-navbar .nav-link {
   padding: 10px 16px;

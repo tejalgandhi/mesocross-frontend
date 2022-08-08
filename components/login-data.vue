@@ -1,11 +1,5 @@
 <template>
-  <div class="text-light">
-    <div class="store">
-      <h5 class="font-weight-bold mb-3">
-        {{ $t('dashboard.login_data') }}
-      </h5>
-      <small class="text-muted">* {{ $t('required_fields') }}</small>
-    </div>
+  <div class="text-dark">
     <h4 class="font-weight-normal mb-4 h4">
       {{ $t('new_password') }}
     </h4>
@@ -38,7 +32,7 @@
           </ValidationProvider>
         </div>
         <div class="col-md-12 py-4">
-          <button class="px-4 btn btn-primary filter-invert">
+          <button class="px-4 px-lg-5 btn btn-primary">
             {{ $t('dashboard.update_login_date') }}
           </button>
         </div>
@@ -84,6 +78,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 label {
-  color: #25282A;
+  color: #fff;
 }
 </style>

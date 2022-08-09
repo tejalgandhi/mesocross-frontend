@@ -244,11 +244,11 @@ export default {
       try {
         if (this.product) {
           const productImages = JSON.parse(this.product.product_images)
-          let images = []
+          const images = []
           for (const key in productImages) {
             images.push(`${process.env.uploadURL}${productImages[key]}`)
           }
-          images = [...images]
+          console.log(images)
           return images
         } else {
           return []

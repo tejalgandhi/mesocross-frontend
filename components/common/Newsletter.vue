@@ -1,9 +1,11 @@
 <template>
-  <div class="newsletter">
+  <div class="">
+    <h2> {{ $t('subscribe_to_our_newsletter') }}</h2>
+
     <h2 class="text-uppercase mb-4 font-weight-normal">
-      {{ $t('subscribe_to_our_newsletter') }}
+
     </h2>
-    <button class="btn btn-outline-primary" @click="$bvModal.show('subscribeModal')">
+    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('subscribeModal')">
       {{ $t('subscribe') }}
     </button>
     <b-modal
@@ -106,6 +108,17 @@
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
+                        <label for="selectlanguage">{{ $t('language') }}*</label>
+                        <ValidationProvider v-slot="{ errors }" name="Language" rules="required">
+                          <select id="selectcountry" v-model="form.language" class="form-control">
+                            <option value="en">English</option>
+                            <option value="pt">Portuguese</option>
+                            <option value="es">Spanish</option>
+                          </select>
+                          <span class="errors text-danger">{{ errors[0] }}</span>
+                        </ValidationProvider>
+                      </div>
+                      <div class="form-group">
                         <label for="DOB">{{ $t('dob') }}</label>
                         <b-form-datepicker v-model="form.dob"  :max="maxDate" :locale="$i18n.locale"></b-form-datepicker>
                       </div>
@@ -139,6 +152,7 @@ export default {
         phone_number: '',
         phone: '',
         dial_code: '',
+        language: 'en',
         iso_alpha2: '',
         email: '',
         country_code: '',

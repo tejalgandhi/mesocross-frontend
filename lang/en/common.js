@@ -37,7 +37,7 @@ export default {
   keep_me_signed_in: 'Keep me signed in.',
   invalid_credentials: 'Invalid Credentials',
   filters: 'Filters',
-  subscribe_to_our_newsletter: 'GET STARTED SHAKING THE WORLD OF BEAUTY!',
+  subscribe_to_our_newsletter: 'WELCOME TO THE NEW YOUTH',
   subscribe: 'SUBSCRIBE TO OUR NEWSLETTER',
   news_letter_popup_title: 'Subscribe to our Newsletter and we will send you information about news and trends.',
   name: 'Name',

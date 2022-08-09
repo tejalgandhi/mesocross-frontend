@@ -11,7 +11,7 @@
                 class="mx-auto d-block"
                 preload
                 format="webp"
-                :src="productImages[0]"
+                :src="product.feature_image"
                 alt="product_image"
                 quality="100"
                 sizes="md:512"
@@ -248,7 +248,8 @@ export default {
           for (const key in productImages) {
             images.push(`${process.env.uploadURL}${productImages[key]}`)
           }
-          images = [this.product.feature_image, ...images]
+          images = [...images, this.product.feature_image]
+          console.log(images)
           return images
         } else {
           return []

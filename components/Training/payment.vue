@@ -4,7 +4,6 @@
       {{ bodytitle }}
     </div>
     <input
-      v-if="isActive('alipay')"
       id="for10"
       name="paymethod"
       class="form-check-input"
@@ -12,11 +11,11 @@
       type="radio"
       @change="setSelectedCard(1)"
     >
-    <label v-if="isActive('alipay')" class="address-radio row mx-0 align-items-center mb-3" for="for10">
+    <label class="address-radio row mx-0 align-items-center mb-3" for="for10">
       <div class="col-12">
         <div class="form-check px-0">
           <div class="d-flex align-items-center">
-            <img src="~/assets/img/alipay.svg" class="mx-3" alt="image">
+            <img src="~/assets/img/Alipay.svg" class="mx-3" alt="image">
             <label class="ml-2 form-check-label font-16 text-dark" for="for10">
               <span class="d-block font-weight-bold">{{ $t('ali_pay') }}</span>
             </label>
@@ -25,7 +24,6 @@
       </div>
     </label>
     <input
-      v-if="isActive('wechat_pay')"
       id="for11"
       name="paymethod"
       class="form-check-input"
@@ -33,12 +31,12 @@
       type="radio"
       @change="setSelectedCard(2)"
     >
-    <label v-if="isActive('wechat_pay')" class="address-radio row mx-0 align-items-center mb-3" for="for11">
+    <label class="address-radio row mx-0 align-items-center mb-3" for="for11">
       <div class="col-12">
         <div class="form-check px-0">
           <div class="d-flex align-items-center">
             <div class="d-flex align-items-center">
-              <img src="~/assets/img/wechatpay.svg" class="mx-3" alt="image">
+              <img src="~/assets/img/Wechatpay.svg" class="mx-3" alt="image">
               <label class="ml-2 form-check-label font-16 text-dark" for="for11">
                 <span class="d-block font-weight-bold">{{ $t('wechat_pay') }}</span>
               </label>
@@ -48,38 +46,14 @@
       </div>
     </label>
     <input
-      v-if="isActive('multibanco')"
-      id="for12"
-      name="paymethod"
-      class="form-check-input"
-      :checked="selectedCard == 3"
-      type="radio"
-      @change="setSelectedCard(3)"
-    >
-    <label v-if="isActive('multibanco')" class="address-radio row mx-0 align-items-center mb-3" for="for12">
-      <div class="col-12">
-        <div class="form-check px-0">
-          <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center">
-              <img src="~/assets/img/mb-icon.svg" class="mx-3" alt="image">
-              <label class="ml-2 form-check-label font-16 text-dark" for="for12">
-                <span class="d-block font-weight-bold">{{ $t('multibanco') }}</span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </label>
-    <input
-      v-if="isActive('bank_transfer')"
       id="for5"
       name="paymethod"
       class="form-check-input"
-      :checked="selectedCard == 4"
+      :checked="selectedCard == 0"
       type="radio"
-      @change="setSelectedCard(4)"
+      @change="setSelectedCard(0)"
     >
-    <label v-if="isActive('cash')" class="address-radio row mx-0 align-items-center mb-3" for="for5">
+    <label class="address-radio row mx-0 align-items-center mb-3" for="for5">
       <div class="col-12">
         <div class="form-check px-0 d-flex">
           <div class="d-flex align-items-center">
@@ -175,73 +149,56 @@
   </div>
 </template>
 <script>
-  import { mapMutations, mapState, mapActions } from 'vuex'
-  export default {
-    props: {
-      bodytitle: {
-        type: String,
-        default: ''
-      }
-    },
-    data () {
-      return {
-        activePaymentMethods: [],
-        frontPayment: null
-      }
-    },
-    computed: {
-      ...mapState({
-        userCards: state => state.user.userCards,
-        selectedCard: state => state.user.selectedCard,
-        cardNames: state => state.user.cardNames
-      }),
-      setBrandImage () {
-        return (brand) => {
-          switch (brand) {
-            case this.cardNames.master:
-              return 'card_mastercard.svg'
-            case this.cardNames.visa:
-              return 'card_visa.svg'
-            case this.cardNames.american:
-              return 'card_american_express.svg'
-            default:
-              return 'card_mastercard.svg'
-          }
+import { mapMutations, mapState, mapActions } from 'vuex'
+export default {
+  props: {
+    bodytitle: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      userCards: state => state.user.userCards,
+      selectedCard: state => state.user.selectedCard,
+      cardNames: state => state.user.cardNames
+    }),
+    setBrandImage () {
+      return (brand) => {
+        switch (brand) {
+          case this.cardNames.master:
+            return 'card_mastercard.svg'
+          case this.cardNames.visa:
+            return 'card_visa.svg'
+          case this.cardNames.american:
+            return 'card_american_express.svg'
+          default:
+            return 'card_mastercard.svg'
         }
       }
-
-    },
-    async mounted () {
-      this.frontPayment = await this.$store.dispatch('payment/payment')
-      this.fetchCards()
-      this.frontPayment.enabledPaymentMethods('subscription')
-        .then(({ data }) => {
-          console.log('Activated Payment methods = ', data)
-          this.activePaymentMethods = data
-        })
-        .catch(console.error)
-    },
-    methods: {
-      isActive (m) {
-        return this.activePaymentMethods.includes(m)
-      },
-      fetchCards () {
-        this.frontPayment.cardList().then(({ data }) => {
-          console.log(data)
-          this.getUserCards({ data })
-        })
-      },
-      async deleteCard (card) {
-        await this.frontPayment.deleteCard(card)
-        this.fetchCards()
-      },
-      ...mapMutations({
-        setIsAddPayment: 'user/setIsAddPayment',
-        setSelectedCard: 'user/setSelectedCard'
-      }),
-      ...mapActions({
-        getUserCards: 'user/getUserCards'
-      })
     }
+
+  },
+  mounted () {
+    this.getUserCards()
+  },
+  methods: {
+    async deleteCard (card) {
+      const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
+      this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+      if (card === this.selectedCard) {
+        this.setSelectedCard(0)
+      }
+
+      this.getUserCards()
+    },
+    ...mapMutations({
+      setIsAddPayment: 'user/setIsAddPayment',
+      setSelectedCard: 'user/setSelectedCard'
+    }),
+    ...mapActions({
+      getUserCards: 'user/getUserCards'
+    })
   }
+}
 </script>

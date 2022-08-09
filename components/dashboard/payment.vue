@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="select-text my-3 pb-2">
+    <h2 class="text-uppercase mb-4">
       {{ bodytitle }}
-    </div>
+    </h2>
     <div v-for="(card, index) in userCards" :key="index">
       <input :id="`for${index}`" class="form-check-input" type="radio" :checked="selectedCard === card.id" @change="setSelectedCard(card.id)">
       <label class="address-radio row mx-0 align-items-center mb-3" :for="`for${index}`">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-md-4 pt-4 mx-auto">
-      <button class="w-100 d-block btn btn-outline-primary filter-invert" @click="setIsAddPayment(true)">
+      <button class="w-100 d-block btn btn-light filter-invert" @click="setIsAddPayment(true)">
         {{ $t('checkout.add_new_method') }}
       </button>
     </div>

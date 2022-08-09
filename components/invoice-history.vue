@@ -1,12 +1,10 @@
 <template>
   <div>
-    <div class="store mb-5">
-      <h2 class="font-weight-normal mb-3">
-        Invoice History
-      </h2>
-    </div>
+    <h2 class="mb-4 text-uppercase">
+      Invoice History
+    </h2>
     <div class="d-flex align-items-end justify-content-start">
-      <div style="min-width: 150px" class="mr-3">
+      <div style="min-width: 160px" class="mr-3">
         <label class="mt-3" for="datepicker1">From</label>
         <b-form-datepicker
           id="datepicker1"
@@ -15,7 +13,7 @@
           locale="en"
         />
       </div>
-      <div style="min-width: 150px" class="mr-3">
+      <div style="min-width: 160px" class="mr-3">
         <label class="mt-3" for="datepicker2">To</label>
         <b-form-datepicker
           id="datepicker2"
@@ -31,7 +29,7 @@
           </label>
           <input id="search" type="text" placeholder="Search for invoice number, name etc." class="form-control w-100">
         </div>
-        <button class="btn btn-dark text-white">
+        <button class="btn btn-dark">
           Search
         </button>
       </div>
@@ -124,21 +122,35 @@ export default {
 .note h6 {
   font: normal normal 500 16px Arquitecta;
   letter-spacing: 0px;
-  color: #000000;
+  color: #fff;
 }
 
 .note p {
   font: normal normal normal 14px Arquitecta;
   letter-spacing: 0px;
-  color: #000000;
+  color: #fff;
 }
 .history-table .table thead th {
   font-weight: bold !important;
   border: none !important;
 }
 
-.history-table .table thead th, .history-table .table tbody td {
-  padding: 15px !important;
+.history-table .table thead th,
+.history-table .table tbody td {
+  padding: 15px 16px !important;
   border: none !important;
 }
+
+.history-table tr th {
+    text-transform: uppercase;
+}
+
+.history-table tr td {
+    background-color: #25282A;
+}
+
+.history-table tr:nth-child(2n) td {
+    background-color: transparent;
+}
+
 </style>

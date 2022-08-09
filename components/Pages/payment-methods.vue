@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="h1 title-34">
+    <h2 class="text-uppercase mb-3">
       Payment Methods
-    </div>
+    </h2>
   </div>
 </template>

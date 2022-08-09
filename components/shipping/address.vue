@@ -17,12 +17,12 @@
         </div>
       </div>
       <div class="col-12 mb-2 mb-md-0 col-md-3">
-        <p class="font-16 text-dark m-0">{{ address.address_first_line }} {{ address.address_second_line }}</p>
+        <p class="font-16 text-dark m-0 text-uppercase">{{ address.address_first_line }} {{ address.address_second_line }}</p>
       </div>
-      <div class="col-12 mb-2 mb-md-0 col-md-3 text-left text-md-center">
-        <p class="font-16 text-dark m-0">{{ address.country }}</p>
+      <div class="col-12 mb-2 mb-md-0 col-md-3 text-left">
+        <p class="font-16 text-dark m-0 text-uppercase">{{ address.country }}</p>
       </div>
-      <div class="col-12 mb-2 mb-md-0 col-md-3 text-left text-md-right">
+      <div class="col-12 mb-2 mb-md-0 col-md-3 text-left text-md-right ml-auto">
         <a href="javascript:void(0)" class="font-16 text-dark m-0 border-bottom d-inline" @click="editAddress">{{ $t('edit_address') }}</a>
       </div>
     </label>

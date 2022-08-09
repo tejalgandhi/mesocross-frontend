@@ -3,21 +3,21 @@
     <div class="tab-content">
       <div id="shipping" class="tab-pane fade show active shipping">
         <div class="my-3">
-          <p class="font-weight-bold text-light font-18">
+          <p class="font-weight-bold text-white font-18">
             {{ $t('edit_delivery_address') }}
           </p>
-          <p class="mt-2 mb-2 font-16">
+          <p class="mt-2 mb-2 font-16 text-white">
             * {{ $t('required_fields') }}
           </p>
         </div>
-        <div class="row mx-0">
-          <ValidationObserver ref="formObserver">
-            <form action="" class="fill-detail-from col-md-9 col-xl-9 row px-0">
+        <div class="row">
+          <ValidationObserver ref="formObserver" class="">
+            <form action="" class="fill-detail-from col-md-9 col-xl-9 row">
               <div v-if="loggedinUser.type === 2" class="form-group col-md-6">
                 <label for="">{{ $t('company_name') }} *</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('company_name')" rules="required">
                   <div class="position-relative" style="height: 40px">
-                    <input :value="data.company_name" type="text" class="w-100 px-3 h-100" @input="changeAddress('company_name', $event)">
+                    <input :value="data.company_name" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('company_name', $event)">
                     <span class="errors">{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
@@ -26,7 +26,7 @@
                 <label for="">{{ $t('vat_number') }} *</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('NIF')" rules="required">
                   <div class="position-relative" style="height: 40px">
-                    <input :value="data.nif" type="text" class="w-100 px-3 h-100" @input="changeAddress('nif', $event)">
+                    <input :value="data.nif" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('nif', $event)">
                     <span class="errors">{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
@@ -35,7 +35,7 @@
                 <label for="">{{ $t('vat_number') }}</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('vat_number')">
                   <div class="position-relative" style="height: 40px">
-                    <input :value="data.nif" type="text" class="w-100 px-3 h-100" @input="changeAddress('nif', $event)">
+                    <input :value="data.nif" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('nif', $event)">
                     <span class="errors">{{ errors[0] }}</span>
                   </div>
                 </ValidationProvider>
@@ -60,10 +60,10 @@
               <div class="form-group col-12">
                 <label for="">{{ $t('address') }} *</label>
                 <div class="position-relative mb-2" style="height: 40px">
-                  <input :value="data.address_first_line" type="text" class="w-100 px-3 h-100" @input="changeAddress('address_first_line', $event)">
+                  <input :value="data.address_first_line" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('address_first_line', $event)">
                 </div>
                 <div class="position-relative" style="height: 40px">
-                  <input :value="data.address_second_line" type="text" class="w-100 px-3 h-100" @input="changeAddress('address_second_line', $event)">
+                  <input :value="data.address_second_line" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('address_second_line', $event)">
                 </div>
                 <span v-if="formSubmit && (data.address_first_line == '' || data.address_second_line == '')" class="errors">Please Fill Address</span>
               </div>
@@ -71,7 +71,7 @@
                 <label for="">{{ $t('city') }}  *</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('city')" rules="required">
                   <div class="position-relative" style="height: 40px">
-                    <input :value="data.city" type="text" class="w-100 px-3 h-100" @input="changeAddress('city', $event)">
+                    <input :value="data.city" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('city', $event)">
                   </div>
                   <span class="errors">{{ errors[0] }}</span>
                 </ValidationProvider>
@@ -79,14 +79,14 @@
               <div class="form-group col-md-6">
                 <label for="">{{ $t('state') }} </label>
                 <div class="position-relative" style="height: 40px">
-                  <input :value="data.state" type="text" class="w-100 px-3 h-100" @input="changeAddress('state', $event)">
+                  <input :value="data.state" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('state', $event)">
                 </div>
               </div>
               <div class="form-group col-md-12">
                 <label for="">{{ $t('postal_or_zip_code') }} *</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('postal_or_zip_code')" rules="required">
                   <div class="position-relative col-md-6 pl-0 pr-0 pr-md-3" style="height: 40px">
-                    <input :value="data.post_code" type="text" class="w-100 px-3 h-100" @input="changeAddress('post_code', $event)">
+                    <input :value="data.post_code" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('post_code', $event)">
                   </div>
                   <span class="errors">{{ errors[0] }}</span>
                 </ValidationProvider>
@@ -116,18 +116,18 @@
                 <label for="">{{ $t('email') }} *</label>
                 <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required|email">
                   <div class="position-relative" style="height: 40px">
-                    <input :value="data.email" type="text" class="w-100 px-3 h-100" @input="changeAddress('email', $event)">
+                    <input :value="data.email" type="text" class="w-100 px-3 h-100 form-control" @input="changeAddress('email', $event)">
                   </div>
                   <span class="errors">{{ errors[0] }}</span>
                 </ValidationProvider>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-primary filter-invert" type="button" @click="saveAddress">
+                <button class="btn w-100 btn-light filter-invert" type="button" @click="saveAddress">
                   {{ $t('save') }}
                 </button>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-outline-primary filter-invert" type="button" @click="$emit('hideAddAdrress')">
+                <button class="btn w-100 btn-primary filter-invert" type="button" @click="$emit('hideAddAdrress')">
                   {{ $t('cancel') }}
                 </button>
               </div>

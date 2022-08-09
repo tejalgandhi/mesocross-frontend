@@ -1,12 +1,21 @@
 <template>
   <main>
+    <!-- <figure v-click-outside="hideUserTab" class="mb-0">
+      <img src="@/assets/img/user.svg" alt="user" @click="showUserTab = !showUserTab">
+      <transition name="pop">
+        <span v-if="$auth.loggedIn" class="info" />
+      </transition>
+      <transition name="show">
+        <user-tab v-if="showUserTab" @close="showUserTab = false" />
+      </transition>
+    </figure> -->
     <figure class="mb-0" @click="goTo('/wishlist')">
       <img src="@/assets/img/star.svg" alt="favs">
       <span v-if="wishlist" class="number">{{ wishlist }}</span>
     </figure>
     <figure class="mb-0" @click="goTo('/cart')">
       <img src="@/assets/img/basket.svg" alt="cart">
-      <span v-if="products.length> 0" class="number" >{{ products.length }}</span>
+      <span v-if="products.length > 0" class="number" >{{ products.length }}</span>
     </figure>
     <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">
@@ -16,9 +25,12 @@
       <caption  v-if="$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </caption>
-      <caption  v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+      <caption :class="{'active':showUserTab}" v-else @click="showUserTab = !showUserTab">
         Sign in
       </caption>
+      <transition name="pop">
+        <span v-if="$auth.loggedIn" class="info" />
+      </transition>
       <transition name="show">
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
       </transition>

@@ -248,8 +248,7 @@ export default {
           for (const key in productImages) {
             images.push(`${process.env.uploadURL}${productImages[key]}`)
           }
-          images = [...images, this.product.feature_image]
-          console.log(images)
+          images = [...images]
           return images
         } else {
           return []

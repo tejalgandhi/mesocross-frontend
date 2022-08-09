@@ -248,7 +248,6 @@ export default {
           for (const key in productImages) {
             images.push(`${process.env.uploadURL}${productImages[key]}`)
           }
-          console.log(images)
           return images
         } else {
           return []

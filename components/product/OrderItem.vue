@@ -1,6 +1,6 @@
 <template>
   <div class="orders">
-    <div v-for="(i, index) in 2" :key="i" class="row justify-content-between mb-4 py-4 order-item" :class="index === 0 ? 'border-bottom': null">
+    <div class="row justify-content-between mb-4 py-4 order-item">
       <div class="col-auto">
         <div class="order-image">
           <img src="@/assets/img/p1.png">
@@ -30,12 +30,12 @@
 
 .orders{
     .order-item{
-        border-color: rgba(#000000, 0.12) !important;
+        border-color: rgba(#fff, 0.12) !important;
     }
     .order-product-title{
         font: normal normal normal 16px/16px Arquitecta;
-letter-spacing: 0px;
-color: #231F20;
+        letter-spacing: 0px;
+        color: #fff;
     }
     .sent{
         font: normal normal bold 12px/16px Arquitecta;
@@ -52,13 +52,13 @@ color: #F18500;
     .price-detail{
         font: normal normal normal 14px/18px Arquitecta;
 letter-spacing: 0px;
-color: #000000;
+color: #fff;
 opacity: 0.3;
     }
     .see-link{
         font: normal normal normal 14px/16px Arquitecta;
 letter-spacing: 0px;
-color: #231F20;
+color: #fff;
 text-decoration: underline;
     }
 }

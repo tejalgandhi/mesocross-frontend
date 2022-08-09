@@ -1,5 +1,8 @@
 <template>
   <div class="shipping">
+    <h2 class="mb-4 text-uppercase">
+      Address Book
+    </h2>
     <template v-if="!addressShow">
       <ShippingAddress
         v-for="(address, index) in addresses"
@@ -15,7 +18,7 @@
     </template>
 
     <div v-if="!addressShow" class="col-md-4 py-4 mx-auto">
-      <button class="w-100 d-block btn btn-outline-dark filter-invert" @click="addAddress">
+      <button class="w-100 d-block btn btn-light filter-invert" @click="addAddress">
         {{ $t('checkout.add_new_address') }}
       </button>
     </div>

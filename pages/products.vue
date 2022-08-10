@@ -248,6 +248,9 @@ export default {
       let activeCat
       if (this.$route.params && this.$route.params.categorySlug) {
         activeCat = this.$refs.prodcuFilter.filterData.find(cat => cat.slug === this.$route.params.categorySlug).id
+        if (activeCat !== undefined) {
+          activeCat = `&category=${activeCat}`
+        }
       }
       let url = productUrl
       if (url === '') { // PREPARE API URL, IT WILL SET ON INTIAL LOAD
@@ -255,9 +258,9 @@ export default {
         if (this.selectedFilters) {
           const category = this.selectedFilters.filter(v => !v.treatmentSolution).map(val => val.id).toString()
           if (category !== '') {
-            url = `${url}&category=${activeCat},${category}`
+            url = `${url}&category=${category}`
           } else {
-            url = `${url}&category=${activeCat}`
+            url = `${url}${activeCat}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
           if (treatmentsolution !== '') {

@@ -3,10 +3,10 @@
     <div class="tab-content">
       <div id="shipping" class="tab-pane fade show active shipping">
         <div class="my-3">
-          <p class="font-weight-bold text-white font-18">
+          <p class="font-weight-bold font-18">
             {{ $t('edit_delivery_address') }}
           </p>
-          <p class="mt-2 mb-2 font-16 text-white">
+          <p class="mt-2 mb-2 font-16">
             * {{ $t('required_fields') }}
           </p>
         </div>
@@ -122,12 +122,12 @@
                 </ValidationProvider>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-light filter-invert" type="button" @click="saveAddress">
+                <button class="btn w-100 btn-light" type="button" @click="saveAddress">
                   {{ $t('save') }}
                 </button>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-primary filter-invert" type="button" @click="$emit('hideAddAdrress')">
+                <button class="btn w-100 btn-primary" type="button" @click="$emit('hideAddAdrress')">
                   {{ $t('cancel') }}
                 </button>
               </div>
@@ -257,4 +257,6 @@ export default {
 .checkout input{width: 100%;}
 .phoneAdd{display: inline-flex; width: 68%;}
 .phoneAdd input{width: 100%;}
+.fill-detail-from label{color : #25282A}
+.btn-primary{border: 1px solid #000;}
 </style>

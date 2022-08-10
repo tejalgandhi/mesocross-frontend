@@ -251,4 +251,7 @@ export default {
 .left-arr {
   transform: rotate(270deg);
 }
+.address-radio{
+  background-color: #fff;
+}
 </style>

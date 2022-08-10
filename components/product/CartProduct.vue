@@ -1,23 +1,23 @@
 <template>
-  <div class="text-light">
+  <div>
     <div class="row align-items-center">
       <div class="col-auto pr-0">
         <img class="product_img" :src="product.feature_image" alt="image">
       </div>
       <div class="col">
         <h6 class="mb-1 text-uppercase">
-          <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
+          <nuxt-link :to="`/product-detail/${product.slug}`">
             {{ product.name }}
           </nuxt-link>
         </h6>
         <div class="d-flex cart-option">
-          <b-button size="sm" variant="default text-light pl-0 border-right font-weight-bold">
+          <b-button size="sm" variant="default pl-0 border-right font-weight-bold">
             €{{ (product.price * Number(product.qty) ).toFixed(2) }}
           </b-button>
-          <b-button size="sm" variant="default text-light border-right">
+          <b-button size="sm" variant="default border-right">
             ({{ product.size }})
           </b-button>
-          <b-button size="sm" variant="default text-light">
+          <b-button size="sm" variant="default">
             QTY: {{ product.qty }}
           </b-button>
         </div>

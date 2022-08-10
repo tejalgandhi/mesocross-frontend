@@ -986,7 +986,9 @@ footer .footer_bottom .copyright {
   width: 100%;
   max-width: 400px;
 }
-
+#card-sidebar a, #wishlist-sidebar a{
+  color: #000;
+}
 .account-tabs {
   padding: 30px 15px;
 }

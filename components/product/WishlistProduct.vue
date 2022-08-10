@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <b-button size="sm" variant="light" block>
+    <b-button size="sm" variant="light" block @click="addToCart({...product, flag: 1, is_update:1 })">
       ADD TO BAG
     </b-button>
     <b-button size="sm" variant="outline-light" block @click="removeWishlist">

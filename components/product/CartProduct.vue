@@ -11,13 +11,13 @@
           </nuxt-link>
         </h6>
         <div class="d-flex cart-option">
-          <b-button size="sm" variant="default text-light pl-0 border-right font-weight-bold">
+          <b-button v-if="product.price" size="sm" variant="default text-light pl-0 border-right font-weight-bold">
             €{{ (product.price * Number(product.qty) ).toFixed(2) }}
           </b-button>
-          <b-button size="sm" variant="default text-light border-right">
+          <b-button v-if="product.size" size="sm" variant="default text-light border-right">
             ({{ product.size }})
           </b-button>
-          <b-button size="sm" variant="default text-light">
+          <b-button v-if="product.qty" size="sm" variant="default text-light">
             QTY: {{ product.qty }}
           </b-button>
         </div>
@@ -26,12 +26,12 @@
     <div class="row mb-3">
       <div class="col-6">
         <b-button size="sm" variant="light" block @click="updateQty(2)">
-          <b-icon-plus />
+          <b-icon-dash />
         </b-button>
       </div>
       <div class="col-6">
         <b-button size="sm" variant="light" block @click="updateQty(1)">
-          <b-icon-dash />
+          <b-icon-plus />
         </b-button>
       </div>
     </div>

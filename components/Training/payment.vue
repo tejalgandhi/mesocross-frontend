@@ -112,56 +112,56 @@
   </div>
 </template>
 <script>
-  import { mapMutations, mapState, mapActions } from 'vuex'
-  export default {
-    props: {
-      bodytitle: {
-        type: String,
-        default: ''
-      }
-    },
-    computed: {
-      ...mapState({
-        userCards: state => state.user.userCards,
-        selectedCard: state => state.user.selectedCard,
-        cardNames: state => state.user.cardNames
-      }),
-      setBrandImage () {
-        return (brand) => {
-          switch (brand) {
-            case this.cardNames.master:
-              return 'card_mastercard.svg'
-            case this.cardNames.visa:
-              return 'card_visa.svg'
-            case this.cardNames.american:
-              return 'card_american_express.svg'
-            default:
-              return 'card_mastercard.svg'
-          }
+import { mapMutations, mapState, mapActions } from 'vuex'
+export default {
+  props: {
+    bodytitle: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      userCards: state => state.user.userCards,
+      selectedCard: state => state.user.selectedCard,
+      cardNames: state => state.user.cardNames
+    }),
+    setBrandImage () {
+      return (brand) => {
+        switch (brand) {
+          case this.cardNames.master:
+            return 'card_mastercard.svg'
+          case this.cardNames.visa:
+            return 'card_visa.svg'
+          case this.cardNames.american:
+            return 'card_american_express.svg'
+          default:
+            return 'card_mastercard.svg'
         }
       }
+    }
 
-    },
-    mounted () {
+  },
+  mounted () {
+    this.getUserCards()
+  },
+  methods: {
+    async deleteCard (card) {
+      const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
+      this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+      if (card === this.selectedCard) {
+        this.setSelectedCard(0)
+      }
+
       this.getUserCards()
     },
-    methods: {
-      async deleteCard (card) {
-        const { data } = await this.$axios.post('/stripe/delete-card', { card_id: card })
-        this.$toast.success(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-        if (card === this.selectedCard) {
-          this.setSelectedCard(0)
-        }
-
-        this.getUserCards()
-      },
-      ...mapMutations({
-        setIsAddPayment: 'user/setIsAddPayment',
-        setSelectedCard: 'user/setSelectedCard'
-      }),
-      ...mapActions({
-        getUserCards: 'user/getUserCards'
-      })
-    }
+    ...mapMutations({
+      setIsAddPayment: 'user/setIsAddPayment',
+      setSelectedCard: 'user/setSelectedCard'
+    }),
+    ...mapActions({
+      getUserCards: 'user/getUserCards'
+    })
   }
+}
 </script>

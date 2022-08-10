@@ -8,6 +8,9 @@ export default {
   setShippingCharge (state, payload) {
     state.shippings = payload
   },
+  setShippingDays (state, payload) {
+    state.shippingDays = payload
+  },
   setUserShippingCharge (state, payload) {
     state.shippingProductCode = payload.productCode
     state.shippingLocalProductCode = payload.localProductCode

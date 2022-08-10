@@ -265,13 +265,13 @@ export default {
           }
         }
         if (this.priceSorting) {
-          url = `${url}&category=${activeCat}&price=${this.priceSorting}`
+          url = `${url}&price=${this.priceSorting}`
         }
         if (this.bestSellSorting) {
-          url = `${url}&category=${activeCat}&best_seller=${this.bestSellSorting}`
+          url = `${url}&best_seller=${this.bestSellSorting}`
         }
         if (this.alphaSorting) {
-          url = `${url}&category=${activeCat}&alphabetic=${this.alphaSorting}`
+          url = `${url}&alphabetic=${this.alphaSorting}`
         }
         this.$nuxt.$loading.start()
       }

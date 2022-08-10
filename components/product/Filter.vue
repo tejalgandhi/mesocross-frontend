@@ -31,7 +31,7 @@
         </b-collapse>
       </li>
       <template v-for="(filter, index) in filterData">
-        <li v-if="showAllCats? (filter.slug === $route.params.categorySlug || filter.slug === 'skine-care') : true" :key="index" class="text-uppercase">
+        <li :key="index" class="text-uppercase">
           <div class="d-flex align-items-start">
             <label class="control control--checkbox pl-3 d-none d-md-flex">
               <input
@@ -147,7 +147,11 @@ export default {
       })
       return cat
     })
-    this.filterData = parentCategories
+    if (!this.showAllCats) {
+      this.filterData = parentCategories
+    } else {
+      this.filterData = parentCategories.filter(cat => cat.slug === this.$route.params.categorySlug || cat.slug === 'skine-care')
+    }
   },
   fetchOnServer: true,
   computed: {

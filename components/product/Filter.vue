@@ -52,41 +52,40 @@
               @click="filter.visible = !filter.visible"
             >{{ filter.name }}</a>
           </div>
-          <b-collapse :id="`parent_collapse-${filter.id}`" v-model="filter.visible">
-            <div v-show="filter.child.length > 0" class="filter_list">
-              <ul class="secondUl">
-                <li v-for="(childCat, cIndex) in filter.child" :key="cIndex">
-                  <label class="control control--checkbox">
-                    {{ childCat.name }}
-                    <input
-                      v-model="childCat.selected"
-                      type="checkbox"
-                      :true-value="true"
-                      :false-value="false"
-                      @input="applyFilter(childCat,filter.id)"
-                    >
-                    <div class="control__indicator" />
-                  </label>
-                  <div class="filter_row">
-                    <div v-for="(c, i) in childCat.child" :key="i" class="filter_check">
-                      <label class="control control--checkbox">
-                        {{ c.name }}
-                        <small class="countSmall">({{ c.products_count }})</small>
-                        <input
-                          v-model="c.selected"
-                          type="checkbox"
-                          :true-value="true"
-                          :false-value="false"
-                          @input="applyFilter(c,filter.id)"
-                        >
-                        <div class="control__indicator" />
-                      </label>
-                    </div>
+
+          <div v-show="filter.child.length > 0" class="filter_list">
+            <ul class="secondUl">
+              <li v-for="(childCat, cIndex) in filter.child" :key="cIndex">
+                <label class="control control--checkbox">
+                  {{ childCat.name }}
+                  <input
+                    v-model="childCat.selected"
+                    type="checkbox"
+                    :true-value="true"
+                    :false-value="false"
+                    @input="applyFilter(childCat,filter.id)"
+                  >
+                  <div class="control__indicator" />
+                </label>
+                <div class="filter_row">
+                  <div v-for="(c, i) in childCat.child" :key="i" class="filter_check">
+                    <label class="control control--checkbox">
+                      {{ c.name }}
+                      <small class="countSmall">({{ c.products_count }})</small>
+                      <input
+                        v-model="c.selected"
+                        type="checkbox"
+                        :true-value="true"
+                        :false-value="false"
+                        @input="applyFilter(c,filter.id)"
+                      >
+                      <div class="control__indicator" />
+                    </label>
                   </div>
-                </li>
-              </ul>
-            </div>
-          </b-collapse>
+                </div>
+              </li>
+            </ul>
+          </div>
         </li>
       </template>
     </ul>
@@ -116,8 +115,8 @@ export default {
       cat.visible = false
       let firstSelect = false
       if (this.$route.params.categorySlug === cat.slug) {
-        firstSelect = true
-        cat.visible = true
+        firstSelect = false
+        cat.visible = false
       }
       cat.selected = firstSelect
       cat.child.map((childCat) => {
@@ -162,9 +161,6 @@ export default {
       }
       return false
     }
-  },
-  mounted () {
-    this.getTreatmentSolutions()
   },
   methods: {
     applyFilter (value, parentId, treatmentSolution = false) {
@@ -315,8 +311,7 @@ export default {
       }, 200)
     },
     ...mapActions({
-      selectFilter: 'product/selectFilter',
-      getTreatmentSolutions: 'product/getTreatmentSolutions'
+      selectFilter: 'product/selectFilter'
     }),
     ...mapMutations({
       setTreatmentSolutions: 'product/setTreatmentSolutions'

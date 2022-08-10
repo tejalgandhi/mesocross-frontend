@@ -15,7 +15,7 @@
       <div class="col-12">
         <div class="form-check px-0">
           <div class="d-flex align-items-center">
-            <img src="~/assets/img/Alipay.svg" class="mx-3" alt="image">
+            <img src="~/assets/img/alipay.svg" class="mx-3" alt="image">
             <label class="ml-2 form-check-label font-16 text-dark" for="for10">
               <span class="d-block font-weight-bold">{{ $t('ali_pay') }}</span>
             </label>
@@ -36,7 +36,7 @@
         <div class="form-check px-0">
           <div class="d-flex align-items-center">
             <div class="d-flex align-items-center">
-              <img src="~/assets/img/Wechatpay.svg" class="mx-3" alt="image">
+              <img src="~/assets/img/wechatpay.svg" class="mx-3" alt="image">
               <label class="ml-2 form-check-label font-16 text-dark" for="for11">
                 <span class="d-block font-weight-bold">{{ $t('wechat_pay') }}</span>
               </label>

@@ -11,7 +11,7 @@
               <nuxt-img
                 preload
                 format="webp"
-                :src="hoveredImage === index ? item.hover_image : item.image"
+                :src="hoveredImage === index && item.hover_image? item.hover_image : item.image"
                 alt="image"
                 quality="100"
               />

@@ -105,8 +105,8 @@ export default {
             .arrow {
                 width: 10px;
                 height: 10px;
-                border-top: solid 1px black;
-                border-right: solid 1px black;
+                border-top: solid 1px #FFF;
+                border-right: solid 1px #FFF;
                 transform: rotate(135deg);
                 transition: 0.2s;
 

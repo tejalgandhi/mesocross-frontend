@@ -122,21 +122,24 @@ export default {
             position: fixed;
             width: 100%;
             height: 100%;
-            top: 100px;
+            top: 145px;
             left: 0;
-            background: #25282ac7;
+            background: transparent;
         }
 
         .items {
-            position: absolute;
-            top: 100px;
-            width: 90%;
-            padding: 0 1rem;
-            background: white;
-            border: 0.5px solid #DCDCDC;
-            display: flex;
-            gap: 4rem;
-            padding: 2rem 10.5rem;
+                position: absolute;
+                top: 145px;
+                width: 100%;
+                display: flex;
+                grid-gap: 4rem;
+                gap: 4rem;
+                padding: 2rem 2rem;
+                margin: 0 auto;
+                max-width: 1340px;
+                text-transform: uppercase;
+                background: #fff;
+                color: #000;
 
             article {
                 display: flex;

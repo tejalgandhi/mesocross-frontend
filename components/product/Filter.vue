@@ -31,7 +31,7 @@
         </b-collapse>
       </li>
       <template v-for="(filter, index) in filterData">
-        <li v-if="showAllCats || $route.params && (filter.slug === $route.params.categorySlug || filter.slug === 'skine-care')" :key="index" class="text-uppercase">
+        <li :key="index" class="text-uppercase">
           <div class="d-flex align-items-start">
             <label class="control control--checkbox pl-3 d-none d-md-flex">
               <input
@@ -46,7 +46,6 @@
             </label>
             <a
               class="child-a ml-2 w-100 a text-uppercase text-decoration-none"
-              :class="filter.visible ? 'mb-3' : 'arrowUp'"
               :aria-expanded="filter.visible ? 'true' : 'false'"
               :aria-controls="`parent_collapse-${filter.id}`"
               @click="filter.visible = !filter.visible"
@@ -148,7 +147,11 @@ export default {
       })
       return cat
     })
-    this.filterData = parentCategories
+    if (!this.showAllCats) {
+      this.filterData = parentCategories
+    } else {
+      this.filterData = parentCategories.filter(cat => cat.slug === this.$route.params.categorySlug || cat.slug === 'skine-care')
+    }
   },
   fetchOnServer: true,
   computed: {
@@ -157,7 +160,7 @@ export default {
     }),
     showAllCats () {
       if (this.$route.params && this.$route.params.categorySlug) {
-        return false
+        return true
       }
       return false
     }

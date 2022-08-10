@@ -25,7 +25,7 @@
               />
             </div>
 
-            <div class="content_box d-flex align-items-end justify-content-center">
+            <div class="content_box d-flex align-items-end justify-content-center text-center text-uppercase">
               <div class="inline-box">
                 <label>{{ product.name }}</label>
                 <p>{{ product.short_description }}</p>

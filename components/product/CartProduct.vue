@@ -1,47 +1,43 @@
 <template>
-  <div class="row border-top py-3 align-items-center justify-content-center">
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="row align-items-center">
-        <div class="col-4">
-          <div class="cart_img">
-            <img :src="product.feature_image" alt="image">
-          </div>
-        </div>
-        <div class="col-8">
-          <nuxt-link :to="`/product-detail/${product.slug}`">
-            {{ product.name }} ({{ product.size }})
+  <div class="text-light">
+    <div class="row align-items-center">
+      <div class="col-auto pr-0">
+        <img class="product_img" :src="product.feature_image" alt="image">
+      </div>
+      <div class="col">
+        <h6 class="mb-1 text-uppercase">
+          <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
+            {{ product.name }}
           </nuxt-link>
-          <label class="ref d-block">Ref:{{ product.ref_number }}</label>
+        </h6>
+        <div class="d-flex cart-option">
+          <b-button size="sm" variant="default text-light pl-0 border-right font-weight-bold">
+            €{{ (product.price * Number(product.qty) ).toFixed(2) }}
+          </b-button>
+          <b-button size="sm" variant="default text-light border-right">
+            ({{ product.size }})
+          </b-button>
+          <b-button size="sm" variant="default text-light">
+            QTY: {{ product.qty }}
+          </b-button>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-4 col-4">
-      <div class="position-relative cart-qty mx-auto">
-        <button type="button" class="btn btn-1 position-absolute" @click="updateQty(2)">
-          -
-        </button>
-        <input type="number" disabled :value="product.qty" class="text-center py-1">
-        <button type="button" class="btn btn-2 position-absolute" @click="updateQty(1)">
-          +
-        </button>
+    <div class="row mb-3">
+      <div class="col-6">
+        <b-button size="sm" variant="light" block @click="updateQty(2)">
+          <b-icon-plus />
+        </b-button>
+      </div>
+      <div class="col-6">
+        <b-button size="sm" variant="light" block @click="updateQty(1)">
+          <b-icon-dash />
+        </b-button>
       </div>
     </div>
-    <div class="col-lg-3 col-md-4 col-4 text-center">
-      <span>{{ product.price }}€</span>
-    </div>
-    <div class="col-lg-2 col-md-3 col-4 text-center">
-      <span>{{ (product.price * Number(product.qty) ).toFixed(2) }}€</span>
-    </div>
-    <div class="col-12">
-      <div class="d-flex justify-content-end action-buttons">
-        <button class="btn px-0 mr-4" @click="deletecart">
-          {{ $t('delete') }}
-        </button>
-        <button class="btn px-0 text-decoration-line" @click="addToWishlist">
-          {{ isProductInWishList ? 'ADDED TO WISHLIST' : 'SAVE TO WISHLIST' }}
-        </button>
-      </div>
-    </div>
+    <b-button size="sm" variant="outline-light" block @click="deletecart">
+      {{ $t('delete') }}
+    </b-button>
   </div>
 </template>
 <script>
@@ -99,50 +95,21 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
-.cart-qty {
-  width: fit-content !important;
-}
-.cart-product .act_btn a.wish {
-  background: none !important;
-}
-.fav {
-  height: 20px;
-  width: 20px;
-  margin-right: 10px;
-}
-.btn-2 {
-  right: 0;
-}
-a img.mr-2 {
-  height: 20px;
-}
-.cart_img img{
-  width: 77px;
-  height: 106px;
+.product_img{
+  height: 100px;
   object-fit: contain;
-  margin: 0 auto 1rem;
-  display: block;
+  width: 100px;
+  padding: 10px;
 }
-.ref{
-  font: normal normal normal 14px/16px Arquitecta;
-  color: rgba( #fff, 0.4);
-  margin-top: .25rem;
-}
-.cart-qty > * {
-  height: 40px;
-}
-.cart-qty input{
-  height: 45px;
-    width: 110px;
-    background: transparent;
-    border-color: rgba( #fff, 0.2) ;
-    color: #FFF;
-}
-.action-buttons{
+.cart-option{
   .btn{
-    text-decoration: underline;
+    border-radius: 0;
+    padding: 0 .75rem 0 .75rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.25) !important;
+    &:last-child{
+      border-right: 0 !important;
+    }
   }
 }
 </style>

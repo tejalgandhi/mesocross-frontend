@@ -1,69 +1,43 @@
 <template>
-  <div class="search">
-    <div class="container">
-      <div class="search_bar">
-        <input v-model="searchStr" type="text" placeholder="Write to search..." @input="search">
-        <a href="javascript:void(0)" @click="setSearch"><img src="@/assets/img/close.svg"></a>
+  <div class="search text-light">
+    <div class="search_bar ">
+      <div class="input-group mb-3">
+        <span id="basic-addon1" class="input-group-text bg-transparent pl-0 pr-3">
+          <b-icon-search class="text-light mt-2" scale="1.25" />
+        </span>
+        <input v-model="searchStr" class="form-control" type="text" placeholder="Write to search..." @input="search">
+        <a href="javascript:void(0)" class="filter-invert" @click="setSearch"><img width="18" src="@/assets/img/close.svg"></a>
       </div>
     </div>
-    <div class="search_tabs">
-      <div class="container">
-        <div v-if="products.length > 0" class="results">
-          {{ $t('showing_all') }} {{ products.length }} {{ $t('results') }}
-        </div>
-        <div class="row">
-          <ProductSingle v-for="(product, index) in products" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
-          <div class="col-12" v-if="products.length == 0">
-            {{ $t('search_prodcuts') }}
-          </div>
-        </div>
-        <!-- <b-tabs v-model="tabIndex" content-class="nav nav-tabs" @input="searchStr = ''">
-          <b-tab :title="$t('Products')" active>
-
-          </b-tab>
-          <b-tab :title="$t('Blog')">
-            <div class="container">
-              <div v-if="searchData.length > 0" class="results">
-                {{ $t('showing_all') }} {{ searchData.length }} {{ $t('results') }}
-              </div>
-              <div class="row">
-                <BlogSingle v-for="(blog, index) in searchData" :key="index" :blog="blog" :class-name="'col-lg-3'" />
-                <div v-if="searchData.length == 0">
-                  {{ $t('search_blogs') }}
-                </div>
-              </div>
-            </div>
-          </b-tab>
-          <b-tab :title="$t('trainings')">
-            <div class="container">
-              <div v-if="trainingData.length > 0" class="results">
-                {{ $t('showing_all') }} {{ trainingData.length }} {{ $t('results') }}
-              </div>
-              <div class="row">
-                <TrainingSingle v-for="(single, index) in trainingData" :key="index" :single="single" :class-name="'col-lg-3'" />
-                <div v-if="trainingData.length == 0">
-                  {{ $t('search_training') }}
-                </div>
-              </div>
-            </div>
-          </b-tab>
-          <b-tab :title="$t('exhibitions_and_events')">
-            {{ $t('exhibitions_and_events') }}
-          </b-tab>
-          <b-tab :title="$t('documents')">
-            <div class="container">
-              <div v-if="searchData.length > 0" class="results">
-                {{ $t('showing_all') }} {{ searchData.length }} {{ $t('results') }}
-              </div>
-              <div class="row">
-                <DocumentSingle v-for="(single, index) in documentData" :key="index" :single="single" :class-name="'col-lg-3'" />
-                <div v-if="documentData.length == 0">
-                  {{ $t('search_document') }}
-                </div>
-              </div>
-            </div>
-          </b-tab>
-        </b-tabs> -->
+    <div v-if="products.length > 0" class="search_tabs">
+      <h4 class="font-weight-normal my-4">
+        FEATURED PRODUCTS
+      </h4>
+      <ProductSidebarSingle
+        v-for="(product, index) in products"
+        :key="index"
+        class="my-4 list-border"
+        :product="product"
+      />
+      <b-button variant="default text-light px-0" to="/products">
+        SEE ALL PRODUCTS <b-icon-chevron-right scale=".75" />
+      </b-button>
+      <h4 class="font-weight-normal my-4">
+        SUGGESTIONS
+      </h4>
+      <div class="d-flex flex-wrap catlinks">
+        <b-button class="mr-3 p-1 px-0" variant="default text-light">
+          SKIN ESSENCE
+        </b-button>
+        <b-button class="mr-3 p-1 px-0" variant="default text-light">
+          EPICROSS
+        </b-button>
+        <b-button class="mr-3 p-1 px-0" variant="default text-light">
+          KING
+        </b-button>
+        <b-button class="mr-3 p-1 px-0" variant="default text-light">
+          QUEEN
+        </b-button>
       </div>
     </div>
   </div>
@@ -133,8 +107,14 @@ export default {
 }
 </script>
 <style scoped>
+.list-border{
+  border-bottom: 1px solid #b1b1b1;
+}
 .content_box span {
     color: #54565A;
     font-size: 14px;
+}
+.catlinks .btn{
+  text-decoration: underline !important;
 }
 </style>

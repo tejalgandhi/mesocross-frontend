@@ -53,6 +53,8 @@
         />
       </transition>
     </template>
+    <UiSidebarCart />
+    <UiSidebarWishlist />
   </main>
 </template>
 

@@ -30,93 +30,54 @@
           </div>
         </b-collapse>
       </li>
-      <li v-for="(filter, index) in filterData" :key="index">
-        <div class="d-flex align-items-start">
-          <label class="control control--checkbox pl-3 d-none d-md-flex">
-            <input
-              v-model="filter.selected"
-              class="mt-1"
-              type="checkbox"
-              :true-value="true"
-              :false-value="false"
-              @input="selectParent(index)"
-            >
-            <div class="control__indicator" />
-          </label>
-          <a
-            class="child-a ml-2 w-100 a"
-            :class="filter.visible ? 'mb-3' : 'arrowUp'"
-            :aria-expanded="filter.visible ? 'true' : 'false'"
-            :aria-controls="`parent_collapse-${filter.id}`"
-            @click="filter.visible = !filter.visible"
-          >{{ filter.name }}</a>
-        </div>
-        <b-collapse :id="`parent_collapse-${filter.id}`" v-model="filter.visible">
+      <template v-for="(filter, index) in filterData">
+        <li v-if="showAllCats || $route.params && (filter.slug === $route.params.categorySlug || filter.slug === 'skine-care')" :key="index" class="text-uppercase">
+          <div class="d-flex align-items-start">
+            <label class="control control--checkbox pl-3 d-none d-md-flex">
+              <input
+                v-model="filter.selected"
+                class="mt-1"
+                type="checkbox"
+                :true-value="true"
+                :false-value="false"
+                @input="selectParent(index)"
+              >
+              <div class="control__indicator" />
+            </label>
+            <a
+              class="child-a ml-2 w-100 a text-uppercase text-decoration-none"
+              :class="filter.visible ? 'mb-3' : 'arrowUp'"
+              :aria-expanded="filter.visible ? 'true' : 'false'"
+              :aria-controls="`parent_collapse-${filter.id}`"
+              @click="filter.visible = !filter.visible"
+            >{{ filter.name }}</a>
+          </div>
+
           <div v-show="filter.child.length > 0" class="filter_list">
             <ul class="secondUl">
               <li v-for="(childCat, cIndex) in filter.child" :key="cIndex">
-                <a
-                  class="child-b a"
-                  :class="childCat.visible ? null : 'arrowUp'"
-                  :aria-expanded="childCat.visible ? 'true' : 'false'"
-                  :aria-controls="`child_collapse-${childCat.id}`"
-                  @click="childCat.visible = !childCat.visible"
-                >{{ childCat.name }}</a>
-                <b-collapse
-                  v-if="childCat.child.length > 0"
-                  :id="`child_collapse-${childCat.id}`"
-                  v-model="childCat.visible"
-                >
-                  <div class="filter_row">
-                    <div v-for="(c, i) in childCat.child" :key="i" class="filter_check">
-                      <label class="control control--checkbox">
-                        {{ c.name }}
-                        <small class="countSmall">({{ c.products_count }})</small>
-                        <input
-                          v-model="c.selected"
-                          type="checkbox"
-                          :true-value="true"
-                          :false-value="false"
-                          @input="applyFilter(c,filter.id)"
-                        >
-                        <div class="control__indicator" />
-                      </label>
-                    </div>
-                  </div>
-                </b-collapse>
-              </li>
-            </ul>
-          </div>
-        </b-collapse>
-      </li>
-      <li>
-        <div class="d-flex align-items-start">
-          <label class="control control--checkbox pl-3 d-none d-md-flex">
-            <input
-              v-model="selectAllTreatment"
-              type="checkbox"
-              :true-value="true"
-              :false-value="false"
-              @input="selectParentTreatment"
-            >
-            <div class="control__indicator" />
-          </label>
-          <a class="child-a ml-2 w-100 a" :class="showTreatment ? 'mb-3' : 'arrowUp'" @click="showTreatment = !showTreatment">Treatment
-            Solutions</a>
-        </div>
-        <b-collapse id="treatment-filter" v-model="showTreatment">
-          <div class="filter_list">
-            <ul class="secondUl">
-              <li>
+                <label class="control control--checkbox">
+                  {{ childCat.name }}
+                  <input
+                    v-model="childCat.selected"
+                    type="checkbox"
+                    :true-value="true"
+                    :false-value="false"
+                    @input="applyFilter(childCat,filter.id)"
+                  >
+                  <div class="control__indicator" />
+                </label>
                 <div class="filter_row">
-                  <div v-for="(c, i) in treatmentSolutions" :key="i" class="filter_check">
+                  <div v-for="(c, i) in childCat.child" :key="i" class="filter_check">
                     <label class="control control--checkbox">
-                      {{ c.name }}<small class="countSmall"> ({{ c.products_count }})</small>
+                      {{ c.name }}
+                      <small class="countSmall">({{ c.products_count }})</small>
                       <input
-                        :id="`tretment${c.id}`"
+                        v-model="c.selected"
                         type="checkbox"
-                        :checked="c.selected"
-                        @input="applyFilter(c,false, true)"
+                        :true-value="true"
+                        :false-value="false"
+                        @input="applyFilter(c,filter.id)"
                       >
                       <div class="control__indicator" />
                     </label>
@@ -125,8 +86,8 @@
               </li>
             </ul>
           </div>
-        </b-collapse>
-      </li>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
@@ -154,8 +115,8 @@ export default {
       cat.visible = false
       let firstSelect = false
       if (this.$route.params.categorySlug === cat.slug) {
-        firstSelect = true
-        cat.visible = true
+        firstSelect = false
+        cat.visible = false
       }
       cat.selected = firstSelect
       cat.child.map((childCat) => {
@@ -193,10 +154,13 @@ export default {
   computed: {
     ...mapState({
       treatmentSolutions: state => state.product.treatmentSolutions
-    })
-  },
-  mounted () {
-    this.getTreatmentSolutions()
+    }),
+    showAllCats () {
+      if (this.$route.params && this.$route.params.categorySlug) {
+        return false
+      }
+      return false
+    }
   },
   methods: {
     applyFilter (value, parentId, treatmentSolution = false) {
@@ -347,8 +311,7 @@ export default {
       }, 200)
     },
     ...mapActions({
-      selectFilter: 'product/selectFilter',
-      getTreatmentSolutions: 'product/getTreatmentSolutions'
+      selectFilter: 'product/selectFilter'
     }),
     ...mapMutations({
       setTreatmentSolutions: 'product/setTreatmentSolutions'

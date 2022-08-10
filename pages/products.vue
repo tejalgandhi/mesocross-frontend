@@ -245,13 +245,19 @@ export default {
       this.filterSidebar = false
     },
     async fetchProducts (page, productUrl = '') {
+      let activeCat
+      if (this.$route.params && this.$route.params.categorySlug) {
+        activeCat = this.$refs.prodcuFilter.filterData.find(cat => cat.slug === this.$route.params.categorySlug).id
+      }
       let url = productUrl
       if (url === '') { // PREPARE API URL, IT WILL SET ON INTIAL LOAD
         url = `/products?page=${page}`
         if (this.selectedFilters) {
           const category = this.selectedFilters.filter(v => !v.treatmentSolution).map(val => val.id).toString()
           if (category !== '') {
-            url = `${url}&category=${category}`
+            url = `${url}&category=${activeCat},${category}`
+          } else {
+            url = `${url}&category=${activeCat}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
           if (treatmentsolution !== '') {

@@ -36,7 +36,7 @@
               <button v-if="!isThisProductIsInCart(product.id)" class="w-100 mb-3 d-block btn btn-dark text-white" @click="cart(product)">
                 {{ $t('add_to_cart') }}
               </button>
-              <nuxt-link v-else class="w-100 mb-3 d-block btn btn-dark text-white" to="/cart">
+              <nuxt-link v-else v-b-toggle.card-sidebar class="w-100 mb-3 d-block btn btn-dark text-white">
                 {{ $t('go_to_cart') }}
               </nuxt-link>
               <button class="w-100 mb-3 d-block btn btn-outline-dark" @click="addToWishlist(product)">

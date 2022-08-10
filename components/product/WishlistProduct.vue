@@ -14,13 +14,13 @@
           <b-button size="sm" variant="default text-light pl-0 border-right font-weight-bold">
             <span v-if="productPrice && $auth.loggedIn">{{ productPrice }}€</span>
           </b-button>
-          <b-button size="sm" variant="default text-light border-right">
-            ({{ product.size }})
+          <b-button v-if="productSize" size="sm" variant="default text-light border-right">
+            ({{ productSize.name }})
           </b-button>
         </div>
       </div>
     </div>
-    <b-button size="sm" variant="light" block @click="addToCart({...product, flag: 1, is_update:1 })">
+    <b-button size="sm" variant="light" block @click="onAddToCart">
       ADD TO BAG
     </b-button>
     <b-button size="sm" variant="outline-light" block @click="removeWishlist">
@@ -57,6 +57,12 @@ export default {
     },
     productImage () {
       return this.product.feature_image ? `${process.env.uploadURL}${this.product.feature_image}` : ''
+    },
+    productSize () {
+      if (this.product && this.product.product_size.length !== 0) {
+        return this.product.product_size[0]
+      }
+      return ''
     }
   },
   methods: {
@@ -64,6 +70,26 @@ export default {
       addWishList: 'cart/addWishList',
       addToCart: 'cart/addToCart'
     }),
+    onAddToCart () {
+      const size = this.product.product_size[0]
+      const singleProduct = {
+        name: this.product.name,
+        slug: this.product.slug,
+        price: size.price,
+        size_id: size.size_id,
+        product_size_price_id: size.product_size_id,
+        feature_image: this.product.feature_image,
+        size: size.name,
+        product_id: this.product.id,
+        // ref_number: this.product.ref_number,
+        ref_number: this.ref_number,
+        domestic_price: size.domestic_price,
+        international_price: size.domestic_price,
+        flag: 1,
+        qty: 1
+      }
+      this.addToCart(singleProduct)
+    },
     removeWishlist () {
       const singleProduct = {
         name: this.product.name,

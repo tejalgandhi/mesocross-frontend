@@ -19,13 +19,13 @@
       </figure>
     </section>
     <section>
-      <figure @click="goTo('/wishlist')">
+      <figure v-b-toggle.wishlist-sidebar>
         <img src="@/assets/img/star.svg" alt="favs">
         <transition name="pop">
           <span v-if="wishlist">{{ wishlist }}</span>
         </transition>
       </figure>
-      <figure @click="goTo('/cart')">
+      <figure v-b-toggle.card-sidebar>
         <img src="@/assets/img/basket.svg" alt="favs">
         <transition name="pop">
           <span v-if="products">{{ products }}</span>

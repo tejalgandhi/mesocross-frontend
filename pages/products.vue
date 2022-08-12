@@ -165,10 +165,6 @@ export default {
     })
   },
   watch: {
-    bgColor (newVal) {
-      document.querySelector('body').setAttribute('style', newVal)
-      document.querySelector('head').setAttribute('style', newVal)
-    },
     sortType (newVal) {
       this.sortPrice()
     }

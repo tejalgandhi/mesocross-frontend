@@ -114,10 +114,7 @@ export default {
       cat.visible = false
       let firstSelect = false
       if (this.$route.params.categorySlug === cat.slug) {
-        console.log('innnn')
-        console.log(cat.color_gradient)
         this.$emit('setBackgroudColor', cat.color_gradient)
-        // this.setBackGroundColour(cat.color_gradient)
         firstSelect = false
         cat.visible = false
       }
@@ -190,11 +187,6 @@ export default {
         this.selectFilter(filter, treatmentSolution)
         this.$emit('fetchProducts', 1)
       }, 200)
-    },
-    setBackGroundColour (color = '') {
-      console.log('color1')
-      console.log(color)
-      this.$emit('setBackgroudColor', color)
     },
     refresh () {
       this.filterData = []

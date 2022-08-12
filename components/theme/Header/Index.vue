@@ -20,16 +20,18 @@
         <section class="menu container-fluid">
           <section class="nav">
             <template v-for="(item, i) in headItems">
-              <span :key="i" :class="{active: isActive === item.id}" @mouseover="isActive = item.id">{{ item.name }}</span>
+              <div :key="i" class="menu-item position-relative">
+                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id">{{ item.name }}</span>
+                <ThemeHeaderSubMenu
+                  v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"
+                  :slug="item"
+                  :data="subItems[item.id]"
+                  @close="isActive = 0"
+                />
+              </div>
             </template>
           </section>
         </section>
-        <ThemeHeaderSubMenu
-          v-if="isActive"
-          :slug="headItems.filter((el) => el.id === isActive)"
-          :data="subItems[isActive]"
-          @close="isActive = 0"
-        />
       </nav>
     </template>
     <template v-else>

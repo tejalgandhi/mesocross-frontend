@@ -3,9 +3,10 @@
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
-          <div :key="i" class="item" @click="selectedMenu = item">
+          <!-- {{ item }} -->
+          <div :key="i" class="item" @click="data[item.id] ?selectedMenu = item : null">
             <span>{{ item.name }}</span>
-            <span class="arrow" />
+            <span v-if="data[item.id]" class="arrow" />
           </div>
         </template>
       </div>

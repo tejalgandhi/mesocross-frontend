@@ -114,6 +114,7 @@ export default {
       cat.visible = false
       let firstSelect = false
       if (this.$route.params.categorySlug === cat.slug) {
+        this.$emit('setBackgroudColor', cat.color_gradient)
         firstSelect = false
         cat.visible = false
       }

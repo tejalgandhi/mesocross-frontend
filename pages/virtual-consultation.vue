@@ -41,7 +41,7 @@
           </li>
         </ul>
       </div>
-      <LazyCustomTreatment v-if="key > 0 && key !== 6" :treatment-key="key" :treatment="treatmentOptions" @next="nextOption" @prev="key--" />
+      <LazyCustomTreatment v-if="key > 0 && key !== 7" :treatment-key="key" :treatment="treatmentOptions" @next="nextOption" @prev="key--" />
     </div>
   </div>
 </template>
@@ -71,14 +71,7 @@ export default {
       this.treatmentOptions = data
     },
     async nextOption (selectedTreatment, selectedOPtionObject) {
-      if (this.key === 4) {
-        if (selectedOPtionObject.part_of_body === 'hair') {
-          this.key = 6
-          await this.fetchCustomTreatmentData(selectedOPtionObject)
-        } else {
-          this.key++
-        }
-      } else if (this.key === 5) {
+      if (this.key === 6) {
         await this.fetchCustomTreatmentData(selectedOPtionObject)
         this.key++
       } else {

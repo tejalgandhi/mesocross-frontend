@@ -259,7 +259,6 @@ export default {
       document.body.style.backgroundColor = color
       document.head.style.backgroundColor = color
       document.body.classList.add('custom-bg-color')
-      // this.$root.$emit('body-background-color', color)
     },
     async fetchProducts (page, productUrl = '') {
       let activeCat

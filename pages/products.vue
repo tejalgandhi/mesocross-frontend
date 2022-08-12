@@ -165,6 +165,10 @@ export default {
     })
   },
   watch: {
+    bgColor (newVal) {
+      document.querySelector('body').setAttribute('style', newVal)
+      document.querySelector('head').setAttribute('style', newVal)
+    },
     sortType (newVal) {
       this.sortPrice()
     }
@@ -253,6 +257,7 @@ export default {
       console.log(color)
       this.bgColor = color
       document.body.style.backgroundColor = color
+      document.head.style.backgroundColor = color
       document.body.classList.add('custom-bg-color')
     },
     async fetchProducts (page, productUrl = '') {

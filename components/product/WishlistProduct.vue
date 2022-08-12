@@ -59,7 +59,7 @@ export default {
       return this.product.feature_image ? `${process.env.uploadURL}${this.product.feature_image}` : ''
     },
     productSize () {
-      if (this.product && this.product.product_size.length !== 0) {
+      if (this.product && (this.product.product_size && !this.product.product_size.length)) {
         return this.product.product_size[0]
       }
       return ''

@@ -54,7 +54,7 @@
                   <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
                 </a>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-center align-items-center" :class="[isLoggedin ? 'justify-content-between': 'justify-content-center' ]">
                 <a v-if="isLoggedin" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist">
                   {{ isProductInWishList ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
                 </a>

@@ -1,15 +1,20 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
-    <span>({{ $t('choose') }} 1)</span>
+    <h2 class="my-5">
+      {{ title }}
+    </h2>
     <div class="options">
       <p v-for="(val, index) in treatmentOptions" :key="index">
         <a v-if="index != 'value'" href="javascript:void(0)" :class="{'active': treatmentOptions.value == index || selectedTreatment == index || selectedTreatmentWithoutHair == index }" @click="selectOption(index)">{{ val }}</a>
       </p>
     </div>
     <div class="act_btn">
-      <a v-if="treatmentKey > 1 " href="javascript:void(0)" class="prev" @click="$emit('prev')">{{ $t('Previous') }}</a>
-      <a href="javascript:void(0)" class="next" @click="triggerNext">{{ $t('Next') }}</a>
+      <b-button v-if="treatmentKey > 1 " variant="outline-primary" class="rounded-0" @click="$emit('prev')">
+        {{ $t('Previous') }}
+      </b-button>
+      <b-button variant="primary" class="rounded-0" @click="triggerNext">
+        {{ $t('Next') }}
+      </b-button>
     </div>
   </div>
 </template>
@@ -51,10 +56,10 @@ export default {
           options = this.treatment.ageGroup
           break
         case 3:
-          options = this.treatment.partsOfBody
+          options = this.treatment.observation
           break
         case 4:
-          options = this.treatment.type[this.treatment.partsOfBody.value]
+          options = this.treatment.type[this.treatment.observation.value]
           options.value = this.treatment.type.value
           break
         case 5:

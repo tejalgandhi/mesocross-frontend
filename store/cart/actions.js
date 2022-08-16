@@ -17,11 +17,11 @@ export default {
     const { data } = await this.$axios.$get('/cart')
     commit('setCartProduct', data)
   },
-  async addWishList ({ commit, state }, payload) {
+  async addWishList ({ commit, state, dispatch }, payload) {
     const wishList = JSON.parse(JSON.stringify(state.wishList))
     await this.$axios.$post('/wishlist', payload)
     if (payload.flag === 1) {
-      wishList.push(payload)
+      dispatch('getWishList')
     } else {
       const index = wishList.findIndex(pr => pr.product_id === payload.product_id)
       wishList.splice(index, 1)

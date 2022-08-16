@@ -28,5 +28,19 @@ export default {
   },
   getProducts (state) {
     return state.products
+  },
+  isWished (state) {
+    return (product) => {
+      const wishList = JSON.parse(JSON.stringify(state.wishList))
+      const checkId = (pr, product) => (pr.product_id === product.id || pr.id === product.id)
+      const checkSize = (pr, product) => {
+        if (pr && pr.product_size && pr.product_size.length > 0 && pr.product_size[0].product_size_id) {
+          return pr.product_size[0].product_size_id === product.product_size_id || pr.product_size_price_id === product.product_size_id
+        }
+        return pr.product_size_price_id === product.product_size_id
+      }
+      const iswish = wishList.findIndex(pr => checkId(pr, product) && checkSize(pr, product)) > -1
+      return iswish
+    }
   }
 }

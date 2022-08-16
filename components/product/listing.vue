@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   props: {
     products: {
@@ -68,6 +68,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isWished: 'cart/isWished'
+    }),
     productImage () {
       return (product) => {
         return product.feature_image ? `${process.env.uploadURL}${product.feature_image}` : ''
@@ -84,10 +87,7 @@ export default {
       }
     },
     isInWhishlist () {
-      return (product) => {
-        const iswish = this.wishList.findIndex(pr => pr.product_id === product.id) > -1
-        return iswish
-      }
+      return this.isWished;
     },
     ...mapState({
       wishList: state => state.cart.wishList,

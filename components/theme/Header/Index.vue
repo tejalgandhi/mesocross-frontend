@@ -20,11 +20,12 @@
         <section class="menu container-fluid">
           <section class="nav">
             <template v-for="(item, i) in headItems">
+              <!-- {{ item }} -->
               <div :key="i" class="menu-item position-relative">
-                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id">{{ item.name }}</span>
+                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item.custom_slug)">{{ item.name }}</span>
                 <ThemeHeaderSubMenu
                   v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"
-                  :slug="item"
+                  :slug="[item]"
                   :data="subItems[item.id]"
                   @close="isActive = 0"
                 />

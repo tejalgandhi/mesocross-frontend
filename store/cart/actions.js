@@ -30,7 +30,10 @@ export default {
   },
   async getWishList ({ commit }) {
     const { data } = await this.$axios.$get('/wishlist')
-    commit('setWishListData', data)
+    const modifyResponse = data.map((product) => {
+      return { ...product, product_id: product.id, product_size_price_id: product.product_size[0].product_size_id, flag: 1 }
+    })
+    commit('setWishListData', modifyResponse)
   },
   async getShippingCharge ({ rootState, commit }) {
     try {

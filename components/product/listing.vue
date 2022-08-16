@@ -87,9 +87,7 @@ export default {
       }
     },
     isInWhishlist () {
-      return (product) => {
-        return this.isWished(product)
-      }
+      return this.isWished;
     },
     ...mapState({
       wishList: state => state.cart.wishList,

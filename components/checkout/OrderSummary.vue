@@ -1,29 +1,39 @@
 <template>
   <div class="col-lg-auto">
     <div class="summary mt-3">
-      <h3 class="mb-3">
+      <h5 class="mb-3 text-uppercase">
         {{ $t('order_summary') }}
-      </h3>
+      </h5>
       <!-- <div class="discount">
         <span>Add discount
           <a href="#"><img src="@/assets/img/plus.svg" alt="image"></a>
           <input type="text" name="" style="display: none;">
         </span>
       </div> -->
+      <div class="coupon_code p-4 mb-3">
+        <h5>INSERT YOUR PROMO CODE</h5>
+        <input type="text" placeholder="Enter promo code" class="form-control">
+      </div>
       <div class="prod_detail">
         <p class="product d-flex justify-content-between">
-          <label>{{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label><span>{{ subTotal }} €</span>
+          <label class="font-weight-bold text-uppercase">{{ products.length }} {{ $t('products') }}</label><span class="font-weight-bold">{{ subTotal }} €</span>
         </p>
         <p class="d-flex justify-content-between">
-          <label>{{ $t('discount') }}</label> <span>{{ discount }} €</span>
+          <label>{{ $t('discount') }}</label> <span class="font-weight-bold">{{ discount }} €</span>
         </p>
         <p class="total d-flex justify-content-between">
-          <label>{{ $t('shipping') }}</label> <span>{{ shippingCharge }} €</span>
+          <label>{{ $t('shipping') }}</label> <span class="font-weight-bold">{{ shippingCharge }} €</span>
         </p>
-        <p class="total">
-          <label>{{ $t('total') }}</label> <span>{{ totalProductPrice }} €</span>
+        <hr>
+        <p class="total d-flex justify-content-between">
+          <label>{{ $t('total') }}</label> <span class="font-weight-bold text-right">
+            {{ totalProductPrice }} € <br>
+            <small>VAT included</small>
+          </span>
         </p>
-        <a v-show="selectedCard != 5 || tabindex != 3" href="javascript:void(0)" class="checkout" @click="$emit('countinue')">{{ titleButton }} <i class="fa fa-angle-right ml-3" /></a>
+        <b-button v-show="selectedCard != 5 || tabindex != 3" variant="primary" class="checkout filter-invert btn-block my-4" @click="$emit('countinue')">
+          {{ titleButton }} <i class="fa fa-angle-right ml-3" />
+        </b-button>
         <paypal-btn v-if="selectedCard == 5 && tabindex == 3" :amount="Number(totalProductPrice)" :order-payload="orderPayload" />
       </div>
     </div>
@@ -67,3 +77,12 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.coupon_code{
+  background: rgba(0, 0, 0, 0.04);
+  input{
+    border: 1px solid #221F201F;
+    border-radius: 2px;
+  }
+}
+</style>

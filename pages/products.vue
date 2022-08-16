@@ -347,12 +347,6 @@ export default {
   border: 1px solid #25282A;
 }
 
-.logout-btn {
-  border-radius: 5px;
-  color: #25282A;
-  background: white;
-  border: 1px solid #25282A;
-}
 .sorting{
   option{
     color: #000 !important;

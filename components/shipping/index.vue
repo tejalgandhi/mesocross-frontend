@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="select-text mb-4 mt-4">
+    <div class="select-text mb-4">
       {{ $t('select_your_address') }}
     </div>
     <template v-if="!addressShow">
@@ -16,13 +16,13 @@
     <template v-else>
       <ShippingAddAddress @addressSave="addressSave" @hideAddAdrress="addressShow = false" />
     </template>
-    <div class="col-md-4 py-4 mx-auto">
-      <button v-if="!addressShow" class="w-100 d-block btn btn-outline-dark filter-invert" @click="addAddress">
+    <div class="py-3 text-right">
+      <button v-if="!addressShow" class="btn btn-outline-dark filter-invert" @click="addAddress">
         {{ $t('add_new_address') }}
       </button>
     </div>
     <template v-if="!addressShow && shippings && shippings.length">
-      <div class="select-text mb-4 mt-4">
+      <div class="select-text mb-4">
         {{ $t('select_Your_shipping_mode') }}
       </div>
       <ShippingSelection />

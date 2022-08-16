@@ -1,9 +1,9 @@
 <template>
   <div id="payment" class="tab-pane fade show active shipping">
-    <h2 class="text-uppercase mb-4">
+    <h4 class="text-uppercase my-3">
       {{ bodytitle }}
-    </h2>
-    <p class="mb-3 font-16 text-white">
+    </h4>
+    <p class="mb-3 font-16">
       {{ $t('required_fields') }}*
     </p>
     <div class="d-flex flex-wrap">
@@ -115,13 +115,13 @@
               </ValidationProvider>
             </div>
           </div>
-          <div class="form-group col-lg-6">
-            <button type="submit" class="card-btn btn mt-2 py-2 btn-dark mr-3">
+          <div class="form-group col-lg-12 mt-4">
+            <b-button variant="primary" type="submit" class="px-lg-5 px-4 my-2 mr-4">
               {{ $t('save') }}
-            </button>
-            <button class="card-btn btn mt-2 py-2 btn-light" @click="setIsAddPayment(false)">
+            </b-button>
+            <b-button variant="outline-primary" class="px-lg-5 px-4 my-2" @click="setIsAddPayment(false)">
               {{ $t('cancel') }}
-            </button>
+            </b-button>
           </div>
 
           <div class="col-12 text-center mt-3">

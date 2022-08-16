@@ -162,9 +162,9 @@
             </ValidationProvider>
           </div>
           <div class="form-group col-lg-12 mt-4">
-            <button class="d-block btn btn-light submit-btn">
+            <b-button class="d-block btn btn-primary px-lg-5">
               {{ $t('update_company_data') }}
-            </button>
+            </b-button>
           </div>
         </form>
       </div>
@@ -255,13 +255,6 @@ label {
   opacity: .8;
 }
 
-.submit-btn {
-  font: normal normal 500 16px Arquitecta;
-  letter-spacing: 0.48px;
-  background: #25282A;
-  border-radius: 4px;
-  height: 45px;
-}
 .bottom-arrow {top: 15px !important; right: 10px; z-index: 1}
 .errors {
   color: #cf0000;

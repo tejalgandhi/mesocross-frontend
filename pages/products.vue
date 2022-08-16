@@ -1,5 +1,6 @@
-<template>
-  <div class="product-page">
+<template >
+  <client-only>
+  <div class="product-page" :style="`${bgColor}`">
     <Banner :page-name="'product'" />
     <div class="filter_result">
       <div class="container-fluid">
@@ -82,6 +83,7 @@
           ref="prodcuFilter"
           class="p-4"
           @fetchProducts="fetchProducts"
+          @setBackgroudColor="setBackgroudColor"
           @priceSort="setSorting"
           @alphaSorting="setAlphaBeticSort"
           @bestSellingChanged="setBestSellSort"
@@ -108,6 +110,7 @@
       </div>
     </div> -->
   </div>
+  </client-only>
 </template>
 <script>
 import { showPricePopup } from 'assets/js/custom'
@@ -139,6 +142,7 @@ export default {
       products: [],
       paginate: {},
       filterSidebar: false,
+      bgColor: '',
       breadcrumbs: [
         {
           path: '/',
@@ -161,6 +165,10 @@ export default {
     })
   },
   watch: {
+    bgColor (newVal) {
+      document.querySelector('body').setAttribute('style', newVal)
+      document.querySelector('head').setAttribute('style', newVal)
+    },
     sortType (newVal) {
       this.sortPrice()
     }
@@ -243,6 +251,14 @@ export default {
     applyMobileFilter () {
       // this.fetchProducts(1)
       this.filterSidebar = false
+    },
+    setBackgroudColor (color = '') {
+      console.log('color')
+      console.log(color)
+      this.bgColor = color
+      document.body.style.backgroundColor = color
+      document.head.style.backgroundColor = color
+      document.body.classList.add('custom-bg-color')
     },
     async fetchProducts (page, productUrl = '') {
       let activeCat
@@ -331,12 +347,6 @@ export default {
   border: 1px solid #25282A;
 }
 
-.logout-btn {
-  border-radius: 5px;
-  color: #25282A;
-  background: white;
-  border: 1px solid #25282A;
-}
 .sorting{
   option{
     color: #000 !important;

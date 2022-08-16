@@ -1,12 +1,12 @@
 <template>
-  <div class="text-light">
+  <div>
     <div class="row align-items-center">
       <div class="col-auto pr-0">
         <img class="product_img" :src="product.feature_image" alt="image">
       </div>
       <div class="col">
         <h6 class="mb-1 text-uppercase">
-          <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
+          <nuxt-link :to="`/product-detail/${product.slug}`">
             {{ product.name }}
           </nuxt-link>
         </h6>

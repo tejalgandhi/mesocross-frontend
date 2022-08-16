@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="mt-5">
+  <footer id="footer">
     <div class="support-links p-2 border-top border-bottom">
       <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center">
@@ -95,8 +95,7 @@
 
             <div class="col-md-3 d-none d-md-block">
               <div class="mb-5">
-                <CommonNewsletter/>
-
+                <CommonNewsletter />
               </div>
               <div class="mb-5">
                 <div class="row">

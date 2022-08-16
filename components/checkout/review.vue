@@ -2,7 +2,7 @@
   <div class="accordion accordion-section clearfix mt-3 mb-3" role="tablist">
     <b-card no-body class="mb-1">
       <b-card-header v-b-toggle.accordion-1 class="panel panel-default" header-tag="header" role="tab">
-        <h3 class="panel-title">
+        <h3 class="panel-title mb-0">
           <a block variant="info">
             {{ $t('Products') }}
           </a>
@@ -11,36 +11,39 @@
       <b-collapse id="accordion-1" v-model="accordianCollapse[0]">
         <b-card-body>
           <div v-for="(product, index) in products" :key="index" class="panel-body mb-4">
-            <div class="row border-bottom mb-3">
-              <div class="col-md-3 col-4 align-self-center pr-md-0 mx-auto text-center">
-                <img :src="product.feature_image" class="img-fluid product-thumb" alt="image">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <img :src="product.feature_image" class="img-fluid product-thumb mx-auto d-block" alt="image">
               </div>
-              <div class="col-md-9 col-8 pl-md-0 text-left">
+              <div class="col">
                 <div class="mt-4">
-                  <nuxt-link :to="`/product-detail/${product.slug}`">
-                    <p class="font-20 text-dark" style="font-weight: 600">
+                  <h6 class="text-uppercase mb-0">
+                    <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
                       {{ product.name }} ({{ product.size }})
-                    </p>
-                  </nuxt-link>
-                  <p class="font-16">
+                    </nuxt-link>
+                  </h6>
+                  <p class="small text-uppercase">
                     Ref:{{ product.ref_number }}
-                  </p>
-                  <div class="counter px-3 py-2 my-4 d-flex align-items-center justify-content-between">
-                    <a href="javascript:void(0)"><i class="fa fa-minus text-muted font-weight-light" aria-hidden="true" /></a>
-                    <span class="mx-2">{{ product.qty }}</span>
-                    <a href="javascript:void(0)"><i class="fa fa-plus text-muted font-weight-light" aria-hidden="true" /></a>
-                  </div>
-                  <p class="font-20 text-dark">
-                    {{ product.price }}€
                   </p>
                 </div>
               </div>
+              <div class="col-2">
+                <label class="text-gray mb-0">Quantity:</label><br>
+                <b-button variant="primary-outline" class="border-qty" size="sm">
+                  {{ product.qty }}
+                </b-button>
+              </div>
+              <div class="col-3">
+                <label class="text-gray mb-0">Price:</label><br>
+                <span class="items_price">{{ product.price }}€</span>
+              </div>
             </div>
+            <hr>
           </div>
         </b-card-body>
       </b-collapse>
       <b-card-header v-b-toggle.accordion-2 class="panel panel-default" header-tag="header" role="tab">
-        <h3 class="panel-title">
+        <h3 class="panel-title mb-0">
           <a block variant="info">
             {{ $t('shipping') }}
           </a>
@@ -76,7 +79,7 @@
         </b-card-body>
       </b-collapse>
       <b-card-header v-b-toggle.accordion-3 class="panel panel-default" header-tag="header" role="tab">
-        <h3 class="panel-title">
+        <h3 class="panel-title mb-0">
           <a block variant="info">
             {{ $t('payment') }}
           </a>
@@ -219,9 +222,21 @@ export default {
 </script>
 <style scoped>
 .product-thumb{
-  max-height: 150px;
-  max-width: 150px;
-  margin-left: auto;
-  margin-right: auto;
+    max-height: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    min-width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+        object-fit: contain;
+}
+.border-qty{
+  border: 1px solid rgba(0, 0, 0, .33);
+  filter: invert(0);
+  color: #000;
+  min-width: 100px;
+}
+.text-gray{
+  color: #25282A66 !important;
 }
 </style>

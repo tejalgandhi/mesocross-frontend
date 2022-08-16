@@ -1,16 +1,22 @@
 <template>
   <div class="container-fluid mx-auto shipping-tab mb-0 pb-5">
     <div class="row">
-      <div class="col-md-11 mx-auto">
+      <div class="col-md-12 mx-auto">
         <div class="w-100 my-5">
           <CheckoutTab :tab-index="tabIndex" />
         </div>
         <div class="row">
-          <div class="col-lg">
+          <div class="col-lg pr-lg-4">
             <div class="tab-content">
-              <div class="d-flex align-items-center font-16 text-dark w-auto" style="cursor: pointer">
-                <img v-if="tabIndex != 1" src="@/assets/img/left-arrow.svg" class="mr-2 left-arr" alt="image" @click="back">
-                <p v-if="tabIndex != 1" class="text-dark back-text" @click="back">
+              <div v-if="tabIndex != 1" class="d-flex align-items-center font-16 text-dark w-auto mb-4" style="cursor: pointer">
+                <img
+                  src="@/assets/img/left-arrow.svg"
+                  class="mr-2 left-arr"
+                  width="15"
+                  alt="image"
+                  @click="back"
+                >
+                <p class="text-dark text-uppercase back-text" @click="back">
                   {{ $t('back') }}
                 </p>
               </div>
@@ -21,8 +27,8 @@
                 <checkout-add-payment-method v-if="isAddPayment" :bodytitle="$t('add_payment_method')" />
                 <checkout-payment v-else :bodytitle="$t('checkout.select_your_payment_method')" />
               </div>
-              <div v-if="tabIndex == 3" id="review" class="show shipping pt-3">
-                <checkout-review ref="reviewComponent" class="mt-5" @editPayment="callToSecondTab" />
+              <div v-if="tabIndex == 3" id="review" class="show shipping">
+                <checkout-review ref="reviewComponent" @editPayment="callToSecondTab" />
               </div>
             </div>
           </div>

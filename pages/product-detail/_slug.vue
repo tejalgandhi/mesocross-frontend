@@ -54,7 +54,7 @@
                   <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
                 </a>
               </div>
-              <div :class="['d-flex align-items-center', isLoggedin ? 'justify-content-between': 'justify-content-center' ]">
+              <div :class="['d-flex align-items-center', { 'justify-content-between' : isLoggedin, 'justify-content-center': !isLoggedin} ]">
                 <a v-if="isLoggedin" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist">
                   {{ isProductInWishList ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
                 </a>
@@ -196,7 +196,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import { showPricePopup } from 'assets/js/custom'
 
 export default {
@@ -240,6 +240,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isWished: 'cart/isWished'
+    }),
     productImages () {
       try {
         if (this.product) {
@@ -257,8 +260,7 @@ export default {
       }
     },
     isProductInWishList () {
-      const iswish = this.wishList.findIndex(pr => pr.product_id === this.product.id && pr.product_size_price_id === this.product_size_id) > -1
-      return iswish
+      return this.isWished(this.product)
     },
     ...mapState({
       wishList: state => state.cart.wishList,

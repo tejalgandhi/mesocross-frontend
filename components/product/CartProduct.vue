@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   props: {
     product: {
@@ -51,8 +51,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isWished: 'cart/isWished'
+    }),
     isProductInWishList () {
-      return this.wishList.findIndex(pr => pr.product_id === this.product.product_id && this.product.product_size_price_id === pr.product_size_price_id) > -1
+      return this.isWished(this.product)
     },
     ...mapState({
       wishList: state => state.cart.wishList

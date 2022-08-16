@@ -201,7 +201,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel'
 import VueHotspot from 'vue-hotspot' // refers to components/VueHotspot.vue in webpack
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   components: {
     VueSlickCarousel,
@@ -248,6 +248,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isWished: 'cart/isWished'
+    }),
     productImages () {
       try {
         if (this.product) {
@@ -266,8 +269,7 @@ export default {
       }
     },
     isProductInWishList () {
-      const iswish = this.wishList.findIndex(pr => pr.product_id === this.product.id) > -1
-      return iswish
+      return this.isWished(this.product)
     },
     ...mapState({
       wishList: state => state.cart.wishList,

@@ -92,10 +92,7 @@ export default {
     },
     removeWishlist () {
       const singleProduct = {
-        name: this.product.name,
-        slug: this.product.slug,
-        product_size_price_id: this.product.product_size_price_id,
-        product_id: this.product.product_id,
+        product_id: this.product.id || this.product.product_id,
         flag: 2
       }
       this.addWishList(singleProduct)

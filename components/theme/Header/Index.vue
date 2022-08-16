@@ -20,22 +20,18 @@
         <section class="menu container-fluid">
           <section class="nav">
             <template v-for="(item, i) in headItems">
-              <span
-                :key="i"
-                class="text-uppercase"
-                :class="{ active: isActive === item.id }"
-                @click="goTo(item.custom_slug)"
-              >{{ item.name }}</span>
-              <!-- <span :key="i" class="text-uppercase" :class="{active: isActive === item.id}" @click="goTo(item.custom_slug)" @mouseover="isActive = item.id">{{ item.name }}</span> -->
+              <div :key="i" class="menu-item position-relative">
+                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id">{{ item.name }}</span>
+                <ThemeHeaderSubMenu
+                  v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"
+                  :slug="item"
+                  :data="subItems[item.id]"
+                  @close="isActive = 0"
+                />
+              </div>
             </template>
           </section>
         </section>
-        <ThemeHeaderSubMenu
-          v-if="isActive"
-          :slug="headItems.filter((el) => el.id === isActive)"
-          :data="subItems[isActive]"
-          @close="isActive = 0"
-        />
       </nav>
     </template>
     <template v-else>
@@ -191,7 +187,7 @@ main.main-header {
       display: flex;
       align-items: center;
       z-index: 80;
-
+      position: relative;
       figure {
         cursor: pointer;
         width: 3rem;
@@ -221,6 +217,7 @@ main.main-header {
           cursor: pointer;
           font-weight: 300;
           letter-spacing: 0.7px;
+          text-transform: uppercase;
           &.active {
             font-weight: 600;
           }

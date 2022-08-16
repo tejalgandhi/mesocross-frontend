@@ -2,13 +2,13 @@
   <div class="sub-items">
     <div class="main" @click="handleMainItemClick">
       <span>{{ data.name }}</span>
-      <span class="arrow" :class="{up: openSub, go: !data.children }" />
+      <!-- <span class="arrow" :class="{up: openSub, go: !data.children }" /> -->
     </div>
-    <div v-if="openSub" class="secondary">
+    <!-- <div v-if="openSub" class="secondary">
       <template v-for="(item, i) in data.children">
         <span :key="i" :class="{under: item.name.toLowerCase().includes('all')}" @click="item.slug ? goTo(item, data) : ''">{{ item.name }}</span>
       </template>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -105,8 +105,8 @@ export default {
             .arrow {
                 width: 10px;
                 height: 10px;
-                border-top: solid 1px black;
-                border-right: solid 1px black;
+                border-top: solid 1px #FFF;
+                border-right: solid 1px #FFF;
                 transform: rotate(135deg);
                 transition: 0.2s;
 

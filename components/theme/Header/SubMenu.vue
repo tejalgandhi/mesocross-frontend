@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="menu-overlay" />
+    <!-- <div class="menu-overlay" /> -->
     <div class="items" @mouseleave="$emit('close')">
       <template v-for="(tab, i) in data">
         <article :key="i">
@@ -110,38 +110,38 @@ export default {
 
 <style lang="scss" scoped>
     section {
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        z-index: 70;
-
-        .menu-overlay {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 100px;
-            left: 0;
-            background: #25282ac7;
-        }
-
         .items {
-            position: absolute;
-            top: 100px;
-            width: 90%;
-            padding: 0 1rem;
-            background: white;
-            border: 0.5px solid #DCDCDC;
-            display: flex;
-            gap: 4rem;
-            padding: 2rem 10.5rem;
+              position: absolute;
+              top: 100%;
+              grid-gap: 4rem;
+              gap: 4rem;
+              padding: 1.5rem;
+              margin: 0 auto;
+              text-transform: uppercase;
+              background: #fff;
+              color: #000;
+              transform: translateX(-50%);
+              left: 50%;
+              width: 200px;
+              &:before {
+                  content: "";
+                  position: absolute;
+                  width: 12px;
+                  height: 12px;
+                  display: block;
+                  top: -6px;
+                  left: 50%;
+                  transform: translateX(-50%) rotate(45deg);
+                  background: #FFF;
+              }
 
             article {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
+                &:last-child{
+                      grid-gap: 0;
+                }
                 .title {
                     font-weight: 600;
                     user-select: none;
@@ -167,6 +167,7 @@ export default {
                     display: flex;
                     flex-direction: column;
                     gap: 0.5rem;
+                    margin: 0;
 
                     li {
                         user-select: none;

@@ -131,7 +131,7 @@ export default {
       color: #203032;
   }
   .summary{
-        min-width: 300px;
+        min-width: 350px;
   }
   .text-dark{
     color: #25282a !important

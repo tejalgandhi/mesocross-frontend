@@ -563,14 +563,16 @@ footer .footer_bottom .copyright {
 
 
 /* Accordian */
-.accordion-section .panel-default .panel-title a {    font: normal normal normal 16px/21px Arquitecta;
+.accordion-section .panel-default .panel-title a {    
+  font: normal normal normal 16px/21px Arquitecta;
   letter-spacing: 0px;
   color: #000000 !important;
   text-transform: uppercase;
-  opacity: 0.6;}
-.accordion-section .panel-default .panel-title a:after {content: url('../img/up-arrow.svg');transform: rotate(0deg);float: right;}
-.accordion-section .panel-default.collapsed .panel-title a:after {content: url('../img/up-arrow.svg'); transform: rotate(180deg);}
-.accordion-section .panel-default {background: #fff; padding: 15px; margin-bottom: 15px; align-items: center; border-radius: 4px}
+  opacity: 1;
+font-weight: bold;}
+.accordion-section .panel-default .panel-title a:after {content: url('../img/up-arrow.svg');transform: rotate(0deg) scale(.75);float: right; margin-top: 5px;}
+.accordion-section .panel-default.collapsed .panel-title a:after {content: url('../img/up-arrow.svg'); transform: rotate(180deg) scale(.75); margin-top: 5px;}
+.accordion-section .panel-default {background: #fff; padding: 15px; margin-bottom: 0 !important; align-items: center; border-radius: 4px}
 .accordion-section .panel-default .panel-body {font: normal normal normal 16px/19px Lato;letter-spacing: 0.32px;color: #203032;}
 .counter span {font: normal normal 600 16px Arquitecta;letter-spacing: 0.8px;color: #203032;}
 .counter {background: #FFFFFF;border: 1px solid #203032;border-radius: 2px; width: 115px}
@@ -1035,4 +1037,7 @@ footer .footer_bottom .copyright {
 
 .logout-btn {
   pointer-events: all;
+}
+.shipping-tab .btn{
+  filter: invert(1);
 }

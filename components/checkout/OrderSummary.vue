@@ -10,6 +10,10 @@
           <input type="text" name="" style="display: none;">
         </span>
       </div> -->
+      <div class="coupon_code p-4 mb-3">
+        <h5>INSERT YOUR PROMO CODE</h5>
+        <input type="text" placeholder="Enter promo code" class="form-control">
+      </div>
       <div class="prod_detail">
         <p class="product d-flex justify-content-between">
           <label class="font-weight-bold text-uppercase">{{ products.length }} {{ $t('products') }}</label><span class="font-weight-bold">{{ subTotal }} €</span>
@@ -22,7 +26,10 @@
         </p>
         <hr>
         <p class="total d-flex justify-content-between">
-          <label>{{ $t('total') }}</label> <span class="font-weight-bold">{{ totalProductPrice }} €</span>
+          <label>{{ $t('total') }}</label> <span class="font-weight-bold text-right">
+            {{ totalProductPrice }} € <br>
+            <small>VAT included</small>
+          </span>
         </p>
         <b-button v-show="selectedCard != 5 || tabindex != 3" variant="primary" class="checkout filter-invert btn-block my-4" @click="$emit('countinue')">
           {{ titleButton }} <i class="fa fa-angle-right ml-3" />
@@ -70,3 +77,12 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.coupon_code{
+  background: rgba(0, 0, 0, 0.04);
+  input{
+    border: 1px solid #221F201F;
+    border-radius: 2px;
+  }
+}
+</style>

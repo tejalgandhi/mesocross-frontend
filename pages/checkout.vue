@@ -8,9 +8,16 @@
         <div class="row">
           <div class="col-lg">
             <div class="tab-content">
-              <div class="d-flex align-items-center font-16 text-dark w-auto" style="cursor: pointer">
-                <img v-if="tabIndex != 1" src="@/assets/img/left-arrow.svg" class="mr-2 left-arr" alt="image" @click="back">
-                <p v-if="tabIndex != 1" class="text-dark back-text" @click="back">
+              <div class="d-flex align-items-center font-16 text-dark w-auto mb-4" style="cursor: pointer">
+                <img
+                  v-if="tabIndex != 1"
+                  src="@/assets/img/left-arrow.svg"
+                  class="mr-2 left-arr"
+                  width="15"
+                  alt="image"
+                  @click="back"
+                >
+                <p v-if="tabIndex != 1" class="text-dark text-uppercase back-text" @click="back">
                   {{ $t('back') }}
                 </p>
               </div>
@@ -22,7 +29,7 @@
                 <checkout-payment v-else :bodytitle="$t('checkout.select_your_payment_method')" />
               </div>
               <div v-if="tabIndex == 3" id="review" class="show shipping pt-3">
-                <checkout-review ref="reviewComponent" class="mt-5" @editPayment="callToSecondTab" />
+                <checkout-review ref="reviewComponent" @editPayment="callToSecondTab" />
               </div>
             </div>
           </div>

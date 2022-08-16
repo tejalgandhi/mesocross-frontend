@@ -64,9 +64,9 @@
             </div>
           </div>
           <div class="form-group col-lg-6">
-            <button class="d-block btn submit-btn text-white w-100">
+            <b-button variant="primary" class="d-block w-100">
               {{ $t('dashboard.update_personal_data') }}
-            </button>
+            </b-button>
           </div>
         </form>
       </div>
@@ -145,14 +145,6 @@ label {
   font: normal normal 500 16px Arquitecta;
   letter-spacing: 0px;
   color: #25282A;
-}
-
-.submit-btn {
-  font: normal normal 500 16px Arquitecta;
-  letter-spacing: 0.48px;
-  background: #25282A;
-  border-radius: 4px;
-  height: 45px;
 }
 
 .vue-country-select {

@@ -122,14 +122,14 @@
                 </ValidationProvider>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-light" type="button" @click="saveAddress">
+                <b-button variant="primary" class="w-100" type="button" @click="saveAddress">
                   {{ $t('save') }}
-                </button>
+                </b-button>
               </div>
               <div class="form-group col-md-6 mt-3">
-                <button class="btn w-100 btn-primary" type="button" @click="$emit('hideAddAdrress')">
+                <b-button variant="outline-primary" class="w-100" type="button" @click="$emit('hideAddAdrress')">
                   {{ $t('cancel') }}
-                </button>
+                </b-button>
               </div>
 
               <div class="col-12 text-center my-3">
@@ -257,6 +257,5 @@ export default {
 .checkout input{width: 100%;}
 .phoneAdd{display: inline-flex; width: 68%;}
 .phoneAdd input{width: 100%;}
-.fill-detail-from label{color : #25282A}
 .btn-primary{border: 1px solid #000;}
 </style>

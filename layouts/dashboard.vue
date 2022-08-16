@@ -131,7 +131,6 @@ export default {
       color: #203032;
   }
   .summary{
-        background: #f5f5f5;
         min-width: 300px;
   }
   .text-dark{

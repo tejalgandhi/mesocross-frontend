@@ -62,7 +62,7 @@ export default {
       if (this.product && (this.product.product_size && this.product.product_size.length !== 0)) {
         return this.product.product_size[0]
       }
-      return ''
+      return null
     }
   },
   methods: {

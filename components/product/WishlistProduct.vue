@@ -59,7 +59,7 @@ export default {
       return this.product.feature_image ? `${process.env.uploadURL}${this.product.feature_image}` : ''
     },
     productSize () {
-      if (this.product && (this.product.product_size && !this.product.product_size.length)) {
+      if (this.product && (this.product.product_size && this.product.product_size.length !== 0)) {
         return this.product.product_size[0]
       }
       return ''
@@ -71,20 +71,18 @@ export default {
       addToCart: 'cart/addToCart'
     }),
     onAddToCart () {
-      const size = this.product.product_size[0]
       const singleProduct = {
         name: this.product.name,
         slug: this.product.slug,
-        price: size.price,
-        size_id: size.size_id,
-        product_size_price_id: size.product_size_id,
+        price: this.productSize.price,
+        size_id: this.productSize.size_id,
+        product_size_price_id: this.productSize.product_size_id,
         feature_image: this.product.feature_image,
-        size: size.name,
+        size: this.productSize.name,
         product_id: this.product.id,
-        // ref_number: this.product.ref_number,
         ref_number: this.ref_number,
-        domestic_price: size.domestic_price,
-        international_price: size.domestic_price,
+        domestic_price: this.productSize.domestic_price,
+        international_price: this.productSize.domestic_price,
         flag: 1,
         qty: 1
       }

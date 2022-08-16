@@ -520,6 +520,9 @@ footer .footer_bottom .copyright {
 .shipping-tab .nav-link span {width: 32px;height: 32px; position: relative; z-index: 1; margin-bottom: 15px; color: #A7A5A5;
 }
 .shipping-tab .nav-link.active span {color: #fff;}
+.shipping-tab .address-radio{
+  background-color: #fff;
+}
 .shipping-tab .nav-link span::before{
   content: "";
   position: absolute;

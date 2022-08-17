@@ -87,7 +87,7 @@ export default {
       }
     },
     isInWhishlist () {
-      return this.isWished;
+      return this.isWished
     },
     ...mapState({
       wishList: state => state.cart.wishList,
@@ -155,6 +155,10 @@ p {
     object-fit: contain;
     transition: 0.6s;
     transform: scale(1.0);
+    max-height: 300px;
+  @media (max-width: 767px){
+    max-height: 110px;
   }
+}
 }
 </style>

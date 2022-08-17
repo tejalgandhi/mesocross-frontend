@@ -202,14 +202,10 @@ export default {
 </script>
 
 <style lang="scss">
-.support-links{
-  background: #000;
-}
 
 .footer-main{
   position: relative;
   &.inverse{
-    background: #000000;
     .footer_links{
       h2, ul>li>a{
         color: #ffffff;

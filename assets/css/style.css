@@ -1046,3 +1046,13 @@ font-weight: bold;}
 .shipping-tab .btn{
   filter: invert(1);
 }
+.footer_links .accordion-section .panel-default{
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.footer_links  .accordion-section .panel-default .panel-title a{
+  color: #FFF !important;
+}
+.footer_links .accordion-section .panel-default .panel-title a:after{
+  filter: invert(1);
+}

@@ -1,100 +1,100 @@
-<template >
+<template>
   <client-only>
-  <div class="product-page" :style="`${bgColor}`">
-    <Banner :page-name="'product'" />
-    <div class="filter_result">
-      <div class="container-fluid">
-        <div class="col-lg-10 px-0 mx-auto">
+    <div class="product-page">
+      <Banner :page-name="'product'" />
+      <div class="filter_result">
+        <div class="container-fluid">
+          <div class="col-lg-10 px-0 mx-auto">
+            <div class="row">
+              <div class="col-auto">
+                <div class="sorting d-flex flex-wrap">
+                  <button
+                    v-b-toggle.filter-mobile
+                    class="btn p-2 ml-2 px-3 d-flex align-items-center"
+                  >
+                    {{ $t('filters') }}
+                    <b-icon-chevron-down class="ml-2" />
+                  </button>
+                </div>
+              </div>
+              <div class="col col order-2 order-sm-0">
+                <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
+                  <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
+                    {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
+                  </a>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="sorting short-by d-flex flex-wrap">
+                  <b-dropdown variant="link" toggle-class="text-decoration-none d-flex align-items-center" no-caret>
+                    <template #button-content>
+                      <b-icon-chevron-down class="mr-2" /> {{ $t('default_sorting') }}
+                    </template>
+                    <b-dropdown-item href="#" @click="sortType = 'alpha_a_z'">
+                      {{ $t('alpha_a_z') }}
+                    </b-dropdown-item>
+
+                    <b-dropdown-item href="#" @click="sortType = 'alpha_z_a'">
+                      {{ $t('alpha_z_a') }}
+                    </b-dropdown-item>
+
+                    <b-dropdown-item href="#" @click="sortType = 'best_selling'">
+                      {{ $t('best_selling') }}
+                    </b-dropdown-item>
+
+                    <b-dropdown-item href="#" @click="sortType = 'low_to_high'">
+                      {{ $t('low_to_high') }}
+                    </b-dropdown-item>
+
+                    <b-dropdown-item href="#" @click="sortType = 'high_to_low'">
+                      {{ $t('high_to_low') }}
+                    </b-dropdown-item>
+                  </b-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter_bar">
+        <b-sidebar
+          id="filter-mobile"
+          v-model="filterSidebar"
+          :title="$t('filters')"
+          backdrop
+          shadow
+          left
+          header-class="py-3 px-4"
+        >
+          <template #footer>
+            <div class="px-0 pt-2 row mx-0 align-items-center">
+              <div class="w-100 col-6 d-block align-self-center text-center">
+                <p class="" @click="clearAll">
+                  CLEAN
+                </p>
+              </div>
+              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn" @click="applyMobileFilter">
+                APPLY
+              </button>
+            </div>
+          </template>
+          <ProductFilter
+            ref="prodcuFilter"
+            class="p-4"
+            @fetchProducts="fetchProducts"
+            @setBackgroudColor="setBackgroudColor"
+            @priceSort="setSorting"
+            @alphaSorting="setAlphaBeticSort"
+            @bestSellingChanged="setBestSellSort"
+          />
+        </b-sidebar>
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-auto">
-              <div class="sorting d-flex flex-wrap">
-                <button
-                  v-b-toggle.filter-mobile
-                  class="btn p-2 ml-2 px-3 d-flex align-items-center"
-                >
-                  {{ $t('filters') }}
-                  <b-icon-chevron-down class="ml-2" />
-                </button>
-              </div>
-            </div>
-            <div class="col col order-2 order-sm-0">
-              <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
-                <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
-                  {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
-                </a>
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="sorting short-by d-flex flex-wrap">
-                <b-dropdown variant="link" toggle-class="text-decoration-none d-flex align-items-center" no-caret>
-                  <template #button-content>
-                    <b-icon-chevron-down class="mr-2" /> {{ $t('default_sorting') }}
-                  </template>
-                  <b-dropdown-item href="#" @click="sortType = 'alpha_a_z'">
-                    {{ $t('alpha_a_z') }}
-                  </b-dropdown-item>
-
-                  <b-dropdown-item href="#" @click="sortType = 'alpha_z_a'">
-                    {{ $t('alpha_z_a') }}
-                  </b-dropdown-item>
-
-                  <b-dropdown-item href="#" @click="sortType = 'best_selling'">
-                    {{ $t('best_selling') }}
-                  </b-dropdown-item>
-
-                  <b-dropdown-item href="#" @click="sortType = 'low_to_high'">
-                    {{ $t('low_to_high') }}
-                  </b-dropdown-item>
-
-                  <b-dropdown-item href="#" @click="sortType = 'high_to_low'">
-                    {{ $t('high_to_low') }}
-                  </b-dropdown-item>
-                </b-dropdown>
-              </div>
-            </div>
+            <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="filter_bar">
-      <b-sidebar
-        id="filter-mobile"
-        v-model="filterSidebar"
-        :title="$t('filters')"
-        backdrop
-        shadow
-        left
-        header-class="py-3 px-4"
-      >
-        <template #footer>
-          <div class="px-0 pt-2 row mx-0 align-items-center">
-            <div class="w-100 col-6 d-block align-self-center text-center">
-              <p class="" @click="clearAll">
-                CLEAN
-              </p>
-            </div>
-            <button class="btn w-100 col-6 py-2 d-block apply-filter-btn" @click="applyMobileFilter">
-              APPLY
-            </button>
-          </div>
-        </template>
-        <ProductFilter
-          ref="prodcuFilter"
-          class="p-4"
-          @fetchProducts="fetchProducts"
-          @setBackgroudColor="setBackgroudColor"
-          @priceSort="setSorting"
-          @alphaSorting="setAlphaBeticSort"
-          @bestSellingChanged="setBestSellSort"
-        />
-      </b-sidebar>
-      <div class="container-fluid">
-        <div class="row">
-          <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
-        </div>
-      </div>
-    </div>
 
     <!-- <div v-show="isLoggedin" class="recommended mt-4">
       <div class="container-fluid">
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div> -->
-  </div>
+    </div>
   </client-only>
 </template>
 <script>
@@ -167,13 +167,13 @@ export default {
   watch: {
     bgColor (newVal) {
       document.querySelector('body').setAttribute('style', newVal)
-      document.querySelector('head').setAttribute('style', newVal)
     },
     sortType (newVal) {
       this.sortPrice()
     }
   },
   beforeDestroy () {
+    document.body.setAttribute('style', '')
     this.setSelectedFilters([])
   },
   mounted () {
@@ -253,12 +253,8 @@ export default {
       this.filterSidebar = false
     },
     setBackgroudColor (color = '') {
-      console.log('color')
-      console.log(color)
-      this.bgColor = color
-      document.body.style.backgroundColor = color
-      document.head.style.backgroundColor = color
-      document.body.classList.add('custom-bg-color')
+      this.bgColor = color.replace('"', '').replace('"', '')
+      document.body.setAttribute('style', this.bgColor)
     },
     async fetchProducts (page, productUrl = '') {
       let activeCat

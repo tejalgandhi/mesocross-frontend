@@ -9,17 +9,17 @@
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
       </transition>
     </figure> -->
-    <figure v-b-toggle.wishlist-sidebar class="mb-0">
-      <img src="@/assets/img/star.svg" alt="favs">
-      <span v-if="wishlist" class="number">{{ wishlist }}</span>
-    </figure>
-    <figure v-b-toggle.card-sidebar class="mb-0">
-      <img src="@/assets/img/basket.svg" alt="cart">
-      <span v-if="products.length > 0" class="number">{{ products.length }}</span>
-    </figure>
-    <figure class="mb-0" @click="setSearch">
-      <img src="@/assets/img/search.svg" alt="search">
-    </figure>
+<!--    <figure v-b-toggle.wishlist-sidebar class="mb-0">-->
+<!--      <img src="@/assets/img/star.svg" alt="favs">-->
+<!--      <span v-if="wishlist" class="number">{{ wishlist }}</span>-->
+<!--    </figure>-->
+<!--    <figure v-b-toggle.card-sidebar class="mb-0">-->
+<!--      <img src="@/assets/img/basket.svg" alt="cart">-->
+<!--      <span v-if="products.length > 0" class="number">{{ products.length }}</span>-->
+<!--    </figure>-->
+<!--    <figure class="mb-0" @click="setSearch">-->
+<!--      <img src="@/assets/img/search.svg" alt="search">-->
+<!--    </figure>-->
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
       <caption v-if="$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">

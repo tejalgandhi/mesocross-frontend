@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-overlay :show="loading" rounded="sm">
-      <ThemeHeader />
+<!--      <ThemeHeader />-->
       <CommonSearch v-show="search" @click="isClicked(false)" />
       <div @click="isClicked(false)">
         <Nuxt />

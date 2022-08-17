@@ -35,7 +35,7 @@
 <!--        </section>-->
 <!--      </nav>-->
 <!--    </template>-->
-    <template v-else>
+    <template>
       <ThemeHeaderMobileNav
         :from="isActive"
         @openMenu="isActive = 1"

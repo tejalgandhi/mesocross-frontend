@@ -1,8 +1,34 @@
 <template>
-  <div :class="{'customize_treatment': key==0,'quiz': key > 0}">
+  <div class="quiz customize_treatment">
     <div class="container">
+      <ul>
+        <li :class="{'active': key == 1}">
+          <i>1</i>
+          <span>GENDER</span>
+        </li>
+        <li :class="{'active': key == 2}">
+          <i>2</i>
+          <span>AGE</span>
+        </li>
+        <li :class="{'active': key == 3}">
+          <i>3</i>
+          <span>SKIN FEELS</span>
+        </li>
+        <li :class="{'active': key == 4}">
+          <i>4</i>
+          <span>OBSERVATION</span>
+        </li>
+        <li :class="{'active': key == 5}">
+          <i>5</i>
+          <span>SENSITIVE SKIN</span>
+        </li>
+        <li :class="{'active': key == 6}">
+          <i>6</i>
+          <span>SKIN NEEDS</span>
+        </li>
+      </ul>
       <div v-if="key ==0">
-        <h2 class="text-uppercase">
+        <h2 class="text-uppercase my-5">
           {{ $t('customize_your_treatment') }}
         </h2>
         <p>{{ $t('customize_treatment_desc') }}</p>
@@ -12,34 +38,6 @@
       </div>
       <div v-else-if="key == 7">
         <CustomTreatmentProductList :treatment="treatmentOptions" :solution-array="solutionArray" :products="products" :selected-treatment="selectedTreatment" @changeDetail="changeDetail" />
-      </div>
-      <div v-else>
-        <ul>
-          <li :class="{'active': key == 1}">
-            <i>1</i>
-            <span>GENDER</span>
-          </li>
-          <li :class="{'active': key == 2}">
-            <i>2</i>
-            <span>AGE</span>
-          </li>
-          <li :class="{'active': key == 3}">
-            <i>3</i>
-            <span>SKIN FEELS</span>
-          </li>
-          <li :class="{'active': key == 4}">
-            <i>4</i>
-            <span>OBSERVATION</span>
-          </li>
-          <li :class="{'active': key == 5}">
-            <i>5</i>
-            <span>SENSITIVE SKIN</span>
-          </li>
-          <li :class="{'active': key == 6}">
-            <i>6</i>
-            <span>SKIN NEEDS</span>
-          </li>
-        </ul>
       </div>
       <LazyCustomTreatment v-if="key > 0 && key !== 7" :treatment-key="key" :treatment="treatmentOptions" @next="nextOption" @prev="key--" />
     </div>

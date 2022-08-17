@@ -1,51 +1,78 @@
 <template>
   <div>
-    <span>{{ $t('thank_you_for_your_answers') }}!</span>
-    <h2 class="my-3">
-      {{ $t('your_personalized_treatment') }}
+    <h2 class="my-5">
+      RESULTS
     </h2>
-    <span class="text-muted"> {{ treatmentStr }} <a class="text-dark" style="text-decoration: underline" @click="$emit('changeDetail')">{{ $t('change_details') }}</a></span>
+    <div class="text-uppercase">
+      <h6 class="font-weight-normal">
+        OUR QUESTIONS + YOUR ANSWERS = THIS PERSONALIZED REGIMEN THAT’S JUST FOR YOUR SKIN.
+      </h6>
+      <a class="text-dark" style="text-decoration: underline" @click="$emit('changeDetail')">{{ $t('change_details') }}</a>
+    </div>
     <template v-if="products">
-      <div v-for="(product, index) in products" :key="index" class="row answer-item py-5 border-bottom">
-        <div class="col-12 text-center pt-4 pb-3 answer-text">
-          <h2>{{ product.length }}  </h2>
-          <p>{{ solutionArray[index] }}</p>
-        </div>
-
-        <div class="col-auto text-center mx-auto d-flex align-items-center justify-content-center reco-ans">
+      <div v-for="(product, index) in products" :key="index">
+        <div class="">
           <template v-for="(children, index1) in product">
-            <div :key="index1" class="answer-box">
-              <div class="mx-4 my-4">
-                <nuxt-link :to="`/product-detail/${children.slug}`">
-                  <div class="img-top my-3">
-                    <img :src="children.feature_image" alt="image">
+            <div :key="index1">
+              <div class="prod_detail_box my-lg-5 py-lg-5 my-4 py-4">
+                <div class="row align-items-center">
+                  <div class="col-lg-7 product-image p-4">
+                    <div v-if="children.feature_image" class="images main-image">
+                      <nuxt-img
+                        class="mx-auto d-block"
+                        preload
+                        format="webp"
+                        :src="children.feature_image"
+                        alt="product_image"
+                        quality="100"
+                        sizes="md:512"
+                      />
+                    </div>
                   </div>
-                  <p class="font-18 text-dark mb-2">
-                    {{ children.name }}
-                  </p>
-                  <p class="font-16">
-                    {{ children.short_description | stringLimit }}
-                  </p>
-                  <p v-if="$auth.loggedIn" class="font-14 text-dark my-4">
-                    {{ children.price }}€
-                  </p>
-                </nuxt-link>
-                <div v-if="$auth.loggedIn">
-                  <button v-if="!isThisProductIsInCart(children.product_id, children.product_size_ref_number)" class="w-100 mb-3 d-block btn btn-dark text-white" @click="cart(children)">
-                    {{ $t('add_to_cart') }}
-                  </button>
+                  <div class="col-lg-5 order-3 order-md-2">
+                    <div class="prod_desc text-center">
+                      <div>
+                        <h1 class="h2 text-uppercase mb-1">
+                          {{ children.name }}
+                        </h1>
+                      </div>
+                      <div class="text-uppercase">
+                        <p>{{ children.short_description | stringLimit }}</p>
+                      </div>
+                      <div class="size">
+                        <div class="size_box float-none">
+                          <ul class="float-none">
+                            <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
+                              <a class="p-1">{{ s.name }}</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <span />
+                      <div v-show="$auth.loggedIn && children.price">
+                        <a class="btn btn-outline-primary d-flex w-100 px-3 button-price mb-2 justify-content-center" @click="cart(children)">
+                          <small>
+                            {{ children.price }}€
+                          </small>
+                          <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+                        </a>
+                      </div>
+                      <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.loggedIn, 'justify-content-center': !$auth.loggedIn} ]">
+                        <a v-if="$auth.loggedIn" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist(children)">
+                          {{ isProductInWishList(children.product_id) ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
+                        </a>
+                        <div v-show="children.ref_number" class="text-uppercase btn px-0">
+                          Ref:{{ children.ref_number }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <button v-if="isProductInWishList(children.product_id)" class="w-100 mb-3 mt-3 d-block btn btn-outline-dark" @click="addToWishlist(children)">
-                  {{ $t('remove_from_wishlist') }}
-                </button>
-                <button v-else class="w-100 mb-3 mt-3 d-block btn btn-outline-dark" @click="addToWishlist(children)">
-                  {{ $t('add_to_wishlist') }}
-                </button>
               </div>
             </div>
-            <div v-if="(product.length - index1) !== 1" :key="index1" class="mx-5 plus-icon text-center">
+            <!-- <div v-if="(product.length - index1) !== 1" :key="index1" class="mx-5 plus-icon text-center">
               +
-            </div>
+            </div> -->
           </template>
         </div>
       </div>
@@ -82,27 +109,9 @@ export default {
       default () {
         return []
       }
-    },
-    solutionArray: {
-      type: Array,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default () {
-        return []
-      }
     }
   },
   computed: {
-    treatmentStr () {
-      // const selectedType = this.treatment.type[this.selectedTreatment.part_of_body]
-      const selectedType = this.treatment.type[this.selectedTreatment.part_of_body][this.selectedTreatment.type]
-      const fullString = `${this.treatment.gender[this.selectedTreatment.gender]} / ${this.treatment.ageGroup[this.selectedTreatment.age_group]} / ${this.treatment.partsOfBody[this.selectedTreatment.part_of_body]} / ${selectedType}`
-      if (this.selectedTreatment.part_of_body === 'hair') {
-        return fullString
-      } else {
-        const SpecificType = this.treatment.typeChildren[this.selectedTreatment.type].children[this.selectedTreatment.specific_type]
-        return `${fullString} / ${SpecificType}`
-      }
-    },
     productPrice () {
       return (product) => {
         const prices = JSON.parse(product.price)
@@ -168,3 +177,34 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.button-price {
+    font-size: 20px;
+    .add_cart_text{
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+    &:hover{
+      background: transparent;
+      color: #FFF;
+      justify-content: space-between !important;
+      .add_cart_text{
+        opacity: 1;
+        visibility: visible;
+        display: block;
+      }
+    }
+  }
+  .product-t:after {
+    content: "";
+    width: 8px;
+    height: 9px;
+/* UI Properties */
+    background: #E2C8B8 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: inline-block;
+    margin: 0 1rem;
+    transform: rotate(45deg);
+}
+</style>

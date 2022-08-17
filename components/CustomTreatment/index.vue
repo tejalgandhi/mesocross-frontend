@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h2 class="my-5">
-      {{ title }}
-    </h2>
+    <h2 class="my-5 text-uppercase" v-html="title" />
     <div class="options">
       <p v-for="(val, index) in treatmentOptions" :key="index">
         <a v-if="index != 'value'" href="javascript:void(0)" :class="{'active': treatmentOptions.value == index || selectedTreatment == index || selectedTreatmentWithoutHair == index }" @click="selectOption(index)">{{ val }}</a>
@@ -121,18 +119,17 @@ export default {
           title = `${this.$t('customizeTreatment.how_old_are_you')}`
           break
         case 3:
-          title = `${this.$t('customizeTreatment.what_area_of_your_body_is_treatment_for')}`
+          title = `${this.$t('customizeTreatment.in_the_morning_my_face_skin_feels')}`
           break
         case 4:
-          title = `${this.$t('customizeTreatment.what_sort_of_solution_are_you_looking_for')}`
+          title = `${this.$t('customizeTreatment.later_on_the_day_i_observe')}`
           break
         case 5:
-          title = `${this.$t('customizeTreatment.what_sort_of_solution_are_you_looking_for')}`
+          title = `${this.$t('customizeTreatment.do_you_have_sensitive_skin')}`
           break
         case 6:
           // eslint-disable-next-line no-case-declarations
-          const titleByType = `customizeTreatment.${this.selectedTreatmentObject.type}`
-          title = `${this.$t(titleByType)}`
+          title = `${this.$t('customizeTreatment.what_are_your_skin_needs')} <br /> <span class="font-weight-light">(${this.$t('customizeTreatment.more_than_one_option_is_possible')})</span>`
           break
       }
       return title

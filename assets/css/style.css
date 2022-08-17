@@ -371,7 +371,7 @@ footer .footer_bottom .copyright {
 .recommended a{font-size: 16px;padding: 10px; width: 224px; display: inline-block; border: 1px solid #54565A; border-radius: 4px;text-align: center;}
 .prod_detail_box .prod_desc{position: relative;     max-width: 320px; margin: 0 auto;}
 .prod_detail_box .prod_desc .fav{position: absolute;right: 0; top: 70px; width: 36px; height: 36px;}
-.prod_detail_box .prod_desc h1{color: #FFFFFF;font: normal normal 900 44px/60px Arquitecta;
+.prod_detail_box .prod_desc h1{color: #FFFFFF;font: normal normal 900 36px/42px Arquitecta;
   margin-bottom: 10px;}
   .prod_detail_box .prod_desc h1:after{
     content: "";
@@ -491,21 +491,17 @@ footer .footer_bottom .copyright {
 .addcard label p{display: inline-block;}
 /*customize treatment*/
 
-.customize_treatment{float: left; width: 100%; text-align: center; margin: 100px 0;}
+.customize_treatment{float: left; width: 100%; text-align: center;}
 .customize_treatment h2{font-size: 34px;font-weight: 500;}
 .customize_treatment p{margin: 36px auto 36px;max-width: 500px; color: rgba(255, 255, 255, 0.80); font-weight: 300;font-size: 16px;}
-.customize_treatment a{border: 1px solid #fff; padding: 10px; border-radius: 4px; width: 164px; display: inline-block;}
+/* .customize_treatment a{border: 1px solid #fff; padding: 10px; border-radius: 4px; width: 164px; display: inline-block;} */
 
 /*Quiz*/
-.quiz{float: left; width: 100%; text-align: center; margin: 100px 0;}
+.quiz{float: left; width: 100%; text-align: center; margin: 60px 0 100px;}
 .quiz h3{color: #fff; font-size: 16px; }
 .quiz ul{text-align: center;margin: 20px 0 ;}
-.quiz ul li{min-width: 100px; position: relative; display: inline-block; opacity: 0.5; font-size: 13px; margin-bottom: 15px;}
+.quiz ul li{min-width: 130px; position: relative; display: inline-block; opacity: 0.5; font-size: 13px; margin-bottom: 15px;}
 .quiz ul li.active{opacity: 1;}
-.quiz h2{    font-size: 26px;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-bottom: 2rem;}
   .quiz .options {
     margin-top: 25px;
     display: flex;

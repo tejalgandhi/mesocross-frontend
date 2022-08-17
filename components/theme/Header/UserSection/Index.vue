@@ -21,7 +21,6 @@
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
-      {{ $auth.loggedIn }}
       <caption v-if="!showUserTab" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </caption>

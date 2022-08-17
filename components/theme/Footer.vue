@@ -25,104 +25,104 @@
     <!-- <CommonNewsletter /> -->
     <div class="footer-main inverse">
       <div class="container-fluid">
-        <div v-if="footerLinks" class="footer_links">
-          <div class="row pt-3 pt-lg-5">
-            <div class="accordion d-md-none accordion-section clearfix mb-3 col-12" role="tablist">
-              <b-card no-body class="mb-1 border-0">
-                <div v-for="(link, i) in footerLinks.parent" :key="i">
-                  <b-card-header v-b-toggle="`toggle${i}`" class="panel panel-default" header-tag="header" role="tab">
-                    <div class="panel-title">
-                      <a block variant="info">
-                        {{ link.name }}
-                      </a>
-                    </div>
-                  </b-card-header>
-                  <b-collapse :id="`toggle${i}`">
-                    <b-card-body>
-                      <ul>
-                        <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                          <NuxtLink :to="child.slug">
-                            {{ child.name }}
-                          </NuxtLink>
-                        </li>
-                      </ul>
-                    </b-card-body>
-                  </b-collapse>
-                </div>
+<!--        <div v-if="footerLinks" class="footer_links">-->
+<!--          <div class="row pt-3 pt-lg-5">-->
+<!--            <div class="accordion d-md-none accordion-section clearfix mb-3 col-12" role="tablist">-->
+<!--              <b-card no-body class="mb-1 border-0">-->
+<!--                <div v-for="(link, i) in footerLinks.parent" :key="i">-->
+<!--                  <b-card-header v-b-toggle="`toggle${i}`" class="panel panel-default" header-tag="header" role="tab">-->
+<!--                    <div class="panel-title">-->
+<!--                      <a block variant="info">-->
+<!--                        {{ link.name }}-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </b-card-header>-->
+<!--                  <b-collapse :id="`toggle${i}`">-->
+<!--                    <b-card-body>-->
+<!--                      <ul>-->
+<!--                        <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">-->
+<!--                          <NuxtLink :to="child.slug">-->
+<!--                            {{ child.name }}-->
+<!--                          </NuxtLink>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </b-card-body>-->
+<!--                  </b-collapse>-->
+<!--                </div>-->
 
-                <div>
-                  <b-card-header v-b-toggle="`language`" class="panel panel-default" header-tag="header" role="tab">
-                    <div class="panel-title">
-                      <a block variant="info">
-                        DELIVERY DESTINATION OR REGION
-                      </a>
-                    </div>
-                  </b-card-header>
-                  <b-collapse :id="`language`">
-                    <b-card-body>
-                      <div class="mb-5 mt-4">
-                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">
-                          Portugal (EUR)
-                          <b-icon-chevron-down />
-                        </button>
-                      </div>
-                      <div class="mb-5">
-                        <h2 class="text-capitalize">
-                          Language
-                        </h2>
-                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
-                          {{ $i18n.locale.toUpperCase() }}
+<!--                <div>-->
+<!--                  <b-card-header v-b-toggle="`language`" class="panel panel-default" header-tag="header" role="tab">-->
+<!--                    <div class="panel-title">-->
+<!--                      <a block variant="info">-->
+<!--                        DELIVERY DESTINATION OR REGION-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </b-card-header>-->
+<!--                  <b-collapse :id="`language`">-->
+<!--                    <b-card-body>-->
+<!--                      <div class="mb-5 mt-4">-->
+<!--                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">-->
+<!--                          Portugal (EUR)-->
+<!--                          <b-icon-chevron-down />-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                      <div class="mb-5">-->
+<!--                        <h2 class="text-capitalize">-->
+<!--                          Language-->
+<!--                        </h2>-->
+<!--                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">-->
+<!--                          {{ $i18n.locale.toUpperCase() }}-->
 
-                          <b-icon-chevron-down />
-                        </button>
-                      </div>
-                    </b-card-body>
-                  </b-collapse>
-                </div>
-              </b-card>
-            </div>
+<!--                          <b-icon-chevron-down />-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                    </b-card-body>-->
+<!--                  </b-collapse>-->
+<!--                </div>-->
+<!--              </b-card>-->
+<!--            </div>-->
 
-            <div v-for="(link, i) in footerLinks.parent" :key="i" class="col-md-3 d-none d-md-block">
-              <h2>{{ link.name }}</h2>
-              <ul>
-                <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                  <a href="javascript:void(0);" @click="redirectToPage(child.slug)">
-                    {{ child.name }}
-                  </a>
-                </li>
-              </ul>
-            </div>
+<!--            <div v-for="(link, i) in footerLinks.parent" :key="i" class="col-md-3 d-none d-md-block">-->
+<!--              <h2>{{ link.name }}</h2>-->
+<!--              <ul>-->
+<!--                <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">-->
+<!--                  <a href="javascript:void(0);" @click="redirectToPage(child.slug)">-->
+<!--                    {{ child.name }}-->
+<!--                  </a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
 
-            <div class="col-md-3 d-none d-md-block">
-              <div class="mb-5">
-                <CommonNewsletter />
-              </div>
-              <div class="mb-5">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h2>
-                      Country
-                    </h2>
-                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('country-modal')">
-                      USA
-                      <b-icon-chevron-down />
-                    </button>
-                  </div>
-                  <div class="col-md-6">
-                    <h2>
-                      Language
-                    </h2>
-                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
-                      {{ $i18n.locale.toUpperCase() }}
+<!--            <div class="col-md-3 d-none d-md-block">-->
+<!--              <div class="mb-5">-->
+<!--                <CommonNewsletter />-->
+<!--              </div>-->
+<!--              <div class="mb-5">-->
+<!--                <div class="row">-->
+<!--                  <div class="col-md-6">-->
+<!--                    <h2>-->
+<!--                      Country-->
+<!--                    </h2>-->
+<!--                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('country-modal')">-->
+<!--                      USA-->
+<!--                      <b-icon-chevron-down />-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col-md-6">-->
+<!--                    <h2>-->
+<!--                      Language-->
+<!--                    </h2>-->
+<!--                    <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">-->
+<!--                      {{ $i18n.locale.toUpperCase() }}-->
 
-                      <b-icon-chevron-down />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--                      <b-icon-chevron-down />-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
           <div class="row pt-5 pb-3 justify-content-between">
             <div class="col-lg-4 col-md-4 order-1 order-md-0" />

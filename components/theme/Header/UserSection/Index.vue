@@ -21,15 +21,14 @@
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
-      {{ $auth.loggedIn }}
-      <caption v-if="!showUserTab" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+      <caption v-if="$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </caption>
       <caption v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         Sign in
       </caption>
-      <transition name="pop">
-        <span v-if="$auth.loggedIn" class="info" />
+      <transition name="pop" v-if="showUserTab">
+        <span  class="info" />
       </transition>
       <transition name="show">
         <user-tab v-if="showUserTab" @close="showUserTab = false" />

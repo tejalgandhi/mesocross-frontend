@@ -2,11 +2,11 @@
   <main class="main-header">
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
-        <div class="lang_part d-md-flex" @mouseover="isActive = 0">
-          <CommonAccessPrice />
-          <CommonCountrySwitcher />
-          <CommonLangSwitcher />
-        </div>
+<!--        <div class="lang_part d-md-flex" @mouseover="isActive = 0">-->
+<!--          <CommonAccessPrice />-->
+<!--          <CommonCountrySwitcher />-->
+<!--          <CommonLangSwitcher />-->
+<!--        </div>-->
         <div class="navbar-brand">
           <figure class="brand-logo" @mouseover="isActive = 0" @click="goHome">
             Mesocross
@@ -17,22 +17,22 @@
         </section>
       </div>
       <nav>
-<!--        <section class="menu container-fluid">-->
-<!--          <section class="nav">-->
-<!--            <template v-for="(item, i) in headItems">-->
-<!--              &lt;!&ndash; {{ item }} &ndash;&gt;-->
-<!--              <div :key="i" class="menu-item position-relative">-->
-<!--                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item.custom_slug)">{{ item.name }}</span>-->
-<!--                <ThemeHeaderSubMenu-->
-<!--                  v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"-->
-<!--                  :slug="[item]"-->
-<!--                  :data="subItems[item.id]"-->
-<!--                  @close="isActive = 0"-->
-<!--                />-->
-<!--              </div>-->
-<!--            </template>-->
-<!--          </section>-->
-<!--        </section>-->
+        <section class="menu container-fluid">
+          <section class="nav">
+            <template v-for="(item, i) in headItems">
+              <!-- {{ item }} -->
+              <div :key="i" class="menu-item position-relative">
+                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item.custom_slug)">{{ item.name }}</span>
+                <ThemeHeaderSubMenu
+                  v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"
+                  :slug="[item]"
+                  :data="subItems[item.id]"
+                  @close="isActive = 0"
+                />
+              </div>
+            </template>
+          </section>
+        </section>
       </nav>
     </template>
     <template v-else>

@@ -2,18 +2,18 @@
   <main class="main-header">
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
-<!--        <div class="lang_part d-md-flex" @mouseover="isActive = 0">-->
-<!--          <CommonAccessPrice />-->
-<!--          <CommonCountrySwitcher />-->
-<!--          <CommonLangSwitcher />-->
-<!--        </div>-->
+        <div class="lang_part d-md-flex" @mouseover="isActive = 0">
+          <CommonAccessPrice />
+          <CommonCountrySwitcher />
+          <CommonLangSwitcher />
+        </div>
         <div class="navbar-brand">
           <figure class="brand-logo" @mouseover="isActive = 0" @click="goHome">
             Mesocross
           </figure>
         </div>
         <section class="user-tab" @mouseover="isActive = 0">
-          <ThemeHeaderUserSection />
+<!--          <ThemeHeaderUserSection />-->
         </section>
       </div>
       <nav>

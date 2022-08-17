@@ -21,13 +21,13 @@
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
-      <caption v-if="this.isLoggedin" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+      <caption v-if="!$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </caption>
       <caption v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         Sign in
       </caption>
-      <transition name="pop" v-if="this.isLoggedin">
+      <transition name="pop" v-if="!$auth.loggedIn">
         <span  class="info" />
       </transition>
       <transition name="show">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters, mapMutations } from 'vuex'
 import UserTab from './UserProfile.vue'
 export default {
   components: {
@@ -47,6 +47,7 @@ export default {
 
   data () {
     return {
+      logInUser: false,
       showUserTab: false,
       cartPreview: false
     }
@@ -76,10 +77,15 @@ export default {
   },
 
   methods: {
+    ...mapMutations({
+      setLoggedin: 'user/setLoggedin',
+      setLoggedinUser: 'user/setLoggedinUser'
+    }),
     ...mapActions({
       setSearch: 'setSearch'
     }),
     hideUserTab () {
+      console.log(this.$auth.loggedIn)
       this.showUserTab = false
     },
     goTo (url) {

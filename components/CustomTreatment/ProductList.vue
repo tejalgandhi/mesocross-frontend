@@ -116,7 +116,7 @@ export default {
     },
     isProductInWishList () {
       return (productId) => {
-        return this.wishList.findIndex(pr => pr.product_id === productId) > -1
+        return this.wishList.findIndex(pr => (pr.product_id === productId || pr.id === productId)) > -1
       }
     },
     ...mapState({

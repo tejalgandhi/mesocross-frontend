@@ -1,23 +1,23 @@
 <template>
-  <div class="text-light">
+  <div>
     <div class="row align-items-center">
       <div class="col-auto pr-0">
         <img class="product_img" :src="product.feature_image" alt="image">
       </div>
       <div class="col">
         <h6 class="mb-1 text-uppercase">
-          <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
+          <nuxt-link :to="`/product-detail/${product.slug}`">
             {{ product.name }}
           </nuxt-link>
         </h6>
         <div class="d-flex cart-option">
-          <b-button size="sm" variant="default text-light pl-0 border-right font-weight-bold">
+          <b-button v-if="product.price" size="sm" variant="default text-light pl-0 border-right font-weight-bold">
             €{{ (product.price * Number(product.qty) ).toFixed(2) }}
           </b-button>
-          <b-button size="sm" variant="default text-light border-right">
+          <b-button v-if="product.size" size="sm" variant="default text-light border-right">
             ({{ product.size }})
           </b-button>
-          <b-button size="sm" variant="default text-light">
+          <b-button v-if="product.qty" size="sm" variant="default text-light">
             QTY: {{ product.qty }}
           </b-button>
         </div>
@@ -26,12 +26,12 @@
     <div class="row mb-3">
       <div class="col-6">
         <b-button size="sm" variant="light" block @click="updateQty(2)">
-          <b-icon-plus />
+          <b-icon-dash />
         </b-button>
       </div>
       <div class="col-6">
         <b-button size="sm" variant="light" block @click="updateQty(1)">
-          <b-icon-dash />
+          <b-icon-plus />
         </b-button>
       </div>
     </div>
@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   props: {
     product: {
@@ -51,8 +51,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isWished: 'cart/isWished'
+    }),
     isProductInWishList () {
-      return this.wishList.findIndex(pr => pr.product_id === this.product.product_id && this.product.product_size_price_id === pr.product_size_price_id) > -1
+      return this.isWished(this.product)
     },
     ...mapState({
       wishList: state => state.cart.wishList

@@ -4,7 +4,7 @@
       <li class="nav-item text-center" :class="{'active': tabIndex == 1}">
         <a class="nav-link border-0 mx-0 px-2" :class="{'active': tabIndex == 1}" data-toggle="tab" @click="setTabIndex(1)">
           <span class="d-flex justify-content-center align-items-center mx-auto">1</span>
-          <p class="mt-2">{{ $t('shipping') }}</p>
+          <p class="mt-2">{{ $t('Delivery') }}</p>
         </a>
       </li>
       <li class="nav-item text-center" :class="{'active': tabIndex == 2}">
@@ -41,3 +41,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .shipping-tab {
+    .nav-link {
+      p{
+        text-transform: uppercase;
+      }
+    }
+  }
+</style>

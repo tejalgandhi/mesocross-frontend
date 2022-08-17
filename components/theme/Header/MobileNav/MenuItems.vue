@@ -3,8 +3,10 @@
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
-          <div :key="i" class="item" @click=";goTo(item.custom_slug), $emit('close')">
+          <!-- {{ item }} -->
+          <div :key="i" class="item cursor-pointer" @click="data[item.id] ?selectedMenu = item : goTo(item.custom_slug)">
             <span>{{ item.name }}</span>
+            <span v-if="data[item.id]" class="arrow" />
           </div>
         </template>
       </div>
@@ -22,7 +24,7 @@
       <CommonLangSwitcher />
       <span class="semi-bold">My Account</span>
       <template v-if="!$auth.loggedIn">
-        <span class="log" @click=";goTo('/login'), $emit('close')">login / register</span>
+        <span class="log text-uppercase" @click=";goTo('/login'), $emit('close')">login / register</span>
       </template>
       <template v-else>
         <div class="logged">
@@ -125,7 +127,7 @@ export default {
             width: 100%;
             display: flex;
             flex-direction: column;
-
+            text-transform: uppercase;
             &.sub {
                 gap: 1rem;
             }
@@ -136,8 +138,6 @@ export default {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                text-transform: uppercase;
-
                 .arrow {
                     width: 10px;
                     height: 10px;
@@ -174,6 +174,7 @@ export default {
             align-items: flex-start;
             gap: 0.5rem;
             margin-bottom: 0;
+            text-transform: uppercase;
 
             .logged {
                 width: 100%;

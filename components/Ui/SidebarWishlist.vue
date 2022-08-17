@@ -20,7 +20,9 @@
               </nuxt-link>
             </div>
             <div v-else-if="wish.length > 0">
-              <ProductWishlistProduct v-for="(product, index) in wish" :key="index" :is-wish-list="true" :product="product" class="my-4" />
+              <template v-for="(product, index) in wish">
+                <ProductWishlistProduct :key="index" :is-wish-list="true" :product="product" class="my-4" />
+              </template>
               <div v-if="wish.length == 0" class="text-center">
                 <h3 class="mb-5">
                   {{ $t('no_product_is_added_to_wish_list') }}

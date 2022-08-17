@@ -35,7 +35,7 @@
                     <span class="subtotal">{{ $t('Subtotal') }}</span>
                     <span class="value">{{ subTotal || 0 }}€</span>
                   </div>
-                  <b-button size="sm" block to="/cart">
+                  <b-button size="sm" block to="/checkout">
                     {{ $t('purchase') }}
                   </b-button>
                 </div>

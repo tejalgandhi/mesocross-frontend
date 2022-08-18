@@ -1,45 +1,49 @@
 <template>
-  <div :class="(data.page == 'home')?' banner home-banner':'banner'">
-    <div v-if="!$fetchState.pending" class="position-relative">
-      <div v-if="isMobile()" class="overlay" />
-    </div>
-    <nuxt-img
-      v-if="data && data.banner"
-      preload
-      format="webp"
-      :src="data.banner"
-      alt="banner"
-      quality="100"
-      class="mx-auto d-block"
-    />
-    <nuxt-img
-      v-else-if="data && data.image"
-      preload
-      format="webp"
-      :src="data.image"
-      alt="banner"
-      quality="100"
-      class="mx-auto d-block"
-    />
-    <div v-if="data" class="banner-content">
-      <div class="container-fluid">
-        <div class="row">
-          <div v-if="data.page !== 'home'" class="col-md-10 text-center mx-auto">
-            <h1 v-if="data.title" class="text-uppercase font-weight-bold mb-3">
-              {{ data.title }}
-            </h1>
-            <h1 v-else class="text-uppercase font-weight-bold mb-3">
-              {{ data.name }}
-            </h1>
-            <p v-if="data.message" class="px-lg-5 mb-4">
-              {{ data.message }}
-            </p>
-            <p v-else class="px-lg-5 mb-4">
-              {{ data.description }}
-            </p>
-          </div>
-          <div v-if="data.page == 'home'" class="mx-auto">
-            <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
+  <div class="container-fluid">
+    <div :class="(data.page == 'home')?' banner home-banner':'banner'">
+      <div v-if="!$fetchState.pending" class="position-relative">
+        <div v-if="isMobile()" class="overlay" />
+      </div>
+      <div class="banner-img">
+        <nuxt-img
+          v-if="data && data.banner"
+          preload
+          format="webp"
+          :src="data.banner"
+          alt="banner"
+          quality="100"
+          class="mx-auto d-block"
+        />
+        <nuxt-img
+          v-else-if="data && data.image"
+          preload
+          format="webp"
+          :src="data.image"
+          alt="banner"
+          quality="100"
+          class="mx-auto d-block"
+        />
+      </div>
+      <div v-if="data" class="banner-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div v-if="data.page !== 'home'" class="col-md-10 text-center mx-auto">
+              <h1 v-if="data.title" class="text-uppercase font-weight-bold mb-3">
+                {{ data.title }}
+              </h1>
+              <h1 v-else class="text-uppercase font-weight-bold mb-3">
+                {{ data.name }}
+              </h1>
+              <p v-if="data.message" class="px-lg-5 mb-4">
+                {{ data.message }}
+              </p>
+              <p v-else class="px-lg-5 mb-4">
+                {{ data.description }}
+              </p>
+            </div>
+            <div v-if="data.page == 'home'" class="mx-auto">
+              <HomeLinkSetByType :item="data" :title="'VIEW LINES'" class="btn-bnr" />
+            </div>
           </div>
         </div>
       </div>
@@ -95,9 +99,23 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/mixins.scss';
 .banner.home-banner{
+  .banner-img{
+    position: relative;
+    &::before{
+      position: absolute;
+      content: "";
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      box-shadow: 0 0 10rem 2.5rem #000 inset;
+      @media (max-width:767px) {
+         box-shadow: 0 0 5rem 1rem #000 inset;
+      }
+    }
+  }
   img{
     width: 100%;
-    height: 76vh;
     object-fit: contain;
   }
 }

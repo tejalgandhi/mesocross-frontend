@@ -45,7 +45,7 @@ export default {
   showing_all: 'Showing all',
   results: 'results',
   treatment_recommended: 'Treatment Recommended',
-  default_sorting: 'SHORT BY',
+  default_sorting: 'SORT BY',
   low_to_high: 'Low to High',
   high_to_low: 'High to Low',
   treatment_recommended_desc: 'As specialists we want to recommend the best for your skin and silhouette. Get a professional, personalized prescription comfortably',

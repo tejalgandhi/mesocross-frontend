@@ -1,12 +1,10 @@
 <template>
-  <div class="welcome">
+  <div class="welcome page-space">
     <div class="container">
       <div>
-        <div>
-          <h1 class="h2 text-uppercase font-weight-normal">
-            Forgot Password
-          </h1>
-        </div>
+        <h1 class="h2 text-uppercase font-weight-normal">
+          Forgot Password
+        </h1>
         <div id="myTabContent" class="tab-content">
           <div id="login" class="tab-pane fade show active" role="tabpanel" aria-labelledby="login-tab">
             <div v-if="errorRes" class="alert alert-danger" role="alert">

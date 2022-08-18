@@ -82,13 +82,12 @@ export default {
         this.$router.push(`/product-detail/${to.slug}`)
         return
       }
-
-      if (this.slug[0].custom_slug === 'blogs') {
+      if (this.slug[0].type === 'blogs') {
         this.$router.push(`/blog-detail/${to.slug}`)
         return
       }
 
-      if (this.slug[0].custom_slug === 'equipments') {
+      if (this.slug[0].type === 'equipments') {
         if (to.slug === 'see-all-equipment') {
           this.$router.push('/equipments')
           return
@@ -97,8 +96,8 @@ export default {
         return
       }
 
-      if (this.slug[0].custom_slug) {
-        this.$router.push(`/${this.slug[0].custom_slug}/${to.slug}`)
+      if (to.type) {
+        this.$router.push(`/${to.type}/${to.slug}`)
         return
       }
 

@@ -9,71 +9,66 @@
       </h6>
       <a class="text-dark" style="text-decoration: underline" @click="$emit('changeDetail')">{{ $t('change_details') }}</a>
     </div>
-    <template v-if="products">
-      <div v-for="(product, index) in products" :key="index">
+    <template v-if="productsGroup">
+      <div v-for="(product, index) in productsGroup" :key="index">
         <div class="">
-          <template v-for="(children, index1) in product">
-            <div :key="index1">
-              <div class="prod_detail_box my-lg-5 py-lg-5 my-4 py-4">
-                <div class="row align-items-center">
-                  <div class="col-lg-7 product-image p-4">
-                    <div v-if="children.feature_image" class="images main-image">
-                      <nuxt-img
-                        class="mx-auto d-block"
-                        preload
-                        format="webp"
-                        :src="children.feature_image"
-                        alt="product_image"
-                        quality="100"
-                        sizes="md:512"
-                      />
-                    </div>
+          <div v-for="(child, childindex) in product" :key="childindex">
+            <div class="prod_detail_box my-lg-5 py-lg-5 my-4 py-4">
+              <div class="row align-items-center">
+                <div class="col-lg-7 product-image p-4">
+                  <div v-if="child.feature_image" class="images main-image">
+                    <nuxt-img
+                      class="mx-auto d-block"
+                      preload
+                      format="webp"
+                      :src="child.feature_image"
+                      alt="product_image"
+                      quality="100"
+                      sizes="md:512"
+                    />
                   </div>
-                  <div class="col-lg-5 order-3 order-md-2">
-                    <div class="prod_desc text-center">
-                      <div>
-                        <h1 class="h2 text-uppercase mb-1">
-                          {{ children.name }}
-                        </h1>
+                </div>
+                <div class="col-lg-5 order-3 order-md-2">
+                  <div class="prod_desc text-center">
+                    <div>
+                      <h1 class="h2 text-uppercase mb-1">
+                        {{ child.name }}
+                      </h1>
+                    </div>
+                    <div class="text-uppercase">
+                      <p>{{ child.short_description | stringLimit }}</p>
+                    </div>
+                    <div class="size">
+                      <div class="size_box float-none">
+                        <ul class="float-none">
+                          <li v-for="(s, i) in child.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
+                            <a class="p-1">{{ s.name }}</a>
+                          </li>
+                        </ul>
                       </div>
-                      <div class="text-uppercase">
-                        <p>{{ children.short_description | stringLimit }}</p>
-                      </div>
-                      <div class="size">
-                        <div class="size_box float-none">
-                          <ul class="float-none">
-                            <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
-                              <a class="p-1">{{ s.name }}</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <span />
-                      <div v-show="$auth.loggedIn && children.price">
-                        <a class="btn btn-outline-primary d-flex w-100 px-3 button-price mb-2 justify-content-center" @click="cart(children)">
-                          <small>
-                            {{ children.price }}€
-                          </small>
-                          <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
-                        </a>
-                      </div>
-                      <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.loggedIn, 'justify-content-center': !$auth.loggedIn} ]">
-                        <a v-if="$auth.loggedIn" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist(children)">
-                          {{ isProductInWishList(children.product_id) ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
-                        </a>
-                        <div v-show="children.ref_number" class="text-uppercase btn px-0">
-                          Ref:{{ children.ref_number }}
-                        </div>
+                    </div>
+                    <span />
+                    <div v-show="$auth.loggedIn && child.price">
+                      <a class="btn btn-outline-primary d-flex w-100 px-3 button-price mb-2 justify-content-center" @click="cart(child)">
+                        <small>
+                          {{ child.price }}€
+                        </small>
+                        <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+                      </a>
+                    </div>
+                    <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.loggedIn, 'justify-content-center': !$auth.loggedIn} ]">
+                      <a v-if="$auth.loggedIn" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist(child)">
+                        {{ isProductInWishList(child.product_id) ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
+                      </a>
+                      <div v-show="child.ref_number" class="text-uppercase btn px-0">
+                        Ref:{{ child.ref_number }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- <div v-if="(product.length - index1) !== 1" :key="index1" class="mx-5 plus-icon text-center">
-              +
-            </div> -->
-          </template>
+          </div>
         </div>
       </div>
     </template>
@@ -93,17 +88,7 @@ export default {
     }
   },
   props: {
-    treatment: {
-      type: Object,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: {}
-    },
-    selectedTreatment: {
-      type: Object,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: {}
-    },
-    products: {
+    productsGroup: {
       type: Array,
       // eslint-disable-next-line vue/require-valid-default-prop
       default () {
@@ -200,7 +185,6 @@ export default {
     content: "";
     width: 8px;
     height: 9px;
-/* UI Properties */
     background: #E2C8B8 0% 0% no-repeat padding-box;
     opacity: 1;
     display: inline-block;

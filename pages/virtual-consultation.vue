@@ -2,29 +2,9 @@
   <div class="quiz customize_treatment">
     <div class="container">
       <ul>
-        <li :class="{'active': key == 1}">
-          <i>1</i>
-          <span>GENDER</span>
-        </li>
-        <li :class="{'active': key == 2}">
-          <i>2</i>
-          <span>AGE</span>
-        </li>
-        <li :class="{'active': key == 3}">
-          <i>3</i>
-          <span>SKIN FEELS</span>
-        </li>
-        <li :class="{'active': key == 4}">
-          <i>4</i>
-          <span>OBSERVATION</span>
-        </li>
-        <li :class="{'active': key == 5}">
-          <i>5</i>
-          <span>SENSITIVE SKIN</span>
-        </li>
-        <li :class="{'active': key == 6}">
-          <i>6</i>
-          <span>SKIN NEEDS</span>
+        <li v-for="(step, index) in steps" :key="index" :class="{'active': key == (index + 1)}">
+          <i>{{ index +1 }}</i>
+          <span>{{ step.name }}</span>
         </li>
       </ul>
       <div v-if="key ==0">
@@ -37,9 +17,16 @@
         </b-button>
       </div>
       <div v-else-if="key == 7">
-        <CustomTreatmentProductList :treatment="treatmentOptions" :solution-array="solutionArray" :products="products" :selected-treatment="selectedTreatment" @changeDetail="changeDetail" />
+        <CustomTreatmentProductList :products-group="products" @changeDetail="changeDetail" />
       </div>
-      <LazyCustomTreatment v-if="key > 0 && key !== 7" :treatment-key="key" :treatment="treatmentOptions" @next="nextOption" @prev="key--" />
+      <LazyCustomTreatment
+        v-if="key > 0 && key !== 7"
+        :treatment-key="key"
+        :step="steps[key-1]"
+        :treatment="treatmentOptions"
+        @next="nextOption"
+        @prev="key--"
+      />
     </div>
   </div>
 </template>
@@ -47,6 +34,14 @@
 export default {
   data () {
     return {
+      steps: [
+        { title: this.$t('customizeTreatment.what_is_your_gender'), key: 'gender', name: 'GENDER' },
+        { title: this.$t('customizeTreatment.how_old_are_you'), key: 'age_group', name: 'AGE' },
+        { title: this.$t('customizeTreatment.in_the_morning_my_face_skin_feels'), key: 'skinfeels', name: 'SKIN FEELS' },
+        { title: this.$t('customizeTreatment.later_on_the_day_i_observe'), key: 'observation', name: 'OBSERVATION' },
+        { title: this.$t('customizeTreatment.do_you_have_sensitive_skin'), key: 'sensitive', name: 'SENSITIVE SKIN' },
+        { title: this.$t('customizeTreatment.what_are_your_skin_needs'), subtitle: this.$t('customizeTreatment.more_than_one_option_is_possible'), key: 'skin_needs', name: 'SKIN NEEDS' }
+      ],
       treatmentOptions: {},
       selectedTreatment: '',
       key: 0,

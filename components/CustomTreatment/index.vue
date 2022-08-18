@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h2 class="my-5 text-uppercase" v-html="title" />
+    <h2 v-if="step" class="my-5 text-uppercase">
+      {{ step.title }}<br>
+      <span v-if="step.subtitle" class="font-weight-light"> {{ step.subtitle }}</span>
+    </h2>
+
     <div class="options">
       <p v-for="(val, index) in treatmentOptions" :key="index">
         <a v-if="index != 'value'" href="javascript:void(0)" :class="{'active': treatmentOptions.value == index || selectedTreatment == index || selectedTreatmentWithoutHair == index }" @click="selectOption(index)">{{ val }}</a>
@@ -27,6 +31,10 @@ export default {
     treatmentKey: {
       type: Number,
       default: 0
+    },
+    step: {
+      type: Object,
+      default: null
     }
   },
   data () {

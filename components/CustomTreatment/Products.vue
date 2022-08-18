@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>{{ $t('thank_you_for_your_answers') }}!</span>
-    <h2 class="my-3">
+    <h2 class="my-5">
       {{ $t('customizeTreatment.your_personalized_treatment') }}
     </h2>
     <span class="text-muted">{{ treatmentStr }} <a class="text-dark" style="text-decoration: underline" @click="$emit('changeDetail')">{{ $t('change_details') }}</a></span>

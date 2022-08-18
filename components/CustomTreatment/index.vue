@@ -1,15 +1,22 @@
 <template>
   <div>
-    <h2>{{ title }}</h2>
-    <span>({{ $t('choose') }} 1)</span>
+    <h2 v-if="step" class="my-5 text-uppercase">
+      {{ step.title }}<br>
+      <span v-if="step.subtitle" class="font-weight-light"> {{ step.subtitle }}</span>
+    </h2>
+
     <div class="options">
       <p v-for="(val, index) in treatmentOptions" :key="index">
         <a v-if="index != 'value'" href="javascript:void(0)" :class="{'active': treatmentOptions.value == index || selectedTreatment == index || selectedTreatmentWithoutHair == index }" @click="selectOption(index)">{{ val }}</a>
       </p>
     </div>
     <div class="act_btn">
-      <a v-if="treatmentKey > 1 " href="javascript:void(0)" class="prev" @click="$emit('prev')">{{ $t('Previous') }}</a>
-      <a href="javascript:void(0)" class="next" @click="triggerNext">{{ $t('Next') }}</a>
+      <b-button v-if="treatmentKey > 1 " variant="outline-primary" class="rounded-0" @click="$emit('prev')">
+        {{ $t('Previous') }}
+      </b-button>
+      <b-button variant="primary" class="rounded-0" @click="triggerNext">
+        {{ $t('Next') }}
+      </b-button>
     </div>
   </div>
 </template>
@@ -24,6 +31,10 @@ export default {
     treatmentKey: {
       type: Number,
       default: 0
+    },
+    step: {
+      type: Object,
+      default: null
     }
   },
   data () {
@@ -33,9 +44,10 @@ export default {
       selectedTreatmentObject: {
         gender: '',
         age_group: '',
-        part_of_body: '',
-        type: '',
-        specific_type: '',
+        skinfeels: '',
+        observation: '',
+        sensitive: '',
+        skin_needs: '',
         product_price: ''
       }
     }
@@ -51,19 +63,16 @@ export default {
           options = this.treatment.ageGroup
           break
         case 3:
-          options = this.treatment.partsOfBody
+          options = this.treatment.skinfeels
           break
         case 4:
-          options = this.treatment.type[this.treatment.partsOfBody.value]
-          options.value = this.treatment.type.value
+          options = this.treatment.observation
           break
         case 5:
-          if (this.selectedTreatmentObject.type === 'hair') {
-            options = []
-          } else {
-            options = this.treatment.typeChildren[this.treatment.type.value].children
-            options.value = this.treatment.typeChildren.value
-          }
+          options = this.treatment.sensitive
+          break
+        case 6:
+          options = this.treatment.skin_needs
           break
       }
       return options
@@ -83,26 +92,26 @@ export default {
           break
         case 3:
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.selectedTreatmentObject.part_of_body = this.treatment.partsOfBody.value
-          selectedOption = this.treatment.partsOfBody.value
+          this.selectedTreatmentObject.skinfeels = this.treatment.skinfeels.value
+          selectedOption = this.treatment.skinfeels.value
           // selectedOption = ''
           break
         case 4:
-          if (this.treatment.partsOfBody.value === 'hair') {
-            const childrenHairValue = this.checkHairChildrenValue()
-            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.selectedTreatmentObject.type = childrenHairValue
-            selectedOption = childrenHairValue
-          } else {
-            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.selectedTreatmentObject.type = this.treatment.type.value
-            selectedOption = this.treatment.type.value
-          }
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.selectedTreatmentObject.observation = this.treatment.observation.value
+          selectedOption = this.treatment.observation.value
           break
         case 5:
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.selectedTreatmentObject.specific_type = this.treatment.typeChildren.value
-          selectedOption = this.treatment.typeChildren.value
+          this.selectedTreatmentObject.sensitive = this.treatment.sensitive.value
+          selectedOption = this.treatment.sensitive.value
+          // selectedOption = ''
+          break
+
+        case 6:
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.selectedTreatmentObject.skin_needs = this.treatment.skin_needs.value
+          selectedOption = this.treatment.skin_needs.value
           // selectedOption = ''
           break
       }
@@ -118,15 +127,17 @@ export default {
           title = `${this.$t('customizeTreatment.how_old_are_you')}`
           break
         case 3:
-          title = `${this.$t('customizeTreatment.what_area_of_your_body_is_treatment_for')}`
+          title = `${this.$t('customizeTreatment.in_the_morning_my_face_skin_feels')}`
           break
         case 4:
-          title = `${this.$t('customizeTreatment.what_sort_of_solution_are_you_looking_for')}`
+          title = `${this.$t('customizeTreatment.later_on_the_day_i_observe')}`
           break
         case 5:
+          title = `${this.$t('customizeTreatment.do_you_have_sensitive_skin')}`
+          break
+        case 6:
           // eslint-disable-next-line no-case-declarations
-          const titleByType = `customizeTreatment.${this.selectedTreatmentObject.type}`
-          title = `${this.$t(titleByType)}`
+          title = `${this.$t('customizeTreatment.what_are_your_skin_needs')} <br /> <span class="font-weight-light">(${this.$t('customizeTreatment.more_than_one_option_is_possible')})</span>`
           break
       }
       return title
@@ -142,23 +153,16 @@ export default {
         this.treatment.ageGroup.value = selectedOption
       } else if (this.treatmentKey === 3) {
         // eslint-disable-next-line vue/no-mutating-props
-        this.treatment.partsOfBody.value = selectedOption
+        this.treatment.skinfeels.value = selectedOption
       } else if (this.treatmentKey === 4) {
         // eslint-disable-next-line vue/no-mutating-props
-        if (this.selectedTreatmentObject.part_of_body === 'hair') {
-          // eslint-disable-next-line vue/no-mutating-props
-          this.treatment.type.value = selectedOption
-          this.selectedTreatment = selectedOption
-        } else {
-          // eslint-disable-next-line vue/no-mutating-props
-          this.treatment.type.value = selectedOption
-          this.selectedTreatmentWithoutHair = selectedOption
-        }
+        this.treatment.observation.value = selectedOption
       } else if (this.treatmentKey === 5) {
-        this.selectedTreatment = selectedOption
         // eslint-disable-next-line vue/no-mutating-props
-        this.treatment.typeChildren.value = selectedOption
+        this.treatment.sensitive.value = selectedOption
+      } else if (this.treatmentKey === 6) {
         // eslint-disable-next-line vue/no-mutating-props
+        this.treatment.skin_needs.value = selectedOption
       }
     },
     triggerNext () {

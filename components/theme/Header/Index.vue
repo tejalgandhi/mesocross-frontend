@@ -22,7 +22,7 @@
             <template v-for="(item, i) in headItems">
               <!-- {{ item }} -->
               <div :key="i" class="menu-item position-relative">
-                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item.custom_slug)">{{ item.name }}</span>
+                <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item)">{{ item.name }}</span>
                 <ThemeHeaderSubMenu
                   v-if="isActive === item.id && (subItems[item.id] && subItems[item.id].length !== 0)"
                   :slug="[item]"
@@ -91,9 +91,12 @@ export default {
     },
 
     goTo (to) {
-      if (to) {
-        this.$router.push(`/${to}`)
+      if (to.type) {
+        this.$router.push(`/${to.type}/${to.custom_slug}`)
+        return
       }
+
+      this.$router.push(`${to.custom_slug}`)
     }
   }
 }

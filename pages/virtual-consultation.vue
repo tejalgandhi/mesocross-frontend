@@ -1,25 +1,32 @@
 <template>
-  <div :class="{'customize_treatment': key==0,'quiz': key > 0}">
+  <div class="quiz customize_treatment">
     <div class="container">
+      <ul>
+        <li v-for="(step, index) in steps" :key="index" :class="{'active': key == (index + 1)}">
+          <i>{{ index +1 }}</i>
+          <span>{{ step.name }}</span>
+        </li>
+      </ul>
       <div v-if="key ==0">
-        <h2>{{ $t('customize_your_treatment') }}</h2>
+        <h2 class="text-uppercase my-5">
+          {{ $t('customize_your_treatment') }}
+        </h2>
         <p>{{ $t('customize_treatment_desc') }}</p>
-        <a href="javascript:void(0)" @click="start">{{ $t('lets_start') }}!</a>
+        <b-button variant="outline-primary" class="px-5 rounded-0" @click="start">
+          {{ $t('lets_start') }}!
+        </b-button>
       </div>
-      <div v-else-if="key == 6">
-        <CustomTreatmentProductList :treatment="treatmentOptions" :solution-array="solutionArray" :products="products" :selected-treatment="selectedTreatment" @changeDetail="changeDetail" />
+      <div v-else-if="key == 7">
+        <CustomTreatmentProductList :products-group="products" @changeDetail="changeDetail" />
       </div>
-      <div v-else>
-        <h3>{{ $t('your_personalized_treatment') }}</h3>
-        <ul>
-          <li :class="{'active': key == 1}" />
-          <li :class="{'active': key == 2}" />
-          <li :class="{'active': key == 3}" />
-          <li :class="{'active': key == 4}" />
-          <li :class="{'active': key == 5}" />
-        </ul>
-      </div>
-      <LazyCustomTreatment v-if="key > 0 && key !== 6" :treatment-key="key" :treatment="treatmentOptions" @next="nextOption" @prev="key--" />
+      <LazyCustomTreatment
+        v-if="key > 0 && key !== 7"
+        :treatment-key="key"
+        :step="steps[key-1]"
+        :treatment="treatmentOptions"
+        @next="nextOption"
+        @prev="key--"
+      />
     </div>
   </div>
 </template>
@@ -27,6 +34,14 @@
 export default {
   data () {
     return {
+      steps: [
+        { title: this.$t('customizeTreatment.what_is_your_gender'), key: 'gender', name: 'GENDER' },
+        { title: this.$t('customizeTreatment.how_old_are_you'), key: 'age_group', name: 'AGE' },
+        { title: this.$t('customizeTreatment.in_the_morning_my_face_skin_feels'), key: 'skinfeels', name: 'SKIN FEELS' },
+        { title: this.$t('customizeTreatment.later_on_the_day_i_observe'), key: 'observation', name: 'OBSERVATION' },
+        { title: this.$t('customizeTreatment.do_you_have_sensitive_skin'), key: 'sensitive', name: 'SENSITIVE SKIN' },
+        { title: this.$t('customizeTreatment.what_are_your_skin_needs'), subtitle: this.$t('customizeTreatment.more_than_one_option_is_possible'), key: 'skin_needs', name: 'SKIN NEEDS' }
+      ],
       treatmentOptions: {},
       selectedTreatment: '',
       key: 0,
@@ -49,14 +64,7 @@ export default {
       this.treatmentOptions = data
     },
     async nextOption (selectedTreatment, selectedOPtionObject) {
-      if (this.key === 4) {
-        if (selectedOPtionObject.part_of_body === 'hair') {
-          this.key = 6
-          await this.fetchCustomTreatmentData(selectedOPtionObject)
-        } else {
-          this.key++
-        }
-      } else if (this.key === 5) {
+      if (this.key === 6) {
         await this.fetchCustomTreatmentData(selectedOPtionObject)
         this.key++
       } else {

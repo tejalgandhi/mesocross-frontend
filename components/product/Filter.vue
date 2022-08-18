@@ -92,7 +92,9 @@
 </template>
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
-
+const hasCategory = (category, slug) => {
+  return category.slug === slug || category.child.find(cat => cat.slug === slug)
+}
 export default {
   data () {
     return {
@@ -151,7 +153,7 @@ export default {
     if (!this.showAllCats) {
       this.filterData = parentCategories
     } else {
-      this.filterData = parentCategories.filter(cat => cat.slug === this.$route.params.categorySlug || cat.slug === 'skine-care')
+      this.filterData = parentCategories.filter(cat => hasCategory(cat, this.$route.params.categorySlug) || cat.slug === 'skin-care')
     }
   },
   fetchOnServer: true,

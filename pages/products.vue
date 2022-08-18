@@ -258,9 +258,17 @@ export default {
     async fetchProducts (page, productUrl = '') {
       let activeCat
       if (this.$route.params && this.$route.params.categorySlug) {
-        activeCat = this.$refs.prodcuFilter.filterData.find(cat => cat.slug === this.$route.params.categorySlug).id
+        this.$refs.prodcuFilter.filterData.forEach((category) => {
+          if (!activeCat) {
+            if (category.slug === this.$route.params.categorySlug) {
+              activeCat = category
+            } else {
+              activeCat = category.child.find(item => item.slug === this.$route.params.categorySlug)
+            }
+          }
+        })
         if (activeCat !== undefined) {
-          activeCat = `&category=${activeCat}`
+          activeCat = `&category=${activeCat.id}`
         }
       }
       let url = productUrl

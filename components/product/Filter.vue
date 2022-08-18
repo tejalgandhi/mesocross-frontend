@@ -153,7 +153,7 @@ export default {
     if (!this.showAllCats) {
       this.filterData = parentCategories
     } else {
-      this.filterData = parentCategories.filter(cat => hasCategory(cat, this.$route.params.categorySlug) || cat.slug === 'skine-care')
+      this.filterData = parentCategories.filter(cat => hasCategory(cat, this.$route.params.categorySlug) || cat.slug === 'skin-care')
     }
   },
   fetchOnServer: true,

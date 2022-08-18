@@ -166,7 +166,7 @@ export default {
   },
   watch: {
     bgColor (newVal) {
-      document.querySelector('body').setAttribute('style', newVal)
+      document.body.style.background = newVal
     },
     sortType (newVal) {
       this.sortPrice()
@@ -253,8 +253,7 @@ export default {
       this.filterSidebar = false
     },
     setBackgroudColor (color = '') {
-      this.bgColor = color.replace('"', '').replace('"', '')
-      document.body.setAttribute('style', this.bgColor)
+      document.body.style.background = color
     },
     async fetchProducts (page, productUrl = '') {
       let activeCat

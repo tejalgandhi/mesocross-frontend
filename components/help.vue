@@ -1,6 +1,5 @@
 <template>
-  <div class="quiz customize_treatment">
-    <div class="container">
+  <div>
     <div class="h1 title-34">
       Need Help?
     </div>
@@ -25,7 +24,6 @@
           </b-collapse>
         </div>
       </b-card>
-    </div>
     </div>
   </div>
 </template>

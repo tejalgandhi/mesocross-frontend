@@ -80,14 +80,6 @@ export default {
         return product.feature_image ? `${process.env.uploadURL}${product.feature_image}` : ''
       }
     },
-    productLink () {
-      return (slug) => {
-        if (this.segmentId) {
-          return `/product-detail/${slug}?segment=${this.segmentId}`
-        }
-        return `/product-detail/${slug}`
-      }
-    },
     productPrice () {
       return (product) => {
         if (product && product.price) {
@@ -107,6 +99,9 @@ export default {
     })
   },
   methods: {
+    productLink (slug) {
+      return `/product-detail/${slug}` + (this.segmentId ? `?segment=${this.segmentId}` : '')
+    },
     viewMore () {
       const nextPage = this.paginate.meta.current_page + 1
       this.$emit('fetchProducts', nextPage)

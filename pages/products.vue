@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <div class="product-page">
-      <Banner :page-name="'product'" />
+      <Banner :page-name="'product'" @get-segment-id="segId = $event" />
       <div class="filter_result">
         <div class="container-fluid">
           <div class="col-lg-10 px-0 mx-auto">
@@ -91,7 +91,7 @@
         </b-sidebar>
         <div class="container-fluid">
           <div class="row">
-            <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
+            <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
           </div>
         </div>
       </div>
@@ -154,7 +154,8 @@ export default {
           label: 'Product',
           active: 0
         }
-      ]
+      ],
+      segId: null
     }
   },
   computed: {

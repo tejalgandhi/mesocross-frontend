@@ -7,7 +7,7 @@
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
         <nuxt-link
-          :to="`/product-detail/${product.slug}`"
+          :to="productLink(product.slug)"
         >
           <div
             class="product_box"
@@ -60,6 +60,10 @@ export default {
     loadingFinish: {
       type: Boolean,
       default: false
+    },
+    segmentId: {
+      type: Number,
+      default: null
     }
   },
   data () {
@@ -74,6 +78,14 @@ export default {
     productImage () {
       return (product) => {
         return product.feature_image ? `${process.env.uploadURL}${product.feature_image}` : ''
+      }
+    },
+    productLink () {
+      return (slug) => {
+        if (this.segmentId) {
+          return `/product-detail/${slug}?segment=${this.segmentId}`
+        }
+        return `/product-detail/${slug}`
       }
     },
     productPrice () {

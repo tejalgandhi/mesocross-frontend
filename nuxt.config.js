@@ -110,7 +110,7 @@ export default {
         name: 'Spanish'
       }
     ],
-    defaultLocale: 'es',
+    defaultLocale: 'en',
     lazy: true,
     langDir: 'lang/',
     strategy: 'no_prefix'

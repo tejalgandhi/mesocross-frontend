@@ -7,7 +7,7 @@
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
         <nuxt-link
-          :to="`/product-detail/${product.slug}`"
+          :to="productLink(product.slug)"
         >
           <div
             class="product_box"
@@ -60,6 +60,10 @@ export default {
     loadingFinish: {
       type: Boolean,
       default: false
+    },
+    segmentId: {
+      type: Number,
+      default: null
     }
   },
   data () {
@@ -87,7 +91,7 @@ export default {
       }
     },
     isInWhishlist () {
-      return this.isWished;
+      return this.isWished
     },
     ...mapState({
       wishList: state => state.cart.wishList,
@@ -95,6 +99,9 @@ export default {
     })
   },
   methods: {
+    productLink (slug) {
+      return `/product-detail/${slug}` + (this.segmentId ? `?segment=${this.segmentId}` : '')
+    },
     viewMore () {
       const nextPage = this.paginate.meta.current_page + 1
       this.$emit('fetchProducts', nextPage)
@@ -155,6 +162,10 @@ p {
     object-fit: contain;
     transition: 0.6s;
     transform: scale(1.0);
+    max-height: 300px;
+  @media (max-width: 767px){
+    max-height: 110px;
   }
+}
 }
 </style>

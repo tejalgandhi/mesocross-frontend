@@ -99,26 +99,7 @@ export default {
      background-color: #F5F5F5;
   }
 }
-.myaccount-footer {
-    .support-links {
-      background-color: #fff;
-      border-color: rgba(0,0,0,0.12157) !important;
-    }
-    &.dashboard-ft {
-      .support-links {
-      background-color: #F5F5F5;
-    }
-  }
-}
-.myaccount-footer .support-links .border-right {
-  border-color: rgba(0,0,0,0.12157) !important;
-}
-.myaccount-footer .support-links .btn {
-  color: #000;
-}
-.myaccount-footer .support-links .btn:hover {
-  opacity: .5;
-}
+
 .shipping-tab {
   .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {

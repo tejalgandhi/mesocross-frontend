@@ -1,7 +1,7 @@
 <template>
   <client-only>
-    <div class="product-page" :style="`${bgColor}`">
-      <Banner :page-name="'product'" />
+    <div class="product-page">
+      <Banner :page-name="'product'" @get-segment-id="segId = $event" />
       <div class="filter_result">
         <div class="container-fluid">
           <div class="col-lg-10 px-0 mx-auto">
@@ -91,7 +91,7 @@
         </b-sidebar>
         <div class="container-fluid">
           <div class="row">
-            <ProductListing :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
+            <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
           </div>
         </div>
       </div>
@@ -154,7 +154,8 @@ export default {
           label: 'Product',
           active: 0
         }
-      ]
+      ],
+      segId: null
     }
   },
   computed: {
@@ -166,14 +167,14 @@ export default {
   },
   watch: {
     bgColor (newVal) {
-      document.querySelector('body').setAttribute('style', newVal)
-      document.querySelector('head').setAttribute('style', newVal)
+      document.body.style.background = newVal
     },
     sortType (newVal) {
       this.sortPrice()
     }
   },
   beforeDestroy () {
+    document.body.setAttribute('style', '')
     this.setSelectedFilters([])
   },
   mounted () {
@@ -253,12 +254,7 @@ export default {
       this.filterSidebar = false
     },
     setBackgroudColor (color = '') {
-      console.log('color')
-      console.log(color)
-      this.bgColor = color
-      document.body.style.backgroundColor = color
-      document.head.style.backgroundColor = color
-      document.body.classList.add('custom-bg-color')
+      document.body.style.background = color
     },
     async fetchProducts (page, productUrl = '') {
       let activeCat

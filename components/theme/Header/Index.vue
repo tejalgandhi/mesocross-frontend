@@ -158,10 +158,8 @@ export default {
 main.main-header {
   width: 100%;
   justify-content: center;
-  position: sticky;
   top: 0;
   left: 0;
-  background: #000;
   z-index: 80;
 
   .topbar {

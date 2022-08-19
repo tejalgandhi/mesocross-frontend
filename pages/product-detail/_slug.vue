@@ -201,8 +201,9 @@ import { showPricePopup } from 'assets/js/custom'
 
 export default {
 
-  async asyncData ({ params, $axios }) {
-    const { data } = await $axios.$get(`/product-detail/${params.slug}`)
+  async asyncData ({ $axios, params, route }) {
+    const url = `/product-detail/${params.slug}` + (route.query ? `?segment_id=${route.query.segment}` : '')
+    const { data } = await $axios.$get(url)
     const product = data
     return { product }
   },
@@ -305,8 +306,20 @@ export default {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.shareMessenger = true
     }
+    this.setBackgroudColor()
+  },
+  beforeDestroy () {
+    this.setBackgroudColor(true)
   },
   methods: {
+    setBackgroudColor (destroy) {
+      const color = this.product.color_gradient
+      if (color && !destroy) {
+        document.body.style.background = color
+        return
+      }
+      document.body.setAttribute('style', '')
+    },
     copy () {
       this.$toast.info('Copied!', { duration: 3000, position: 'top-right' })
       navigator.clipboard.writeText(window.location.href)

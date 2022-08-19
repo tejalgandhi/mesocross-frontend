@@ -974,7 +974,7 @@ font-weight: bold;}
   }
   .cart .cart_desc .act .act_btn a.wish{width: 90%;
     margin-left: 0 !important;}
-  .home_category .box{padding: 40px !important;}
+  .home_category .box{padding: 0px !important;}
   .home_category .box .desc{width: 100%}
   .home_category .box .see_all{margin: 0 auto;}
   .home_category .box figure{height: auto !important;}

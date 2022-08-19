@@ -2,20 +2,22 @@
   <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5 mt-5">
     <div class="container-fluid">
       <h3>SEGMENTATION</h3>
-      <div class="row">
-        <div v-for="(item, index) in blogs" :key="index" class="col align-self-center">
+      <div class="row align-items-center justify-content-center">
+        <div v-for="(item, index) in blogs" :key="index" class="col-4 col-lg align-self-center">
           <article class="box text-center">
             <nuxt-link v-if="item.slug" :to="item | slug ">
-            <figure  @mouseover="hoveredImage = index"
-                     @mouseleave="hoveredImage = '' ">
-              <nuxt-img
-                preload
-                format="webp"
-                :src="hoveredImage === index && item.hover_image? item.hover_image : item.image"
-                alt="image"
-                quality="100"
-              />
-            </figure>
+              <figure
+                @mouseover="hoveredImage = index"
+                @mouseleave="hoveredImage = '' "
+              >
+                <nuxt-img
+                  preload
+                  format="webp"
+                  :src="hoveredImage === index && item.hover_image? item.hover_image : item.image"
+                  alt="image"
+                  quality="100"
+                />
+              </figure>
             </nuxt-link>
 
           <!-- <div class="desc_box">
@@ -25,7 +27,7 @@
             <p class="mb-4" v-html="item.description" />
 
           </div> -->
-<!--            <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />-->
+            <!--            <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />-->
           </article>
         </div>
       </div>
@@ -35,12 +37,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-      blogs: [],
-      hoveredImage: null
-    }
-  },
   filters: {
     slug (value) {
       switch (value.type) {
@@ -55,6 +51,12 @@ export default {
         default:
           return ''
       }
+    }
+  },
+  data () {
+    return {
+      blogs: [],
+      hoveredImage: null
     }
   },
   async fetch () {
@@ -78,6 +80,11 @@ export default {
       text-align:center;
       margin-bottom:100px;
       font-weight:300;
+      @media (max-width: 767px) {
+          font-size: 24px;
+          text-align:center;
+          margin-bottom:40px;
+      }
     }
 }
 .box {

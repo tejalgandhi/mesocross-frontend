@@ -202,11 +202,11 @@ import { showPricePopup } from 'assets/js/custom'
 export default {
 
   async asyncData ({ $axios, params, route }) {
-    let segment
+    let requestUrl = `/product-detail/${params.slug}`
     if (route.query) {
-      segment = `?segment_id=${route.query.segment}`
+      requestUrl = `${requestUrl}?segment_id=${route.query.segment}`
     }
-    const { data } = await $axios.$get(`/product-detail/${params.slug + segment}`)
+    const { data } = await $axios.$get(requestUrl)
     const product = data
     return { product }
   },

@@ -22,7 +22,7 @@
       <ValidationObserver ref="formObserver">
         <form enctype="multipart/form-data" @submit.prevent="submit">
           <div class="row mb-25">
-            <div class="col-12">
+            <div class="col-md-6">
               <label for="Name">{{ $t('name') }} * </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('name')" rules="required">
@@ -31,9 +31,7 @@
                 </ValidationProvider>
               </div>
             </div>
-          </div>
-          <div class="row mb-25">
-            <div class="col-12">
+            <div class="col-md-6">
               <label for="">{{ $t('email') }} * </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required">
@@ -42,44 +40,7 @@
                 </ValidationProvider>
               </div>
             </div>
-          </div>
-
-          <div class="form-group">
-            <ValidationProvider v-slot="{ errors }" name="Phone Number" rules="required">
-              <label for="companyPhoneNumber">{{ $t('phone_number') }}*</label>
-              <div class="d-flex">
-                <vue-country-code
-                  :dropdown-options="{
-                    enabledCountryCode:true,
-                    disabledDialCode: false
-                  }"
-                  :disabled-fetching-country="false"
-                  :enabled-country-code="true"
-                  :preferred-countries="['pt','es']"
-                  :enable-search-field="true"
-                  class="h-auto"
-                  @onSelect="onSelect"
-                />
-                <input id="companyPhoneNumber" v-model="form.phone_number" type="text" class="form-control phone-input" aria-describedby="name">
-              </div>
-              <span class="errors text-danger">{{ errors[0] }}</span>
-            </ValidationProvider>
-          </div>
-          <!-- <div class="row mb-25">
-          <div class="col-12">
-            <label for="">Contact preferences * </label>
-            <div class="position-relative">
-              <select class="form-control">
-                <option>Select contact preferences </option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-          </div>
-        </div> -->
-          <div class="row mb-25">
-            <div class="col-12">
+            <div class="col-md-6">
               <label for="Country">{{ $t('country') }} * </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('country')" rules="required">
@@ -95,7 +56,86 @@
                 </ValidationProvider>
               </div>
             </div>
+            <div class="col-md-6">
+              <label for="">{{ $t('subject') }} * </label>
+              <div class="position-relative">
+                <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
+                  <input v-model="form.subject" type="text" class="form-control">
+                  <span class="errors text-danger">{{ errors[0] }}</span>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div class="col-12">
+              <ValidationProvider v-slot="{ errors }" name="Phone Number" rules="required">
+                <label for="companyPhoneNumber">{{ $t('phone_number') }}*</label>
+                <div class="d-flex">
+                  <vue-country-code
+                    :dropdown-options="{
+                      enabledCountryCode:true,
+                      disabledDialCode: false
+                    }"
+                    :disabled-fetching-country="false"
+                    :enabled-country-code="true"
+                    :preferred-countries="['pt','es']"
+                    :enable-search-field="true"
+                    class="h-auto"
+                    @onSelect="onSelect"
+                  />
+                  <input id="companyPhoneNumber" v-model="form.phone_number" type="text" class="form-control phone-input" aria-describedby="name">
+                </div>
+                <span class="errors text-danger">{{ errors[0] }}</span>
+              </ValidationProvider>
+            </div>
+            <div class="col-12">
+              <label for="">{{ $t('message') }} * </label>
+              <div class="position-relative">
+                <ValidationProvider v-slot="{ errors }" :name="$t('message')" rules="required">
+                  <textarea id="comment" v-model="form.message" class="form-control" rows="5" />
+                  <span class="errors text-danger">{{ errors[0] }}</span>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div class="col-12">
+              <recaptcha
+                id="v2-normal"
+                :site-key="siteCaptchaKey"
+              />
+              <span v-if="isCaptchaError" class="errors text-danger">Please Select Captcha</span>
+            </div>
           </div>
+          <div class="row mb-25">
+            <div class="col-12">
+              <label for="">{{ $t('attachments') }} </label>
+              <div class="position-relative">
+                <ValidationProvider v-slot="{ errors }" :name="$t('attachments')" rules="size:5000">
+                  <input type="file" class="custom-file-input" @change="handleFileUpload($event)">
+                  <span class="errors text-danger">{{ errors[0] }}</span>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary px-5">
+                {{ $t('Send') }}
+              </button>
+            </div>
+          </div>
+          <div class="row mb-25" />
+
+          <div class="form-group" />
+          <!-- <div class="row mb-25">
+          <div class="col-12">
+            <label for="">Contact preferences * </label>
+            <div class="position-relative">
+              <select class="form-control">
+                <option>Select contact preferences </option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+          </div>
+        </div> -->
+          <div class="row mb-25" />
           <!-- <div class="row mb-25">
           <div class="col-12">
             <label for="">Query type * </label>
@@ -109,51 +149,10 @@
             </div>
           </div>
         </div> -->
-          <div class="row mb-25">
-            <div class="col-12">
-              <label for="">{{ $t('subject') }} * </label>
-              <div class="position-relative">
-                <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
-                  <input v-model="form.subject" type="text" class="form-control">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
-                </ValidationProvider>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-25">
-            <div class="col-12">
-              <label for="">{{ $t('message') }} * </label>
-              <div class="position-relative">
-                <ValidationProvider v-slot="{ errors }" :name="$t('message')" rules="required">
-                  <textarea id="comment" v-model="form.message" class="form-control" rows="5" />
-                  <span class="errors text-danger">{{ errors[0] }}</span>
-                </ValidationProvider>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-25">
-            <div class="col-12">
-              <label for="">{{ $t('attachments') }} </label>
-              <div class="position-relative">
-                <ValidationProvider v-slot="{ errors }" :name="$t('attachments')" rules="size:5000">
-                  <input type="file" class="custom-file-input" @change="handleFileUpload($event)">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
-                </ValidationProvider>
-              </div>
-            </div>
-          </div>
-          <recaptcha
-            id="v2-normal"
-            :site-key="siteCaptchaKey"
-          />
-          <span v-if="isCaptchaError" class="errors text-danger">Please Select Captcha</span>
-          <div class="row space-top">
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary px-5">
-                {{ $t('Send') }}
-              </button>
-            </div>
-          </div>
+          <div class="row mb-25" />
+          <div class="row mb-25" />
+
+          <div class="row space-top" />
         </form>
       </validationobserver>
     </div>
@@ -241,7 +240,7 @@ export default {
     opacity: 1;
     background-color: transparent;
     height: auto;
-    
+
   }
   .custom-file-input:hover:before {
     color: #000;

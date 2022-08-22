@@ -94,7 +94,7 @@ export default {
     const { data } = await this.$axios.$get(url)
     this.data = this.type === 'product' ? data[0] : data
     if (this.type === 'category') {
-      this.$emit('get-segment-id', this.data.id)
+      this.$emit('get-segment-id', this.data.segment_id)
     }
   }
 }

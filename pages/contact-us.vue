@@ -125,6 +125,31 @@
           </div>
         </form>
       </validationobserver>
+      <hr class="border-top">
+      <div class="row my-5 pb-5 gt-5">
+        <div class="col-md-6">
+          <h3 class="mb-4">
+            Call us
+          </h3>
+          <div class="text-lg">
+            <p class="mb-3">
+              We’re available Monday to Friday <br>09:00 - 20:00 GMT and Saturday to Sunday 09:00 - 18:00 GMT
+            </p>
+            <p><a href="tel:+44 (0) 000 000 000">+44 (0) 000 000 000</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="mb-4">
+            Find us
+          </h3>
+          <div class="text-lg">
+            <p class="mb-3">
+              Lorem ipsum dolor sit 3ºA 1400-356 Lorem, Ipsum
+            </p>
+            <p><a style="text-decoration: underline;" href="#">Open map</a></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -210,6 +235,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.text-lg{
+  font-size: 20px;
+}
 .form-content{
   .page-title{
     padding: 80px 0;

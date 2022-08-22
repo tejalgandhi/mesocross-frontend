@@ -126,27 +126,21 @@
         <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
           <div class="row pt-5 pb-3 justify-content-between">
             <div class="col-md-4">
-              <div class="logos my-md-0 my-3 d-flex justify-content-md-start justify-content-center">
+              <div class="logos my-md-0 my-3 d-flex justify-content-md-start justify-content-center align-items-center">
+                <figure>
+                  <img src="@/assets/img/reduniq.svg" alt="">
+                </figure>
+
                 <figure>
                   <img src="@/assets/img/mastercard.svg" alt="">
                 </figure>
                 <figure>
                   <img src="@/assets/img/visa.svg" alt="">
                 </figure>
-                <figure>
-                  <img src="@/assets/img/amex.svg" alt="">
+                <img src="@/assets/img/paypal.svg" alt="">
                 </figure>
                 <figure>
-                  <img src="@/assets/img/multibanco.svg" alt="">
-                </figure>
-                <figure>
-                  <img src="@/assets/img/paypal.svg" alt="">
-                </figure>
-                <figure>
-                  <img src="@/assets/img/alipay.svg" alt="">
-                </figure>
-                <figure>
-                  <img src="@/assets/img/wechatpay.svg" alt="">
+                  <img src="@/assets/img/applepay.svg" alt="">
                 </figure>
               </div>
             </div>
@@ -253,19 +247,17 @@ export default {
       border-color: #ffffff !important;
     }
     .logos {
-      border-radius: 10px;
-      img {
-          max-height: 20px;
-          max-width: 210px;
-          margin-right: 17px;
-          height: 20px;
-          object-fit: contain;
-      }
-      figure {
-          margin: 0;
-      }
-  }
-
+        border-radius: 10px;
+        img {
+            margin-right: 17px;
+        }
+        figure {
+            margin: 0;
+        }
+    }
+    figure.brand-logo{
+      font-size: 24px;
+    }
     .footer_bottom{
       position: relative;
 
@@ -288,7 +280,6 @@ export default {
     }
   }
 }
-
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .footer-main {
     width: 100% !important;
@@ -326,7 +317,12 @@ export default {
   position: relative;
   text-align: center;
   figure.brand-logo{
-    font-size: 18px;
+    font-size: 24px;
+  }
+}
+.social_links{
+  img{
+    object-fit: contain;
   }
 }
 </style>

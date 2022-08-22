@@ -125,16 +125,35 @@
         </div>
         <div class="footer_bottom mb-0 mt-0 mt-md-0 mb-md-4">
           <div class="row pt-5 pb-3 justify-content-between">
-            <div class="col-lg-4 col-md-4 order-0 order-md-1">
-              <div class="footer-brand">
+            <div class="col-md-4">
+              <div class="logos my-md-0 my-3 d-flex justify-content-md-start justify-content-center align-items-center">
+                <figure>
+                  <img src="@/assets/img/reduniq.svg" alt="">
+                </figure>
+
+                <figure>
+                  <img src="@/assets/img/mastercard.svg" alt="">
+                </figure>
+                <figure>
+                  <img src="@/assets/img/visa.svg" alt="">
+                </figure>
+                <img src="@/assets/img/paypal.svg" alt="">
+                </figure>
+                <figure>
+                  <img src="@/assets/img/applepay.svg" alt="">
+                </figure>
+              </div>
+            </div>
+            <div class="col-md-4 col-md-4 order-0 order-md-1">
+              <div class="footer-brand my-md-0 my-3">
                 <figure class="brand-logo" @click="goHome">
                   Mesocross
                 </figure>
               </div>
             </div>
-            <div class="col-lg-4 col-md-4 py-3 py-md-0 order-2 order-md-2">
-              <div class="social_links">
-                <ul class="text-left text-md-center">
+            <div class="col-md-4 col-md-4 py-3 py-md-0 order-2 order-md-2">
+              <div class="social_links my-md-0 my-3">
+                <ul class="text-center text-md-right">
                   <li v-for="(link,index) in socialLinks" :key="index">
                     <a target="_blank" :href="link.link">
                       <img :src="link.image" height="20px" width="20px" alt="instagram">
@@ -180,8 +199,8 @@ export default {
   },
   methods: {
     async getSocial () {
-      // const data = await this.$axios.get('get-social-link')
-      // this.socialLinks = data.data.data
+      const data = await this.$axios.get('get-social-link')
+      this.socialLinks = data.data.data
     },
     async getFooterLinks () {
       const data = await this.$axios.get('/footer/get-footer-data')
@@ -227,14 +246,33 @@ export default {
       opacity: 1;
       border-color: #ffffff !important;
     }
+    .logos {
+        border-radius: 10px;
+        img {
+            margin-right: 17px;
+        }
+        figure {
+            margin: 0;
+        }
+    }
+    figure.brand-logo{
+      font-size: 24px;
+    }
     .footer_bottom{
       position: relative;
+
+      @media (min-width:992px) {
       border-top: 1px solid #ffffff;
+      }
       .copyright{
         text-align: center;
         color: #ffffff;
         opacity: 0.6;
         margin-top:30px;
+        @media (max-width:991px) {
+          margin-top:10px;
+          margin-bottom: 10px;
+        }
         p{
           font-size:14px;
         }
@@ -242,7 +280,6 @@ export default {
     }
   }
 }
-
 @media screen and (min-width: 320px) and (max-width: 567px) {
   .footer-main {
     width: 100% !important;
@@ -280,7 +317,12 @@ export default {
   position: relative;
   text-align: center;
   figure.brand-logo{
-    font-size: 18px;
+    font-size: 24px;
+  }
+}
+.social_links{
+  img{
+    object-fit: contain;
   }
 }
 </style>

@@ -17,7 +17,7 @@
             <!-- <button class="btn btn-default w-100 px-0">
               NEED HELP?
             </button> -->
-            <a class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">NEED HELP?</a>
+            <nuxt-link to="/services/help" class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">NEED HELP?</nuxt-link>
           </div>
         </div>
       </div>

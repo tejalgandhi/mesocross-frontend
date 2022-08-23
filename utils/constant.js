@@ -52,5 +52,6 @@ export const pagesDashboard = [
   { label: 'Terms and Condition', component: 'pages-content', slug: 'terms-condition' },
   { label: 'Privacy policy', component: 'pages-content', slug: 'privacy-policy' },
   { label: 'Cookies policy', component: 'pages-content', slug: 'cookie-policy' },
-  { label: 'Fraud', component: 'pages-content', slug: 'fraud' }
+  { label: 'Fraud', component: 'pages-content', slug: 'fraud' },
+  { label: 'Help', component: 'help', slug: 'help', static: true }
 ]

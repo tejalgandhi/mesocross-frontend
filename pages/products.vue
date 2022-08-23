@@ -79,6 +79,7 @@
               </button>
             </div>
           </template>
+
           <ProductFilter
             ref="prodcuFilter"
             class="p-4"
@@ -119,6 +120,7 @@ export default {
   auth: false,
   async asyncData ({ params, $axios, store }) {
     let url = '/products?page=1'
+    console.log(params)
     if (params && params.treatmentSlug) {
       url = `${url}&treatment_solutions=${params.treatmentSlug}`
     } else if (params && params.categorySlug) {

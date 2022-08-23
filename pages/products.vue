@@ -62,6 +62,7 @@
           id="filter-mobile"
           v-model="filterSidebar"
           :title="$t('filters')"
+          backdrop
           shadow
           left
           header-class="py-3 px-4"

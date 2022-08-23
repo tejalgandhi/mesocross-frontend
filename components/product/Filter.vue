@@ -69,6 +69,9 @@ export default {
     const { data, skincares } = await this.$axios.$get('/categories')
     const parentCategories = data.filter(category => category.parent_id == null)
     parentCategories.map((cat) => {
+      if (this.$route.params.categorySlug === cat.slug) {
+        this.$emit('setBackgroudColor', cat.color_gradient)
+      }
       if (cat.slug === 'skincare') {
         cat.child = skincares.map((skin) => {
           return { ...skin, type: 'skincare' }

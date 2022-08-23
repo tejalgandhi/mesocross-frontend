@@ -58,7 +58,7 @@ export default {
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },
         { label: this.$t('cookie_policy'), component: 'pages-content', slug: 'cookie-policy' },
         { label: this.$t('fraud'), component: 'pages-content', slug: 'fraud' },
-        { label: this.$t('Need Help ?'), component: 'help', slug: 'help', static: true }
+        { label: this.$t('need_help'), component: 'help', slug: 'help', static: true }
       ],
       selectPage: false
     }

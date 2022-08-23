@@ -149,6 +149,7 @@ export default {
   quality_policy: 'Quality policy',
   privacy_policy: 'Privacy policy',
   cookie_policy: 'Cookies policy',
+  need_help: 'Need Help ?',
   fraud: 'Fraud',
   become_partner: 'Become a partner',
   price: 'Price',

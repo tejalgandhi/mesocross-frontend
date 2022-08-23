@@ -148,6 +148,7 @@ export default {
   quality_policy: 'Política de calidad',
   privacy_policy: 'Política de privacidad',
   cookie_policy: 'Política de cookies',
+  need_help: 'Necesitas ayuda ?',
   fraud: 'Fraude',
   become_partner: 'CONVERTIRSE EN UN COMPAÑERO',
   join_us_and_feel_the_spirit_of_beauty_become_our_partner: 'Únase a nosotros y sienta el espíritu de la belleza. Conviértase en nuestro socio.',

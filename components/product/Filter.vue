@@ -48,16 +48,16 @@
           </ul>
         </div>
       </li>
-      <li>
+      <li v-show="skincares.length > 0">
         <div class="d-flex align-items-start">
           <label class="control control--checkbox pl-3">
             <span class="child-a ml-2 w-100 text-uppercase text-decoration-none">skin care</span>
             <div class="control__indicator" />
           </label>
         </div>
-        <div v-show="skincare.length > 0" class="filter_list">
+        <div  class="filter_list">
           <ul class="secondUl">
-            <li v-for="(childCat, cIndex) in skincare" :key="cIndex">
+            <li v-for="(childCat, cIndex) in skincares" :key="cIndex">
               <label class="control control--checkbox">
                 {{ childCat.name }}
                 <input
@@ -106,7 +106,7 @@ export default {
     const selectedCat = data.reduce((res, cat) => {
       return cat.slug === this.$route.params.categorySlug ? cat : res
     }, null)
-    this.skincares = skincares.filter(cat => selectedCat == null || cat.category_id == selectedCat.id)
+    this.skincares = skincares.filter(cat => selectedCat === null || cat.category_id === selectedCat.id)
     const parentCategories = data.filter(category => category.parent_id == null)
     parentCategories.map((cat) => {
       if (this.$route.params.categorySlug === cat.slug) {
@@ -118,9 +118,9 @@ export default {
     if (!this.showAllCats) {
       this.filterData = parentCategories
     } else {
-      this.filterData = parentCategories.filter(cat => {
+      this.filterData = parentCategories.filter((category) => {
         const slug = this.$route.params.categorySlug
-        return (category.slug === slug || category.child.find(cat => cat.slug === slug)
+        return category.slug === slug || category.child.find(cat => cat.slug === slug)
       })
     }
   },

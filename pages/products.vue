@@ -79,6 +79,7 @@
               </button>
             </div>
           </template>
+
           <ProductFilter
             ref="prodcuFilter"
             class="p-4"

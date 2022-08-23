@@ -106,7 +106,16 @@ export default {
     const selectedCat = data.reduce((res, cat) => {
       return cat.slug === this.$route.params.categorySlug ? cat : res
     }, null)
-    this.skincares = skincares.filter(cat => selectedCat === null || cat.category_id === selectedCat.id)
+    if(selectedCat === null) {
+      let collected = [];
+      this.skincares = skincares.filter(cat => {
+        if(collected.indexOf(cat.name) !== -1) return false
+        collected.push(cat.name)
+        return true
+      })
+    } else {
+      this.skincares = skincares.filter(cat => cat.category_id === selectedCat.id)
+    }
     const parentCategories = data.filter(category => category.parent_id == null)
     parentCategories.map((cat) => {
       if (this.$route.params.categorySlug === cat.slug) {

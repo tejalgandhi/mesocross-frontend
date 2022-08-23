@@ -21,16 +21,14 @@ export default {
   selectFilter ({ commit, state, dispatch }, payload) {
     // eslint-disable-next-line prefer-const
     let selectedFilter = [...state.selectedFilters]
-    if (payload.selected) { // IF FILTER IS SELECT
-      const index = selectedFilter.findIndex(val => val.id === payload.id)
-      if (index === -1) {
-        selectedFilter.push({
-          id: payload.id,
-          name: payload.name,
-          parentId: !payload.treatmentSolution ? payload.parentId : '',
-          treatmentSolution: payload.treatmentSolution
-        })
-      }
+    const index = selectedFilter.findIndex(val => val.id === payload.id)
+    if (index === -1) {
+      selectedFilter.push({
+        id: payload.id,
+        name: payload.name,
+        treatmentSolution: payload.treatmentSolution,
+        type: payload.type ? payload.type : null
+      })
     } else {
       const index = selectedFilter.findIndex(data => data.id === payload.id)
       selectedFilter.splice(index, 1)

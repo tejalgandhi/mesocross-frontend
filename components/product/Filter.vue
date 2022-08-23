@@ -106,12 +106,16 @@ export default {
     const selectedCat = data.reduce((res, cat) => {
       return cat.slug === this.$route.params.categorySlug ? cat : res
     }, null)
-    if(selectedCat === null) {
-      let collected = [];
-      this.skincares = skincares.filter(cat => {
-        if(collected.indexOf(cat.name) !== -1) return false
-        collected.push(cat.name)
-        return true
+    const skincare = skincares.reduce((sel, cat) => cat.slug === this.$route.params.categorySlug ? cat : sel, null)
+    if (skincare !== null) {
+      const collected = []
+      this.skincares = skincares.filter((cat) => {
+        if (collected.includes(cat.name)) {
+          return false
+        } else {
+          collected.push(cat.name)
+          return true
+        }
       })
     } else {
       this.skincares = skincares.filter(cat => cat.category_id === selectedCat.id)

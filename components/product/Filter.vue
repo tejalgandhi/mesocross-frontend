@@ -4,7 +4,7 @@
       <li v-for="(filter, index) in filterData" :key="index">
         <div class="d-flex align-items-start">
           <label class="control control--checkbox pl-3">
-            <span class="child-a ml-2 w-100 a text-uppercase text-decoration-none">{{ filter.name }}</span>
+            <span class="child-a ml-2 w-100 text-uppercase text-decoration-none">{{ filter.name }}</span>
             <input
               v-model="selected"
               class="mt-1"
@@ -68,7 +68,6 @@ export default {
   async fetch () {
     const { data, skincares } = await this.$axios.$get('/categories')
     const parentCategories = [...data, ...skincares].filter(category => category.parent_id == null)
-
     parentCategories.map((cat) => {
       if (this.$route.params.categorySlug === cat.slug) {
         this.$emit('setBackgroudColor', cat.color_gradient)
@@ -114,7 +113,6 @@ export default {
   }
 }
 </script>
-
 <style>
 .child-a {
   font: normal normal 600 18px Arquitecta;

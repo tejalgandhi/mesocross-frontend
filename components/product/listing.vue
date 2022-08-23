@@ -34,7 +34,7 @@
           </div>
         </nuxt-link>
       </div>
-      <div v-if="products.length == 0">
+      <div v-if="products.length == 0" class="my-5 col-12 text-center">
         <h3>{{ $t('no_product_found') }}</h3>
       </div>
       <div v-if="paginate.meta && paginate.meta.last_page > paginate.meta.current_page" class="view_more">

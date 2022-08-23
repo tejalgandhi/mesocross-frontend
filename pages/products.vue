@@ -184,7 +184,7 @@ export default {
     removeFilter (index) {
       setTimeout(() => {
         this.$refs.prodcuFilter.removeFilter(this.selectedFilters[index])
-        this.filterRemove(index)
+        // this.filterRemove(index)
         this.fetchProducts(1)
       }, 100)
     },
@@ -276,9 +276,17 @@ export default {
       if (url === '') { // PREPARE API URL, IT WILL SET ON INTIAL LOAD
         url = `/products?page=${page}`
         if (this.selectedFilters) {
-          const category = this.selectedFilters.filter(v => !v.treatmentSolution).map(val => val.id).toString()
-          if (category !== '') {
-            url = `${url}&category=${category}`
+          const category = this.selectedFilters.filter(v => !v.treatmentSolution)
+          if (category.length > 0) {
+            const cats = category.filter(c => !c.is_skincare).map(f => f.id).toString()
+            const skins = category.filter(c => c.is_skincare).map(f => f.id).toString()
+            if (cats && skins) {
+              url = `${url}&category=${cats}&skincare=${skins}`
+            } else if (cats) {
+              url = `${url}&category=${cats}`
+            } else if (skins) {
+              url = `${url}&skincare=${skins}`
+            }
           } else {
             url = `${url}${activeCat}`
           }

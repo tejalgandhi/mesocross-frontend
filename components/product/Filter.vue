@@ -68,7 +68,6 @@ export default {
   async fetch () {
     const { data, skincares } = await this.$axios.$get('/categories')
     const parentCategories = [...data, ...skincares].filter(category => category.parent_id == null)
-    console.log('parentCategories', parentCategories)
 
     parentCategories.map((cat) => {
       if (this.$route.params.categorySlug === cat.slug) {

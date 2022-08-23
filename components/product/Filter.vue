@@ -3,7 +3,7 @@
     <ul class="mainUl">
       <li v-for="(filter, index) in filterData" :key="index">
         <div class="d-flex align-items-start">
-          <label class="control control--checkbox pl-3 d-none d-md-flex">
+          <label class="control control--checkbox pl-3">
             <span class="child-a ml-2 w-100 a text-uppercase text-decoration-none">{{ filter.name }}</span>
             <input
               v-model="selected"
@@ -67,18 +67,14 @@ export default {
   },
   async fetch () {
     const { data, skincares } = await this.$axios.$get('/categories')
-    const parentCategories = data.filter(category => category.parent_id == null)
+    const parentCategories = [...data, ...skincares].filter(category => category.parent_id == null)
+    console.log('parentCategories', parentCategories)
+
     parentCategories.map((cat) => {
       if (this.$route.params.categorySlug === cat.slug) {
         this.$emit('setBackgroudColor', cat.color_gradient)
       }
-      if (cat.slug === 'skincare') {
-        cat.child = skincares.map((skin) => {
-          return { ...skin, type: 'skincare' }
-        })
-      } else {
-        cat.child = data.filter(val => val.parent_id === cat.id)
-      }
+      cat.child = [...data, ...skincares].filter(val => val.parent_id === cat.id)
       return cat
     })
     if (!this.showAllCats) {
@@ -105,9 +101,8 @@ export default {
       }, 200)
     },
     removeFilter (item) {
-      console.log('item', item)
-      const filters = this.selected.filter(f => !f.id)
-      console.log(filters)
+      const selectIndex = this.selected.findIndex(f => f.id === item.id && f.slug === item.slug)
+      this.selected.splice(selectIndex, 1)
       this.selectFilter(item)
     },
     refresh () {

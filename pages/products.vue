@@ -62,7 +62,6 @@
           id="filter-mobile"
           v-model="filterSidebar"
           :title="$t('filters')"
-          backdrop
           shadow
           left
           header-class="py-3 px-4"
@@ -278,8 +277,8 @@ export default {
         if (this.selectedFilters) {
           const category = this.selectedFilters.filter(v => !v.treatmentSolution)
           if (category.length > 0) {
-            const cats = category.filter(c => !c.type).map(f => f.id).toString()
-            const skins = category.filter(c => c.type).map(f => f.id).toString()
+            const cats = category.filter(c => !c.is_skincare).map(f => f.id).toString()
+            const skins = category.filter(c => c.is_skincare).map(f => f.id).toString()
             if (cats && skins) {
               url = `${url}&category=${cats}&skincare=${skins}`
             } else if (cats) {

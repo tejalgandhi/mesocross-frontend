@@ -27,7 +27,8 @@ export default {
         id: payload.id,
         name: payload.name,
         treatmentSolution: payload.treatmentSolution,
-        type: payload.type ? payload.type : null
+        is_skincare: payload.is_skincare,
+        slug: payload.slug
       })
     } else {
       const index = selectedFilter.findIndex(data => data.id === payload.id)

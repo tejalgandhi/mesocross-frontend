@@ -107,7 +107,7 @@ export default {
       return cat.slug === this.$route.params.categorySlug ? cat : res
     }, null)
     const skincare = skincares.reduce((sel, cat) => cat.slug === this.$route.params.categorySlug ? cat : sel, null)
-    if (skincare !== null) {
+    if (skincare !== null || this.$route.params.categorySlug === 'skincare') {
       const collected = []
       this.skincares = skincares.filter((cat) => {
         if (collected.includes(cat.name)) {

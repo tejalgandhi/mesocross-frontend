@@ -192,6 +192,7 @@ export default {
     },
     clearAll () {
       this.setSelectedFilters([])
+      this.selectedFilters = []
       this.setPriceSort('')
       this.filterSidebar = false
       this.fetchProducts(1)

@@ -117,8 +117,11 @@ export default {
           return true
         }
       })
-    } else {
+    } else if (selectedCat !== null) {
       this.skincares = skincares.filter(cat => cat.category_id === selectedCat.id)
+    } else {
+      this.skincares = [...new Map(skincares.map(item =>
+        [item.name, item])).values()]
     }
     const parentCategories = data.filter(category => category.parent_id == null)
     parentCategories.map((cat) => {
@@ -133,7 +136,7 @@ export default {
     } else {
       this.filterData = parentCategories.filter((category) => {
         const slug = this.$route.params.categorySlug
-        return category.slug === slug || category.child.find(cat => cat.slug === slug)
+        return slug === 'segmentation' || category.slug === slug || category.child.find(cat => cat.slug === slug)
       })
     }
   },

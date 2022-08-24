@@ -5,14 +5,15 @@
     </template>
     <template v-else>
       <div class="items">
-        <span class="name" @click="goTo('/dashboard')" v-if="loggedinUser.full_name">{{ loggedinUser.full_name }}</span>
-        <span class="name" @click="goTo('/dashboard')" v-else>{{ loggedinUser.name }}</span>
+        <span v-if="loggedinUser.full_name" class="name text-uppercase" @click="goTo('/dashboard')">{{ loggedinUser.full_name }}</span>
+        <span v-else class="name text-uppercase" @click="goTo('/dashboard')">{{ loggedinUser.name }}</span>
         <div class="tabs">
-          <span v-if="$auth.user.type === 1" @click="goTo('/dashboard?page=personal-data')">{{ $t('dashboard.personal_data') }}</span>
-          <span v-else-if="$auth.user.type === 2" @click="goTo('/dashboard?page=company-data')">{{ $t('dashboard.company_data') }}</span>
-          <span @click="goTo('/dashboard?page=address-book')">{{ $t('dashboard.address_book') }}</span>
-          <span @click="goTo('/dashboard?page=payment-methods')">{{ $t('payment_methods') }}</span>
-          <span @click="goTo('/dashboard?page=login-data')">{{ $t('dashboard.login_data') }}</span>
+          <span v-if="$auth.user.type === 1" @click="goTo('/dashboard?page=my-account')">My Account</span>
+          <span v-else-if="$auth.user.type === 2" @click="goTo('/dashboard?page=my-account')">My Account</span>
+          <span @click="goTo('/dashboard?page=order-returns')">ORDERS & RETURNS</span>
+          <span @click="goTo('/dashboard?page=invoice-history')">INVOICE HISTORY</span>
+          <span @click="goTo('/dashboard?page=address-book')">ADDRESS BOOK</span>
+          <span @click="goTo('/dashboard?page=payment-methods')">PAYMENT METHODS</span>
         </div>
         <span class="logout" @click="Logout">logout</span>
       </div>

@@ -1,10 +1,10 @@
 <template>
-  <div class="about-page">
+  <div class="about-page new-pages mb-5">
     <Banner :page-name="'our-story'" />
     <template v-if="data.length">
       <!-- <UiMission :data="ourMission" :first="true" /> -->
-      <text-image-container :data="solution1"   v-if="solution1.content"/>
-      <text-image-container :data="solution2"  v-if="solution2.content" :reverse="true" />
+      <text-image-container v-if="solution1.content" :data="solution1" />
+      <text-image-container v-if="solution2.content" :data="solution2" :reverse="true" />
     </template>
   </div>
 </template>

@@ -3,8 +3,7 @@
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
-          <!-- {{ item }} -->
-          <div :key="i" class="item cursor-pointer" @click="data[item.id] ?selectedMenu = item : goTo(item.custom_slug)">
+          <div :key="i" class="item cursor-pointer" @click="data[item.id] ?selectedMenu = item : goTo(item.type === 'products' ? '/products/' : '' + item.custom_slug)">
             <span>{{ item.name }}</span>
             <span v-if="data[item.id]" class="arrow" />
           </div>

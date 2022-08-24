@@ -1,10 +1,10 @@
 
 <template>
-  <section :class="{reverse}">
-    <figure>
+  <section :class="{reverse}" class="text-section">
+    <figure class="image-section">
       <img :src="data.media" alt="image">
     </figure>
-    <article>
+    <article class="content-section">
       <h2>{{ data.title }}</h2>
       <span v-html="data.content" />
     </article>

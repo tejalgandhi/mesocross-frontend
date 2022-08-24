@@ -2,7 +2,7 @@
   <div class="container-fluid w-100 px-0">
     <div class="account-tabs">
       <b-tabs pills vertical content-class="mt-0 g-5" nav-class="account-navbar">
-        <b-tab title="MY ACCOUNT" active>
+        <b-tab title="MY ACCOUNT">
           <h2 class="mb-4">
             MY ACCOUNT
             <b-button variant="link" class="float-right p-2 text-capitalize shadow-none" @click="updateAccount = !updateAccount">
@@ -59,16 +59,16 @@
             </div>
           </template>
         </b-tab>
-        <b-tab title="ORDERS & RETURNS">
+        <b-tab title="ORDERS & RETURNS" :active="$route.query && $route.query.page === 'order-returns'">
           <orders-returns />
         </b-tab>
-        <b-tab title="INVOICE HISTORY">
+        <b-tab title="INVOICE HISTORY" :active="$route.query && $route.query.page === 'invoice-history'">
           <invoice-history />
         </b-tab>
-        <b-tab title="ADDRESS BOOK">
+        <b-tab title="ADDRESS BOOK" :active="$route.query && $route.query.page === 'address-book'">
           <address-book />
         </b-tab>
-        <b-tab title="PAYMENT METHODS">
+        <b-tab title="PAYMENT METHODS" :active="$route.query && $route.query.page === 'payment-methods'">
           <payment-methods />
         </b-tab>
         <b-tab title="" disabled>
@@ -80,27 +80,6 @@
         </b-tab>
       </b-tabs>
     </div>
-
-    <!-- <div class="row mx-0">
-      <div class="col-md-5 px-0 px-md-3 col-lg-4 col-xl-3 mb-4">
-        <div class="user-item-list">
-          <ul class="list-unstyled mt-3 nav nav-tabs d-block border-0">
-            <li v-for="(comonent, index) in dashboardComponents" :key="index" class="d-flex align-items-center mt-2 nav-item">
-              <a class="d-flex align-items-center pl-4 nav-link" :class="{'active' : selectedDashboardComponentIndex === index}" @click="setComponent(comonent.component)">
-                {{ comonent.label }}
-              </a>
-            </li>
-          </ul>
-
-          <a class="d-flex align-items-center pl-4 nav-link mt-5 font-weight-bold" style="text-decoration: underline" @click="Logout">
-            Log out
-          </a>
-        </div>
-      </div>
-      <div class="col-md-7 col-lg-8 col-xl-9 mb-4">
-        <component :is="selectedDashboardComponent" />
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -144,7 +123,7 @@ export default {
     if (page) {
       this.setSelectedDashboardComponent(page)
       // this.isActive = this.components.findIndex(val => val.component === page)
-      this.$router.replace('/dashboard')
+      // this.$router.replace('/dashboard')
     } else {
       this.setSelectedDashboardComponent(this.dashboardComponents[0].component)
     }

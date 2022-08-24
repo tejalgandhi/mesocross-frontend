@@ -27,11 +27,11 @@
       <div v-if="data" class="banner-content">
         <div class="container-fluid">
           <div class="row">
-            <div v-if="data.page !== 'home'" class="col-md-10 text-center mx-auto">
-              <h1 v-if="data.title" class="text-uppercase font-weight-bold mb-3">
+            <div v-if="data.page !== 'home'" class="col-md-12 text-center mx-auto">
+              <h1 v-if="data.title" class="text-uppercase banner-title font-weight-normal mb-3">
                 {{ data.title }}
               </h1>
-              <h1 v-else class="text-uppercase font-weight-bold mb-3">
+              <h1 v-else class="text-uppercase banner-title font-weight-normal mb-3">
                 {{ data.name }}
               </h1>
               <p v-if="data.message" class="px-lg-5 mb-4">

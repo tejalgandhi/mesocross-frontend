@@ -40,6 +40,9 @@
         </b-button>
       </div>
     </div>
+    <div v-else class="text-center h5 p-4">
+      No Product Found
+    </div>
   </div>
 </template>
 <script>

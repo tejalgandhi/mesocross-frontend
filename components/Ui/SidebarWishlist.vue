@@ -4,18 +4,18 @@
       <template #default="{ hide }">
         <div class="text-light fixed-total">
           <div class="">
-            <h2 class="font-weight-normal mb-4 mt-2 h4 text-uppercase border-bottom border-light pb-3 d-flex align-items-center justify-content-between">
+            <h2 class="font-weight-normal mb-4 mt-2 h4 sidebar-title text-uppercase border-bottom border-light pb-3 d-flex align-items-center justify-content-between">
               <div>
-                <img class="filter-invert mr-3" src="@/assets/img/star.svg">
+                <img class="filter-invert sicon mr-3" src="@/assets/img/star.svg">
                 {{ $t('Wishlist') }} ({{ wish.length > 0 ? wish.length: 0 }})
               </div>
               <a href="javascript:void(0)" class="filter-invert" @click="hide"><img width="18" src="@/assets/img/close.svg"></a>
             </h2>
-            <div v-if="!isUserLoggedIn" class="text-center">
-              <p class="mx-auto col-lg-4">
+            <div v-if="!isUserLoggedIn" class="text-center p-4">
+              <p class="mx-auto col-lg-12">
                 {{ $t('looking_for_your_wishlist') }}? {{ $t('sign_in_to_pick_up_where_you_left_off') }}
               </p>
-              <nuxt-link class="btn btn-primary d-block mt-4 mb-5 col-md-3 mx-auto sign-in" to="/login">
+              <nuxt-link class="btn btn-primary d-block mt-4 mb-5 mx-auto filter-invert" to="/login">
                 {{ $t('sign_in') }}
               </nuxt-link>
             </div>
@@ -70,3 +70,10 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.sidebar-title{
+  @media (max-width:767px) {
+      font-size: 1.25rem;
+  }
+}
+</style>

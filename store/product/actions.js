@@ -28,8 +28,13 @@ export default {
         name: payload.name,
         treatmentSolution: payload.treatmentSolution,
         is_skincare: payload.is_skincare,
-        slug: payload.slug
+        slug: payload.slug,
+        parent_id: payload.parent_id,
+        child: payload.child
       })
+      if (payload.parent_id === null && payload.child.length > 0) {
+        selectedFilter = selectedFilter.concat(payload.child)
+      }
     } else {
       const index = selectedFilter.findIndex(data => data.id === payload.id)
       selectedFilter.splice(index, 1)

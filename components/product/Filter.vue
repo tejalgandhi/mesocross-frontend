@@ -153,6 +153,11 @@ export default {
     applyFilter (filter, treatmentSolution = false) {
       setTimeout(() => {
         filter.treatmentSolution = treatmentSolution
+        if (filter.parent_id === null && filter.child.length > 0) {
+          const selectedCat = [...new Map(filter.child.map(item =>
+            [item.id, item])).values()]
+          this.selected = this.selected.concat(selectedCat)
+        }
         this.selectFilter(filter)
         this.$emit('fetchProducts', 1)
       }, 200)

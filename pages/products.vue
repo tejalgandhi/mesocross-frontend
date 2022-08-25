@@ -106,7 +106,6 @@ export default {
   auth: false,
   async asyncData ({ params, $axios, store }) {
     let url = '/products?page=1'
-    console.log(params)
     if (params && params.treatmentSlug) {
       url = `${url}&treatment_solutions=${params.treatmentSlug}`
     } else if (params && params.categorySlug) {
@@ -258,7 +257,15 @@ export default {
           }
         })
         if (activeCat !== undefined) {
-          activeCat = `&category=${activeCat.id}`
+          if (activeCat.parent_id === null && activeCat.child.length > 0 && activeCat.is_skincare === false) {
+            const selectedCat = [...new Map(activeCat.child.map(item =>
+              [item.id, item.id])).values()]
+            selectedCat.push(activeCat.id)
+            const selectedString = selectedCat.toString()
+            activeCat = `&category=${selectedString}`
+          } else {
+            activeCat = `&category=${activeCat.id}`
+          }
         }
       }
       let url = productUrl
@@ -267,8 +274,8 @@ export default {
         if (this.selectedFilters) {
           const category = this.selectedFilters.filter(v => !v.treatmentSolution)
           if (category.length > 0) {
-            const cats = category.filter(c => !c.is_skincare).map(f => f.id).toString()
             const skins = category.filter(c => c.is_skincare).map(f => f.id).toString()
+            const cats = category.filter(c => !c.is_skincare).map(f => f.id).toString()
             if (cats && skins) {
               url = `${url}&category=${cats}&skincare=${skins}`
             } else if (cats) {
@@ -277,7 +284,7 @@ export default {
               url = `${url}&skincare=${skins}`
             }
           } else {
-            url = `${url}${activeCat}`
+            url = `${url}${activeCat ?? ''}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
           if (treatmentsolution !== '') {

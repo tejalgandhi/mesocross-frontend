@@ -5,15 +5,31 @@
     </template>
     <template v-else>
       <div class="items">
-        <span v-if="loggedinUser.full_name" class="name text-uppercase" @click="goTo('/dashboard')">{{ loggedinUser.full_name }}</span>
-        <span v-else class="name text-uppercase" @click="goTo('/dashboard')">{{ loggedinUser.name }}</span>
+        <nuxt-link v-if="loggedinUser.full_name" class="name text-uppercase" to="/dashboard">
+          {{ loggedinUser.full_name }}
+        </nuxt-link>
+        <nuxt-link v-else class="name text-uppercase" to="/dashboard">
+          {{ loggedinUser.name }}
+        </nuxt-link>
         <div class="tabs">
-          <span v-if="$auth.user.type === 1" @click="goTo('/dashboard?page=my-account')">My Account</span>
-          <span v-else-if="$auth.user.type === 2" @click="goTo('/dashboard?page=my-account')">My Account</span>
-          <span @click="goTo('/dashboard?page=order-returns')">ORDERS & RETURNS</span>
-          <span @click="goTo('/dashboard?page=invoice-history')">INVOICE HISTORY</span>
-          <span @click="goTo('/dashboard?page=address-book')">ADDRESS BOOK</span>
-          <span @click="goTo('/dashboard?page=payment-methods')">PAYMENT METHODS</span>
+          <nuxt-link v-if="$auth.user.type === 1" to="/dashboard?page=my-account">
+            My Account
+          </nuxt-link>
+          <nuxt-link v-else-if="$auth.user.type === 2" to="/dashboard?page=my-account">
+            My Account
+          </nuxt-link>
+          <nuxt-link to="/dashboard?page=order-returns">
+            ORDERS & RETURNS
+          </nuxt-link>
+          <nuxt-link to="/dashboard?page=invoice-history">
+            INVOICE HISTORY
+          </nuxt-link>
+          <nuxt-link to="/dashboard?page=address-book">
+            ADDRESS BOOK
+          </nuxt-link>
+          <nuxt-link to="/dashboard?page=payment-methods">
+            PAYMENT METHODS
+          </nuxt-link>
         </div>
         <span class="logout" @click="Logout">logout</span>
       </div>
@@ -112,9 +128,10 @@ export default {
                 position: relative;
                 gap: 0.5rem;
 
-                span {
+                a {
                     padding: 0px 15px;
                     position: relative;
+                    text-decoration: none;
 
                     &::after {
                         content: '';

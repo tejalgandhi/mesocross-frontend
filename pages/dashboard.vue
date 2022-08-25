@@ -59,16 +59,16 @@
             </div>
           </template>
         </b-tab>
-        <b-tab title="ORDERS & RETURNS" :active="$route.query && $route.query.page === 'order-returns'">
+        <b-tab title="ORDERS & RETURNS" :active="activePage('order-returns')">
           <orders-returns />
         </b-tab>
-        <b-tab title="INVOICE HISTORY" :active="$route.query && $route.query.page === 'invoice-history'">
+        <b-tab title="INVOICE HISTORY" :active="activePage('invoice-history')">
           <invoice-history />
         </b-tab>
-        <b-tab title="ADDRESS BOOK" :active="$route.query && $route.query.page === 'address-book'">
+        <b-tab title="ADDRESS BOOK" :active="activePage('address-book')">
           <address-book />
         </b-tab>
-        <b-tab title="PAYMENT METHODS" :active="$route.query && $route.query.page === 'payment-methods'">
+        <b-tab title="PAYMENT METHODS" :active="activePage('payment-methods')">
           <payment-methods />
         </b-tab>
         <b-tab title="" disabled>
@@ -116,6 +116,7 @@ export default {
         return companyDashboard
       }
     }
+
   },
   mounted () {
     const { page } = this.$route.query
@@ -132,6 +133,9 @@ export default {
     }
   },
   methods: {
+    activePage (param) {
+      return this.$route.query && this.$route.query.page === param
+    },
     setComponent (name) {
       this.setSelectedDashboardComponent(name)
     },

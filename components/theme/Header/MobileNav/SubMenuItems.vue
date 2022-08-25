@@ -38,8 +38,8 @@ export default {
 
     goTo (to, tab) {
       this.$emit('close')
-      if (this.main.custom_slug) {
-        this.$router.push(`/${this.main.custom_slug}/${to.slug}`)
+      if (to.type === 'products') {
+        this.$router.push(`/products/${to.slug}`)
         return
       }
       this.$router.push(`${to.slug}`)

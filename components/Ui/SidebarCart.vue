@@ -4,14 +4,14 @@
       <template #default="{ hide }">
         <div class="text-light fixed-total">
           <div class="">
-            <h2 class="font-weight-normal mb-4 mt-2 h4 text-uppercase border-bottom border-light pb-3 d-flex align-items-center justify-content-between">
+            <h2 class="font-weight-normal mb-4 mt-2 h4 sidebar-title text-uppercase border-bottom border-light pb-3 d-flex align-items-center justify-content-between">
               <div>
-                <img class="filter-invert mr-3" src="@/assets/img/basket.svg">
+                <img class="filter-invert sicon mr-3" src="@/assets/img/basket.svg">
                 {{ $t('cart.shopping_bag') }} ({{ products.length }})
               </div>
               <a href="javascript:void(0)" class="filter-invert" @click="hide"><img width="18" src="@/assets/img/close.svg"></a>
             </h2>
-            <div v-if="!isUserLoggedIn" class="text-center">
+            <div v-if="!isUserLoggedIn" class="text-center p-4">
               <p class="mb-1">
                 {{ $t('cart.your_bag_is_empty') }}
               </p>
@@ -21,7 +21,7 @@
                 </nuxt-link>
                 {{ $t('cart.to_add_products_to_the_bag') }}
               </p>
-              <nuxt-link class="btn btn-primary mt-4 mb-5 col-md-2 mx-auto " to="/login">
+              <nuxt-link class="btn btn-primary mt-4 mb-5  mx-auto btn-block filter-invert" to="/login">
                 {{ $t('buy_products') }}
               </nuxt-link>
             </div>
@@ -103,5 +103,10 @@ export default {
 }
 .fixed-total{
   padding-bottom: 100px;
+}
+.sidebar-title{
+  @media (max-width:767px) {
+      font-size: 1.25rem;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div class="product-page">
+    <div class="product-page mb-5">
       <Banner :page-name="'product'" @get-segment-id="segId = $event" />
       <div class="filter_result">
         <div class="container-fluid">
@@ -96,20 +96,6 @@
           </div>
         </div>
       </div>
-
-    <!-- <div v-show="isLoggedin" class="recommended mt-4">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 offset-md-6">
-            <h2>{{ $t('treatment_recommended') }}</h2>
-            <p>{{ $t('treatment_recommended_desc') }}</p>
-            <nuxt-link to="/customize-treatment">
-              {{ $t('customize_treatment') }}
-            </nuxt-link>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
   </client-only>
 </template>

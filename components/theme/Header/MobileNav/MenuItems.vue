@@ -3,8 +3,7 @@
     <transition name="slide">
       <div v-if="!selectedMenu" class="items">
         <template v-for="(item, i) in headItems">
-          <!-- {{ item }} -->
-          <div :key="i" class="item cursor-pointer" @click="data[item.id] ?selectedMenu = item : goTo(item.custom_slug)">
+          <div :key="i" class="item cursor-pointer" @click="parentClick(item)">
             <span>{{ item.name }}</span>
             <span v-if="data[item.id]" class="arrow" />
           </div>
@@ -76,7 +75,16 @@ export default {
       setLoggedinUser: 'user/setLoggedinUser',
       setIsSubscribed: 'training/setIsSubscribed'
     }),
-
+    parentClick (item) {
+      if (this.data[item.id]) {
+        this.selectedMenu = item
+      } else {
+        this.goTo(this.prefixProducts(item))
+      }
+    },
+    prefixProducts (item) {
+      return item.type === 'products' ? '/products/' : '' + item.custom_slug
+    },
     async Logout () {
       this.setIsSubscribed(false)
       this.setLoggedin(false)

@@ -20,7 +20,7 @@
               <div class="col col order-2 order-sm-0">
                 <div v-show="selectedFilters && selectedFilters.length >0" class="selected_filter">
                   <a v-for="(filter, index) in selectedFilters" :key="index" class="mr-2 mb-2" href="javascript:void(0)" @click="removeFilter(index)">
-                    {{ filter.name }} 11<img src="@/assets/img/filter-cross.svg" alt="image">
+                    {{ filter.name }} <img src="@/assets/img/filter-cross.svg" alt="image">
                   </a>
                 </div>
               </div>
@@ -297,10 +297,8 @@ export default {
             } else if (skins) {
               url = `${url}&skincare=${skins}`
             }
-          } else if (activeCat !== undefined) {
-            url = `${url}${activeCat}`
           } else {
-            url = `${url}`
+            url = `${url}${activeCat ?? ''}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
           if (treatmentsolution !== '') {

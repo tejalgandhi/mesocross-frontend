@@ -297,8 +297,10 @@ export default {
             } else if (skins) {
               url = `${url}&skincare=${skins}`
             }
-          } else {
+          } else if (activeCat !== undefined) {
             url = `${url}${activeCat}`
+          } else {
+            url = `${url}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
           if (treatmentsolution !== '') {

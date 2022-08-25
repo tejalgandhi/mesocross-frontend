@@ -291,7 +291,6 @@ export default {
               url = `${url}&skincare=${skins}`
             }
           } else {
-            console.log('activeCat', activeCat)
             url = `${url}${activeCat}`
           }
           const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()

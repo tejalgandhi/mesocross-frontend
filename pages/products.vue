@@ -260,7 +260,7 @@ export default {
       document.body.style.background = color
     },
     async fetchProducts (page, productUrl = '') {
-      let activeCat
+      let activeCat = null
       if (this.$route.params && this.$route.params.categorySlug) {
         this.$refs.prodcuFilter.filterData.forEach((category) => {
           if (!activeCat) {
@@ -309,6 +309,7 @@ export default {
         }
         this.$nuxt.$loading.start()
       }
+      console.log('fetchProducts', url)
       const data = await this.$axios.$get(url)
       if (productUrl === '') {
         this.$nuxt.$loading.finish()

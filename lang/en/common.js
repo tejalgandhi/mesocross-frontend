@@ -235,5 +235,5 @@ export default {
   address_book: 'Address Book',
   search: 'Search',
   note: 'Note',
-  logout: 'Logout',
+  logout: 'Logout'
 }

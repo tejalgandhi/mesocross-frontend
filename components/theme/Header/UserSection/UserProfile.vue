@@ -1,7 +1,7 @@
 <template>
   <article>
     <template v-if="!$auth.loggedIn">
-      <span class="log" @click=";goTo('/login'), $emit('close')">login / register</span>
+      <span class="log" @click=";goTo('/login'), $emit('close')">{{ $t('login') }} / {{ $t('register') }}</span>
     </template>
     <template v-else>
       <div class="items">
@@ -13,25 +13,25 @@
         </nuxt-link>
         <div class="tabs">
           <nuxt-link v-if="$auth.user.type === 1" to="/dashboard?page=my-account">
-            My Account
+            {{$t('my_account')}}
           </nuxt-link>
           <nuxt-link v-else-if="$auth.user.type === 2" to="/dashboard?page=my-account">
-            My Account
+            {{$t('my_account')}}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=order-returns">
-            ORDERS & RETURNS
+            {{$t('orders_return')}}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=invoice-history">
-            INVOICE HISTORY
+            {{$t('invoice_history')}}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=address-book">
-            ADDRESS BOOK
+            {{$t('address_book')}}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=payment-methods">
-            PAYMENT METHODS
+            {{$t('payment_methods')}}
           </nuxt-link>
         </div>
-        <span class="logout" @click="Logout">logout</span>
+        <span class="logout" @click="Logout">{{$t('logout')}}</span>
       </div>
     </template>
   </article>

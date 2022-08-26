@@ -1,7 +1,7 @@
 <template>
   <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5 mt-5">
     <div class="container-fluid">
-      <h3>SEGMENTATION</h3>
+      <h3>{{$t('segmentation')}}</h3>
       <div class="row align-items-center justify-content-center">
         <div v-for="(item, index) in blogs" :key="index" class="col-4 col-lg align-self-center">
           <article class="box text-center">

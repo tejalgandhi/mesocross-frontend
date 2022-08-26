@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="col-2">
-                <label class="text-gray mb-0">Quantity:</label><br>
+                <label class="text-gray mb-0"> {{$t('quantity')}}:</label><br>
                 <b-button variant="primary-outline" class="border-qty" size="sm">
                   {{ product.qty }}
                 </b-button>

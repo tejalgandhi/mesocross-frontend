@@ -24,22 +24,22 @@
             <div v-if="products.length > 0" class="row text-center">
               <div class="col-4">
                 <label class="th-head">
-                  Item info
+                  {{$t('item_info')}}
                 </label>
               </div>
               <div class="col-3">
                 <label class="th-head">
-                  Quantity
+                  {{$t('quantity')}}
                 </label>
               </div>
               <div class="col-3">
                 <label class="th-head">
-                  Price
+                  {{$t('price')}}
                 </label>
               </div>
               <div class="col-2">
                 <label class="th-head">
-                  Total
+                  {{$t('total')}}
                 </label>
               </div>
             </div>

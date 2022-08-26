@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-order-tab">
     <h2 class="mb-4 text-uppercase">
-      Orders & Returns
+        {{$t('orders_return')}}
     </h2>
     <div class="order-tabs">
       <b-tabs content-class="nav nav-tabs" nav-class="order-navbar">

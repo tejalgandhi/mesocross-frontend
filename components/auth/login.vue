@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="h2 text-uppercase font-weight-normal">
-      Welcome
+      {{ $t('welcome') }}
     </h1>
 
     <ul class="nav nav-tabs tab-width" role="tablist">
@@ -14,7 +14,7 @@
           aria-controls="home"
           aria-selected="true"
         >
-          Sign In
+          {{ $t('sign_in') }}
         </nuxt-link>
       </li>
       <li class="nav-item">
@@ -27,7 +27,7 @@
           aria-controls="profile"
           aria-selected="false"
         >
-          Register
+          {{ $t('register') }}
         </nuxt-link>
       </li>
     </ul>

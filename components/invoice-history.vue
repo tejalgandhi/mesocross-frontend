@@ -25,17 +25,17 @@
       <div class="d-flex align-items-end w-100">
         <div class="mr-3 w-100">
           <label for="search">
-            Search
+            {{$t('search')}}
           </label>
           <input id="search" type="text" placeholder="Search for invoice number, name etc." class="form-control w-100">
         </div>
         <button class="btn btn-dark">
-          Search
+          {{$t('search')}}
         </button>
       </div>
     </div>
     <div class="note my-5">
-      <h6>NOTE</h6>
+      <h6>{{$t('note')}}</h6>
       <p>
         *Orders will only be considered paid after sending receipt of payment and receiving the amount in question on
         the account.

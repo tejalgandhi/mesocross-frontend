@@ -4,7 +4,7 @@
       <b-tabs pills vertical content-class="mt-0 g-5" nav-class="account-navbar">
         <b-tab title="MY ACCOUNT">
           <h2 class="mb-4">
-            MY ACCOUNT
+            {{$t('my_account')}}
             <b-button variant="link" class="float-right p-2 text-capitalize shadow-none" @click="updateAccount = !updateAccount">
               {{ updateAccount ? 'Cancel': 'Edit' }}
             </b-button>
@@ -50,7 +50,7 @@
                   <span class="d-block py-1">900 000 000</span>
                 </b-form-group>
                 <b-button variant="link" class="text-capitalize p-2 px-0 shadow-none border-0 mt-3" @click="updatePassword = !updatePassword">
-                  {{ updatePassword ? 'Cancel Change' : 'Change Password' }}
+                  {{ updatePassword ? 'Cancel Change' : $t('change_password') }}
                 </b-button>
               </div>
               <div v-if="updatePassword" class="mt-lg-5 mt-4">
@@ -74,7 +74,7 @@
         <b-tab title="" disabled>
           <template #title>
             <b-button variant="link" size="lg" class="logout-btn border-0 text-danger text-capitalize p-0" @click="Logout">
-              Logout
+              {{$t('logout')}}
             </b-button>
           </template>
         </b-tab>

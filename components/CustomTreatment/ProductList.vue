@@ -53,7 +53,7 @@
                         <small>
                           {{ child.price }}€
                         </small>
-                        <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+                        <small class="add_cart_text">{{$t('add_to_bag')}}<b-icon-chevron-right /></small>
                       </a>
                     </div>
                     <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.loggedIn, 'justify-content-center': !$auth.loggedIn} ]">

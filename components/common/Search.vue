@@ -11,7 +11,7 @@
     </div>
     <div v-if="products.length > 0" class="search_tabs">
       <h4 class="font-weight-normal my-4">
-        FEATURED PRODUCTS
+          {{$t('feature_products')}}
       </h4>
       <ProductSidebarSingle
         v-for="(product, index) in products"
@@ -20,10 +20,10 @@
         :product="product"
       />
       <b-button variant="default text-light px-0" to="/products">
-        SEE ALL PRODUCTS <b-icon-chevron-right scale=".75" />
+        {{$t('see_all_products')}} <b-icon-chevron-right scale=".75" />
       </b-button>
       <h4 class="font-weight-normal my-4">
-        SUGGESTIONS
+        {{$t('suggestions')}}
       </h4>
       <div class="d-flex flex-wrap catlinks">
         <b-button class="mr-3 p-1 px-0" variant="default text-light">

@@ -21,10 +21,10 @@
       </div>
     </div>
     <b-button size="sm" variant="light" block @click="onAddToCart">
-      ADD TO BAG
+      {{$t('add_to_bag')}}
     </b-button>
     <b-button size="sm" variant="outline-light" block @click="removeWishlist">
-      REMOVE
+      {{$t('remove')}}
     </b-button>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="shipping">
     <h2 class="mb-4 text-uppercase">
-      Address Book
+      {{$t('address_book')}}
     </h2>
     <template v-if="!addressShow">
       <ShippingAddress

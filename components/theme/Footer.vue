@@ -17,7 +17,7 @@
             <!-- <button class="btn btn-default w-100 px-0">
               NEED HELP?
             </button> -->
-            <nuxt-link to="/services/help" class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">NEED HELP?</nuxt-link>
+            <nuxt-link to="/services/help" class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">{{$t('need_help')}}</nuxt-link>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <h2>
-                      Country
+                      {{$t('Country')}}
                     </h2>
                     <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('country-modal')">
                       USA
@@ -110,7 +110,7 @@
                   </div>
                   <div class="col-md-6">
                     <h2>
-                      Language
+                      {{$t('language')}}
                     </h2>
                     <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
                       {{ $i18n.locale.toUpperCase() }}

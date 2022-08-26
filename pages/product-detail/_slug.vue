@@ -51,7 +51,7 @@
                   <small>
                     {{ price }}€
                   </small>
-                  <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+                  <small class="add_cart_text">{{$t('add_to_bag')}} <b-icon-chevron-right /></small>
                 </a>
               </div>
               <div :class="['d-flex align-items-center', { 'justify-content-between' : isLoggedin, 'justify-content-center': !isLoggedin} ]">
@@ -84,7 +84,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
                   <b-button v-b-toggle.accordion-1 block variant="default" class="text-left btn-plus">
-                    DESCRIPTION
+                    {{$t('description')}}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
@@ -97,7 +97,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-2 block variant="default" class="text-left btn-plus">
-                    DETAILS
+                    {{$t('details')}}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
@@ -110,7 +110,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-3 block variant="default" class="text-left btn-plus">
-                    BENEFITS
+                    {{$t('benefits')}}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
@@ -123,7 +123,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
-                    HOW TO APPLY
+                    {{$t('how_to_apply')}}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
@@ -175,7 +175,7 @@
                 <small>
                   {{ price }}€
                 </small>
-                <small class="add_cart_text">ADD TO BAG <b-icon-chevron-right /></small>
+                <small class="add_cart_text">{{$t('add_to_bag')}} <b-icon-chevron-right /></small>
               </a>
             </div>
           </div>

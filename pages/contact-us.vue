@@ -193,11 +193,9 @@ export default {
         if (await this.$refs.formObserver.validate()) {
           try {
             this.isCaptchaError = false
-            const token = await this.$recaptcha.getResponse()
-            console.log('ReCaptcha token:', token)
+            // const token = await this.$recaptcha.getResponse()
           } catch (error) {
             this.isCaptchaError = true
-            // console.log('ReCaptcha Error:', error)
           }
 
           if (this.isCaptchaError === false) {
@@ -219,7 +217,6 @@ export default {
       }
     },
     handleFileUpload (e) {
-      console.log(e.target.files[0])
       this.file = e.target.files[0]
     },
     onSelect ({ iso2, dialCode }) {

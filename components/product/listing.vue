@@ -16,9 +16,19 @@
           >
             <div class="img_box">
               <nuxt-img
+                v-show="hoveredImage !== index"
                 preload
                 format="webp"
-                :src="hoveredImage === index ? product.hover_image : product.feature_image"
+                :src="product.feature_image"
+                alt="image"
+                quality="100"
+                sizes="xs:256 md:512"
+              />
+              <nuxt-img
+                v-show="hoveredImage === index"
+                preload
+                format="webp"
+                :src="product.hover_image"
                 alt="image"
                 quality="100"
                 sizes="xs:256 md:512"
@@ -107,7 +117,6 @@ export default {
       this.$emit('fetchProducts', nextPage)
     },
     addToWishlist (product) {
-      console.log('prices', product.price)
       const singleProduct = {
         name: product.name,
         slug: product.slug,
@@ -118,7 +127,6 @@ export default {
         feature_image: product.feature_image,
         flag: !this.isInWhishlist(product) ? 1 : 2
       }
-      console.log('singleProduct', singleProduct)
       this.addWishList(singleProduct)
     },
     ...mapActions({

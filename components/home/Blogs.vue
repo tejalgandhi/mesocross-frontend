@@ -1,7 +1,7 @@
 <template>
   <div v-if="blogs.length > 0" class="home_category py-5 mb-lg-5 mt-5">
     <div class="container-fluid">
-      <h3>{{$t('segmentation')}}</h3>
+      <h3>{{ $t('segmentation') }}</h3>
       <div class="row align-items-center justify-content-center">
         <div v-for="(item, index) in blogs" :key="index" class="col-4 col-lg align-self-center">
           <article class="box text-center">
@@ -11,23 +11,23 @@
                 @mouseleave="hoveredImage = '' "
               >
                 <nuxt-img
+                  v-show="hoveredImage !== index"
                   preload
                   format="webp"
-                  :src="hoveredImage === index && item.hover_image? item.hover_image : item.image"
+                  :src="item.image"
+                  alt="image"
+                  quality="100"
+                />
+                <nuxt-img
+                  v-show="hoveredImage === index"
+                  preload
+                  format="webp"
+                  :src="item.hover_image"
                   alt="image"
                   quality="100"
                 />
               </figure>
             </nuxt-link>
-
-          <!-- <div class="desc_box">
-            <h2 class="text-uppercase mb-3 font-weight-normal">
-              {{ item.title }}
-            </h2>
-            <p class="mb-4" v-html="item.description" />
-
-          </div> -->
-            <!--            <HomeLinkSetByType class="mx-auto btn-outline-primary" :center="true" :item="item" />-->
           </article>
         </div>
       </div>

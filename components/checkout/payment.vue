@@ -119,7 +119,7 @@
             </div>
             <p class="font-16 text-dark m-0 border-bottom d-inline text-right" @click="deleteCard(card.id)">{{
               $t('checkout.delete_method')
-              }}</p>
+            }}</p>
           </div>
         </div>
       </label>
@@ -181,84 +181,83 @@
   </div>
 </template>
 <script scoped>
-  import { mapMutations, mapState, mapActions } from 'vuex'
-  export default {
-    props: {
-      bodytitle: {
-        type: String,
-        default: ''
-      }
-      // frontPayment: {
-      //   type: Object,
-      //   default: () => {}
-      // }
-    },
-    data () {
-      return {
-        frontPayment: null,
-        activePaymentMethods: []
-      }
-    },
-    computed: {
-      ...mapState({
-        userCards: state => state.user.userCards,
-        selectedCard: state => state.user.selectedCard,
-        cardNames: state => state.user.cardNames
-      }),
-      setBrandImage () {
-        return (brand) => {
-          switch (brand) {
-            case this.cardNames.master:
-              return 'card_mastercard.svg'
-            case this.cardNames.visa:
-              return 'card_visa.svg'
-            case this.cardNames.american:
-              return 'card_american_express.svg'
-            default:
-              return 'card_mastercard.svg'
-          }
+import { mapMutations, mapState, mapActions } from 'vuex'
+export default {
+  props: {
+    bodytitle: {
+      type: String,
+      default: ''
+    }
+    // frontPayment: {
+    //   type: Object,
+    //   default: () => {}
+    // }
+  },
+  data () {
+    return {
+      frontPayment: null,
+      activePaymentMethods: []
+    }
+  },
+  computed: {
+    ...mapState({
+      userCards: state => state.user.userCards,
+      selectedCard: state => state.user.selectedCard,
+      cardNames: state => state.user.cardNames
+    }),
+    setBrandImage () {
+      return (brand) => {
+        switch (brand) {
+          case this.cardNames.master:
+            return 'card_mastercard.svg'
+          case this.cardNames.visa:
+            return 'card_visa.svg'
+          case this.cardNames.american:
+            return 'card_american_express.svg'
+          default:
+            return 'card_mastercard.svg'
         }
       }
-
-    },
-    async mounted () {
-      this.frontPayment = await this.$store.dispatch('payment/payment')
-      this.fetchCards()
-      this.frontPayment.enabledPaymentMethods()
-        .then(({ data }) => {
-          console.log('Activated Payment methods = ', data)
-          this.activePaymentMethods = data
-        })
-        .catch(console.error)
-      this.$nuxt.$on('fetch-cards', () => {
-        this.fetchCards()
-      })
-    },
-    // beforeUpdate () {
-    //   this.fetchCards()
-    // },
-    methods: {
-      isActive (m) {
-        return this.activePaymentMethods.includes(m)
-      },
-      fetchCards () {
-        this.frontPayment.cardList().then(({ data }) => {
-          this.getUserCards({ data })
-        })
-      },
-      async deleteCard (card) {
-        await this.frontPayment.deleteCard(card)
-        this.fetchCards()
-      },
-      ...mapMutations({
-        setIsAddPayment: 'user/setIsAddPayment',
-        setSelectedCard: 'user/setSelectedCard'
-      }),
-      ...mapActions({
-        getUserCards: 'user/getUserCards'
-      })
     }
+
+  },
+  async mounted () {
+    this.frontPayment = await this.$store.dispatch('payment/payment')
+    this.fetchCards()
+    this.frontPayment.enabledPaymentMethods()
+      .then(({ data }) => {
+        this.activePaymentMethods = data
+      })
+      .catch(console.error)
+    this.$nuxt.$on('fetch-cards', () => {
+      this.fetchCards()
+    })
+  },
+  // beforeUpdate () {
+  //   this.fetchCards()
+  // },
+  methods: {
+    isActive (m) {
+      return this.activePaymentMethods.includes(m)
+    },
+    fetchCards () {
+      this.frontPayment.cardList().then(({ data }) => {
+        this.getUserCards({ data })
+      })
+    },
+    async deleteCard (card) {
+      await this.frontPayment.deleteCard(card)
+      this.fetchCards()
+    },
+    ...mapMutations({
+      setIsAddPayment: 'user/setIsAddPayment',
+      setSelectedCard: 'user/setSelectedCard'
+    }),
+    ...mapActions({
+      getUserCards: 'user/getUserCards'
+    })
   }
+}
 </script>
 <style scoped>
   .address-radio.disabled-payment {

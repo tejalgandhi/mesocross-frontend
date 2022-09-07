@@ -67,7 +67,6 @@ export default {
   methods: {
     fetchCards () {
       this.frontPayment.cardList().then(({ data }) => {
-        console.log(data)
         this.getUserCards({ data })
       })
     },

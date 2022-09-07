@@ -84,7 +84,6 @@
             ref="prodcuFilter"
             class="p-4"
             @fetchProducts="fetchProducts"
-            @setBackgroudColor="setBackgroudColor"
             @priceSort="setSorting"
             @alphaSorting="setAlphaBeticSort"
             @bestSellingChanged="setBestSellSort"
@@ -153,15 +152,11 @@ export default {
     })
   },
   watch: {
-    bgColor (newVal) {
-      document.body.style.background = newVal
-    },
     sortType (newVal) {
       this.sortPrice()
     }
   },
   beforeDestroy () {
-    document.body.setAttribute('style', '')
     this.setSelectedFilters([])
   },
   mounted () {
@@ -241,9 +236,6 @@ export default {
       // this.fetchProducts(1)
       this.filterSidebar = false
     },
-    setBackgroudColor (color = '') {
-      document.body.style.background = color
-    },
     async fetchProducts (page, productUrl = '') {
       let activeCat = null
       if (this.$route.params && this.$route.params.categorySlug) {
@@ -302,7 +294,6 @@ export default {
         }
         this.$nuxt.$loading.start()
       }
-      console.log('fetchProducts', url)
       const data = await this.$axios.$get(url)
       if (productUrl === '') {
         this.$nuxt.$loading.finish()

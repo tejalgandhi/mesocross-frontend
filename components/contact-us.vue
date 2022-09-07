@@ -198,8 +198,8 @@ export default {
         if (await this.$refs.formObserver.validate()) {
           try {
             this.isCaptchaError = false
-            const token = await this.$recaptcha.getResponse()
-            console.log('ReCaptcha token:', token)
+            // const token = await this.$recaptcha.getResponse()
+            // console.log('ReCaptcha token:', token)
           } catch (error) {
             this.isCaptchaError = true
             // console.log('ReCaptcha Error:', error)

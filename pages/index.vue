@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Index',
@@ -17,13 +17,25 @@ export default {
       treatmentSolutions: 'product/getHomePageTeatmentSolutions'
     })
   },
-  mounted () {
-    this.getTreatmentSolutions()
+
+  created () {
+    this.$store.commit('setLoading', true)
+  },
+
+  async mounted () {
+    await this.getTreatmentSolutions()
+
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 200)
   },
   methods: {
     ...mapActions({
       setTreatment: 'product/setTreatment',
       getTreatmentSolutions: 'product/getTreatmentSolutions'
+    }),
+    ...mapMutations({
+      setLoading: 'setLoading'
     })
   }
 }

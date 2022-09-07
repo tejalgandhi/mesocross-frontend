@@ -196,12 +196,13 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 import { showPricePopup } from 'assets/js/custom'
 
 export default {
 
-  async asyncData ({ $axios, params, route }) {
+  async asyncData ({ $axios, params, route, store }) {
+    store.commit('setLoading', true)
     const url = `/product-detail/${params.slug}` + (route.query ? `?segment_id=${route.query.segment}` : '')
     const { data } = await $axios.$get(url)
     const product = data
@@ -298,6 +299,11 @@ export default {
     if (this.isLoggedin) {
       this.storeRecentlyViewedProducts()
     }
+
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 200)
+
     this.currentUrl = window.location.href
     showPricePopup(this)
     setTimeout(() => {
@@ -308,6 +314,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setLoading: 'setLoading'
+    }),
     copy () {
       this.$toast.info('Copied!', { duration: 3000, position: 'top-right' })
       navigator.clipboard.writeText(window.location.href)
@@ -413,6 +422,13 @@ export default {
   border-color: rgba(255,255,255, 0.12);
 }
 
+.catIcon {
+    img {
+        object-fit: contain;
+        -webkit-user-drag: none;
+    }
+}
+
 @media (max-width: 991px) {
   .main-image {
     margin-bottom: 50px;
@@ -449,7 +465,8 @@ export default {
       }
   }
   .addtocart-sticky{
-        background: #1D1A16;
+    border: solid 1px;
+    border-color: rgba(255, 255, 255, 0.4) transparent;
     top: 153px;
     position: sticky;
     z-index: 10;

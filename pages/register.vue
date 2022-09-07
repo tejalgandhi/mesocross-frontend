@@ -60,7 +60,7 @@ export default {
   },
   mounted () {
     if (this.isLoggedin) {
-      this.$router.back()
+      this.$router.push('/dashboard')
     }
   },
   methods: {

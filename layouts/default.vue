@@ -1,13 +1,15 @@
 <template>
   <div class="bg" :class="{custom: customBg}" :style="{background: pageBackground}">
-    <b-overlay :show="loading" rounded="sm">
-      <ThemeHeader />
-      <CommonSearch v-show="search" @click="isClicked(false)" />
-      <div @click="isClicked(false)">
-        <Nuxt />
-      </div>
-      <ThemeFooter />
-    </b-overlay>
+    <ThemeHeader />
+    <CommonSearch v-show="search" @click="isClicked(false)" />
+    <div v-show="loading" class="loading">
+      <span class="loader" />
+    </div>
+    <div v-show="!loading">
+      <Nuxt @click="isClicked(false)" />
+    </div>
+
+    <ThemeFooter />
   </div>
 </template>
 <script>
@@ -16,7 +18,7 @@ export default {
   data () {
     return {
       data: [],
-      pageBackground: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, rgba(0,0,0,1), 51%, rgba(0,0,0,1) 84%, rgba(0,0,0,1) 100%)',
+      pageBackground: 'linear-gradient(to top, 180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, rgba(0,0,0,1), 51%, rgba(0,0,0,1) 84%, rgba(0,0,0,1) 100%)',
       customBg: false
     }
   },
@@ -76,20 +78,20 @@ export default {
 
       const colors = currentData[0].color_gradient.split(', ').splice(1, 3).map(el => el.replace(')', ''))
 
-      this.pageBackground = `linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, ${this.hexToRgbA(colors[0])} 51%, ${this.hexToRgbA(colors[1])} 84%, ${this.hexToRgbA(colors[2])} 100%)`
+      this.pageBackground = `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, ${this.hexToRgbA(colors[0])} 51%, ${this.hexToRgbA(colors[1])} 84%, ${this.hexToRgbA(colors[2])} 100%)`
     },
 
     hexToRgbA (hex) {
-      let c
-      if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-        c = hex.substring(1).split('')
-        if (c.length === 3) {
-          c = [c[0], c[0], c[1], c[1], c[2], c[2]]
-        }
-        c = '0x' + c.join('')
-        return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',1)'
+      if (!/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+        return
       }
-      throw new Error('Bad Hex')
+      let c
+      c = hex.substring(1).split('')
+      if (c.length === 3) {
+        c = [c[0], c[0], c[1], c[1], c[2], c[2]]
+      }
+      c = '0x' + c.join('')
+      return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',1)'
     },
 
     async getData () {
@@ -103,11 +105,33 @@ export default {
 <style lang="scss" scoped>
 .bg {
     background-size: 100% 250% !important;
-    background-position: 0% 0% !important ;
+    background-position: 0% 100% !important ;
 
     &.custom {
-        background-position: 0% 100% !important ;
+        background-position: 0% 0% !important ;
     }
+}
+
+.loading {
+    height: calc(100vh - 185px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loader {
+        border: 8px solid #7c7b7b42;
+        border-radius: 50%;
+        border-top: 8px solid white;
+        width: 60px;
+        height: 60px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 </style>

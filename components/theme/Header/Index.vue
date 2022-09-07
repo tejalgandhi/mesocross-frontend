@@ -91,12 +91,17 @@ export default {
     },
 
     goTo (to) {
+      if (to.custom_slug === 'mesocross-services') {
+        this.$router.push('/contact-us')
+        return
+      }
+
       if (to.type) {
         this.$router.push(`/${to.type}/${to.custom_slug}`)
         return
       }
 
-      this.$router.push(`${to.custom_slug}`)
+      this.$router.push(`/${to.custom_slug}`)
     }
   }
 }

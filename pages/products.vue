@@ -102,8 +102,10 @@
 import { showPricePopup } from 'assets/js/custom'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
+  name: 'Products',
   auth: false,
   async asyncData ({ params, $axios, store }) {
+    store.commit('setLoading', true)
     let url = '/products?page=1'
     if (params && params.treatmentSlug) {
       url = `${url}&treatment_solutions=${params.treatmentSlug}`
@@ -161,6 +163,9 @@ export default {
   },
   mounted () {
     showPricePopup(this)
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 200)
   },
   methods: {
     removeFilter (index) {
@@ -315,7 +320,8 @@ export default {
       setPriceSort: 'product/setPriceSort',
       setAlphaSort: 'product/setAlphaSort',
       setBestSellSort: 'product/setBestSellSort',
-      setSelectedFilters: 'product/setSelectedFilters'
+      setSelectedFilters: 'product/setSelectedFilters',
+      setLoading: 'setLoading'
     })
   }
 }

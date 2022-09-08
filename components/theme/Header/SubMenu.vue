@@ -1,42 +1,16 @@
 <template>
   <section>
-    <!-- <div class="menu-overlay" /> -->
     <div class="items" @mouseleave="$emit('close')">
       <template v-for="(tab, i) in data">
         <article :key="i">
-          <template v-if="tab.image">
-            <figure v-if="tab.name.toLowerCase() === 'see all'" @click="tab.slug ? goTo(tab) : ''">
-              <nuxt-img
-                preload
-                format="webp"
-                src="https://admin.mesosystem.connectgeneration.app/uploads/mesocross/img/628cf394523a0-1653404564.jpg"
-                :alt="tab.slug"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-            </figure>
-            <figure v-else @click="tab.slug ? goTo(tab) : ''">
-              <nuxt-img
-                preload
-                format="webp"
-                :src="tab.image"
-                :alt="tab.slug"
-                quality="100"
-                sizes="xs:256 md:512"
-              />
-            </figure>
-            <span class="title" @click="tab.slug ? goTo(tab) : ''">{{ tab.name }}</span>
-          </template>
-          <template v-else>
-            <span class="title" @click="tab.slug ? goTo(tab) : ''">{{ tab.name }}</span>
-            <ul>
-              <template v-for="(item, index) in tab.children">
-                <li :key="index" :class="{underline: item.name.toLowerCase().includes('all')}" @click="item.slug ? goTo(item, tab) : ''">
-                  <span>{{ item.name }}</span>
-                </li>
-              </template>
-            </ul>
-          </template>
+          <span class="title" @click="tab.slug ? goTo(tab) : ''">{{ tab.name }}</span>
+          <ul>
+            <template v-for="(item, index) in tab.children">
+              <li :key="index" :class="{underline: item.name.toLowerCase().includes('all')}" @click="item.slug ? goTo(item, tab) : ''">
+                <span>{{ item.name }}</span>
+              </li>
+            </template>
+          </ul>
         </article>
       </template>
     </div>
@@ -60,48 +34,14 @@ export default {
 
   methods: {
     goTo (to, tab) {
-      if (tab?.name === 'Treatment Solutions') {
-        this.$router.push(`/products/ts/${to.slug}`)
-        return
-      }
-
-      if (tab?.name === 'Professional') {
-        if (to.name.toLowerCase() === 'all products') {
-          this.$router.push('/products')
-          return
-        }
-        this.$router.push(`/products/${to.slug}`)
-        return
-      }
-
-      if (tab?.name === 'Treatment Packs') {
-        if (to.name.toLowerCase() === 'all packs') {
-          this.$router.push(`/products/${to.slug}`)
-          return
-        }
-        this.$router.push(`/product-detail/${to.slug}`)
-        return
-      }
-      if (this.slug[0].type === 'blogs') {
-        this.$router.push(`/blog-detail/${to.slug}`)
-        return
-      }
-
-      if (this.slug[0].type === 'equipments') {
-        if (to.slug === 'see-all-equipment') {
-          this.$router.push('/equipments')
-          return
-        }
-        this.$router.push(`/equipment-details/${to.slug}`)
-        return
-      }
+      if (!to) { return }
 
       if (to.type) {
-        this.$router.push(`/${to.type}/${to.slug}`)
+        this.$router.push(`/${to.type}/${to.slug.replace('/', '')}`)
         return
       }
 
-      this.$router.push(`${to.slug}`)
+      this.$router.push(`/${to.slug.replace('/', '')}`)
     }
   }
 }

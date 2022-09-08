@@ -69,13 +69,13 @@
         >
           <template #footer>
             <div class="px-0 pt-2 row mx-0 align-items-center">
-              <div class="w-100 col-6 d-block align-self-center text-center">
+              <div class="w-100 col-6 d-block align-self-center text-center uppercase">
                 <p class="" @click="clearAll">
-                  CLEAN
+                  {{ $t('clean') }}
                 </p>
               </div>
-              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn" @click="applyMobileFilter">
-                APPLY
+              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn uppercase" @click="applyMobileFilter">
+                {{ $t('apply') }}
               </button>
             </div>
           </template>
@@ -84,7 +84,6 @@
             ref="prodcuFilter"
             class="p-4"
             @fetchProducts="fetchProducts"
-            @setBackgroudColor="setBackgroudColor"
             @priceSort="setSorting"
             @alphaSorting="setAlphaBeticSort"
             @bestSellingChanged="setBestSellSort"
@@ -103,8 +102,10 @@
 import { showPricePopup } from 'assets/js/custom'
 import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
+  name: 'Products',
   auth: false,
   async asyncData ({ params, $axios, store }) {
+    store.commit('setLoading', true)
     let url = '/products?page=1'
     if (params && params.treatmentSlug) {
       url = `${url}&treatment_solutions=${params.treatmentSlug}`
@@ -153,19 +154,18 @@ export default {
     })
   },
   watch: {
-    bgColor (newVal) {
-      document.body.style.background = newVal
-    },
     sortType (newVal) {
       this.sortPrice()
     }
   },
   beforeDestroy () {
-    document.body.setAttribute('style', '')
     this.setSelectedFilters([])
   },
   mounted () {
     showPricePopup(this)
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 200)
   },
   methods: {
     removeFilter (index) {
@@ -241,9 +241,6 @@ export default {
       // this.fetchProducts(1)
       this.filterSidebar = false
     },
-    setBackgroudColor (color = '') {
-      document.body.style.background = color
-    },
     async fetchProducts (page, productUrl = '') {
       let activeCat = null
       if (this.$route.params && this.$route.params.categorySlug) {
@@ -302,7 +299,6 @@ export default {
         }
         this.$nuxt.$loading.start()
       }
-      console.log('fetchProducts', url)
       const data = await this.$axios.$get(url)
       if (productUrl === '') {
         this.$nuxt.$loading.finish()
@@ -324,13 +320,17 @@ export default {
       setPriceSort: 'product/setPriceSort',
       setAlphaSort: 'product/setAlphaSort',
       setBestSellSort: 'product/setBestSellSort',
-      setSelectedFilters: 'product/setSelectedFilters'
+      setSelectedFilters: 'product/setSelectedFilters',
+      setLoading: 'setLoading'
     })
   }
 }
 </script>
 
 <style lang="scss" type="text/css">
+.uppercase {
+    text-transform: uppercase;
+}
 .close-sidebar {
   position: absolute;
   top: 15px;

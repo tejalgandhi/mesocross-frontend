@@ -25,18 +25,8 @@
                   {{ product.name }}
                 </h1>
               </div>
-              <!-- <label v-show="ref_number">Ref:{{ ref_number }}</label> -->
               <div class="" v-html="product.product_content" />
-              <!-- <span v-show="isLoggedin && price">{{ price }}€</span> -->
-              <!-- <nuxt-link v-if="isLoggedin" to="/customize-treatment">
-                <img src="@/assets/img/custom_treatment.svg" alt="image">
-                {{ $t('get_a_personalized_treatment') }}
-              </nuxt-link> -->
-              <!-- eslint-disable vue/no-v-html -->
-              <!-- <div class="" v-html="product.product_content" /> -->
-              <!--eslint-enable-->
               <div class="size">
-                <!-- <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p> -->
                 <div class="size_box float-none">
                   <ul class="float-none">
                     <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
@@ -51,12 +41,12 @@
                   <small>
                     {{ price }}€
                   </small>
-                  <small class="add_cart_text">{{$t('add_to_bag')}} <b-icon-chevron-right /></small>
+                  <small class="add_cart_text">{{ $t('add_to_bag') }} <b-icon-chevron-right /></small>
                 </a>
               </div>
               <div :class="['d-flex align-items-center', { 'justify-content-between' : isLoggedin, 'justify-content-center': !isLoggedin} ]">
                 <a v-if="isLoggedin" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist">
-                  {{ isProductInWishList ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
+                  {{ isProductInWishList ? $t('added') : $t('add') }}  {{ $t('to_wishlist') }}
                 </a>
                 <div v-show="ref_number" class="text-uppercase btn px-0">
                   Ref:{{ ref_number }}
@@ -84,7 +74,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" header-class="bg-transparent" class="p-0" role="tab">
                   <b-button v-b-toggle.accordion-1 block variant="default" class="text-left btn-plus">
-                    {{$t('description')}}
+                    {{ $t('description') }}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
@@ -97,7 +87,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-2 block variant="default" class="text-left btn-plus">
-                    {{$t('details')}}
+                    {{ $t('details') }}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
@@ -110,7 +100,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-3 block variant="default" class="text-left btn-plus">
-                    {{$t('benefits')}}
+                    {{ $t('benefits') }}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
@@ -123,7 +113,7 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab" header-class="bg-transparent">
                   <b-button v-b-toggle.accordion-4 block variant="default" class="text-left btn-plus">
-                    {{$t('how_to_apply')}}
+                    {{ $t('how_to_apply') }}
                   </b-button>
                 </b-card-header>
                 <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
@@ -170,12 +160,12 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div v-show="isLoggedin && price">
+            <div v-show="isLoggedin && price" class="add_btn">
               <a href="javascript:void(0)" class="btn btn-outline-primary d-flex w-100 px-3 py-2 button-price mb-2 justify-content-center" @click="cart">
                 <small>
                   {{ price }}€
                 </small>
-                <small class="add_cart_text">{{$t('add_to_bag')}} <b-icon-chevron-right /></small>
+                <small class="add_cart_text">{{ $t('add_to_bag') }} <b-icon-chevron-right /></small>
               </a>
             </div>
           </div>
@@ -196,12 +186,13 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 import { showPricePopup } from 'assets/js/custom'
 
 export default {
 
-  async asyncData ({ $axios, params, route }) {
+  async asyncData ({ $axios, params, route, store }) {
+    store.commit('setLoading', true)
     const url = `/product-detail/${params.slug}` + (route.query ? `?segment_id=${route.query.segment}` : '')
     const { data } = await $axios.$get(url)
     const product = data
@@ -298,6 +289,11 @@ export default {
     if (this.isLoggedin) {
       this.storeRecentlyViewedProducts()
     }
+
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 200)
+
     this.currentUrl = window.location.href
     showPricePopup(this)
     setTimeout(() => {
@@ -306,20 +302,11 @@ export default {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       this.shareMessenger = true
     }
-    this.setBackgroudColor()
-  },
-  beforeDestroy () {
-    this.setBackgroudColor(true)
   },
   methods: {
-    setBackgroudColor (destroy) {
-      const color = this.product.color_gradient
-      if (color && !destroy) {
-        document.body.style.background = color
-        return
-      }
-      document.body.setAttribute('style', '')
-    },
+    ...mapMutations({
+      setLoading: 'setLoading'
+    }),
     copy () {
       this.$toast.info('Copied!', { duration: 3000, position: 'top-right' })
       navigator.clipboard.writeText(window.location.href)
@@ -425,6 +412,18 @@ export default {
   border-color: rgba(255,255,255, 0.12);
 }
 
+.catIcon {
+    img {
+        object-fit: contain;
+        -webkit-user-drag: none;
+    }
+}
+
+.add_btn {
+    width: fit-content;
+    min-width: 20rem;
+}
+
 @media (max-width: 991px) {
   .main-image {
     margin-bottom: 50px;
@@ -461,7 +460,9 @@ export default {
       }
   }
   .addtocart-sticky{
-        background: #1D1A16;
+    // border: solid 1px;
+    // border-color: rgba(255, 255, 255, 0.4) transparent;
+    background: black;
     top: 153px;
     position: sticky;
     z-index: 10;

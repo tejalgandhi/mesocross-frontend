@@ -2,9 +2,7 @@
   <div class="">
     <h2> {{ $t('subscribe_to_our_newsletter') }}</h2>
 
-    <h2 class="text-uppercase mb-4 font-weight-normal">
-
-    </h2>
+    <h2 class="text-uppercase mb-4 font-weight-normal" />
     <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('subscribeModal')">
       {{ $t('subscribe') }}
     </button>
@@ -76,7 +74,7 @@
                               id="phone"
                               v-model="form.phone"
                               type="text"
-                              class="form-control"
+                              class="form-control phone"
                               aria-describedby="phoneHelp"
                             >
                           </div>
@@ -100,6 +98,9 @@
                         <label for="selectcountry">{{ $t('country') }}*</label>
                         <ValidationProvider v-slot="{ errors }" name="Country" rules="required">
                           <select id="selectcountry" v-model="form.country_code" class="form-control">
+                            <option class="no-capitalize" :value="''">
+                              {{ $t('select_a_country') }}
+                            </option>
                             <option v-for="country in countries" :key="country.iso_code" :value="country.iso_code">
                               {{ country.label }}
                             </option>
@@ -111,16 +112,25 @@
                         <label for="selectlanguage">{{ $t('language') }}*</label>
                         <ValidationProvider v-slot="{ errors }" name="Language" rules="required">
                           <select id="selectcountry" v-model="form.language" class="form-control">
-                            <option value="en">English</option>
-                            <option value="pt">Portuguese</option>
-                            <option value="es">Spanish</option>
+                            <option class="no-capitalize" :value="undefined">
+                              {{ $t('select_a_language') }}
+                            </option>
+                            <option value="en">
+                              {{ $t('english') }}
+                            </option>
+                            <option value="pt">
+                              {{ $t('portuguese') }}
+                            </option>
+                            <option value="es">
+                              {{ $t('spanish') }}
+                            </option>
                           </select>
                           <span class="errors text-danger">{{ errors[0] }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
                         <label for="DOB">{{ $t('dob') }}</label>
-                        <b-form-datepicker v-model="form.dob"  :max="maxDate" :locale="$i18n.locale"></b-form-datepicker>
+                        <b-form-datepicker v-model="form.dob" :max="maxDate" :locale="$i18n.locale" />
                       </div>
                       <div class="form-check">
                         <input id="exampleCheck1" v-model="terms" type="checkbox" class="form-check-input" @change="toggleSubmit(terms)">
@@ -236,6 +246,25 @@ export default {
 <style lang="scss" scoped>
 .errors {
   font-size: 12px !important;
+}
+
+.vue-country-select {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: none;
+}
+
+.phone {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+select, option {
+    text-transform: capitalize;
+
+    &.no-capitalize {
+        text-transform: unset;
+    }
 }
 
 </style>

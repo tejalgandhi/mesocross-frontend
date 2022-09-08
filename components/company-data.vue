@@ -1,16 +1,10 @@
 <template>
   <div>
-    <!-- <div class="store">
-      <h2 class="font-weight-normal mb-3">
-        {{ $t('dashboard.company_data') }}
-      </h2>
-      <small class="text-muted">* {{ $t('required_fields') }}</small>
-    </div> -->
     <ValidationObserver ref="formObserver">
       <div class="col-sm-7 px-0">
         <form class="row" @submit.prevent="storeCompanyData">
           <div class="form-group col-lg-6">
-            <label>{{ $t('company_name') }} *</label>
+            <label>{{ $t('name') }} *</label>
             <ValidationProvider v-slot="{ errors }" :name="$t('company_name')" rules="required">
               <input
                 id="company_name"
@@ -49,7 +43,7 @@
             </div>
           </div>
           <div class="form-group col-lg-12">
-            <label>{{ $t('address') }}Address *</label>
+            <label>{{ $t('address') }}*</label>
             <ValidationProvider v-slot="{ errors }" name="Address Line 1" rules="required">
               <input
                 id="adddress1"

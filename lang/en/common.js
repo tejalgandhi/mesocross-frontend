@@ -2,7 +2,7 @@ export default {
   login: 'Login',
   welcome: 'Welcome',
   segmentation: 'Segmentation',
-  add_to_bag: 'ADD To BAG',
+  add_to_bag: 'Add to Cart',
   remove: 'Remove',
   item_info: 'Item Info',
   quantity: 'Quantity',
@@ -235,5 +235,15 @@ export default {
   address_book: 'Address Book',
   search: 'Search',
   note: 'Note',
-  logout: 'Logout'
+  logout: 'Logout',
+  add: 'add',
+  added: 'added',
+  to_wishlist: 'to wishlist',
+  clean: 'clean',
+  apply: 'apply',
+  portuguese: 'portuguese',
+  english: 'english',
+  spanish: 'spanish',
+  select_a_country: 'Select a Country',
+  select_a_language: 'Select a Language'
 }

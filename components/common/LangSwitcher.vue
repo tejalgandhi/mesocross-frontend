@@ -29,10 +29,10 @@
                   <span>{{ $t('language') }}</span>
                   <select v-model="vModelSetLanguage" class="form-control mb-3">
                     <option value="" disabled>
-                      {{ selectedLocaleName.name }}
+                      {{ $t(selectedLocaleName.name.toLowerCase()) }}
                     </option>
                     <option v-for="language in availableLocales" :key="language.code" :value="language">
-                      {{ language.name }}
+                      {{ $t(language.name.toLowerCase()) }}
                     </option>
                   </select>
                 </p>
@@ -116,6 +116,15 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+select, option {
+    text-transform: capitalize;
+
+    &.no-capitalize {
+        text-transform: unset;
+    }
+}
+</style>
 <style>
 .icon-down{
   height: 15px !important;

@@ -27,8 +27,8 @@
       <div v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </div>
-      <transition name="pop" v-if="!$auth.loggedIn">
-        <span  class="info" />
+      <transition v-if="!$auth.loggedIn" name="pop">
+        <span class="info" />
       </transition>
       <transition name="show">
         <user-tab v-if="showUserTab" @close="showUserTab = false" />
@@ -85,7 +85,6 @@ export default {
       setSearch: 'setSearch'
     }),
     hideUserTab () {
-      console.log(this.$auth.loggedIn)
       this.showUserTab = false
     },
     goTo (url) {

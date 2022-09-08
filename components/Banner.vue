@@ -28,17 +28,11 @@
         <div class="container-fluid">
           <div class="row">
             <div v-if="data.page !== 'home'" class="col-md-12 text-center mx-auto">
-              <h1 v-if="data.title" class="text-uppercase banner-title font-weight-normal mb-3">
-                {{ data.title }}
+              <h1 class="text-uppercase banner-title font-weight-bold mb-3">
+                {{ data.title || data.name || '' }}
               </h1>
-              <h1 v-else class="text-uppercase banner-title font-weight-normal mb-3">
-                {{ data.name }}
-              </h1>
-              <p v-if="data.message" class="px-lg-5 mb-4">
-                {{ data.message }}
-              </p>
-              <p v-else class="px-lg-5 mb-4">
-                {{ data.description }}
+              <p class="px-lg-5 mb-4">
+                {{ data.message || data.description || '' }}
               </p>
             </div>
             <div v-if="data.page == 'home'" class="mx-auto">
@@ -101,6 +95,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '~/assets/scss/mixins.scss';
+
 .banner.home-banner{
   .banner-img{
     position: relative;
@@ -129,7 +124,7 @@ export default {
     padding: 2rem;
     color: #FFF;
     p{
-      margin-top: 40px;
+      margin-top: 60px;
       font-size: 30px;
       font-weight: normal;
     }

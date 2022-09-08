@@ -218,7 +218,7 @@ footer .footer_bottom .copyright {
 
 .steps{text-align: center;margin-bottom: 50px;}
 .steps .colmn{display: inline-block;width: 93px;margin: 0 15px; position: relative;}
-.steps .colmn:after{position: absolute;background: #25282A0004D; content: ''; width: 44px; height: 1px; top: 20px; right: -35px;}
+.steps .colmn:after{position: absolute;background: #25282A00; content: ''; width: 44px; height: 1px; top: 20px; right: -35px;}
 .steps .colmn:last-child:after{display: none; }
 .steps .colmn span{display: block; background: rgba(255, 255, 255, 0.3);; border-radius: 50%;width: 42px; height: 42px; opacity: 0.4;color: #fff; text-align: center; vertical-align: middle; line-height: 42px; margin: 0 auto;}
 .steps .colmn label{font-size: 14px;color: #fff; opacity: 0.3;font-weight: 500;margin-top: 7px;line-height: 16px;}
@@ -556,7 +556,6 @@ footer .footer_bottom .copyright {
 
 
     .quiz ul li:before {
-      width: 0;
       position: absolute;
       width: 20px;
       height: 20px;
@@ -566,12 +565,6 @@ footer .footer_bottom .copyright {
       left: 48%;
       top: 7px;
       z-index: -1;
-  }
-  .quiz ul li.active:before{
-    background: #FFF;
-  }
-  .quiz ul li.active i {
-    color: #000;
   }
   .quiz ul li i {
       display: block;

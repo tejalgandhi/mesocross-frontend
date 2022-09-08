@@ -4,12 +4,12 @@
       class="bg-transparent d-flex align-items-center text-dark mr-3"
       @click="$bvModal.show('country-modal')"
     >
-      USA
+      {{ country || 'USA' }}
       <img
         src="../../assets/img/angel-down.svg"
         class="icon-down ml-2"
         alt="image"
-      />
+      >
     </button>
     <b-modal
       id="country-modal"
@@ -30,14 +30,13 @@
             <div class="lang_box">
               <img src="@/assets/img/close.svg" alt="image" class="close" @click="hideModal()">
               <h3>{{ $t('select_your_country') }}</h3>
-              <form action="">
+              <form @submit.prevent="setCountry">
                 <p>
-                   <span>{{ $t('country') }}</span>
-                   <select v-model="vModelSetCountry" class="form-control mb-3">
-                    <option value="">Select Country</option>
-                    <!--<option value="" disabled>
-                      {{ selectedLocaleName.name }}
-                    </option>-->
+                  <span>{{ $t('country') }}</span>
+                  <select v-model="vModelSetCountry" class="form-control mb-3">
+                    <option value="">
+                      Select Country
+                    </option>
                     <option v-for="country in countryList" :key="country.iso_code" :value="country.iso_code">
                       {{ country.label }}
                     </option>
@@ -64,19 +63,39 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  data () {
-    return {
-      vModelSetCountry: ''
+  props: {
+    country: {
+      type: String,
+      default: () => ''
     }
   },
+  data () {
+    return {
+      vModelSetCountry: this.country
+    }
+  },
+
   computed: {
     ...mapState({
       countryList: 'countries'
     })
   },
+
+  watch: {
+    country (val) {
+      this.vModelSetCountry = val
+    }
+  },
+
   methods: {
     hideModal () {
       this.$bvModal.hide('country-modal')
+    },
+
+    setCountry () {
+      localStorage.country = this.vModelSetCountry
+      this.$nuxt.$emit('newCountry', this.vModelSetCountry)
+      this.hideModal()
     }
   }
 }

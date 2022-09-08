@@ -55,7 +55,7 @@
             <div class="control__indicator" />
           </label>
         </div>
-        <div  class="filter_list">
+        <div class="filter_list">
           <ul class="secondUl">
             <li v-for="(childCat, cIndex) in skincares" :key="cIndex">
               <label class="control control--checkbox">
@@ -85,7 +85,8 @@
               </div>
             </li>
           </ul>
-        </div>      </li>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -124,12 +125,8 @@ export default {
         [item.name, item])).values()]
     }
     const parentCategories = data.filter(category => category.parent_id == null)
-    parentCategories.map((cat) => {
-      if (this.$route.params.categorySlug === cat.slug) {
-        this.$emit('setBackgroudColor', cat.color_gradient)
-      }
+    parentCategories.forEach((cat) => {
       cat.child = data.filter(val => val.parent_id === cat.id)
-      return cat
     })
     if (!this.showAllCats) {
       this.filterData = parentCategories

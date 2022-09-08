@@ -25,18 +25,8 @@
                   {{ product.name }}
                 </h1>
               </div>
-              <!-- <label v-show="ref_number">Ref:{{ ref_number }}</label> -->
               <div class="" v-html="product.product_content" />
-              <!-- <span v-show="isLoggedin && price">{{ price }}€</span> -->
-              <!-- <nuxt-link v-if="isLoggedin" to="/customize-treatment">
-                <img src="@/assets/img/custom_treatment.svg" alt="image">
-                {{ $t('get_a_personalized_treatment') }}
-              </nuxt-link> -->
-              <!-- eslint-disable vue/no-v-html -->
-              <!-- <div class="" v-html="product.product_content" /> -->
-              <!--eslint-enable-->
               <div class="size">
-                <!-- <p><span>{{ $t('size') }}</span>({{ product.product_size.length }} {{ $t('size_available') }})</p> -->
                 <div class="size_box float-none">
                   <ul class="float-none">
                     <li v-for="(s, i) in product.product_size" :key="i" class="mr-0" :class="{'active': s.size_id == size}">
@@ -56,7 +46,7 @@
               </div>
               <div :class="['d-flex align-items-center', { 'justify-content-between' : isLoggedin, 'justify-content-center': !isLoggedin} ]">
                 <a v-if="isLoggedin" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist">
-                  {{ isProductInWishList ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
+                  {{ isProductInWishList ? $t('added') : $t('add') }}  {{ $t('to_wishlist') }}
                 </a>
                 <div v-show="ref_number" class="text-uppercase btn px-0">
                   Ref:{{ ref_number }}
@@ -170,7 +160,7 @@
             </div>
           </div>
           <div class="col-md-3">
-            <div v-show="isLoggedin && price">
+            <div v-show="isLoggedin && price" class="add_btn">
               <a href="javascript:void(0)" class="btn btn-outline-primary d-flex w-100 px-3 py-2 button-price mb-2 justify-content-center" @click="cart">
                 <small>
                   {{ price }}€
@@ -429,6 +419,11 @@ export default {
     }
 }
 
+.add_btn {
+    width: fit-content;
+    min-width: 20rem;
+}
+
 @media (max-width: 991px) {
   .main-image {
     margin-bottom: 50px;
@@ -465,8 +460,9 @@ export default {
       }
   }
   .addtocart-sticky{
-    border: solid 1px;
-    border-color: rgba(255, 255, 255, 0.4) transparent;
+    // border: solid 1px;
+    // border-color: rgba(255, 255, 255, 0.4) transparent;
+    background: black;
     top: 153px;
     position: sticky;
     z-index: 10;

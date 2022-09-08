@@ -556,7 +556,6 @@ footer .footer_bottom .copyright {
 
 
     .quiz ul li:before {
-      width: 0;
       position: absolute;
       width: 20px;
       height: 20px;
@@ -566,12 +565,6 @@ footer .footer_bottom .copyright {
       left: 48%;
       top: 7px;
       z-index: -1;
-  }
-  .quiz ul li.active:before{
-    background: #FFF;
-  }
-  .quiz ul li.active i {
-    color: #000;
   }
   .quiz ul li i {
       display: block;

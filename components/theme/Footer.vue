@@ -4,12 +4,12 @@
       <div class="container-fluid text-center">
         <div class="row justify-content-center align-items-center">
           <div class="col-4 border-right">
-            <nuxt-link to="/virtual-consultation" class="btn btn-default w-100 px-0">
+            <nuxt-link to="/virtual-consultation" class="btn btn-default w-100 px-0 underline">
               {{ $t('virtual_consultation') }}
             </nuxt-link>
           </div>
           <div class="col-4 border-right">
-            <nuxt-link to="/services/faq" class="btn btn-default w-100 px-0">
+            <nuxt-link to="/services/faq" class="btn btn-default w-100 px-0 underline">
               FAQs
             </nuxt-link>
           </div>
@@ -17,7 +17,7 @@
             <!-- <button class="btn btn-default w-100 px-0">
               NEED HELP?
             </button> -->
-            <nuxt-link to="/services/help" class="btn btn-default w-100 px-0" :href="`tel:+${telephone}`">
+            <nuxt-link to="/services/help" class="btn btn-default w-100 px-0 underline" :href="`tel:+${telephone}`">
               {{ $t('need_help') }}
             </nuxt-link>
           </div>
@@ -43,7 +43,7 @@
                     <b-card-body>
                       <ul>
                         <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                          <NuxtLink :to="child.slug">
+                          <NuxtLink :to="`/${child.slug.replace('/','')}`">
                             {{ child.name }}
                           </NuxtLink>
                         </li>
@@ -88,7 +88,7 @@
               <h2>{{ link.name }}</h2>
               <ul>
                 <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                  <a href="javascript:void(0);" @click="redirectToPage(child.slug)">
+                  <a href="javascript:void(0);" @click="redirectToPage(`/${child.slug.replace('/','')}`)">
                     {{ child.name }}
                   </a>
                 </li>
@@ -106,7 +106,7 @@
                       {{ $t('Country') }}
                     </h2>
                     <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('country-modal')">
-                      USA
+                      {{ country }}
                       <b-icon-chevron-down />
                     </button>
                   </div>
@@ -116,7 +116,6 @@
                     </h2>
                     <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
                       {{ $i18n.locale.toUpperCase() }}
-
                       <b-icon-chevron-down />
                     </button>
                   </div>
@@ -184,7 +183,8 @@ export default {
       socialLinks: [],
       currentYear: '',
       baseUrl: process.env.baseUrl,
-      footerLinks: null
+      footerLinks: null,
+      country: 'USA'
     }
   },
   computed: {
@@ -197,6 +197,9 @@ export default {
     this.currentYear = d.getFullYear()
     this.getSocial()
     this.getFooterLinks()
+    this.country = localStorage?.country || 'USA'
+
+    this.$nuxt.$on('newCountry', this.handleNewCountry)
   },
   methods: {
     async getSocial () {
@@ -216,12 +219,22 @@ export default {
     },
     goHome () {
       this.$router.push('/')
+    },
+
+    handleNewCountry (val) {
+      this.country = val
     }
   }
 }
 </script>
 
 <style lang="scss">
+
+.underline {
+    &:hover {
+        text-decoration: underline;
+    }
+}
 
 footer {
     display: flex;
@@ -244,6 +257,11 @@ footer {
       ul>li>a{
         font-size: 13px;
         opacity: 0.6;
+        transition: 0.2s;
+
+        &:hover {
+            opacity: 1;
+        }
       }
     }
     .custom-btn{

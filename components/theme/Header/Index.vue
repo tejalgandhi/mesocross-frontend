@@ -1,10 +1,10 @@
 <template>
-  <main class="main-header">
+  <main class="main-header" :class="{mobile: isMobile()}">
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
         <div class="lang_part d-md-flex" @mouseover="isActive = 0">
           <CommonAccessPrice />
-          <CommonCountrySwitcher />
+          <CommonCountrySwitcher :country="country" @newCountry="handleNewCountry" />
           <CommonLangSwitcher />
         </div>
         <div class="navbar-brand">
@@ -66,7 +66,8 @@ export default {
       headItems: [],
       subItems: [],
       isActive: 0,
-      closedMenu: true
+      closedMenu: true,
+      country: 'USA'
     }
   },
 
@@ -79,6 +80,11 @@ export default {
 
   created () {
     this.getCountries()
+  },
+
+  mounted () {
+    this.country = localStorage?.country || 'USA'
+    this.$nuxt.$on('newCountry', this.handleNewCountry)
   },
 
   methods: {
@@ -95,6 +101,10 @@ export default {
         this.$router.push('/contact-us')
         return
       }
+      if (to.custom_slug === 'discover') {
+        this.$router.push('/brand')
+        return
+      }
 
       if (to.type) {
         this.$router.push(`/${to.type}/${to.custom_slug}`)
@@ -102,6 +112,10 @@ export default {
       }
 
       this.$router.push(`/${to.custom_slug}`)
+    },
+
+    handleNewCountry (val) {
+      this.country = val
     }
   }
 }
@@ -166,6 +180,11 @@ main.main-header {
   top: 0;
   left: 0;
   z-index: 80;
+
+  &.mobile {
+    position: sticky;
+    backdrop-filter: blur(30px);
+  }
 
   .topbar {
     display: flex;

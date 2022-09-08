@@ -69,13 +69,13 @@
         >
           <template #footer>
             <div class="px-0 pt-2 row mx-0 align-items-center">
-              <div class="w-100 col-6 d-block align-self-center text-center">
+              <div class="w-100 col-6 d-block align-self-center text-center uppercase">
                 <p class="" @click="clearAll">
-                  CLEAN
+                  {{ $t('clean') }}
                 </p>
               </div>
-              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn" @click="applyMobileFilter">
-                APPLY
+              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn uppercase" @click="applyMobileFilter">
+                {{ $t('apply') }}
               </button>
             </div>
           </template>
@@ -328,6 +328,9 @@ export default {
 </script>
 
 <style lang="scss" type="text/css">
+.uppercase {
+    text-transform: uppercase;
+}
 .close-sidebar {
   position: absolute;
   top: 15px;

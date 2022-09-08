@@ -5,13 +5,13 @@
         <span id="basic-addon1" class="input-group-text bg-transparent pl-0 pr-3">
           <b-icon-search class="text-light mt-2" scale="1.25" />
         </span>
-        <input v-model="searchStr" class="form-control" type="text" placeholder="Write to search..." @input="search">
+        <input v-model="searchStr" class="form-control" type="text" :placeholder="$t('search')" @input="search">
         <a href="javascript:void(0)" class="filter-invert" @click="setSearch"><img width="18" src="@/assets/img/close.svg"></a>
       </div>
     </div>
     <div v-if="products.length > 0" class="search_tabs">
       <h4 class="font-weight-normal my-4">
-          {{$t('feature_products')}}
+        {{ $t('feature_products') }}
       </h4>
       <ProductSidebarSingle
         v-for="(product, index) in products"
@@ -20,10 +20,10 @@
         :product="product"
       />
       <b-button variant="default text-light px-0" to="/products">
-        {{$t('see_all_products')}} <b-icon-chevron-right scale=".75" />
+        {{ $t('see_all_products') }} <b-icon-chevron-right scale=".75" />
       </b-button>
       <h4 class="font-weight-normal my-4">
-        {{$t('suggestions')}}
+        {{ $t('suggestions') }}
       </h4>
       <div class="d-flex flex-wrap catlinks">
         <b-button class="mr-3 p-1 px-0" variant="default text-light">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div v-else class="text-center h5 p-4">
-      No Product Found
+      {{ $t('no_product_found') }}
     </div>
   </div>
 </template>

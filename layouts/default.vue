@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       data: [],
-      pageBackground: 'linear-gradient(to top, 180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, rgba(0,0,0,1), 51%, rgba(0,0,0,1) 84%, rgba(0,0,0,1) 100%)',
+      pageBackground: '',
       customBg: false
     }
   },
@@ -62,6 +62,7 @@ export default {
 
     ...mapMutations({
       setCartProduct: 'cart/setCartProduct',
+      setCategories: 'categories/setCategories',
       setWishListData: 'cart/setWishListData'
     }),
 
@@ -71,32 +72,21 @@ export default {
 
       if (!currentData.length || !currentData[0].color_gradient.length) {
         this.customBg = false
+        this.pageBackground = ''
         return
       }
 
       this.customBg = true
 
-      const colors = currentData[0].color_gradient.split(', ').splice(1, 3).map(el => el.replace(')', ''))
-
-      this.pageBackground = `linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 50%, ${this.hexToRgbA(colors[0])} 51%, ${this.hexToRgbA(colors[1])} 84%, ${this.hexToRgbA(colors[2])} 100%)`
-    },
-
-    hexToRgbA (hex) {
-      if (!/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-        return
-      }
-      let c
-      c = hex.substring(1).split('')
-      if (c.length === 3) {
-        c = [c[0], c[0], c[1], c[1], c[2], c[2]]
-      }
-      c = '0x' + c.join('')
-      return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',1)'
+      this.pageBackground = currentData[0].color_gradient
     },
 
     async getData () {
       const response = await this.$axios.$get('/categories')
-      if (response.success) { this.data = response.data }
+      if (response.success) {
+        this.data = response.data
+        this.setCategories(this.data)
+      }
     }
   }
 }
@@ -104,12 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
-    background-size: 100% 250% !important;
-    background-position: 0% 100% !important ;
 
-    &.custom {
-        background-position: 0% 0% !important ;
-    }
 }
 
 .loading {

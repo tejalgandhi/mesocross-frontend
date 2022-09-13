@@ -4,9 +4,10 @@
       <h2 class="text-uppercase font-weight-normal mb-4 mt-5 mb-lg-5 text-center">
         {{ $t(title) }}
       </h2>
-      <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
+      <UiProductSlider :data="newProducts" :settings="settings" />
+      <!-- <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
-      </VueSlickCarousel>
+      </VueSlickCarousel> -->
       <!-- <div class="row justify-content-center">
         <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
       </div> -->
@@ -16,11 +17,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import VueSlickCarousel from 'vue-slick-carousel'
 export default {
-  components: {
-    VueSlickCarousel
-  },
   props: {
     api: {
       type: String,
@@ -39,18 +36,19 @@ export default {
   data () {
     return {
       newProducts: [],
-      settings1: {
-        dots: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        arrows: false,
-        edgeFriction: 0.35,
+      settings: {
+        itemsPerSlide: 4,
         responsive: [
           {
             breakpoint: 1200,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
+              itemsPerSlide: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              itemsPerSlide: 1
             }
           }
         ]
@@ -69,20 +67,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-  .slick-dots{
-    position: relative;
-    margin-top:50px;
-     li{
-      width: 5px !important;
-      height: 5px;
-      margin: 0 10px;
-      border:unset;
-      border-radius: 0;
-      background: rgba($color: #ffffff, $alpha: 0.5);
-      transform: rotate(45deg);
-      transform-origin: center;
-      cursor: pointer;
-    }
-  }
-</style>

@@ -223,7 +223,7 @@ export default {
   trainings: 'Treinamentos',
   purchasing_with: 'Comprar na MESOCROSS',
   thank_you_page_receive_msg: 'Irá receber um email com os detalhes da sua compra',
-  how_to_apply: 'Como subscrever',
+  how_to_apply: 'Como Aplicar',
   alpha_a_z: 'Alfabética A-Z',
   alpha_z_a: 'Alfabético Z-A',
   best_selling: 'Mais vendidos',
@@ -246,5 +246,7 @@ export default {
   english: 'inglês',
   spanish: 'espanhol',
   select_a_country: 'Selecione um País',
-  select_a_language: 'Selecione uma Língua'
+  select_a_language: 'Selecione uma Língua',
+  log_in_to_see_price: 'Adira para ver o preço',
+  related_products: 'productos relacionados'
 }

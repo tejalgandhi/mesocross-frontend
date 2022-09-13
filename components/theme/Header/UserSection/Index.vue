@@ -1,14 +1,5 @@
 <template>
   <main>
-    <!-- <figure v-click-outside="hideUserTab" class="mb-0">
-      <img src="@/assets/img/user.svg" alt="user" @click="showUserTab = !showUserTab">
-      <transition name="pop">
-        <span v-if="$auth.loggedIn" class="info" />
-      </transition>
-      <transition name="show">
-        <user-tab v-if="showUserTab" @close="showUserTab = false" />
-      </transition>
-    </figure> -->
     <figure v-b-toggle.wishlist-sidebar class="mb-0">
       <img src="@/assets/img/star.svg" alt="favs">
       <span v-if="wishlist" class="number">{{ wishlist }}</span>

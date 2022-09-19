@@ -1,16 +1,11 @@
 <template>
-  <main v-if="newProducts.length > 0">
+  <main :class="{empty : !newProducts.length}">
     <div class="container-fluid">
       <h2 class="text-uppercase font-weight-normal mb-4 mt-5 mb-lg-5 text-center">
         {{ $t(title) }}
       </h2>
-      <UiProductSlider :data="newProducts" :settings="settings" />
-      <!-- <VueSlickCarousel v-if="newProducts.length" v-bind="settings1" class="pro_slider">
-        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'product-slide'" />
-      </VueSlickCarousel> -->
-      <!-- <div class="row justify-content-center">
-        <ProductSingle v-for="(product, index) in newProducts" :key="index" :product="product" :class-name="'col-lg-4 col-md-6'" />
-      </div> -->
+      <UiProductSlider v-if="newProducts.length" :data="newProducts" :settings="settings" />
+      <span v-else>{{ $t('no_products_to_show') }}</span>
     </div>
   </main>
 </template>
@@ -56,8 +51,8 @@ export default {
     }
   },
   async fetch () {
-    const { data } = await this.$axios.get(`/products/${this.api}`)
-    this.newProducts = data.data
+    const { data } = await this.$axios.get(`${this.api}`)
+    this.newProducts = data.data || data.complementry
   },
   fetchOnServer: true,
   computed: {
@@ -67,3 +62,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+    main {
+        &.empty {
+            span {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 0 0 60px;
+            }
+        }
+    }
+</style>

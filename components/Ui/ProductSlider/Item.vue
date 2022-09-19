@@ -36,6 +36,7 @@ export default {
       categories: 'categories/getCategories'
     })
   },
+
   methods: {
     goTo () {
       const category = this.categories.find(el => el.name === this.data.category)

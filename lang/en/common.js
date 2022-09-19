@@ -247,5 +247,6 @@ export default {
   select_a_country: 'Select a Country',
   select_a_language: 'Select a Language',
   log_in_to_see_price: 'Log in to see price',
-  related_products: 'related products'
+  related_products: 'related products',
+  no_products_to_show: 'No products to show.'
 }

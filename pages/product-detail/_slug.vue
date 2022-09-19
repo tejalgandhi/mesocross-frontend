@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <HomeProductGroup :title="'related_products'" :api="'new-collection'" :is-new="true" />
+    <HomeProductGroup v-if="product && product.slug" :title="'related_products'" :api="`/get-related-products?slug=${product.slug}`" :is-new="true" />
   </div>
 </template>
 

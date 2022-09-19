@@ -13,25 +13,25 @@
         </nuxt-link>
         <div class="tabs">
           <nuxt-link v-if="$auth.user.type === 1" to="/dashboard?page=my-account">
-            {{$t('my_account')}}
+            {{ $t('my_account') }}
           </nuxt-link>
           <nuxt-link v-else-if="$auth.user.type === 2" to="/dashboard?page=my-account">
-            {{$t('my_account')}}
+            {{ $t('my_account') }}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=order-returns">
-            {{$t('orders_return')}}
+            {{ $t('orders_return') }}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=invoice-history">
-            {{$t('invoice_history')}}
+            {{ $t('invoice_history') }}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=address-book">
-            {{$t('address_book')}}
+            {{ $t('address_book') }}
           </nuxt-link>
           <nuxt-link to="/dashboard?page=payment-methods">
-            {{$t('payment_methods')}}
+            {{ $t('payment_methods') }}
           </nuxt-link>
         </div>
-        <span class="logout" @click="Logout">{{$t('logout')}}</span>
+        <span class="logout" @click="Logout">{{ $t('logout') }}</span>
       </div>
     </template>
   </article>
@@ -57,6 +57,7 @@ export default {
       this.setLoggedin(false)
       this.setLoggedinUser({})
       await this.$auth.logout()
+      localStorage.clear()
       this.$router.push('/')
     },
 

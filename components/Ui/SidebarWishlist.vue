@@ -49,9 +49,6 @@ export default {
       wish: state => state.cart.wishList,
       isUserLoggedIn: state => state.user.loggedIn
     })
-    // isUserLoggedIn () {
-    //   return this.$auth.user
-    // }
   },
   mounted () {
     if (this.isUserLoggedIn) {

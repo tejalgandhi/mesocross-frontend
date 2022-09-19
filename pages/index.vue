@@ -2,7 +2,7 @@
   <div>
     <Banner :page-name="'home'" />
     <HomeBlogs />
-    <HomeProductGroup :title="'new_collection'" :api="'new-collection'" :is-new="true" />
+    <HomeProductGroup :title="'new_collection'" :api="'/products/new-collection'" :is-new="true" />
   </div>
 </template>
 

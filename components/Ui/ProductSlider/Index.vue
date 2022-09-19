@@ -174,6 +174,7 @@ export default {
         .block {
             width: 100%;
             display: flex;
+            justify-content: center;
             gap: 1rem;
             position: absolute;
             transition: 0.4s;

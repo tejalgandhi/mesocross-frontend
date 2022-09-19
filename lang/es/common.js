@@ -248,5 +248,6 @@ export default {
   select_a_country: 'Seleccione un País',
   select_a_language: 'Seleccione una Língua',
   log_in_to_see_price: 'Adira para ver el precio',
-  related_products: 'productos relacionados'
+  related_products: 'productos relacionados',
+  no_products_to_show: 'No hay productos para mostrar.'
 }

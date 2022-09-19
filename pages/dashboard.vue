@@ -149,6 +149,7 @@ export default {
       this.setLoggedin(false)
       this.setLoggedinUser({})
       await this.$auth.logout()
+      localStorage.clear()
       this.$router.push('/')
     }
   }

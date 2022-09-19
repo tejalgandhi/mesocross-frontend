@@ -62,8 +62,7 @@ export default {
       selectedCard: state => state.user.selectedCard,
       products: state => state.cart.products,
       shippingCharge: state => state.cart.shippingCharge,
-      discount: state => state.cart.discount,
-      isUserLoggedIn: state => state.user.loggedIn
+      discount: state => state.cart.discount
     }),
     ...mapGetters({
       totalProductPrice: 'cart/totalProductPrice',
@@ -71,9 +70,6 @@ export default {
       subTotal: 'cart/subTotal'
       // discount: 'cart/getDiscount'
     })
-    // isUserLoggedIn () {
-    //   return this.$auth.user
-    // }
   }
 }
 </script>

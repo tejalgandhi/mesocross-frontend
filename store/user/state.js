@@ -7,7 +7,7 @@ export default () => ({
   },
   userCards: [],
   isAddPayment: false,
-  loggedIn: '',
+  loggedIn: false,
   loggedinUser: {
     full_name: ''
   },

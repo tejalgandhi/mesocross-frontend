@@ -119,7 +119,10 @@ export default {
 
 <style lang="scss">
 .product-data {
-    p {
+    font-weight: 100;
+    font-size: 24px;
+
+    p, ul, li {
         font-weight: 100;
         font-size: 24px;
     }

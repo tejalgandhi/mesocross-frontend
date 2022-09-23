@@ -119,6 +119,7 @@ export default {
   change_details: 'Cambiar detalles',
   go_to_cart: 'Ir al carrito',
   add_to_wishlist: 'Añadir a la lista de deseos',
+  added_to_wishlist: 'Añadido a la lista de deseos',
   remove_from_wishlist: 'Eliminar de la lista de deseos',
   no_product_found: 'Ningún producto encontrado',
   email_exists: 'Esta direccion de correo electronico ya existe',

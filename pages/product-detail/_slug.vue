@@ -200,6 +200,7 @@ export default {
     .add-bar {
         width: 100%;
         background: black;
+        text-transform: uppercase;
 
         .items {
             width: 90%;
@@ -217,16 +218,15 @@ export default {
             .product-info {
                 display: flex;
                 align-items: center;
-                gap: 0.2rem;
+                gap: 0.5rem;
                 figure {
-                    width: 36px;
-                    height: 36px;
+                    width: 32px;
+                    height: 32px;
 
                     img {
                         width: 100%;
                         height: 100%;
                         object-fit: contain;
-                        transform: rotate(90deg);
                     }
                 }
 

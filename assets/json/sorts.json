@@ -1,0 +1,32 @@
+[
+    {
+        "name": "alpha_a_z",
+        "type": "alphabetic",
+        "tag": "asc",
+        "needsLogIn": false
+    },
+    {
+        "name": "alpha_z_a",
+        "type": "alphabetic",
+        "tag": "desc",
+        "needsLogIn": false
+    },
+    {
+        "name": "best_selling",
+        "type": "best_seller",
+        "tag": "1",
+        "needsLogIn": true
+    },
+    {
+        "name": "low_to_high",
+        "type": "price",
+        "tag": "asc",
+        "needsLogIn": true
+    },
+    {
+        "name": "high_to_low",
+        "type": "price",
+        "tag": "desc",
+        "needsLogIn": true
+    }
+]

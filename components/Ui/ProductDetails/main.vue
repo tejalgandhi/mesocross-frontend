@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="data">
-      <span class="wishlist" @click="addToWishlist">{{ $t('add_to_wishlist') }}</span>
+      <span class="wishlist" @click="addToWishlist">{{ isProductInWishList ? $t('added_to_wishlist') : $t('add_to_wishlist') }}</span>
       <span>REF: {{ data.product_size[selectedSize].ref_number }}</span>
     </div>
   </div>
@@ -53,7 +53,11 @@ export default {
       pricePopup: state => state.pricePopup,
       isLoggedin: state => state.user.loggedIn,
       loggedinUser: state => state.user.loggedinUser
-    })
+    }),
+
+    isProductInWishList () {
+      return this.isWished(this.data)
+    }
   },
 
   watch: {
@@ -129,6 +133,7 @@ export default {
         width: 100%;
         height: 100%;
         transition: 0.4s;
+        text-transform: uppercase;
 
         h2 {
             font-weight: 900;

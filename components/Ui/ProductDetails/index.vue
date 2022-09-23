@@ -76,13 +76,13 @@ export default {
         span {
             width: 8px;
             height: 8px;
-            border: solid 1px #E2C8B8;
+            border: solid 1px white;
             transform: rotate(45deg);
             transition: 0.2s;
             cursor: pointer;
 
             &.active {
-                background: #E2C8B8;
+                background: white;
             }
         }
     }

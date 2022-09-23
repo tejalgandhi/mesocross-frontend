@@ -30,25 +30,14 @@
                     <template #button-content>
                       <b-icon-chevron-down class="mr-2" /> {{ $t('default_sorting') }}
                     </template>
-                    <b-dropdown-item href="#" @click="sortType = 'alpha_a_z'">
-                      {{ $t('alpha_a_z') }}
+                    <b-dropdown-item @click="sortType = []">
+                      {{ $t('default_sorting') }}
                     </b-dropdown-item>
-
-                    <b-dropdown-item href="#" @click="sortType = 'alpha_z_a'">
-                      {{ $t('alpha_z_a') }}
-                    </b-dropdown-item>
-
-                    <b-dropdown-item href="#" @click="sortType = 'best_selling'">
-                      {{ $t('best_selling') }}
-                    </b-dropdown-item>
-
-                    <b-dropdown-item href="#" @click="sortType = 'low_to_high'">
-                      {{ $t('low_to_high') }}
-                    </b-dropdown-item>
-
-                    <b-dropdown-item href="#" @click="sortType = 'high_to_low'">
-                      {{ $t('high_to_low') }}
-                    </b-dropdown-item>
+                    <template v-for="(sort, i) in sorts">
+                      <b-dropdown-item v-if="!sort.needsLogIn || (sort.needsLogIn && isLoggedin)" :key="i" @click="sortType = [sort.type, sort.tag]">
+                        {{ $t(sort.name) }}
+                      </b-dropdown-item>
+                    </template>
                   </b-dropdown>
                 </div>
               </div>
@@ -81,17 +70,19 @@
           </template>
 
           <ProductFilter
-            ref="prodcuFilter"
+            ref="filters"
             class="p-4"
-            @fetchProducts="fetchProducts"
-            @priceSort="setSorting"
-            @alphaSorting="setAlphaBeticSort"
+            @fetchProducts="getProducts"
             @bestSellingChanged="setBestSellSort"
           />
         </b-sidebar>
         <div class="container-fluid">
           <div class="row">
-            <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="fetchProducts" />
+            <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="getProducts" />
+
+            <div v-if="currentPage < totalPages " class="view_more" @click="currentPage += 1">
+              <span>{{ $t('view_more') }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -100,29 +91,15 @@
 </template>
 <script>
 import { showPricePopup } from 'assets/js/custom'
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import sorts from '@/assets/json/sorts.json'
 export default {
   name: 'Products',
   auth: false,
-  async asyncData ({ params, $axios, store }) {
-    store.commit('setLoading', true)
-    let url = '/products?page=1'
-    if (params && params.treatmentSlug) {
-      url = `${url}&treatment_solutions=${params.treatmentSlug}`
-    } else if (params && params.categorySlug) {
-      url = `${url}&category_slug=${params.categorySlug}`
-    }
-    const data = await $axios.$get(url)
-    const paginate = Object.assign({}, data)
-    delete paginate.data
-    const products = data.data
-    const selectedSlugName = data.meta.selectedSlugName
-    return { products, paginate, selectedSlugName }
-  },
   data () {
     return {
       filters: [],
-      sortType: '',
+      sortType: [],
       priceSorting: '',
       alphaSorting: '',
       bestSellSorting: '',
@@ -130,7 +107,9 @@ export default {
       products: [],
       paginate: {},
       filterSidebar: false,
-      bgColor: '',
+      currentPage: 1,
+      totalPages: 1,
+      sorts,
       breadcrumbs: [
         {
           path: '/',
@@ -146,173 +125,112 @@ export default {
       segId: null
     }
   },
+
   computed: {
     ...mapState({
       selectedFilters: state => state.product.selectedFilters,
       pricePopup: state => state.pricePopup,
       isLoggedin: state => state.user.loggedIn
+    }),
+    ...mapGetters({
+      categories: 'categories/getCategories'
     })
   },
+
   watch: {
-    sortType (newVal) {
-      this.sortPrice()
+    sortType () {
+      this.getProducts()
+    },
+
+    selectedFilters () {
+      if (this.currentPage === 1) {
+        this.getProducts()
+        return
+      }
+
+      this.currentPage = 1
+    },
+
+    currentPage () {
+      this.getProducts(true)
     }
   },
+
   beforeDestroy () {
     this.setSelectedFilters([])
   },
+
+  created () {
+    this.getProducts()
+  },
+
   mounted () {
     showPricePopup(this)
     setTimeout(() => {
       this.setLoading(false)
     }, 200)
   },
+
   methods: {
     removeFilter (index) {
       setTimeout(() => {
-        this.$refs.prodcuFilter.removeFilter(this.selectedFilters[index])
-        // this.filterRemove(index)
-        this.fetchProducts(1)
+        this.$refs.filters.removeFilter(this.selectedFilters[index])
+        this.getProducts()
       }, 100)
     },
+
     clearAll () {
       this.setSelectedFilters([])
       this.selectedFilters = []
       this.setPriceSort('')
       this.filterSidebar = false
-      this.fetchProducts(1)
-      this.$refs.prodcuFilter.refresh()
+      this.getProducts()
+      this.$refs.filters.refresh()
     },
-    loadProducts () {
-      let url = '/products?page=1'
-      if (this.$route.params && this.$route.params.treatmentSlug) {
-        url = `${url}&treatment_solutions=${this.$route.params.treatmentSlug}`
-      }
-      this.fetchProducts(1, url)
-    },
-    sortPrice () {
-      this.priceSorting = ''
-      this.bestSellSorting = ''
-      this.alphaSorting = ''
-      if (this.sortType === 'alpha_a_z') {
-        this.alphaSorting = 'asc'
-        this.setAlphaSort(this.alphaSorting)
-      }
-      if (this.sortType === 'alpha_z_a') {
-        this.alphaSorting = 'desc'
-        this.setAlphaSort(this.alphaSorting)
-      }
-      if (this.sortType === 'best_selling') {
-        this.bestSellSorting = '1'
-        this.setBestSellSort(this.bestSellSorting)
-      }
-      if (this.sortType === 'low_to_high') {
-        this.priceSorting = 'asc'
-        this.setPriceSort(this.priceSorting)
-      }
-      if (this.sortType === 'high_to_low') {
-        this.priceSorting = 'desc'
-        this.setPriceSort(this.priceSorting)
-      }
-      this.fetchProducts(1)
-    },
-    setSorting (sort) {
-      this.priceSorting = sort
-      this.bestSellSorting = ''
-      this.alphaSorting = ''
-      this.setPriceSort(this.priceSorting)
-      this.fetchProducts(1)
-    },
-    setAlphaBeticSort (sort) {
-      this.priceSorting = ''
-      this.bestSellSorting = ''
-      this.alphaSorting = sort
-      this.setAlphaSort(this.alphaSorting)
-      this.fetchProducts(1)
-    },
-    setBestSellSort (sort) {
-      this.priceSorting = ''
-      this.bestSellSorting = sort
-      this.alphaSorting = ''
-      this.setBestSellSort(this.bestSellSorting)
-      this.fetchProducts(1)
-    },
+
     applyMobileFilter () {
-      // this.fetchProducts(1)
+      this.getProducts()
       this.filterSidebar = false
     },
-    async fetchProducts (page, productUrl = '') {
-      let activeCat = null
-      if (this.$route.params && this.$route.params.categorySlug) {
-        this.$refs.prodcuFilter.filterData.forEach((category) => {
-          if (!activeCat) {
-            if (category.slug === this.$route.params.categorySlug) {
-              activeCat = category
-            } else {
-              activeCat = category.child.find(item => item.slug === this.$route.params.categorySlug)
-            }
-          }
-        })
-        if (activeCat !== undefined) {
-          if (activeCat.parent_id === null && activeCat.child.length > 0 && activeCat.is_skincare === false) {
-            const selectedCat = [...new Map(activeCat.child.map(item =>
-              [item.id, item.id])).values()]
-            selectedCat.push(activeCat.id)
-            const selectedString = selectedCat.toString()
-            activeCat = `&category=${selectedString}`
-          } else {
-            activeCat = `&category=${activeCat.id}`
-          }
-        }
+
+    async getProducts (pageChange = false) {
+      let url = ''
+
+      if (this.$route.params.categorySlug && !this.selectedFilters.length) {
+        url += `&category_slug=${this.$route.params.categorySlug}`
       }
-      let url = productUrl
-      if (url === '') { // PREPARE API URL, IT WILL SET ON INTIAL LOAD
-        url = `/products?page=${page}`
-        if (this.selectedFilters) {
-          const category = this.selectedFilters.filter(v => !v.treatmentSolution)
-          if (category.length > 0) {
-            const skins = category.filter(c => c.is_skincare).map(f => f.id).toString()
-            const cats = category.filter(c => !c.is_skincare).map(f => f.id).toString()
-            if (cats && skins) {
-              url = `${url}&category=${cats}&skincare=${skins}`
-            } else if (cats) {
-              url = `${url}&category=${cats}`
-            } else if (skins) {
-              url = `${url}&skincare=${skins}`
-            }
-          } else {
-            url = `${url}${activeCat ?? ''}`
-          }
-          const treatmentsolution = this.selectedFilters.filter(v => v.treatmentSolution).map(val => val.id).toString()
-          if (treatmentsolution !== '') {
-            url = `${url}&treatment_solutions_ids=${treatmentsolution}`
-          }
-        }
-        if (this.priceSorting) {
-          url = `${url}&price=${this.priceSorting}`
-        }
-        if (this.bestSellSorting) {
-          url = `${url}&best_seller=${this.bestSellSorting}`
-        }
-        if (this.alphaSorting) {
-          url = `${url}&alphabetic=${this.alphaSorting}`
-        }
-        this.$nuxt.$loading.start()
+
+      if (this.$route.params.treatmentSlug) {
+        url += `&treatment_solutions=${this.$route.params.treatmentSlug}`
       }
-      const data = await this.$axios.$get(url)
-      if (productUrl === '') {
-        this.$nuxt.$loading.finish()
+
+      if (this.selectedFilters.length) {
+        const selectedCategories = this.selectedFilters.filter(el => !el.is_skincare).map(el => el.id).join(',')
+        const selectedSkincares = this.selectedFilters.filter(el => el.is_skincare).map(el => el.id).join(',')
+
+        url += `&category=${selectedCategories}&skincare=${selectedSkincares}`
       }
-      this.loadingFinish = true
-      const paginate = Object.assign({}, data)
-      delete paginate.data
-      this.paginate = paginate
-      if (page > 1) {
-        this.products = [...this.products, ...data.data]
-      } else {
-        this.products = data.data
+
+      if (this.sortType.length) {
+        url += `&${this.sortType[0]}=${this.sortType[1]}`
       }
+
+      const response = await this.$axios.get(`/products?page=${this.currentPage}${url}`)
+
+      if (response.status !== 200) {
+        this.products = []
+        return
+      }
+
+      if (pageChange && this.currentPage !== 1) {
+        this.products.push(...response.data.data)
+        return
+      }
+
+      this.products = response.data.data
+      this.totalPages = response.data.meta.last_page
     },
+
     ...mapActions({
       filterRemove: 'product/filterRemove'
     }),
@@ -361,5 +279,21 @@ export default {
     color: #000 !important;
     text-transform: uppercase;
   }
+}
+
+.view_more {
+    padding: 10px 20px;
+    border: solid 1px white;
+    width: fit-content;
+    margin: 20px auto 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+
+    &:hover {
+        background: white;
+        color: #25282A;
+    }
 }
 </style>

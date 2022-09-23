@@ -52,7 +52,7 @@ export default {
         { label: this.$t('faqs'), component: 'faq', slug: 'faq', static: true },
         { label: this.$t('shipping_methods'), component: 'pages-content', slug: 'shipping-methods' },
         { label: this.$t('secure_payments'), component: 'pages-content', slug: 'payment-methods' },
-        { label: this.$t('returns_and_exchanges'), component: 'pages-content', slug: 'return-exchange' },
+        { label: this.$t('shipping_and_returns'), component: 'pages-content', slug: 'return-exchange' },
         { label: this.$t('quality_policy'), component: 'pages-content', slug: 'quality-policy' },
         { label: this.$t('terms_condition'), component: 'pages-content', slug: 'terms-condition' },
         { label: this.$t('privacy_policy'), component: 'pages-content', slug: 'privacy-policy' },

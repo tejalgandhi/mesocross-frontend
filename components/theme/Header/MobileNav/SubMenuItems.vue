@@ -38,6 +38,12 @@ export default {
 
     goTo (to, tab) {
       this.$emit('close')
+
+      if (to.type === 'category') {
+        this.$router.push(`/products/${to.slug.replace('/', '')}`)
+        return
+      }
+
       if (to.type === 'products') {
         this.$router.push(`/products/${to.slug}`)
         return

@@ -11,20 +11,20 @@
     <figure class="mb-0" @click="setSearch">
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
-<!--    <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">-->
-<!--      <div v-if="!$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">-->
-<!--        {{ $t('sign_in') }}-->
-<!--      </div>-->
-<!--      <div v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">-->
-<!--        <img src="@/assets/img/user.svg" alt="search" class="mr-3">-->
-<!--      </div>-->
-<!--      <transition v-if="!$auth.loggedIn" name="pop">-->
-<!--        <span class="info" />-->
-<!--      </transition>-->
-<!--      <transition name="show">-->
-<!--        <user-tab v-if="showUserTab" @close="showUserTab = false" />-->
-<!--      </transition>-->
-<!--    </figure>-->
+    <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
+      <div v-if="!$auth.loggedIn" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+        {{ $t('sign_in') }}
+      </div>
+      <div v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+        <img src="@/assets/img/user.svg" alt="search" class="mr-3">
+      </div>
+      <transition v-if="!$auth.loggedIn" name="pop">
+        <span class="info" />
+      </transition>
+      <transition name="show">
+        <user-tab v-if="showUserTab" @close="showUserTab = false" />
+      </transition>
+    </figure>
   </main>
 </template>
 

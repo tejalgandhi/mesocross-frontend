@@ -89,10 +89,10 @@ export default {
         if (err.response.data.code === 422) {
           const data = err.response.data
           Object.values(data.message).forEach((val) => {
-            this.$toast.error(val[0], { duration: 5000 }, 'top-right')
+            this.$toast.error(val[0], { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           })
         } else {
-          this.$toast.error(this.$t('something_went_wrong'), { duration: 3000 })
+          this.$toast.error(this.$t('something_went_wrong'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
         }
       }
     }

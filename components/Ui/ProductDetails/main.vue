@@ -11,16 +11,16 @@
         </template>
       </div>
     </div>
-    <div class="price" :class="{'space-between': priceHover}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
+    <div class="price" :class="{'space-between': priceHover && isLoggedin}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
       <span v-if="isLoggedin">{{ data.product_size[selectedSize].price }}€</span>
       <span v-else>{{ $t('log_in_to_see_price') }}</span>
-      <div v-if="priceHover">
+      <div v-if="priceHover && isLoggedin">
         <span>{{ $t('add_to_cart') }}</span>
         <span class="arrow" />
       </div>
     </div>
     <div class="data">
-      <span class="wishlist" @click="addToWishlist">{{ $t('add_to_wishlist') }}</span>
+      <span class="wishlist" @click="addToWishlist">{{ isProductInWishList ? $t('added_to_wishlist') : $t('add_to_wishlist') }}</span>
       <span>REF: {{ data.product_size[selectedSize].ref_number }}</span>
     </div>
   </div>
@@ -53,7 +53,11 @@ export default {
       pricePopup: state => state.pricePopup,
       isLoggedin: state => state.user.loggedIn,
       loggedinUser: state => state.user.loggedinUser
-    })
+    }),
+
+    isProductInWishList () {
+      return this.isWished(this.data)
+    }
   },
 
   watch: {
@@ -129,6 +133,7 @@ export default {
         width: 100%;
         height: 100%;
         transition: 0.4s;
+        text-transform: uppercase;
 
         h2 {
             font-weight: 900;

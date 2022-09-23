@@ -80,7 +80,7 @@ export default {
         this.solutionArray = data.solutionArray
       } catch (error) {
         if (error.response.status === 404) {
-          this.$toast.error(error.response.data.message, { duration: 3000, position: 'top-right' })
+          this.$toast.error(error.response.data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
         }
       }
     },

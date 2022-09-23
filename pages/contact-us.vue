@@ -205,7 +205,7 @@ export default {
             const { data } = await this.$axios.post('contact-us/store', formdata)
 
             if (data.code === 422) {
-              this.$toast.error(data.message.file[0], { duration: 5000, position: 'top-right' })
+              this.$toast.error(data.message.file[0], { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
             } else {
               this.$toast.success(data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
               this.$router.push('/')
@@ -213,7 +213,7 @@ export default {
           }
         }
       } catch (error) {
-        this.$toast.error('Something went wrong', { duration: 5000, position: 'top-right' })
+        this.$toast.error('Something went wrong', { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
       }
     },
     handleFileUpload (e) {

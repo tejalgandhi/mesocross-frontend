@@ -41,10 +41,10 @@
         <figure class="icon">
           <img :src="product.feature_image" alt="product_image">
         </figure>
-        <div class="price" :class="{'space-between': priceHover}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
+        <div class="price" :class="{'space-between': priceHover && isLoggedin}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
           <span v-if="isLoggedin">{{ selectedSize.price }}€</span>
           <span v-else>{{ $t('log_in_to_see_price') }}</span>
-          <div v-if="priceHover">
+          <div v-if="priceHover && isLoggedin">
             <span>{{ $t('add_to_cart') }}</span>
             <span class="arrow" />
           </div>
@@ -200,6 +200,7 @@ export default {
     .add-bar {
         width: 100%;
         background: black;
+        text-transform: uppercase;
 
         .items {
             width: 90%;
@@ -217,16 +218,15 @@ export default {
             .product-info {
                 display: flex;
                 align-items: center;
-                gap: 0.2rem;
+                gap: 0.5rem;
                 figure {
-                    width: 36px;
-                    height: 36px;
+                    width: 32px;
+                    height: 32px;
 
                     img {
                         width: 100%;
                         height: 100%;
                         object-fit: contain;
-                        transform: rotate(90deg);
                     }
                 }
 

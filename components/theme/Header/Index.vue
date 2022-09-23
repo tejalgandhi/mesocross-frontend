@@ -98,7 +98,7 @@ export default {
 
     goTo (to) {
       if (to.custom_slug === 'mesocross-services') {
-        this.$router.push('/contact-us')
+        this.$router.push('/virtual-consultation')
         return
       }
       if (to.custom_slug === 'discover') {

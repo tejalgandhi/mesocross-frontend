@@ -226,12 +226,12 @@ export default {
           // this.form.phone = this.form.internationalCode + '-' + this.form.phone_number
           const { data } = await this.$axios.post('subscribe/store', this.form)
           if (data.status === 422) {
-            this.$toast.error(data.message, { duration: 5000 })
+            this.$toast.error(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           } else if (data.status === true) {
             this.$toast.success(data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
             this.$bvModal.hide('subscribeModal')
           } else {
-            this.$toast.error('Something went wrong', { duration: 5000, position: 'top-right' })
+            this.$toast.error('Something went wrong', { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           }
           this.toggleSubmit(true)
         }

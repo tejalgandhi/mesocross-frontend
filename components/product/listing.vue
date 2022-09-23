@@ -47,9 +47,6 @@
       <div v-if="products.length == 0" class="my-5 col-12 text-center">
         <h3>{{ $t('no_product_found') }}</h3>
       </div>
-      <div v-if="paginate.meta && paginate.meta.last_page > paginate.meta.current_page" class="view_more">
-        <a @click="viewMore">{{ $t('view_more') }}</a>
-      </div>
     </div>
   </div>
 </template>
@@ -59,13 +56,7 @@ export default {
   props: {
     products: {
       type: Array,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: []
-    },
-    paginate: {
-      type: Object,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: []
+      default: () => []
     },
     loadingFinish: {
       type: Boolean,
@@ -111,10 +102,6 @@ export default {
   methods: {
     productLink (slug) {
       return `/product-detail/${slug}` + (this.segmentId ? `?segment=${this.segmentId}` : '')
-    },
-    viewMore () {
-      const nextPage = this.paginate.meta.current_page + 1
-      this.$emit('fetchProducts', nextPage)
     },
     addToWishlist (product) {
       const singleProduct = {
@@ -171,9 +158,9 @@ p {
     transition: 0.6s;
     transform: scale(1.0);
     max-height: 300px;
-  @media (max-width: 767px){
-    max-height: 110px;
-  }
-}
+        @media (max-width: 767px){
+            max-height: 110px;
+        }
+    }
 }
 </style>

@@ -223,7 +223,7 @@ export default {
         }
 
         if (data.status === false) {
-          this.$toast.error(data.message, { duration: 3000 })
+          this.$toast.error(data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
         }
       }
     },

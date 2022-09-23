@@ -686,7 +686,11 @@ font-weight: bold;}
 }
 
 .custom-toast-success-class {
-  background-color: #25282A !important;
+    background-color: #ffffff !important;
+    color: #25282A !important;
+}
+.custom-toast-error-class {
+    background-color: #25282A !important;
 }
 /*Under Construction Page*/
 

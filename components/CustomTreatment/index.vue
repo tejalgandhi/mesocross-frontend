@@ -169,7 +169,7 @@ export default {
       if (this.selectedOption) {
         this.$emit('next', this.selectedTreatment, this.selectedTreatmentObject)
       } else {
-        this.$toast.error(this.$t('please_select_any_option'), { duration: 3000, position: 'top-right' })
+        this.$toast.error(this.$t('please_select_any_option'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
       }
     },
     checkHairChildrenValue () {

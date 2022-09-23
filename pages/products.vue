@@ -139,7 +139,12 @@ export default {
 
   watch: {
     sortType () {
-      this.getProducts()
+      if (this.currentPage === 1) {
+        this.getProducts()
+        return
+      }
+
+      this.currentPage = 1
     },
 
     selectedFilters () {
@@ -181,8 +186,7 @@ export default {
 
     clearAll () {
       this.setSelectedFilters([])
-      this.selectedFilters = []
-      this.setPriceSort('')
+      this.sortType = []
       this.filterSidebar = false
       this.getProducts()
       this.$refs.filters.refresh()

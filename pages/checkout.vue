@@ -198,17 +198,17 @@ export default {
               this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
             }
           }).catch((err) => {
-            this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000 }, 'top-right')
+            this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000, position: 'top-right', className: 'custom-toast-error-class' })
           })
         }).catch((err) => {
-          this.$toast.error(err.response.data.message, { duration: 5000 }, 'top-right')
+          this.$toast.error(err.response.data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
         }).finally(() => {
           this.$store.commit('setLoading', false, { root: true })
         })
       } else if (!this.address && this.tabIndex === 1) {
-        this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right' })
+        this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
       } else if (this.tabIndex === 2 && this.selectedCard === 'add_card') {
-        this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right' })
+        this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
       } else {
         this.tabIndex++
       }

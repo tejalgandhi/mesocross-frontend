@@ -2,15 +2,19 @@
   <div>
     <div v-if="data.content" class="col-12">
       <div class="alter-info">
-        <h2 class="title-40">
+        <div class="h1 title-34">
           {{ data.title }}
-        </h2>
+        </div>
         <!-- eslint-disable vue/no-v-html -->
         <div v-html="data.content" />
       </div>
     </div>
-    <div v-else>
-      <h1>No Content</h1>
+    <div v-else class="col-12">
+      <div class="alter-info">
+        <div class="h1 title-34">
+          {{ tempTitle }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +26,17 @@ export default {
     data: {
       type: Object,
       default: () => {}
+    },
+    tempTitle: {
+      type: String,
+      default: () => ''
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+    .title-34 {
+        text-transform: capitalize;
+    }
+</style>

@@ -203,7 +203,7 @@ export default {
           this.setIsAddPayment(false)
           this.$toast.success('Card Added Successfully', { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
         } catch (err) {
-          this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000 }, 'top-right')
+          this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000, position: 'top-right', className: 'custom-toast-error-class' })
         }
       }
     }

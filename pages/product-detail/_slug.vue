@@ -41,10 +41,10 @@
         <figure class="icon">
           <img :src="product.feature_image" alt="product_image">
         </figure>
-        <div class="price" :class="{'space-between': priceHover}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
+        <div class="price" :class="{'space-between': priceHover && isLoggedin}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
           <span v-if="isLoggedin">{{ selectedSize.price }}€</span>
           <span v-else>{{ $t('log_in_to_see_price') }}</span>
-          <div v-if="priceHover">
+          <div v-if="priceHover && isLoggedin">
             <span>{{ $t('add_to_cart') }}</span>
             <span class="arrow" />
           </div>

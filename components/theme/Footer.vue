@@ -88,9 +88,16 @@
               <h2>{{ link.name }}</h2>
               <ul>
                 <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                  <a href="javascript:void(0);" @click="redirectToPage(`/${child.slug.replace('/','')}`)">
-                    {{ child.name }}
-                  </a>
+                  <template v-if="child.slug !== 'subscription'">
+                    <a href="javascript:void(0);" @click="redirectToPage(`/${child.slug.replace('/','')}`)">
+                      {{ child.name }}
+                    </a>
+                  </template>
+                  <template v-else>
+                    <a href="javascript:void(0);" @click="$bvModal.show('subscribeModal')">
+                      {{ child.name }}
+                    </a>
+                  </template>
                 </li>
               </ul>
             </div>
@@ -208,6 +215,7 @@ export default {
     },
     async getFooterLinks () {
       const data = await this.$axios.get('/footer/get-footer-data')
+      console.log(data)
       this.footerLinks = data.data.data
     },
     redirectToPage (name) {

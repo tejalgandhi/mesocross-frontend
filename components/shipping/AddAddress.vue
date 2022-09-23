@@ -210,9 +210,9 @@ export default {
         }).catch((err) => {
           if (err.response.status === 422) {
             const { message } = err.response.data
-            this.$toast.error(message, { duration: 3000, position: 'top-right' })
+            this.$toast.error(message, { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
           } else {
-            this.$toast.error('Something Went Wrong', { duration: 3000, position: 'top-right' })
+            this.$toast.error('Something Went Wrong', { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
           }
         })
       }
@@ -224,9 +224,9 @@ export default {
         this.$emit('addressSave')
       }).catch((err) => {
         if (err.response.status === 422) {
-          this.$toast.error(err.response.message, { duration: 3000, position: 'top-right' })
+          this.$toast.error(err.response.message, { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
         } else {
-          this.$toast.error('Something Went Wrong.', { duration: 3000, position: 'top-right' })
+          this.$toast.error('Something Went Wrong.', { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
         }
       })
     }

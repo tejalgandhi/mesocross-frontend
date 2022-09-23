@@ -13,14 +13,13 @@
           </figure>
         </div>
         <section class="user-tab" @mouseover="isActive = 0">
-<!--          <ThemeHeaderUserSection />-->
+          <ThemeHeaderUserSection />
         </section>
       </div>
       <nav>
         <section class="menu container-fluid">
           <section class="nav">
             <template v-for="(item, i) in headItems">
-              <!-- {{ item }} -->
               <div :key="i" class="menu-item position-relative">
                 <span :class="{active: isActive === item.id}" @mouseover="isActive = item.id" @click="goTo(item)">{{ item.name }}</span>
                 <ThemeHeaderSubMenu

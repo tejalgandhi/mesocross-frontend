@@ -85,12 +85,14 @@ export default {
     '@nuxt/image',
     'vue-social-sharing/nuxt'
   ],
+
   recaptcha: {
     hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
     siteKey: process.env.RECAPTCHA_SITE_KEY, // Site key for requests
     version: 2, // Version
     size: 'normal' // Size: 'compact', 'normal', 'invisible' (v2)
   },
+
   i18n: {
     locales: [
       {

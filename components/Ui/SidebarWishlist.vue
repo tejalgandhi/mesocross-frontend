@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-sidebar id="wishlist-sidebar" shadow right no-header body-class="p-4">
+    <b-sidebar id="wishlist-sidebar" shadow right no-header>
       <template #default="{ hide }">
         <div class="text-light fixed-total">
           <div class="">

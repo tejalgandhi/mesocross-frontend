@@ -156,6 +156,7 @@ export default {
   secure_payments: 'Secure Payments',
   terms_condition: 'Terms and Condition',
   returns_and_exchanges: 'Returns and Exchanges',
+  shipping_and_returns: 'Shipping and Returns',
   quality_policy: 'Quality policy',
   privacy_policy: 'Privacy policy',
   cookie_policy: 'Cookies policy',

@@ -13,10 +13,12 @@ export default {
     }
     commit('setCartProduct', newProducts)
   },
+
   async getCart ({ commit }) {
     const { data } = await this.$axios.$get('/cart')
     commit('setCartProduct', data)
   },
+
   async addWishList ({ commit, state, dispatch }, payload) {
     const wishList = JSON.parse(JSON.stringify(state.wishList))
     await this.$axios.$post('/wishlist', payload)

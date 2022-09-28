@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-sidebar id="card-sidebar" shadow right no-header body-class="p-4">
+    <b-sidebar id="card-sidebar" shadow right no-header>
       <template #default="{ hide }">
         <div class="text-light fixed-total">
           <div class="">
@@ -25,8 +25,8 @@
                 {{ $t('buy_products') }}
               </nuxt-link>
             </div>
-            <div v-else-if="products.length > 0">
-              <div class="">
+            <div v-else-if="products.length">
+              <div>
                 <div v-for="(product, index) in products" :key="index" class="mb-4">
                   <ProductCartProduct :product="product" />
                 </div>

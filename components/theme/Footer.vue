@@ -215,7 +215,6 @@ export default {
     },
     async getFooterLinks () {
       const data = await this.$axios.get('/footer/get-footer-data')
-      console.log(data)
       this.footerLinks = data.data.data
     },
     redirectToPage (name) {

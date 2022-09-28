@@ -88,6 +88,12 @@ export default {
   ],
 
   sitemap: {
+    hostname: baseURL,
+    defaults: {
+      lastmod: new Date(),
+      changefreq: 'weekly',
+      priority: 0.8
+    },
     filter({routes}) {
       return routes.map(route => {
         route.url = `${route.url}/`

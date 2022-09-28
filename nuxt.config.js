@@ -83,8 +83,17 @@ export default {
     // 'vue-social-sharing/nuxt',
     '@nuxtjs/recaptcha',
     '@nuxt/image',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    filter({routes}) {
+      return routes.map(route => {
+        route.url = `${route.url}/`
+        return route
+      })
+    }
+  },
   recaptcha: {
     hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
     siteKey: process.env.RECAPTCHA_SITE_KEY, // Site key for requests

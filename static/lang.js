@@ -6,7 +6,17 @@ const env = require('dotenv').config({
 })
 
 try {
-  const url = env.parsed.BASE_URL + '/lang'
+  const prepareUrl = uri => {
+    const base = env.parsed.BASE_URL
+    if (base.endsWith('/')) {
+      return base + (uri.startsWith('/') ? uri.substr(1): uri)
+    } else {
+      return base + (uri.startsWith('/') ? uri: '/' + uri)
+    }
+  }
+
+  const url = prepareUrl('/lang')
+  console.log(url);
   const request = https.request(url, (response) => {
     let data = ''
     response.on('data', (chunk) => {

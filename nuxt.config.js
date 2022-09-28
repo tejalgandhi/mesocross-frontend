@@ -88,7 +88,7 @@ export default {
   ],
 
   sitemap: {
-    hostname: baseURL,
+    hostname: process.env.BASE_URL,
     defaults: {
       lastmod: new Date(),
       changefreq: 'weekly',

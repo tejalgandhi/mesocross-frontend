@@ -42,15 +42,16 @@ export default {
   },
 
   created () {
-    if (this.$auth.loggedIn) {
+    this.getData()
+
+    if (this.$auth.$state.loggedIn) {
       this.getWishList()
       this.getCart()
-    } else {
-      this.setCartProduct([])
-      this.setWishListData([])
+      return
     }
 
-    this.getData()
+    this.setCartProduct([])
+    this.setWishListData([])
   },
 
   methods: {

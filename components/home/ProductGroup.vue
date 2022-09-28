@@ -54,7 +54,7 @@ export default {
     const { data } = await this.$axios.get(`${this.api}`)
     this.newProducts = data.data || data.complementry
   },
-  fetchOnServer: true,
+
   computed: {
     ...mapState({
       isLoggedin: state => state.user.loggedIn

@@ -1,25 +1,27 @@
 <template>
   <div>
-    <div class="row align-items-center">
-      <div class="col-auto pr-0">
-        <img class="product_img" :src="product.feature_image" alt="image">
-      </div>
-      <div class="col">
-        <h6 class="mb-1 text-uppercase">
-          <nuxt-link :to="`/product-detail/${product.slug}`">
-            {{ product.name }}
-          </nuxt-link>
-        </h6>
-        <div class="d-flex cart-option">
-          <b-button v-if="product.price" size="sm" variant="default text-light pl-0 border-right font-weight-bold">
-            €{{ (product.price * Number(product.qty) ).toFixed(2) }}
-          </b-button>
-          <b-button v-if="product.size" size="sm" variant="default text-light border-right">
-            ({{ product.size }})
-          </b-button>
-          <b-button v-if="product.qty" size="sm" variant="default text-light">
-            QTY: {{ product.qty }}
-          </b-button>
+    <div class="row align-items-center ws-product">
+      <figure>
+        <nuxt-img
+          preload
+          format="webp"
+          :src="product.feature_image"
+          alt="image"
+          quality="100"
+          class="product_img"
+        />
+      </figure>
+      <div class="product-data">
+        <div class="main">
+          <span class="title"> {{ product.slug }} </span>
+          <span class="desc">{{ product.short_description }}</span>
+        </div>
+        <div v-if="product.price && $auth.loggedIn" class="prices">
+          <span class="price">{{ (product.price * Number(product.qty) ).toFixed(2) }}€</span>
+          <hr>
+          <span class="size">{{ product.size }}</span>
+          <hr>
+          <span class="size"> QTY: {{ product.qty }}</span>
         </div>
       </div>
     </div>
@@ -46,21 +48,23 @@ export default {
   props: {
     product: {
       type: Object,
-      // eslint-disable-next-line vue/require-valid-default-prop
-      default: {}
+      default: () => {}
     }
   },
   computed: {
     ...mapGetters({
       isWished: 'cart/isWished'
     }),
+
     isProductInWishList () {
       return this.isWished(this.product)
     },
+
     ...mapState({
       wishList: state => state.cart.wishList
     })
   },
+
   methods: {
     deletecart () {
       const product = { ...this.product }
@@ -99,12 +103,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.product_img{
-  height: 100px;
-  object-fit: contain;
-  width: 100px;
-  padding: 10px;
-}
 .cart-option{
   .btn{
     border-radius: 0;
@@ -114,5 +112,70 @@ export default {
       border-right: 0 !important;
     }
   }
+}
+
+.ws-product {
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    display: flex;
+}
+
+figure {
+    height: 130px;
+    width: 130px;
+    overflow: hidden;
+    margin: 0;
+    .product_img {
+        height: 100%;
+        object-fit: cover;
+        -webkit-user-drag: none;
+    }
+}
+
+.product-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 130px;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+        font-size: 20px;
+        text-transform: uppercase;
+
+        .title {
+            font-weight: 500;
+        }
+
+        .desc {
+            font-weight: 300;
+            margin-top: -10px;
+        }
+    }
+
+    .prices {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 16px;
+
+        .price {
+            font-weight: 500;
+        }
+
+        hr {
+            margin: 0;
+            border: none;
+            height: 16px;
+            width: 2px;
+            background: black;
+        }
+
+        .size {
+            font-weight: 300;
+        }
+    }
 }
 </style>

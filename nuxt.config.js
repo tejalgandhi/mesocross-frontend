@@ -86,6 +86,7 @@ export default {
     'vue-social-sharing/nuxt',
     '@nuxtjs/sitemap'
   ],
+
   sitemap: {
     filter({routes}) {
       return routes.map(route => {
@@ -100,6 +101,7 @@ export default {
     version: 2, // Version
     size: 'normal' // Size: 'compact', 'normal', 'invisible' (v2)
   },
+
   i18n: {
     locales: [
       {

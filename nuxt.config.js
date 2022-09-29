@@ -87,16 +87,10 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/robots'
   ],
-  robots: [
-    {
-      UserAgent: 'Googlebot',
-      Disallow: ['/user', '/admin'],
-    },
-    {
-      UserAgent: '*',
-      Disallow: '/admin',
-    },
-  ],
+  robots: {
+    UserAgent: '*',
+    Disallow: '/'
+  },
   sitemap: {
     hostname: process.env.BASE_URL,
     defaults: {

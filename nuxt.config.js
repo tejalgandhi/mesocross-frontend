@@ -84,9 +84,13 @@ export default {
     '@nuxtjs/recaptcha',
     '@nuxt/image',
     'vue-social-sharing/nuxt',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
-
+  robots: {
+    UserAgent: '*',
+    Disallow: '/'
+  },
   sitemap: {
     hostname: process.env.BASE_URL,
     defaults: {

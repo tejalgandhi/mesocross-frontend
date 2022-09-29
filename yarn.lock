@@ -1530,11 +1530,6 @@
   "resolved" "https://registry.npmjs.org/@nuxtjs/recaptcha/-/recaptcha-1.1.1.tgz"
   "version" "1.1.1"
 
-"@nuxtjs/robots@^2.5.0":
-  "integrity" "sha512-z1F3HXb05NiZga8Cuq6k5bbowfJOScPtbSOakip0nege+1aI9pGoajzap8eR5s1qwLXAk9Ts+NcgetoUn5lwrQ=="
-  "resolved" "https://registry.npmjs.org/@nuxtjs/robots/-/robots-2.5.0.tgz"
-  "version" "2.5.0"
-
 "@nuxtjs/sitemap@^2.4.0":
   "integrity" "sha512-TVgIYOtPp7KAfaUo76WRpGbO20j4D/xi/A7shFIGjARHs+FvfAWXNCtBT87dTwe/RoYzAsEKtijFFUTaSu5bUA=="
   "resolved" "https://registry.npmjs.org/@nuxtjs/sitemap/-/sitemap-2.4.0.tgz"
@@ -8467,11 +8462,6 @@
   "integrity" "sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0="
   "resolved" "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz"
   "version" "1.0.1"
-
-"nuxt-robots-module@^1.5.1":
-  "integrity" "sha512-A12tQkAfhGOCMhadqJqZcMFmFB4QWHKdNO75vZU9Lteh5bp8CyPCuzYgXVHG4LC5aHs5defBjsX9ja4FQCYA+w=="
-  "resolved" "https://registry.npmjs.org/nuxt-robots-module/-/nuxt-robots-module-1.5.1.tgz"
-  "version" "1.5.1"
 
 "nuxt@^2.15.7":
   "integrity" "sha512-ceK3qLg/Baj7J8mK9bIxqw9AavrF+LXqwYEreBdY/a4Sj8YV4mIvhqea/6E7VTCNNGvKT2sJ/TTJjtfQ597lTA=="

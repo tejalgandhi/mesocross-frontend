@@ -91,5 +91,3 @@ sw.*
 
 #ignore build files
 build-dir/
-
-lang/

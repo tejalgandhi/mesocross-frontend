@@ -86,6 +86,7 @@ export default {
     'vue-social-sharing/nuxt',
     '@nuxtjs/sitemap'
   ],
+
   sitemap: {
     hostname: process.env.BASE_URL,
     defaults: {
@@ -93,8 +94,8 @@ export default {
       changefreq: 'weekly',
       priority: 0.8
     },
-    filter({routes}) {
-      return routes.map(route => {
+    filter ({ routes }) {
+      return routes.map((route) => {
         route.url = `${route.url}/`
         return route
       })

@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
         "lang:generate": "node static/lang.js",
-        "dev": "nuxt",
-        "build": "nuxt build",
+        "dev": "npm run lang:generate && nuxt",
+        "build": "npm run lang:generate && nuxt build",
         "start": "nuxt start",
         "generate": "npm run lang:generate && nuxt generate && gulp",
         "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",

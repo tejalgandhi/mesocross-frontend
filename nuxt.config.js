@@ -86,6 +86,7 @@ export default {
     'vue-social-sharing/nuxt',
     '@nuxtjs/sitemap'
   ],
+
   sitemap: {
     hostname: process.env.BASE_URL,
     defaults: {

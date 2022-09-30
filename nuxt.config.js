@@ -18,11 +18,11 @@ export default {
       { src: 'https://js.stripe.com/v3/' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.cdnfonts.com/css/arquitecta'
-      }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+    //   {
+    //     rel: 'stylesheet',
+    //     href: 'https://fonts.cdnfonts.com/css/arquitecta'
+    //   }
     ]
   },
 

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "personal_profile",
+        "query": "",
+        "profiles": [1, 2]
+    },
+    {
+        "name": "company_profile",
+        "query": "company",
+        "profiles": [2]
+    },
+    {
+        "name": "shipping_addresses",
+        "query": "shipping_addresses",
+        "profiles": [1, 2]
+    },
+    {
+        "name": "payment_methods",
+        "query": "payment_methods",
+        "profiles": [1, 2]
+    },
+    {
+        "name": "orders",
+        "query": "orders",
+        "profiles": [1, 2]
+    },
+    {
+        "name": "ledger",
+        "query": "ledger",
+        "profiles": [1, 2]
+    }
+]

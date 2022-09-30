@@ -155,7 +155,7 @@ export default {
         }
 
         .description {
-            font-weight: 100;
+            font-weight: 200;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -214,7 +214,7 @@ export default {
             width: 20rem;
             display: flex;
             justify-content: space-between;
-            font-weight: 100;
+            font-weight: 200;
             text-transform: uppercase;
             font-size: 14px;
             padding-inline: 10px;

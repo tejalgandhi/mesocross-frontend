@@ -236,7 +236,7 @@ export default {
                     gap: 0.5rem;
                     text-transform: uppercase;
                     span {
-                        font-weight: 100;
+                        font-weight: 200;
                         font-size: 18px;
                     }
 

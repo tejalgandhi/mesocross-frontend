@@ -126,7 +126,7 @@ export default {
     p{
       margin-top: 60px;
       font-size: 30px;
-      font-weight: normal;
+      font-weight: 200;
     }
     a.btn-bnr{
       border: 1px solid #FFFFFF;

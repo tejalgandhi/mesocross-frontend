@@ -50,6 +50,12 @@ export default {
             align-items: center;
             background: rgba(255,255,255,0.1);
             border-radius: 2px;
+            transition: 0.2s;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.048);
+            }
+
             img {
                 width: 100%;
                 object-fit: contain;

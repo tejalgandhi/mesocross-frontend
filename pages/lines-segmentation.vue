@@ -101,7 +101,7 @@ export default {
             width: 75%;
             margin: 0 auto;
             text-align: center;
-            font-weight: 100;
+            font-weight: 200;
             font-size: 30px;
         }
 
@@ -180,7 +180,7 @@ export default {
             div {
                 p, a, ul, li, span, div {
                     margin-top: 1rem;
-                    font-weight: 100;
+                    font-weight: 200;
                     font-size: 24px;
                 }
             }

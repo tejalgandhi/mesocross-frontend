@@ -10,6 +10,8 @@
             :src="product.feature_image"
             alt="product_image"
             quality="100"
+            width="600"
+            height="600"
           />
           <nuxt-img
             v-show="hoverImage"
@@ -18,6 +20,8 @@
             :src="hoverImg"
             alt="product_image"
             quality="100"
+            width="600"
+            height="600"
           />
         </figure>
       </div>
@@ -236,7 +240,7 @@ export default {
                     gap: 0.5rem;
                     text-transform: uppercase;
                     span {
-                        font-weight: 100;
+                        font-weight: 200;
                         font-size: 18px;
                     }
 

@@ -57,7 +57,7 @@ img { max-width: 100%; vertical-align: middle; border-radius: 0 }
 :-ms-input-placeholder {color:#B9B9B9;}
 body{color: #fff;font-family: 'Arquitecta', sans-serif; font-weight: 300;}
 h1, h2, h3, h4, h5, h6{margin:0;padding:0}
-p{ font-weight: 300;font-family: 'Arquitecta', sans-serif;}
+p{ font-weight: 200;font-family: 'Arquitecta', sans-serif;}
 .trans{transition:300ms all;-webkit-transition:300ms all;}
 /*Custom Checkbox*/
 /*Custom Checkbox*/

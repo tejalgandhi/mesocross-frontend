@@ -5,7 +5,7 @@
     </figure>
     <div class="categories">
       <template v-for="(item, i) in data.childrens">
-        <span :key="i" @click="goTo(`/products/${item.slug}`)">{{ item.name.en }}</span>
+        <span :key="i" @click="goTo(`/products/${item.slug}`)">{{ item.name }}</span>
       </template>
     </div>
   </div>
@@ -50,6 +50,12 @@ export default {
             align-items: center;
             background: rgba(255,255,255,0.1);
             border-radius: 2px;
+            transition: 0.2s;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.048);
+            }
+
             img {
                 width: 100%;
                 object-fit: contain;

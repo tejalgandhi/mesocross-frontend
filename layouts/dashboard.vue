@@ -52,7 +52,7 @@ export default {
   },
 
   created () {
-    if (this.$auth.loggedIn) {
+    if (this.$auth.$state.loggedIn) {
       this.getWishList()
       this.getCart()
     } else {

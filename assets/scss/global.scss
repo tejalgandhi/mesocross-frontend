@@ -50,6 +50,49 @@ $theme-colors: (
 // Then include the following
 @import 'bootstrap/scss/bootstrap.scss';
 @import 'bootstrap-vue/src/index.scss';
+
+    //Thin
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/ArquitectaThin.otf") format("opentype");
+        font-weight: 100;
+    }
+
+    //Light
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/ArquitectaLight.otf") format("opentype");
+        font-weight: 200;
+    }
+
+    //Regular
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/Arquitecta.otf") format("opentype");
+        font-weight: 300;
+    }
+
+    //Bold
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/ArquitectaMedium.otf") format("opentype");
+        font-weight: 400;
+    }
+
+    //Heavy
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/ArquitectaBold.otf") format("opentype");
+        font-weight: 500;
+    }
+
+    //Heavy
+    @font-face {
+        font-family: "Arquitecta";
+        src: url("@/assets/font/ArquitectaHeavy.otf") format("opentype");
+        font-weight: 500;
+    }
+
 p{
     margin-bottom: 0;
 }
@@ -96,4 +139,19 @@ p{
 
 .accordion .card  {
     background-color: inherit;
+}
+
+.new {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    color: #25282A;
+    width: 200px;
+    display: block;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.9);
+    }
 }

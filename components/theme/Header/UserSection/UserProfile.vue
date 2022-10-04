@@ -1,6 +1,6 @@
 <template>
   <article>
-    <template v-if="!$auth.loggedIn">
+    <template v-if="!$auth.$state.loggedIn">
       <span class="log" @click=";goTo('/login'), $emit('close')">{{ $t('login') }} / {{ $t('register') }}</span>
     </template>
     <template v-else>

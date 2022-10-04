@@ -2,13 +2,11 @@
   <div class="col-lg-12">
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6 position-relative">
-        <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
+        <a v-if="$auth.$state.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
           <img v-if="isInWhishlist(product)" :src="require('@/assets/img/Heart_icon_selected.svg')" alt="image" class="wishicon">
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
-        <nuxt-link
-          :to="productLink(product.slug)"
-        >
+        <article @click="goTo(productLink(product.slug))">
           <div
             class="product_box"
             @mouseover="hoveredImage = index"
@@ -35,14 +33,16 @@
               />
             </div>
             <div class="content_box d-flex align-items-end justify-content-center text-center text-uppercase">
-              <div class="inline-box">
+              <div class="product-info">
+                <span class="category">category</span>
                 <label>{{ product.name }}</label>
-                <p>{{ product.short_description }}</p>
-                <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
+                <hr>
+                <span class="desc">{{ product.short_description }}</span>
+                <span v-if="$auth.$state.loggedIn">{{ productPrice(product) }}€</span>
               </div>
             </div>
           </div>
-        </nuxt-link>
+        </article>
       </div>
       <div v-if="products.length == 0" class="my-5 col-12 text-center">
         <h3>{{ $t('no_product_found') }}</h3>
@@ -67,20 +67,29 @@ export default {
       default: null
     }
   },
+
   data () {
     return {
       hoveredImage: null
     }
   },
+
   computed: {
+    ...mapState({
+      wishList: state => state.cart.wishList,
+      isLoggedin: state => state.user.loggedIn
+    }),
+
     ...mapGetters({
       isWished: 'cart/isWished'
     }),
+
     productImage () {
       return (product) => {
         return product.feature_image ? `${process.env.uploadURL}${product.feature_image}` : ''
       }
     },
+
     productPrice () {
       return (product) => {
         if (product && product.price) {
@@ -91,18 +100,26 @@ export default {
         }
       }
     },
+
     isInWhishlist () {
       return this.isWished
-    },
-    ...mapState({
-      wishList: state => state.cart.wishList,
-      isLoggedin: state => state.user.loggedIn
-    })
+    }
   },
+
+  mounted () {
+    console.log(this.products)
+  },
+
   methods: {
+    ...mapActions({
+      fetchProducts: 'product/fetchProducts',
+      addWishList: 'cart/addWishList'
+    }),
+
     productLink (slug) {
       return `/product-detail/${slug}` + (this.segmentId ? `?segment=${this.segmentId}` : '')
     },
+
     addToWishlist (product) {
       const singleProduct = {
         name: product.name,
@@ -116,10 +133,10 @@ export default {
       }
       this.addWishList(singleProduct)
     },
-    ...mapActions({
-      fetchProducts: 'product/fetchProducts',
-      addWishList: 'cart/addWishList'
-    })
+
+    goTo (link) {
+      this.$router.push(link)
+    }
   }
 }
 </script>
@@ -142,25 +159,84 @@ export default {
   text-transform: uppercase;
   opacity: 1;
 }
-p {
-  color: #FFFFFF;
-  opacity: 0.6;
-  font: normal normal normal 16px/22px Arquitecta;
 
-}
-.img_box {
-  height: 307px;
-  margin-bottom: 2rem;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: 0.6s;
-    transform: scale(1.0);
-    max-height: 300px;
-        @media (max-width: 767px){
-            max-height: 110px;
+article {
+    cursor: pointer;
+
+    .img_box {
+        height: 400px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: 0.6s;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: 0.6s;
+            transform: scale(1.0);
+        }
+    }
+
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .category {
+            width: fit-content;
+            font-weight: 100;
+            font-size: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            transition: 0.2s;
+
+            &::before, &::after {
+                content: '';
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: white;
+                transform: rotate(45deg);
+            }
+
+            &::before {
+                left: -12px;
+            }
+
+            &::after {
+                right: -12px;
+            }
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 20px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            transition: 0.2s;
+        }
+
+        hr {
+            margin: 0;
+            border: none;
+            width: 3rem;
+            height: 1px;
+            background: white;
+        }
+
+        .desc {
+            margin-top: 10px;
+            font-weight: 400;
+            font-size: 20px;
         }
     }
 }
+
 </style>

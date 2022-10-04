@@ -9,7 +9,7 @@
         <span>{{ single.title }}</span>
         <div> {{ single.description | singleContent }} </div>
         <small>{{ $moment(single.created_at).format('D MMM YYYY') }}</small><br>
-        <a v-if="$auth.loggedIn" :href="single.document" target="_blank">Download</a>
+        <a v-if="$auth.$state.loggedIn" :href="single.document" target="_blank">Download</a>
       </div>
     </div>
   </div>

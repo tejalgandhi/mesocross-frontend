@@ -101,7 +101,7 @@ export default {
             width: 75%;
             margin: 0 auto;
             text-align: center;
-            font-weight: 100;
+            font-weight: 200;
             font-size: 30px;
         }
 
@@ -148,14 +148,12 @@ export default {
 
                 figure {
                     width: calc(50% - 1rem);
-                    height: 100%;
                     position: absolute;
-                    bottom: 0;
+                    top: 20px;
                     right: 0;
-                    // top: calc(100px + 4rem);
-                    // right: 0;
                     z-index: 0;
                     margin: 0;
+                    height: 720px;
 
                     @media screen and (max-width: 768px){
                         display: none;
@@ -164,7 +162,6 @@ export default {
                     img {
                         width: 100%;
                         height: 100%;
-                        // height: calc(100% - 200px - 4rem);
                         object-fit: cover;
                     }
                 }
@@ -180,7 +177,7 @@ export default {
             div {
                 p, a, ul, li, span, div {
                     margin-top: 1rem;
-                    font-weight: 100;
+                    font-weight: 200;
                     font-size: 24px;
                 }
             }

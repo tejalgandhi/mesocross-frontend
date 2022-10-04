@@ -78,7 +78,7 @@ export default {
                 align-items: center;
                 gap: 0.5rem;
                 span {
-                    font-weight: 100;
+                    font-weight: 200;
                 }
 
                 .star {
@@ -110,7 +110,7 @@ export default {
             }
 
             .desc {
-                font-weight: 100;
+                font-weight: 200;
                 font-size: 20px;
                 text-transform: uppercase;
             }

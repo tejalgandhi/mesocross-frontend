@@ -48,7 +48,6 @@
       <div class="container-fluid">
         <div class="row">
           <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="getProducts" />
-
           <div v-if="currentPage < totalPages " class="view_more" @click="currentPage += 1">
             <span>{{ $t('view_more') }}</span>
           </div>

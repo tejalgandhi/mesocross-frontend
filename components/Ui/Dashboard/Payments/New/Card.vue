@@ -90,7 +90,7 @@ export default {
         border-color: #E0E0E0;
         border-radius: 4px;
         width: 100%;
-        max-width: 20rem;
+        max-width: 24rem;
         aspect-ratio: 16/9;
         padding: 10px;
         overflow: hidden;
@@ -141,6 +141,8 @@ export default {
                 padding: 5px 10px;
                 font-weight: 400;
                 border-radius: 2px;
+                font-size: 12px;
+                color: #25282A;
             }
 
             .row {

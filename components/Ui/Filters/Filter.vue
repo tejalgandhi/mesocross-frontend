@@ -57,6 +57,9 @@ export default {
             padding-left: 30px;
             cursor: pointer;
             user-select: none;
+            @media screen and (max-width: 1200px){
+                font-size: 24px;
+            }
 
             &::before {
                 content: '';
@@ -84,6 +87,9 @@ export default {
                 padding-left: 30px;
                 cursor: pointer;
                 user-select: none;
+                @media screen and (max-width: 1200px){
+                    font-size: 20px;
+                }
 
                 &::before {
                     content: '';

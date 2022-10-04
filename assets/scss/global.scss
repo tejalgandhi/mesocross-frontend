@@ -140,3 +140,18 @@ p{
 .accordion .card  {
     background-color: inherit;
 }
+
+.new {
+    text-align: center;
+    padding: 10px;
+    background: white;
+    color: #25282A;
+    width: 200px;
+    display: block;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.9);
+    }
+}

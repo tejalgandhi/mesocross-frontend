@@ -14,12 +14,13 @@
       <div v-else class="loading">
         <span class="loader" />
       </div>
+      <span class="clear" @click="setFilters([])">clear</span>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -42,6 +43,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations({
+      setFilters: 'product/setSelectedFilters'
+    }),
+
     async getCategories () {
       this.loaded = false
       const response = await this.$axios.get('/segment-category-relation')
@@ -62,8 +67,6 @@ export default {
         slug: 'lines',
         childrens: response.data.data.filter(el => !el.segment_id)
       })
-
-    //   this.categories = response.data.data
     },
 
     async getSkincares () {
@@ -134,6 +137,10 @@ export default {
                 padding: 0 80px;
                 color: black;
                 text-transform: uppercase;
+                @media screen and (max-width: 1200px){
+                    padding: 0 40px;
+                    font-size: 16px;
+                }
 
                 .back {
                     position: relative;
@@ -161,14 +168,6 @@ export default {
                 }
             }
 
-            hr {
-                background: rgba(0, 0, 0, 0.1);
-                width: calc(100% - 160px);
-                margin: 0 auto;
-                height: 1px;
-                border: none;
-            }
-
             .filter {
                 display: flex;
                 flex-direction: column;
@@ -180,6 +179,11 @@ export default {
                 padding: 0 80px;
                 margin: 20px 0 40px;
 
+                @media screen and (max-width: 1200px){
+                    margin: 20px 0;
+                    padding: 0 40px;
+                }
+
                 &::-webkit-scrollbar {
                     display: none;
                 }
@@ -190,45 +194,22 @@ export default {
                 }
             }
 
-            .go-cart {
+            .clear {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 1rem;
                 width: 100%;
-                height: 8rem;
+                height: 4rem;
                 padding: 0 40px;
-                background: #0000001F;
-
-                .total {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-
-                    .subtotal {
-                        text-transform: uppercase;
-                        font-weight: 500;
-                    }
-
-                    .value {
-                        font-weight: 600;
-                        font-size: 1.2rem;
-                    }
-                }
-
-                .btn {
-                    width: 100%;
-                    padding: 10px 0;
-                    background: #25282A;
-                    color: white;
-                    text-transform: capitalize;
-                    font-weight: 500;
-                    transition: 0.2s;
-
-                    &:hover {
-                        background: #25282ad7;
-                    }
+                background: #000000af;
+                cursor: pointer;
+                text-transform: uppercase;
+                font-size: 20px;
+                font-weight: 300;
+                @media screen and (max-width: 1200px){
+                    font-size: 16px;
                 }
             }
         }

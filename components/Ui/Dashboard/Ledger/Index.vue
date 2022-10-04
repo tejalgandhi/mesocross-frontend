@@ -86,9 +86,18 @@ export default {
       this.handleData(this.fullData)
     },
 
-    handleItemClick (id) {
+    async handleItemClick (id) {
       const item = this.fullData.filter(el => el.Key === id)[0]
-      console.log(item.Document_No)
+
+      const response = await this.$axios.get(`order/invoice/${item.Document_No}`, {
+        responseType: 'arraybuffer'
+      })
+      const blob = new Blob([response.data], { type: 'application/pdf' })
+      const download = document.createElement('a')
+      download.href = URL.createObjectURL(blob)
+      download.setAttribute('download', `${item.Document_No}.pdf`)
+      download.click()
+      this.$nuxt.$emit('downloaded')
     },
 
     handleData (data) {

@@ -5,7 +5,7 @@
     </figure>
     <div class="categories">
       <template v-for="(item, i) in data.childrens">
-        <span :key="i" @click="goTo(`/products/${item.slug}`)">{{ item.name.en }}</span>
+        <span :key="i" @click="goTo(`/products/${item.slug}`)">{{ item.name }}</span>
       </template>
     </div>
   </div>

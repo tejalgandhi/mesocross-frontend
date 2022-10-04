@@ -153,7 +153,7 @@ export default {
   },
 
   async mounted () {
-    if (!this.$auth.loggedIn) {
+    if (!this.$auth.$state.loggedIn) {
       this.$router.push('/login')
     }
     // this.$axios.get('/stripe/create-customer')

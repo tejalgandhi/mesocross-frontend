@@ -1011,5 +1011,33 @@ export default {
     "mesocross_training": "MESOCROSS Training",
     "documents": "Documents",
     "customer_service": "Customer Service"
+  },
+  "order": {
+    "number": "Número de Pedido",
+    "payment_method": "Método de pago",
+    "total_amount": "Cantidad total",
+    "product": "Producto",
+    "quantity": "Cantidad",
+    "payment_status": "Estado de pago",
+    "order_status": "Estado del Pedido",
+    "price": "Valor",
+    "date": "Fecha de Pedido",
+    "pending": "Pendiente",
+    "file": "Expediente",
+    "created_at": "Creado en",
+    "status": "Estado",
+    "order": "Pedido",
+    "your_order_was_successful": "Su orden ha sido completada satisfactoriamente.",
+    "your_ticket_order_is": "Su ID de pedido es el",
+    "method": {
+      "cash": "Dinero",
+      "card": "Tarjeta"
+    }
+  },
+  "ledger_keys": {
+    "date": "Data",
+    "order": "Pedido",
+    "type": "Tipo",
+    "ammount": "Cantidad"
   }
 }

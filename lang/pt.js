@@ -35,7 +35,7 @@ export default {
   "thank_contacting_us_message": "Thank you for contacting us. We will get back to you soon",
   "email": "Email",
   "country": "País",
-  "subject": "Sujeita",
+  "subject": "Assunto",
   "your_message": "Your Message",
   "Thank_you": "Thank you",
   "we_got_inquiry": "We got inquiry",
@@ -402,7 +402,7 @@ export default {
     "thank_contacting_us_message": "Thank you for contacting us. We will get back to you soon",
     "email": "Email",
     "country": "País",
-    "subject": "Sujeita",
+    "subject": "Assunto",
     "your_message": "Your Message",
     "Thank_you": "Thank you",
     "we_got_inquiry": "We got inquiry",
@@ -1004,5 +1004,35 @@ export default {
     "mesocross_training": "MESOCROSS Training",
     "documents": "Documents",
     "customer_service": "Customer Service"
+  },
+  "order": {
+    "number": "Número de Encomenda",
+    "payment_method": "Método de Pagamento",
+    "total_amount": "Valor Total",
+    "product": "Produto",
+    "quantity": "Quantidade",
+    "payment_status": "Estado do Pagamento",
+    "order_status": "Estado da Encomenda",
+    "price": "Valor",
+    "date": "Data da Encomenda",
+    "pending": "Pendente",
+    "file": "Ficheiro",
+    "created_at": "Criada a",
+    "total_value": "Valor Total",
+    "document": "Documento",
+    "status": "Estados",
+    "order": "Encomenda",
+    "your_order_was_successful": "A tua encomenta foi concluída com sucesso.",
+    "your_ticket_order_is": "O id da tua encomenda é o",
+    "method": {
+      "cash": "Dinheiro",
+      "card": "Cartão"
+    }
+  },
+  "ledger_keys": {
+    "date": "Data",
+    "order": "Encomenda",
+    "type": "Tipo",
+    "ammount": "Valor"
   }
 }

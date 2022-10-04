@@ -32,8 +32,8 @@ export default {
         parent_id: payload.parent_id,
         child: payload.child
       })
-      if (payload.parent_id === null && payload.child.length > 0) {
-        selectedFilter = selectedFilter.concat(payload.child)
+      if (!payload.parent_id && payload.childrens.length) {
+        selectedFilter = selectedFilter.concat(payload.childrens)
       }
     } else {
       const index = selectedFilter.findIndex(data => data.id === payload.id)

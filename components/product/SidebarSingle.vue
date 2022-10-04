@@ -9,7 +9,7 @@
           <h6 class="text-uppercase">
             {{ product.name }}
           </h6>
-          <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
+          <span v-if="productPrice && $auth.$state.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
     </div>

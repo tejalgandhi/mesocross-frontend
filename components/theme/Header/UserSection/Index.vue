@@ -56,7 +56,7 @@ export default {
       loggedinUser: state => state.user.loggedinUser
     }),
     fullName () {
-      return (this.$auth.loggedIn && this.loggedinUser?.full_name) ? `${this.loggedinUser?.full_name.substring(0, 5)}...` : ''
+      return (this.$auth.$state.loggedIn && this.loggedinUser?.full_name) ? `${this.loggedinUser?.full_name.substring(0, 5)}...` : ''
     },
     userName () {
       let userName = this.loggedinUser.full_name

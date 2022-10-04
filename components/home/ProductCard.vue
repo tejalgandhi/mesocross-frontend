@@ -7,7 +7,7 @@
         <div class="desc_box">
           {{ productInfo.name }}
           <p>{{ productInfo.short_description }}</p>
-          <span v-if="$auth.loggedIn">{{ productInfo.product_size.price }}€</span>
+          <span v-if="$auth.$state.loggedIn">{{ productInfo.product_size.price }}€</span>
         </div>
       </nuxt-link>
     </div>

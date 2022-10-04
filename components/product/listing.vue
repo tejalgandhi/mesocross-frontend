@@ -2,7 +2,7 @@
   <div class="col-lg-12">
     <div class="row">
       <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-6 position-relative">
-        <a v-if="$auth.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
+        <a v-if="$auth.$state.loggedIn" href="javascript:void(0)" class="fav-icon" @click="addToWishlist(product)">
           <img v-if="isInWhishlist(product)" :src="require('@/assets/img/Heart_icon_selected.svg')" alt="image" class="wishicon">
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
@@ -38,7 +38,7 @@
               <div class="inline-box">
                 <label>{{ product.name }}</label>
                 <p>{{ product.short_description }}</p>
-                <span v-if="$auth.loggedIn">{{ productPrice(product) }}€</span>
+                <span v-if="$auth.$state.loggedIn">{{ productPrice(product) }}€</span>
               </div>
             </div>
           </div>

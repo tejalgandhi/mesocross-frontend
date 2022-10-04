@@ -48,16 +48,16 @@
                       </div>
                     </div>
                     <span />
-                    <div v-show="$auth.loggedIn && child.price">
+                    <div v-show="$auth.$state.loggedIn && child.price">
                       <a class="btn btn-outline-primary d-flex w-100 px-3 button-price mb-2 justify-content-center" @click="cart(child)">
                         <small>
                           {{ child.price }}€
                         </small>
-                        <small class="add_cart_text">{{$t('add_to_bag')}}<b-icon-chevron-right /></small>
+                        <small class="add_cart_text">{{ $t('add_to_bag') }}<b-icon-chevron-right /></small>
                       </a>
                     </div>
-                    <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.loggedIn, 'justify-content-center': !$auth.loggedIn} ]">
-                      <a v-if="$auth.loggedIn" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist(child)">
+                    <div :class="['d-flex align-items-center', { 'justify-content-between' : $auth.$state.loggedIn, 'justify-content-center': !$auth.$state.loggedIn} ]">
+                      <a v-if="$auth.$state.loggedIn" class="btn px-0 text-underline" href="javascript:void(0)" @click="addToWishlist(child)">
                         {{ isProductInWishList(child.product_id) ? 'ADDED' : 'ADD' }}  TO MY STAR LIST
                       </a>
                       <div v-show="child.ref_number" class="text-uppercase btn px-0">
@@ -120,7 +120,7 @@ export default {
     })
   },
   mounted () {
-    if (this.$auth.loggedIn) {
+    if (this.$auth.$state.loggedIn) {
       this.getCart()
       this.getWishList()
     }

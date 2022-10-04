@@ -1017,5 +1017,38 @@ export default {
     "mesocross_training": "MESOCROSS Training",
     "documents": "Documents",
     "customer_service": "Customer Service"
+  },
+  "order": {
+    "number": "Order Number",
+    "payment_method": "Payment Method",
+    "total_amount": "Total Amount",
+    "product": "Product",
+    "quantity": "Quantity",
+    "payment_status": "Payment Status",
+    "order_status": "Order Status",
+    "price": "Value",
+    "date": "Date of order",
+    "pending": "Pending",
+    "file": "File",
+    "document": "Document",
+    "created_at": "Created at",
+    "status": "Status",
+    "order": "Order",
+    "total_value": "Total Value",
+    "your_order_was_successful": "Your order was made successuly.",
+    "your_ticket_order_is": "Your ticket order is",
+    "sub_total": "Sub Total",
+    "shipping_price": "Sub Shipping Price",
+    "size": "Size",
+    "method": {
+      "cash": "Cash",
+      "card": "Card"
+    }
+  },
+  "ledger_keys": {
+    "date": "Date",
+    "order": "Order",
+    "type": "Type",
+    "ammount": "Ammount"
   }
 }

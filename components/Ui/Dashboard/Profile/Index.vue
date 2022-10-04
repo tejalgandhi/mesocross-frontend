@@ -275,7 +275,7 @@ export default {
             color: white;
             padding: 10px 20px;
             display: flex;
-            justify-content: start;
+            justify-content: flex-start;
             align-items: center;
             gap: 0.5rem;
             transition: 0.2s;

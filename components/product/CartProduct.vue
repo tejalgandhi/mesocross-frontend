@@ -16,7 +16,7 @@
           <span class="title"> {{ product.slug }} </span>
           <span class="desc">{{ product.short_description }}</span>
         </div>
-        <div v-if="product.price && $auth.loggedIn" class="prices">
+        <div v-if="product.price && $auth.$state.loggedIn" class="prices">
           <span class="price">{{ (product.price * Number(product.qty) ).toFixed(2) }}€</span>
           <hr>
           <span class="size">{{ product.size }}</span>

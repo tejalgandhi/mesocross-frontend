@@ -40,7 +40,7 @@
                 </ValidationProvider>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12">
               <label for="Country">{{ $t('country') }} * </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('country')" rules="required">
@@ -52,15 +52,6 @@
                       {{ country.label }}
                     </option>
                   </select>
-                  <span class="errors text-danger">{{ errors[0] }}</span>
-                </ValidationProvider>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label for="">{{ $t('subject') }} * </label>
-              <div class="position-relative">
-                <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
-                  <input v-model="form.subject" type="text" class="form-control">
                   <span class="errors text-danger">{{ errors[0] }}</span>
                 </ValidationProvider>
               </div>
@@ -87,7 +78,16 @@
               </ValidationProvider>
             </div>
             <div class="col-12">
-              <label for="">{{ $t('message') }} * </label>
+              <label for="">{{ $t('subject') }} * </label>
+              <div class="position-relative">
+                <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
+                  <input v-model="form.subject" type="text" class="form-control">
+                  <span class="errors text-danger">{{ errors[0] }}</span>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="">{{ $t('common.message') }} * </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('message')" rules="required">
                   <textarea id="comment" v-model="form.message" class="form-control" rows="5" />

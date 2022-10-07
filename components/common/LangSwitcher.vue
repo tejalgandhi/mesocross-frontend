@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="bg-transparent d-flex align-items-center text-dark" @click="$bvModal.show('lang')">
-      {{ userCountryCode }}{{ $i18n.locale.toUpperCase() }}
+      {{ $i18n.locale.toUpperCase() }}
       <img src="../../assets/img/angel-down.svg" class="icon-down ml-2" alt="image">
     </button>
 
@@ -69,11 +69,6 @@ export default {
     selectedLocaleName () {
       const selectedName = this.$i18n.locales.filter(i => i.code === this.$i18n.locale)
       return selectedName[0]
-    },
-    userCountryCode () {
-      let userCode = ''
-      if (this.loggedinUser?.country_code) { userCode = `${this.loggedinUser.country_code}/` }
-      return userCode
     },
     ...mapState({
       languageSelected: state => state.lang,

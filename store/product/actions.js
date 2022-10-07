@@ -18,6 +18,7 @@ export default {
     })
     commit('setFilter', parentCategories)
   },
+
   selectFilter ({ commit, state, dispatch }, payload) {
     // eslint-disable-next-line prefer-const
     let selectedFilter = [...state.selectedFilters]
@@ -32,23 +33,46 @@ export default {
         parent_id: payload.parent_id,
         child: payload.child
       })
-      if (payload.parent_id === null && payload.child.length > 0) {
-        selectedFilter = selectedFilter.concat(payload.child)
+      if (!payload.parent_id && payload.childrens.length) {
+        selectedFilter = selectedFilter.concat(payload.childrens)
       }
     } else {
+      const indexes = []
+
       const index = selectedFilter.findIndex(data => data.id === payload.id)
-      selectedFilter.splice(index, 1)
+      indexes.push(index)
+
+      if (!payload.parent_id && payload.childrens.length) {
+        const ids = payload.childrens.map(el => el.id)
+        const childs = selectedFilter.map((el, i) => {
+          if (ids.includes(el.id)) {
+            return i
+          }
+          return undefined
+        })
+
+        indexes.push(...childs)
+      }
+
+      indexes.sort((a, b) => b - a).forEach((el) => {
+        if (el >= 0) {
+          selectedFilter.splice(el, 1)
+        }
+      })
     }
     commit('setSelectedFilters', selectedFilter)
   },
+
   filterRemove ({ commit, state, dispatch }, index) {
     const selectedFilter = [...state.selectedFilters]
     selectedFilter.splice(index, 1)
     commit('setSelectedFilters', selectedFilter)
   },
+
   setTreatment ({ commit }, payload) {
     commit('setTreatment', payload)
   },
+
   async getTreatmentSolutions ({ commit }, payload = null) {
     const { data } = await this.$axios.$get(`/treatment-solutions?type=${payload}`)
     commit('setTreatmentSolutions', data)

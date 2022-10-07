@@ -6,6 +6,7 @@
       <span class="loader" />
     </div>
     <div v-show="!loading">
+      <UiFilters v-if="showFilters" @close="showFilters = false" />
       <Nuxt @click="isClicked(false)" />
     </div>
 
@@ -19,7 +20,8 @@ export default {
     return {
       data: [],
       pageBackground: '',
-      customBg: false
+      customBg: false,
+      showFilters: false
     }
   },
 
@@ -43,6 +45,9 @@ export default {
 
   created () {
     this.getData()
+    this.$nuxt.$on('showFilters', () => {
+      this.showFilters = true
+    })
 
     if (this.$auth.$state.loggedIn) {
       this.getWishList()

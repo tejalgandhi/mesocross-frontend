@@ -21,7 +21,7 @@
           <span class="title"> {{ product.name }} </span>
           <span class="desc">{{ product.short_description }}</span>
         </div>
-        <div v-if="productPrice && $auth.loggedIn" class="prices">
+        <div v-if="productPrice && $auth.$state.loggedIn" class="prices">
           <span class="price">{{ productPrice }}€</span>
           <hr>
           <span class="size">{{ productSize.name }}</span>

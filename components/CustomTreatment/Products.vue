@@ -27,12 +27,12 @@
                 <p class="font-16">
                   {{ product.short_description }}
                 </p>
-                <p v-if="$auth.loggedIn" class="font-14 text-dark my-4">
+                <p v-if="$auth.$state.loggedIn" class="font-14 text-dark my-4">
                   {{ productPrice(product) }}€
                 </p>
               </div>
             </nuxt-link>
-            <div v-if="$auth.loggedIn">
+            <div v-if="$auth.$state.loggedIn">
               <button v-if="!isThisProductIsInCart(product.id)" class="w-100 mb-3 d-block btn btn-dark text-white" @click="cart(product)">
                 {{ $t('add_to_cart') }}
               </button>
@@ -100,7 +100,7 @@ export default {
     })
   },
   mounted () {
-    if (this.$auth.loggedIn) {
+    if (this.$auth.$state.loggedIn) {
       this.getCart()
       this.getWishList()
     }

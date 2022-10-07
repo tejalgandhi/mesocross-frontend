@@ -14,7 +14,7 @@
           <p class="product-desc">
             {{ product.short_description }}
           </p>
-          <span v-if="productPrice && $auth.loggedIn" class="price">{{ productPrice }}€</span>
+          <span v-if="productPrice && $auth.$state.loggedIn" class="price">{{ productPrice }}€</span>
         </div>
       </nuxt-link>
     </div>

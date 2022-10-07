@@ -9,8 +9,8 @@
               <div class="col-auto">
                 <div class="sorting d-flex flex-wrap">
                   <button
-                    v-b-toggle.filter-mobile
                     class="btn p-2 ml-2 px-3 d-flex align-items-center"
+                    @click="$nuxt.$emit('showFilters')"
                   >
                     {{ $t('filters') }}
                     <b-icon-chevron-down class="ml-2" />
@@ -45,44 +45,11 @@
           </div>
         </div>
       </div>
-
-      <div class="filter_bar">
-        <b-sidebar
-          id="filter-mobile"
-          v-model="filterSidebar"
-          :title="$t('filters')"
-          backdrop
-          shadow
-          left
-          header-class="py-3 px-4"
-        >
-          <template #footer>
-            <div class="px-0 pt-2 row mx-0 align-items-center">
-              <div class="w-100 col-6 d-block align-self-center text-center uppercase">
-                <p class="" @click="clearAll">
-                  {{ $t('clean') }}
-                </p>
-              </div>
-              <button class="btn w-100 col-6 py-2 d-block apply-filter-btn uppercase" @click="applyMobileFilter">
-                {{ $t('apply') }}
-              </button>
-            </div>
-          </template>
-
-          <ProductFilter
-            ref="filters"
-            class="p-4"
-            @fetchProducts="getProducts"
-            @bestSellingChanged="setBestSellSort"
-          />
-        </b-sidebar>
-        <div class="container-fluid">
-          <div class="row">
-            <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="getProducts" />
-
-            <div v-if="currentPage < totalPages " class="view_more" @click="currentPage += 1">
-              <span>{{ $t('view_more') }}</span>
-            </div>
+      <div class="container-fluid">
+        <div class="row">
+          <ProductListing :segment-id="Number(segId)" :products="products" :paginate="paginate" :loading-finish="loadingFinish" @fetchProducts="getProducts" />
+          <div v-if="currentPage < totalPages " class="view_more" @click="currentPage += 1">
+            <span>{{ $t('view_more') }}</span>
           </div>
         </div>
       </div>
@@ -178,10 +145,8 @@ export default {
 
   methods: {
     removeFilter (index) {
-      setTimeout(() => {
-        this.$refs.filters.removeFilter(this.selectedFilters[index])
-        this.getProducts()
-      }, 100)
+      this.selectFilter(this.selectedFilters[index])
+      this.getProducts()
     },
 
     clearAll () {
@@ -236,6 +201,7 @@ export default {
     },
 
     ...mapActions({
+      selectFilter: 'product/selectFilter',
       filterRemove: 'product/filterRemove'
     }),
     ...mapMutations({

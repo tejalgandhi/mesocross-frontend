@@ -37,7 +37,7 @@ export default {
       if (!to) { return }
 
       if (to.type) {
-        if (to.type === 'category') {
+        if (to.type === 'category' || to.type === 'skincare') {
           this.$router.push(`/products/${to.slug.replace('/', '')}`)
           return
         }

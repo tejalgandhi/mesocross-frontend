@@ -34,7 +34,6 @@
 </template>
 
 <script>
-// import vueAddToCalendar from 'vue-add-to-calendar'
 export default {
 
   components: {

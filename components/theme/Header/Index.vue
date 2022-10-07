@@ -13,7 +13,7 @@
           </figure>
         </div>
         <section class="user-tab" @mouseover="isActive = 0">
-          <ThemeHeaderUserSection />
+<!--          <ThemeHeaderUserSection />-->
         </section>
       </div>
       <nav>

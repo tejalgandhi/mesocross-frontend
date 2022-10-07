@@ -2,7 +2,7 @@
   <div class="best_seller">
     <div class="container">
       <h2 class="text-uppercase text-center font-weight-normal mb-5 mb-lg-4">
-        {{ title }}
+        {{ title }} 2222
       </h2>
       <VueSlickCarousel v-if="products.length" v-bind="settings1" class="pro_slider d-md-none">
         <ProductSingle v-for="(product, index) in products" :key="index+product.id" :product="product" :class-name="'product-slide'" />

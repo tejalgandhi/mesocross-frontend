@@ -50,8 +50,7 @@ export default {
     { src: '@/plugins/axios.js' },
     { src: '@/plugins/persistedstate.js', mode: 'client' },
     { src: '@/plugins/vue-country-dial-code.js' },
-    // { src: '@/plugins/social-share.js' },
-    { src: '@/plugins/vue-add-to-calendar.js' },
+    // { src: '@/plugins/vue-add-to-calendar.js' },
     // { src: '@/plugins/vue-swiper.js', mode: 'client' },
     { src: '@/plugins/stripePlugins.js', mode: 'client' },
     { src: '@/plugins/vClickOutside', ssr: false },
@@ -80,10 +79,8 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/toast',
     '@nuxtjs/moment',
-    // 'vue-social-sharing/nuxt',
     '@nuxtjs/recaptcha',
     '@nuxt/image',
-    'vue-social-sharing/nuxt',
     '@nuxtjs/sitemap'
   ],
 

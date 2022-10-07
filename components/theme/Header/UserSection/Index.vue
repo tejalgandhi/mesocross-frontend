@@ -12,7 +12,6 @@
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
-      {{isLoggedin}}
       <div v-if="isLoggedin" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
         <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </div>

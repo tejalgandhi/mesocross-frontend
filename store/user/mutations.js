@@ -32,6 +32,8 @@ export default {
     this.dispatch('cart/getShippingCharge', null, { root: true })
   },
   setLoggedin (state, payload) {
+    console.log('payload')
+    console.log(payload)
     if (!payload) {
       this.commit('cart/setCartProduct', [], { root: true })
       this.commit('cart/setWishListData', [], { root: true })

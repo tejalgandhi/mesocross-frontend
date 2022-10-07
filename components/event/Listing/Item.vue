@@ -27,20 +27,6 @@
           <button @click="goTo(data.event_link)">
             Event Link
           </button>
-          <vue-add-to-calendar
-            :title="data.title"
-            :location="data.place"
-            :start="new Date(data.start_date)"
-            :end="new Date(data.end_date)"
-            :details="data.description"
-            inline-template
-          >
-            <button class="google">
-              <google-calendar id="google-calendar">
-                Add to calendar
-              </google-calendar>
-            </button>
-          </vue-add-to-calendar>
         </div>
       </div>
     </transition>
@@ -48,10 +34,11 @@
 </template>
 
 <script>
-import vueAddToCalendar from 'vue-add-to-calendar'
 export default {
 
-  components: { vueAddToCalendar },
+  components: {
+    // vueAddToCalendar
+  },
 
   props: {
     data: {

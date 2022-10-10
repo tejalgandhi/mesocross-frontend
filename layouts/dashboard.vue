@@ -18,7 +18,9 @@
           </div>
           <div class="col-4 user-tab">
             <div class="d-lg-flexjustify-content-end">
-              <a :href="`tel:+${telephone}`" class="mr-lg-3">NEED HELP?</a>
+              <nuxt-link to="/services/help" class="mr-lg-3">
+                NEED HELP?
+              </nuxt-link>
               <a class="d-lg-inline-block d-none" :href="`tel:+${telephone}`">+{{ telephone }}</a>
             </div>
           </div>

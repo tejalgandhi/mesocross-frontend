@@ -12,11 +12,11 @@
       <img src="@/assets/img/search.svg" alt="search">
     </figure>
     <figure v-click-outside="hideUserTab" class="mb-0 text-uppercase">
-      <div v-if="!isLoggedin" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
-        {{ $t('sign_in') }}
+      <div v-if="isLoggedin" :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
+        <img src="@/assets/img/user.svg" alt="search" class="mr-3">
       </div>
       <div v-else :class="{'active':showUserTab}" @click="showUserTab = !showUserTab">
-        <img src="@/assets/img/user.svg" alt="search" class="mr-3">
+        {{ $t('sign_in') }}
       </div>
       <transition v-if="!isLoggedin" name="pop">
         <span class="info" />

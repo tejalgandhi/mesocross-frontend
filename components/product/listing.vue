@@ -34,7 +34,7 @@
             </div>
             <div class="content_box d-flex align-items-end justify-content-center text-center text-uppercase">
               <div class="product-info">
-                <span class="category">category</span>
+               <span class="category">{{ product.category }}</span>
                 <label>{{ product.name }}</label>
                 <hr>
                 <span class="desc">{{ product.short_description }}</span>

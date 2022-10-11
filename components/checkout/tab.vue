@@ -12,7 +12,7 @@
           <div class="div mr-3 mb-4 d-md-inline" />
           <div>
             <span class="d-flex justify-content-center align-items-center mx-auto">2</span>
-            <p class="mt-2">{{ $t('payment') }}</p>
+            <p class="mt-2">{{ $t('payment_menu') }}</p>
           </div>
           <div class="div ml-3 mb-4 d-md-inline" />
         </a>

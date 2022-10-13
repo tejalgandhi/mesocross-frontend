@@ -7,7 +7,7 @@
         <div class="back" @click="$emit('close')" />
       </div>
       <div v-if="loaded" class="filter">
-        <template v-for="(item, i) in categories">
+        <template v-for="(item, i) in filterData">
           <UiFiltersFilter :key="i" :data="item" />
         </template>
       </div>
@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       close: false,
-      categories: [],
+      filterData: [],
       loaded: false
     }
   },
@@ -34,7 +34,8 @@ export default {
     ...mapGetters({
       productCount: 'cart/totalUnits' || 0,
       products: 'cart/getProducts',
-      subTotal: 'cart/subTotal'
+      subTotal: 'cart/subTotal',
+      categories: 'categories/getCategories'
     })
   },
 
@@ -49,46 +50,95 @@ export default {
 
     async getCategories () {
       this.loaded = false
-      const response = await this.$axios.get('/segment-category-relation')
-      this.getSkincares()
-
-      if (response.status !== 200) {
-        return
-      }
       console.log('this.categories')
       console.log(this.categories)
-      if (this.$route.params.categorySlug === 'skincare') {
-        this.categories.pop({
-          slug: 'segmentation'
+      // const response = await this.$axios.get(`/segment-category-relation?category_slug=${this.$route.params.categorySlug}`)
+      // this.getSkincares()
+      //
+      // if (response.status !== 200) {
+      //   return
+      // }
+      // console.log('this.categories')
+      // console.log(this.categories)
+      // if (this.$route.params.categorySlug === 'skincare') {
+      //   this.categories.pop({
+      //     slug: 'segmentation'
+      //   })
+      //   this.categories.pop({
+      //     slug: 'skincare'
+      //   })
+      //   this.categories.push({
+      //     name: 'LINE',
+      //     slug: 'lines',
+      //     childrens: response.data.data.filter(el => !el.segment_id)
+      //   })
+      // } else if (this.$route.params.categorySlug === 'lines') {
+      //   this.categories.pop({
+      //     slug: 'segmentation'
+      //   })
+      //   this.categories.pop({
+      //     slug: 'lines'
+      //   })
+      // } else {
+      //   console.log('this.categories')
+      //   console.log(this.categories)
+      //   this.categories.push({
+      //     name: 'SEGMENTATION',
+      //     slug: 'segmentation',
+      //     childrens: response.data.data.filter(el => Number(el.segment_id))
+      //   })
+      //
+      //   this.categories.push({
+      //     name: 'LINE',
+      //     slug: 'lines',
+      //     childrens: response.data.data.filter(el => !el.segment_id)
+      //   })
+      // }
+      const { data, skincares } = await this.$axios.$get('/categories')
+      console.log('data')
+      console.log(data)
+      const selectedCat = data.reduce((res, cat) => {
+        return cat.slug === this.$route.params.categorySlug ? cat : res
+      }, null)
+      console.log('selectedCat')
+      console.log(selectedCat)
+      const skincare = skincares.reduce((sel, cat) => cat.slug === this.$route.params.categorySlug ? cat : sel, null)
+      if (skincare !== null || this.$route.params.categorySlug === 'skincare') {
+        const collected = []
+        this.skincares = skincares.filter((cat) => {
+          if (collected.includes(cat.name)) {
+            return false
+          } else {
+            collected.push(cat.name)
+            return true
+          }
         })
-        this.categories.pop({
-          slug: 'skincare'
+      } else if (skincare !== null || this.$route.params.categorySlug === 'lines') {
+        const collected = []
+        this.skincares = skincares.filter((cat) => {
+          if (collected.includes(cat.name)) {
+            return false
+          } else {
+            collected.push(cat.name)
+            return true
+          }
         })
-        this.categories.push({
-          name: 'LINE',
-          slug: 'lines',
-          childrens: response.data.data.filter(el => !el.segment_id)
-        })
-      } else if (this.$route.params.categorySlug === 'lines') {
-        this.categories.pop({
-          slug: 'segmentation'
-        })
-        this.categories.pop({
-          slug: 'lines'
-        })
+      } else if (selectedCat !== null) {
+        this.skincares = skincares.filter(cat => cat.category_id === selectedCat.id)
       } else {
-        console.log('this.categories')
-        console.log(this.categories)
-        this.categories.push({
-          name: 'SEGMENTATION',
-          slug: 'segmentation',
-          childrens: response.data.data.filter(el => Number(el.segment_id))
-        })
-
-        this.categories.push({
-          name: 'LINE',
-          slug: 'lines',
-          childrens: response.data.data.filter(el => !el.segment_id)
+        this.skincares = [...new Map(skincares.map(item =>
+          [item.name, item])).values()]
+      }
+      const parentCategories = data.filter(category => category.parent_id == null)
+      parentCategories.forEach((cat) => {
+        cat.child = data.filter(val => val.parent_id === cat.id)
+      })
+      if (!this.showAllCats) {
+        this.filterData = parentCategories
+      } else {
+        this.filterData = parentCategories.filter((category) => {
+          const slug = this.$route.params.categorySlug
+          return slug === 'segmentation' || category.slug === slug || category.child.find(cat => cat.slug === slug)
         })
       }
     },

@@ -1,7 +1,6 @@
 <template>
   <div class="filter-mobile">
     <ul class="mainUl">
-      dfsdfsdf
       <li v-for="(filter, index) in filterData" :key="index">
         <div class="d-flex align-items-start">
           <label class="control control--checkbox pl-3">

@@ -55,18 +55,42 @@ export default {
       if (response.status !== 200) {
         return
       }
+      console.log('this.categories')
+      console.log(this.categories)
+      if (this.$route.params.categorySlug === 'skincare') {
+        this.categories.pop({
+          slug: 'segmentation'
+        })
+        this.categories.pop({
+          slug: 'skincare'
+        })
+        this.categories.push({
+          name: 'LINE',
+          slug: 'lines',
+          childrens: response.data.data.filter(el => !el.segment_id)
+        })
+      } else if (this.$route.params.categorySlug === 'lines') {
+        this.categories.pop({
+          slug: 'segmentation'
+        })
+        this.categories.pop({
+          slug: 'lines'
+        })
+      } else {
+        console.log('this.categories')
+        console.log(this.categories)
+        this.categories.push({
+          name: 'SEGMENTATION',
+          slug: 'segmentation',
+          childrens: response.data.data.filter(el => Number(el.segment_id))
+        })
 
-      this.categories.push({
-        name: 'SEGMENTATION',
-        slug: 'segmentation',
-        childrens: response.data.data.filter(el => Number(el.segment_id))
-      })
-
-      this.categories.push({
-        name: 'LINE',
-        slug: 'lines',
-        childrens: response.data.data.filter(el => !el.segment_id)
-      })
+        this.categories.push({
+          name: 'LINE',
+          slug: 'lines',
+          childrens: response.data.data.filter(el => !el.segment_id)
+        })
+      }
     },
 
     async getSkincares () {

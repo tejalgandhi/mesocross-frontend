@@ -44,7 +44,7 @@
           </div>
         </article>
       </div>
-      <div v-if="products.length == 0" class="my-5 col-12 text-center">
+      <div v-if="products.length === 0" class="my-5 col-12 text-center">
         <h3>{{ $t('no_product_found') }}</h3>
       </div>
     </div>

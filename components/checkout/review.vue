@@ -81,7 +81,7 @@
       <b-card-header v-b-toggle.accordion-3 class="panel panel-default" header-tag="header" role="tab">
         <h3 class="panel-title mb-0">
           <a block variant="info">
-            {{ $t('payment') }}
+            {{ $t('payment_menu') }}
           </a>
         </h3>
       </b-card-header>

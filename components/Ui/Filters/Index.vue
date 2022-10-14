@@ -113,39 +113,6 @@ export default {
           })
         }
       }
-
-      // start lines menu logic
-
-      // end lines menu logic
-      // if (this.$route.params.categorySlug === 'skincare') {
-      //   console.log(response.data.data)
-      //   this.categories.push({
-      //     name: 'LINE',
-      //     slug: 'lines',
-      //     childrens: response.data.data.filter(el => !el.segment_id)
-      //   })
-      //   const unwanted = ['skincare']
-      //   this.categories = this.categories.filter(el => !unwanted.includes(el.slug))
-      // } else {
-      //   const unwanted = ['lines']
-      //   this.categories = this.categories.filter(el => !unwanted.includes(el.slug))
-      //   console.log('this.categories')
-      //   console.log(this.categories)
-      //   // const requireSkincare = ['segmentation', ...response.data.data.map(el => Number(el.segment_id))]
-      //   //
-      //   // if (!requireSkincare.includes(slug)) {
-      //   //   this.categories.push({
-      //   //     name: 'SEGMENTATION',
-      //   //     slug: 'segmentation',
-      //   //     childrens: response.data.data.filter(el => Number(el.segment_id))
-      //   //   })
-      //   // }
-      //   // this.categories.push({
-      //   //   name: 'LINE',
-      //   //   slug: 'lines',
-      //   //   childrens: response.data.data.filter(el => !el.segment_id)
-      //   // })
-      // }
     },
 
     async getSkincares () {

@@ -118,6 +118,16 @@ export default {
           return true
         }
       })
+    } else if (skincare !== null || this.$route.params.categorySlug === 'lines') {
+      const collected = []
+      this.skincares = skincares.filter((cat) => {
+        if (collected.includes(cat.name)) {
+          return false
+        } else {
+          collected.push(cat.name)
+          return true
+        }
+      })
     } else if (selectedCat !== null) {
       this.skincares = skincares.filter(cat => cat.category_id === selectedCat.id)
     } else {

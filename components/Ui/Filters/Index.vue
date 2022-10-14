@@ -26,6 +26,7 @@ export default {
     return {
       close: false,
       categories: [],
+      skincares: [],
       loaded: false
     }
   },
@@ -46,41 +47,92 @@ export default {
     ...mapMutations({
       setFilters: 'product/setSelectedFilters'
     }),
+    ...mapGetters({
+      menuChildren: 'menu/getHeaderMenuChildren'
+    }),
 
     async getCategories () {
       this.loaded = false
-      const response = await this.$axios.get('/segment-category-relation')
-      this.getSkincares()
+      const slug = this.$route.params.categorySlug
+      const response = await this.$axios.get('/categories')
+      // this.getSkincares()
 
       if (response.status !== 200) {
         return
       }
+      this.loaded = true
+      const requireSkincare = ['skincare', ...response.data.skincares.map(el => el.slug)]
+      if (!requireSkincare.includes(slug)) {
+        this.skincares.push({
+          name: 'SKIN CARE',
+          slug: 'skincare',
+          childrens: response.data.skincares
+        })
+      }
 
-      this.categories.push({
-        name: 'SEGMENTATION',
-        slug: 'segmentation',
-        childrens: response.data.data.filter(el => Number(el.segment_id))
+      // start segmentation menu logic
+      const segment = response.data.data.filter((category) => {
+        return slug === 'segmentation' || (category.slug === slug && category.segment_id !== '')
       })
-
-      this.categories.push({
-        name: 'LINE',
-        slug: 'lines',
-        childrens: response.data.data.filter(el => !el.segment_id)
-      })
+      if (segment.length > 1) {
+        const parentCategories = response.data.data.filter(category => category.parent_id == null)
+        parentCategories.forEach((cat) => {
+          this.categories.push({
+            name: cat.name,
+            slug: cat.slug,
+            childrens: response.data.data.filter(val => val.parent_id === cat.id)
+          })
+        })
+      } else if (segment.length > 0) {
+        const childSegment = response.data.data.filter(el => el.parent_id === segment[0].id)
+        this.categories.push({
+          name: segment[0].name,
+          slug: segment[0].slug,
+          childrens: childSegment
+        })
+      }
+      // end segmentation logic here
+      if (this.skincares.length > 0) {
+        // start lines menu logic
+        this.categories.push(this.skincares[0])
+      } else {
+        // skincare menu logic
+        if (requireSkincare.includes(slug)) {
+          this.categories.push({
+            name: 'LINE',
+            slug: 'lines',
+            childrens: response.data.data.filter(el => !el.segment_id)
+          })
+        }
+        const requireSkincares = ['skincare', ...response.data.data.map(el => Number(!el.segment_id))]
+        if (requireSkincares.includes(slug)) {
+          this.categories.push({
+            name: 'LINE',
+            slug: 'lines',
+            childrens: response.data.data.filter(el => !el.segment_id)
+          })
+        }
+      }
     },
 
     async getSkincares () {
+      const slug = this.$route.params.categorySlug
       const response = await this.$axios.get('/categories')
 
       if (response.status !== 200) {
         return
       }
-
-      this.categories.push({
-        name: 'SKIN CARE',
-        slug: 'skincare',
-        childrens: response.data.skincares
-      })
+      const requireSkincare = ['skincare', ...response.data.skincares.map(el => el.slug)]
+      console.log(requireSkincare)
+      console.log(!requireSkincare.includes(slug))
+      if (!requireSkincare.includes(slug)) {
+        this.skincares.push({
+          name: 'SKIN CARE',
+          slug: 'skincare',
+          childrens: response.data.skincares
+        })
+        console.log(this.skincares)
+      }
 
       this.loaded = true
     },
@@ -90,6 +142,7 @@ export default {
       this.$emit('close')
     }
   }
+
 }
 </script>
 

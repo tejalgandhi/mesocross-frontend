@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <h2 class="title">
+    <h2 class="title" v-if="data.childrens.length > 0">
       {{ data.name }}
     </h2>
     <div class="children">

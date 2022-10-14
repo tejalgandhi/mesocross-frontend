@@ -103,15 +103,10 @@ export default {
     }
   },
   async fetch () {
-    console.log('in')
     const { data, skincares } = await this.$axios.$get('/categories')
-    console.log('data')
-    console.log(data)
     const selectedCat = data.reduce((res, cat) => {
       return cat.slug === this.$route.params.categorySlug ? cat : res
     }, null)
-    console.log('selectedCat')
-    console.log(selectedCat)
     const skincare = skincares.reduce((sel, cat) => cat.slug === this.$route.params.categorySlug ? cat : sel, null)
     if (skincare !== null || this.$route.params.categorySlug === 'skincare') {
       const collected = []

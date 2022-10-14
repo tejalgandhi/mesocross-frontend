@@ -106,11 +106,11 @@ export default {
         }
         const requireSkincares = ['skincare', ...response.data.data.map(el => Number(!el.segment_id))]
         if (requireSkincares.includes(slug)) {
-          this.categories.push({
-            name: 'LINE',
-            slug: 'lines',
-            childrens: response.data.data.filter(el => !el.segment_id)
-          })
+        //   // this.categories.push({
+        //   //   name: 'LINE',
+        //   //   slug: 'lines',
+        //   //   childrens: response.data.data.filter(el => !el.segment_id)
+        //   // })
         }
       }
     },

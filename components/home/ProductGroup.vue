@@ -53,6 +53,7 @@ export default {
   async fetch () {
     const { data } = await this.$axios.get(`${this.api}`)
     this.newProducts = data.data || data.complementry
+    console.log(this.newProducts)
   },
 
   computed: {

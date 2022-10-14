@@ -48,29 +48,6 @@
       </div>
     </label>
     <input
-      v-if="isActive('multibanco')"
-      id="for12"
-      name="paymethod"
-      class="form-check-input"
-      :checked="selectedCard == 3"
-      type="radio"
-      @change="setSelectedCard(3)"
-    >
-    <label v-if="isActive('multibanco')" class="address-radio row mx-0 align-items-center mb-3" for="for12">
-      <div class="col-12">
-        <div class="form-check px-0">
-          <div class="d-flex align-items-center">
-            <div class="d-flex align-items-center">
-              <img src="~/assets/img/mb-icon.svg" class="mx-3" alt="image">
-              <label class="ml-2 form-check-label font-16 text-dark" for="for12">
-                <span class="d-block font-weight-bold">{{ $t('multibanco') }}</span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </label>
-    <input
       v-if="isActive('bank_transfer')"
       id="for5"
       name="paymethod"
@@ -168,10 +145,7 @@
         <div class="col-12">
           <div class="form-check px-0 d-flex">
             <div class="d-flex align-items-center">
-              <img src="~/assets/img/paypal-icon.svg" class="mx-3" alt="image">
-              <label class="ml-2 form-check-label font-16 text-dark" for="for13">
-                <span class="d-block font-weight-bold">{{ $t('paypal') }}</span>
-              </label>
+              <img src="~/assets/img/paypal.svg" class="mx-3 paypal" alt="image">
             </div>
             <span class="font-18 disable-msg">({{ $t('checkout.available_soon') }})</span>
           </div>
@@ -268,5 +242,9 @@ export default {
     /* width: -webkit-fill-available; */
     padding-left: 10px;
     text-align: right;
+  }
+
+  .paypal {
+    filter: invert(1)
   }
 </style>

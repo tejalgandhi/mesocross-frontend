@@ -91,7 +91,7 @@
                 <label for="">{{ $t('message_contactus') }} * </label>
                 <div class="position-relative">
                   <ValidationProvider v-slot="{ errors }" :name="$t('message_contactus')" rules="required">
-                    <textarea id="comment" v-model="form.message" :placeholder="$t('message')" class="form-control" rows="10" />
+                    <textarea id="comment" v-model="form.message" :placeholder="$t('message_contactus')" class="form-control" rows="10" />
                     <span class="errors text-danger">{{ errors[0] }}</span>
                   </ValidationProvider>
                 </div>

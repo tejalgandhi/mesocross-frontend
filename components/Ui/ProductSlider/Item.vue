@@ -87,6 +87,7 @@ export default {
                     background: white;
                     transform: rotate(45deg);
                     transition: 0.4s;
+                    text-transform: uppercase;
                 }
             }
 

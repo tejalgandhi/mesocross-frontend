@@ -514,7 +514,7 @@ footer .footer_bottom .copyright {
 
 .quiz .options p a {
   text-decoration: none;
-  text-transform: capitalize;
+  text-transform: uppercase;
   position: relative;
   display: flex;
   align-items: center;
@@ -536,6 +536,7 @@ footer .footer_bottom .copyright {
 .quiz .options > p {
   margin: 1.5rem;
   min-width: 140px;
+  text-transform: uppercase;
 }
 
 .quiz .act_btn .btn{
@@ -791,9 +792,20 @@ font-weight: bold;}
 .html-content img{height: auto;  width: 100%;  object-fit: cover;  max-height: 300px;}
 /*Static page content styling*/
 
-#pages-content p{margin-top: 20px;}
-#pages-content ul{margin-top: 20px;}
-#pages-content p img{width: auto;  margin: 10px auto 0;  max-height: 350px;  object-fit: cover;}
+#pages-content p{
+    margin-top: 20px;
+    font-size: 20px;
+}
+#pages-content ul{
+    margin-top: 20px;
+    font-size: 20px;
+}
+#pages-content p img{
+    width: auto; 
+    margin: 10px auto 0;
+    max-height: 350px;
+    object-fit: cover;
+}
 
 /*Product detail page slick slider arrow disabled */
 .detail-slider .slick-disabled {display: none !important;}

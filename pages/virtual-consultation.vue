@@ -92,3 +92,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+    .customize_treatment {
+        text-transform: uppercase;
+    }
+</style>

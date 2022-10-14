@@ -94,6 +94,7 @@ export default {
             h2 {
                 font-size: 34px;
                 font-weight: 500;
+                text-transform: uppercase;
             }
 
             span {

@@ -29,6 +29,7 @@ export default {
         overflow: hidden;
         position: relative;
         transition: 0.2s;
+        text-transform: capitalize;
 
         &:hover {
             background: #191b1d;

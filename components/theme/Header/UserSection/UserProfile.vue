@@ -12,23 +12,20 @@
           {{ loggedinUser.name }}
         </nuxt-link>
         <div class="tabs">
-          <nuxt-link v-if="$auth.user.type === 1" to="/dashboard?page=my-account">
-            {{ $t('my_account') }}
+          <nuxt-link v-if="$auth.user.type === 1" to="/dashboard">
+            {{ $t('personal_profile') }}
           </nuxt-link>
-          <nuxt-link v-else-if="$auth.user.type === 2" to="/dashboard?page=my-account">
-            {{ $t('my_account') }}
+          <nuxt-link v-if="$auth.user.type === 2" to="/dashboard?tab=company">
+            {{ $t('company_profile') }}
           </nuxt-link>
-          <nuxt-link to="/dashboard?page=order-returns">
-            {{ $t('orders_return') }}
+          <nuxt-link to="/dashboard?tab=shipping_addresses">
+            {{ $t('shipping_addresses') }}
           </nuxt-link>
-          <nuxt-link to="/dashboard?page=invoice-history">
-            {{ $t('invoice_history') }}
-          </nuxt-link>
-          <nuxt-link to="/dashboard?page=address-book">
-            {{ $t('address_book') }}
-          </nuxt-link>
-          <nuxt-link to="/dashboard?page=payment-methods">
+          <nuxt-link to="/dashboard?tab=payment_methods">
             {{ $t('payment_methods') }}
+          </nuxt-link>
+          <nuxt-link to="/dashboard?tab=orders">
+            {{ $t('orders') }}
           </nuxt-link>
         </div>
         <span class="logout" @click="Logout">{{ $t('logout') }}</span>
@@ -101,6 +98,7 @@ export default {
         .log {
             padding: 5px 15px;
             font-weight: 500;
+            text-transform: uppercase;
 
             &:hover {
                 text-decoration: underline;
@@ -163,6 +161,7 @@ export default {
                 border-top-left-radius: 0px;
                 border-top-right-radius: 0px;
                 font-weight: 500;
+                text-transform: uppercase;
 
                 &:hover {
                     background: rgba(0,0,0,0.05);

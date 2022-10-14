@@ -23,10 +23,5 @@
         "name": "orders",
         "query": "orders",
         "profiles": [1, 2]
-    },
-    {
-        "name": "ledger",
-        "query": "ledger",
-        "profiles": [1, 2]
     }
 ]

@@ -1,6 +1,6 @@
 
 <template>
-  <section :class="{reverse}" class="text-section">
+  <section :class="{reverse}">
     <figure class="image-section">
       <img :src="data.media" alt="image">
     </figure>
@@ -33,11 +33,11 @@ export default {
         align-items: center;
         width: 80%;
         max-width: 1600px;
-        padding: 200px 0;
+        padding: 0;
+        margin: 0 auto;
         @media screen and (max-width: 1200px){
             flex-direction: column;
             width: 85%;
-            padding: 40px 0;
         }
 
         &.reverse {
@@ -50,6 +50,7 @@ export default {
 
         figure {
             width: 50%;
+            height: 480px;
 
             @media screen and (max-width: 1200px){
                 width: 100%;
@@ -57,6 +58,7 @@ export default {
 
             img {
                 width: 100%;
+                height: 100%;
                 object-fit: cover;
                 -webkit-user-drag: none;
                 filter: grayscale(100%);

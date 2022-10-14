@@ -1,5 +1,5 @@
 <template>
-  <div class="about-page new-pages mb-5">
+  <div class="about-page mb-5">
     <Banner :page-name="'our-story'" />
     <template v-if="data.length">
       <!-- <UiMission :data="ourMission" :first="true" /> -->

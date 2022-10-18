@@ -5,8 +5,8 @@
       <span :class="{active: isActive === 1}" @click="isActive = 1" />
     </div>
     <div ref="details" class="details">
-      <UiProductDetailsMain :data="data" :style="{transform: `translateY(${ isActive === 0 ? 0 : `-100`}%`}" />
-      <UiProductDetailsExtras :data="data" :style="{transform: `translateY(${ isActive === 1 ? 0 : `100`}%`}" />
+      <UiProductDetailsMain :data="data" :style="{transform: `translate${toTranslate}(${ isActive === 0 ? 0 : `-100`}%`}" />
+      <UiProductDetailsExtras :data="data" :style="{transform: `translate${toTranslate}(${ isActive === 1 ? 0 : `100`}%`}" />
     </div>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
   data () {
     return {
       isActive: 0,
-      previousScroll: 0
+      previousScroll: 0,
+      toTranslate: 'Y'
     }
   },
 
@@ -33,11 +34,29 @@ export default {
     }
   },
 
+  created () {
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+  },
+
+  beforeUnmount () {
+    window.removeEventListener('resize', this.handleResize)
+  },
+
   mounted () {
     this.$refs.details.addEventListener('wheel', this.handleScroll)
   },
 
   methods: {
+    handleResize () {
+      if (window.innerWidth <= 768) {
+        this.toTranslate = 'X'
+        return
+      }
+
+      this.toTranslate = 'Y'
+    },
+
     handleScroll (e) {
       if (e.deltaY > 0 && !this.isActive) {
         e.preventDefault()
@@ -59,6 +78,10 @@ export default {
     display: flex;
     align-items: center;
 
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+    }
+
     .details {
         width: 100%;
         height: 100%;
@@ -72,6 +95,14 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        z-index: 100;
+
+        @media screen and (max-width: 768px){
+            flex-direction: row;
+            left: unset;
+            top: 32px;
+            gap: 2rem;
+        }
 
         span {
             width: 8px;

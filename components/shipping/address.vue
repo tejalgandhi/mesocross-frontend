@@ -23,7 +23,7 @@
         <p class="font-16 text-dark m-0 text-uppercase">{{ address.country }}</p>
       </div>
       <div class="col-12 mb-2 mb-md-0 col-md-3 text-left text-md-right ml-auto">
-        <a href="javascript:void(0)" class="font-16 text-dark m-0 border-bottom d-inline text-uppercase" @click="editAddress">{{ $t('edit_address') }}</a>
+        <a href="javascript:void(0)" class="font-16 text-dark m-0 border-bottom d-inline text-uppercase underline" @click="editAddress">{{ $t('edit_address') }}</a>
       </div>
     </label>
   </div>
@@ -59,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+    .underline {
+        text-decoration: underline;
+    }
+</style>

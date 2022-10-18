@@ -1,6 +1,7 @@
 <template>
   <div class="bg" :class="{custom: customBg}" :style="{background: pageBackground}">
     <ThemeHeader />
+    <UiSidetab v-if="openedTab !== ''" :title="openedTab" @close="openedTab = ''" />
     <CommonSearch v-show="search" @click="isClicked(false)" />
     <div v-show="loading" class="loading">
       <span class="loader" />
@@ -21,7 +22,10 @@ export default {
       data: [],
       pageBackground: '',
       customBg: false,
-      showFilters: false
+      showFilters: false,
+      openedTab: '',
+      isCartOpened: false,
+      isWishlistOpened: false
     }
   },
 
@@ -45,8 +49,17 @@ export default {
 
   created () {
     this.getData()
+
     this.$nuxt.$on('showFilters', () => {
       this.showFilters = true
+    })
+
+    this.$nuxt.$on('showWishlist', () => {
+      this.openedTab = 'Wishlist'
+    })
+
+    this.$nuxt.$on('showCart', () => {
+      this.openedTab = 'Cart'
     })
 
     if (this.$auth.$state.loggedIn) {

@@ -29,6 +29,9 @@ export default {
   getProducts (state) {
     return state.products
   },
+  getWishlist (state) {
+    return state.wishList
+  },
   isWished (state) {
     return (product) => {
       const wishList = JSON.parse(JSON.stringify(state.wishList))

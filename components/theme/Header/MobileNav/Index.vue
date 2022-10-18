@@ -19,14 +19,14 @@
       </figure>
     </section>
     <section>
-      <figure v-b-toggle.wishlist-sidebar>
-        <img src="@/assets/img/star.svg" alt="favs">
+      <figure>
+        <img src="@/assets/img/star.svg" alt="favs" @click="$nuxt.$emit('showWishlist')">
         <transition name="pop">
           <span v-if="wishlist">{{ wishlist }}</span>
         </transition>
       </figure>
-      <figure v-b-toggle.card-sidebar>
-        <img src="@/assets/img/basket.svg" alt="favs">
+      <figure>
+        <img src="@/assets/img/basket.svg" alt="favs" @click="$nuxt.$emit('showCart')">
         <transition name="pop">
           <span v-if="products">{{ products }}</span>
         </transition>

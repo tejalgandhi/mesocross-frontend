@@ -82,6 +82,7 @@ export default {
     goToProduct () {
       this.$router.push(`/product-detail/${this.product.slug}`)
     },
+
     onAddToCart () {
       const singleProduct = {
         name: this.product.name,

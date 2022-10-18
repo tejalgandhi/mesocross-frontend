@@ -59,7 +59,6 @@ export default {
   methods: {
     async getCountByMonths () {
       const data = await this.$axios.$get('/blog-month/count')
-      console.log(data)
       this.countByMonths = data
     },
     async getcountByTreatment () {

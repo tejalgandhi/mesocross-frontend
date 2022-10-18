@@ -24,27 +24,29 @@
             <div v-if="products.length > 0" class="row text-center">
               <div class="col-4">
                 <label class="th-head">
-                  {{$t('item_info')}}
+                  {{ $t('item_info') }}
                 </label>
               </div>
               <div class="col-3">
                 <label class="th-head">
-                  {{$t('quantity')}}
+                  {{ $t('quantity') }}
                 </label>
               </div>
               <div class="col-3">
                 <label class="th-head">
-                  {{$t('price')}}
+                  {{ $t('price') }}
                 </label>
               </div>
               <div class="col-2">
                 <label class="th-head">
-                  {{$t('total')}}
+                  {{ $t('total') }}
                 </label>
               </div>
             </div>
-            <div v-for="(product, index) in products" :key="index">
-              <ProductCartProduct :product="product" />
+            <div class="products">
+              <template v-for="(product, index) in products">
+                <ProductCartProduct :key="index" :product="product" />
+              </template>
             </div>
           </div>
           <div v-if="products.length > 0" class="col-lg-auto">
@@ -69,9 +71,6 @@
                 <nuxt-link to="/checkout" class="btn btn-primary btn-block">
                   {{ $t('cart.go_to_checkout') }}
                 </nuxt-link>
-                <!-- <nuxt-link to="/checkout" class="continue">
-                  {{ $t('cart.continue_to_buy') }}
-                </nuxt-link> -->
               </div>
             </div>
           </div>
@@ -148,5 +147,12 @@ export default {
 }
 .summery-w{
   min-width: 320px;
+}
+
+.products {
+    width: calc(100% + 15px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 </style>

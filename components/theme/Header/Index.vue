@@ -49,8 +49,8 @@
         />
       </transition>
     </template>
-    <UiSidebarCart />
-    <UiSidebarWishlist />
+    <!-- <UiSidebarCart />
+    <UiSidebarWishlist /> -->
   </main>
 </template>
 

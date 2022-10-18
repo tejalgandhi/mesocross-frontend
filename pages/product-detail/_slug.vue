@@ -173,8 +173,17 @@ export default {
         justify-content: space-between;
         padding: 100px 0 60px;
 
+        @media screen and (max-width: 768px){
+            flex-direction: column;
+        }
+
         .gallery {
             width: 40%;
+
+            @media screen and (max-width: 768px){
+                width: 100%;
+            }
+
             figure {
                 width: 100%;
                 height: 600px;
@@ -184,11 +193,15 @@ export default {
                 display: flex;
                 justify-content: center;
 
+                @media screen and (max-width: 768px){
+                    height: 300px;
+                }
+
                 img {
                     position: absolute;
                     transition: 0.4s;
                     height: 100%;
-                    object-fit: cover;
+                    object-fit: contain;
                     -webkit-user-drag: none;
                 }
             }
@@ -198,6 +211,11 @@ export default {
             width: 40%;
             display: flex;
             align-items: center;
+
+            @media screen and (max-width: 768px){
+                width: 100%;
+                height: 500px;
+            }
         }
     }
 
@@ -205,6 +223,10 @@ export default {
         width: 100%;
         background: black;
         text-transform: uppercase;
+
+        @media screen and (max-width: 768px){
+            padding: 10px 0;
+        }
 
         .items {
             width: 90%;
@@ -214,6 +236,12 @@ export default {
             align-items: center;
             justify-content: space-between;
             padding: 5px 0;
+
+            @media screen and (max-width: 768px){
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
             figure {
                 display: flex;
                 margin: 0;
@@ -223,6 +251,11 @@ export default {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
+
+                @media screen and (max-width: 768px){
+                    flex-direction: column;
+                }
+
                 figure {
                     width: 32px;
                     height: 32px;

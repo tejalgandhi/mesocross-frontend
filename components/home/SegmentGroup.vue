@@ -15,36 +15,36 @@
 import SegmentSingle from '../product/SegmentSingle.vue'
 export default {
   components: { SegmentSingle },
-  data () {
-    return {
-      segmentList: [
-      {
-                    imgicon: require('@/assets/img/segment-timeless.png'),
-                    name:'timeless'
-                },
-                {
-                    imgicon: require('@/assets/img/segment-spiritual.png'),
-                    name:'spiritual'
-                },
-                {
-                    imgicon: require('@/assets/img/segment-core.png'),
-                    name:'core'
-                },
-                {
-                    imgicon: require('@/assets/img/segment-youth.png'),
-                    name:'youth'
-                },
-                {
-                    imgicon: require('@/assets/img/segment-man.png'),
-                    name:'man'
-                }
-            ]
-        }
-    },
   props: {
     title: {
       type: String,
       required: true
+    }
+  },
+  data () {
+    return {
+      segmentList: [
+        {
+          imgicon: require('@/assets/img/segment-timeless.png'),
+          name: 'timeless'
+        },
+        {
+          imgicon: require('@/assets/img/segment-spiritual.png'),
+          name: 'spiritual'
+        },
+        {
+          imgicon: require('@/assets/img/segment-core.png'),
+          name: 'core'
+        },
+        {
+          imgicon: require('@/assets/img/segment-youth.png'),
+          name: 'youth'
+        },
+        {
+          imgicon: require('@/assets/img/segment-man.png'),
+          name: 'man'
+        }
+      ]
     }
   }
 }
@@ -59,5 +59,5 @@ export default {
             text-transform: uppercase;
             font-weight: 300;
         }
-    }     
+    }
 </style>

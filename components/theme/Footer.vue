@@ -43,9 +43,16 @@
                     <b-card-body>
                       <ul>
                         <li v-for="(child, index) in footerLinks.children[link.id]" :key="index">
-                          <NuxtLink :to="`/${child.slug.replace('/','')}`">
-                            {{ child.name }}
-                          </NuxtLink>
+                          <template v-if="child.slug !== 'subscription'">
+                            <a href="javascript:void(0);" @click="redirectToPage(`/${child.slug.replace('/','')}`)">
+                              {{ child.name }}
+                            </a>
+                          </template>
+                          <template v-else>
+                            <a href="javascript:void(0);" @click="$bvModal.show('subscribeModal')">
+                              {{ child.name }}
+                            </a>
+                          </template>
                         </li>
                       </ul>
                     </b-card-body>
@@ -236,6 +243,15 @@ export default {
 </script>
 
 <style lang="scss">
+
+.support-links {
+    a {
+        @media screen and (max-width: 768px){
+            font-size: 12px;
+        }
+    }
+
+}
 
 .underline {
     &:hover {

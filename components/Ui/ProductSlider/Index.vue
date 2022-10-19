@@ -36,7 +36,8 @@ export default {
       filteredData: [],
       isActive: 0,
       currentBreak: undefined,
-      initPosition: undefined
+      initPosition: undefined,
+      initY: undefined
     }
   },
 
@@ -98,21 +99,9 @@ export default {
       this.filteredData = chunks
     },
 
-    handleSwipe (value) {
-      const length = this.filteredData.length - 1
-      if (!value && this.isActive > 0) {
-        this.isActive -= 1
-      } else if (!value && !this.isActive) {
-        this.isActive = length
-      } else if (value && this.isActive < length) {
-        this.isActive += 1
-      } else if (value && this.isActive === length) {
-        this.isActive = 0
-      }
-    },
-
     handleMouseDown (e) {
       this.initPosition = e.clientX ? e.clientX : e.changedTouches[0].clientX
+      this.initY = e.clientY ? e.clientY : e.changedTouches[0].clientY
     },
 
     handleScroll (e) {
@@ -127,25 +116,34 @@ export default {
       const touch = e.clientX ? e.clientX : e.changedTouches[0].clientX
       const diff = touch - this.initPosition
       const length = this.filteredData.length - 1
+      const Y = e.clientY ? e.clientY : e.changedTouches[0].clientY
+
+      if (diff > -50 && diff < 50) {
+        const yDiff = Y - this.initY
+        window.scroll({
+          top: window.scrollY - yDiff
+        })
+        return
+      }
 
       this.initPosition = undefined
 
-      if (diff < -50 && this.isActive > 0) {
+      if (diff > -50 && this.isActive > 0) {
         this.isActive -= 1
         return
       }
 
-      if (diff < -50 && this.isActive === 0) {
+      if (diff > -50 && this.isActive === 0) {
         this.isActive = length
         return
       }
 
-      if (diff > 50 && this.isActive < length) {
+      if (diff < 50 && this.isActive < length) {
         this.isActive += 1
         return
       }
 
-      if (diff > 50 && this.isActive === length) {
+      if (diff < 50 && this.isActive === length) {
         this.isActive = 0
       }
     }

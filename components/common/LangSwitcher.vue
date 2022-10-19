@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="bg-transparent d-flex align-items-center text-dark" @click="$bvModal.show('lang')">
+    <button class="bg-transparent d-flex align-items-center text-dark" :class="{large}" @click="$bvModal.show('lang')">
       {{ $i18n.locale.toUpperCase() }}
       <img src="../../assets/img/angel-down.svg" class="icon-down ml-2" alt="image">
     </button>
@@ -57,6 +57,12 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 export default {
+  props: {
+    large: {
+      type: Boolean,
+      default: () => false
+    }
+  },
   data () {
     return {
       vModelSetLanguage: ''
@@ -112,13 +118,23 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-select, option {
-    text-transform: capitalize;
+    select, option {
+        text-transform: uppercase;
 
-    &.no-capitalize {
-        text-transform: unset;
+        &.no-capitalize {
+            text-transform: unset;
+        }
     }
-}
+
+    button {
+        &.large {
+            margin: 0 !important;
+            width: 100%;
+            justify-content: space-between;
+            border: solid 1px white;
+            padding: 5px 10px;
+        }
+    }
 </style>
 <style>
 .icon-down{

@@ -61,29 +61,22 @@
 
                 <div>
                   <b-card-header v-b-toggle="`language`" class="panel panel-default" header-tag="header" role="tab">
-                    <div class="panel-title">
+                    <div class="panel-title text-uppercase">
                       <a block variant="info">
-                        DELIVERY DESTINATION OR REGION
+                        {{ $t('country_language') }}
                       </a>
                     </div>
                   </b-card-header>
                   <b-collapse :id="`language`">
                     <b-card-body>
                       <div class="mb-5 mt-4">
-                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn">
-                          Portugal (EUR)
-                          <b-icon-chevron-down />
-                        </button>
+                        <CommonCountrySwitcher :large="true" />
                       </div>
-                      <div class="mb-5">
-                        <h2 class="text-capitalize">
-                          Language
+                      <div class="mb-5" @click="$bvModal.show('lang')">
+                        <h2 class="text-uppercase">
+                          {{ $t('language') }}
                         </h2>
-                        <button class="btn border btn-block text-left d-flex justify-content-between custom-btn" @click="$bvModal.show('lang')">
-                          {{ $i18n.locale.toUpperCase() }}
-
-                          <b-icon-chevron-down />
-                        </button>
+                        <CommonLangSwitcher :large="true" />
                       </div>
                     </b-card-body>
                   </b-collapse>
@@ -151,7 +144,8 @@
                 <figure>
                   <img src="@/assets/img/visa.svg" alt="">
                 </figure>
-                <img src="@/assets/img/paypal.svg" alt="">
+                <figure>
+                  <img src="@/assets/img/paypal.svg" alt="">
                 </figure>
                 <figure>
                   <img src="@/assets/img/applepay.svg" alt="">

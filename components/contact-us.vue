@@ -108,7 +108,10 @@
               <label for="">{{ $t('attachments') }} </label>
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('attachments')" rules="size:5000">
-                  <input type="file" class="custom-file-input" @change="handleFileUpload($event)">
+                  <b-button class="file-btn" block variant="outline-primary" @click="onPickFile">
+                    {{ file ? file.name : `${$t('add_file')} +` }}
+                  </b-button>
+                  <input ref="fileInput" hidden type="file" class="custom-file-input" @change="handleFileUpload($event)">
                   <span class="errors text-danger">{{ errors[0] }}</span>
                 </ValidationProvider>
               </div>
@@ -120,38 +123,10 @@
             </div>
           </div>
           <div class="row mb-25" />
-
           <div class="form-group" />
-          <!-- <div class="row mb-25">
-          <div class="col-12">
-            <label for="">Contact preferences * </label>
-            <div class="position-relative">
-              <select class="form-control">
-                <option>Select contact preferences </option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-          </div>
-        </div> -->
-          <div class="row mb-25" />
-          <!-- <div class="row mb-25">
-          <div class="col-12">
-            <label for="">Query type * </label>
-            <div class="position-relative">
-              <select class="form-control">
-                <option>Select query type </option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-          </div>
-        </div> -->
           <div class="row mb-25" />
           <div class="row mb-25" />
-
+          <div class="row mb-25" />
           <div class="row space-top" />
         </form>
       </validationobserver>
@@ -230,11 +205,19 @@ export default {
       // { name, iso2, dialCode }
       this.form.dial_code = dialCode
       this.form.iso_alpha2 = iso2
+    },
+
+    onPickFile () {
+      this.$refs.fileInput.click()
     }
   }
 }
 </script>
 <style scoped>
+
+    .file-btn {
+        text-transform: uppercase;
+    }
   .custom-file-input {
     color: #fff;
     opacity: 1;

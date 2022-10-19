@@ -2,6 +2,7 @@
   <div>
     <button
       class="bg-transparent d-flex align-items-center text-dark mr-3"
+      :class="{large}"
       @click="$bvModal.show('country-modal')"
     >
       {{ country || 'USA' }}
@@ -37,8 +38,8 @@
                     <option value="">
                       Select Country
                     </option>
-                    <option v-for="country in countryList" :key="country.iso_code" :value="country.iso_code">
-                      {{ country.label }}
+                    <option v-for="cntry in countryList" :key="cntry.iso_code" :value="cntry.iso_code">
+                      {{ cntry.label }}
                     </option>
                   </select>
                 </p>
@@ -53,7 +54,7 @@
 
       <template #modal-footer="">
         <button>
-          Confirm
+          {{ $t('confirm') }}
         </button>
       </template>
     </b-modal>
@@ -67,6 +68,10 @@ export default {
     country: {
       type: String,
       default: () => ''
+    },
+    large: {
+      type: Boolean,
+      default: () => false
     }
   },
   data () {
@@ -102,8 +107,24 @@ export default {
 </script>
 
 <style>
-.icon-down {
-  height: 15px !important;
-  width: 15px !important;
-}
+    .icon-down {
+        height: 15px !important;
+        width: 15px !important;
+    }
+</style>
+
+<style lang="scss" scoped>
+    select, option {
+        text-transform: uppercase;
+    }
+
+    button {
+        &.large {
+            margin: 0 !important;
+            width: 100%;
+            justify-content: space-between;
+            border: solid 1px white;
+            padding: 5px 10px;
+        }
+    }
 </style>

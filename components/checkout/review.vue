@@ -11,31 +11,15 @@
       <b-collapse id="accordion-1" v-model="accordianCollapse[0]">
         <b-card-body>
           <div v-for="(product, index) in products" :key="index" class="panel-body mb-4">
-            <div class="row align-items-center">
-              <div class="col-auto">
+            <div class="product-info">
+              <figure>
                 <img :src="product.feature_image" class="img-fluid product-thumb mx-auto d-block" alt="image">
-              </div>
-              <div class="col">
-                <div class="mt-4">
-                  <h6 class="text-uppercase mb-0">
-                    <nuxt-link class="text-light" :to="`/product-detail/${product.slug}`">
-                      {{ product.name }} ({{ product.size }})
-                    </nuxt-link>
-                  </h6>
-                  <p class="small text-uppercase">
-                    Ref:{{ product.ref_number }}
-                  </p>
-                </div>
-              </div>
-              <div class="col-2">
-                <label class="text-gray mb-0"> {{$t('quantity')}}:</label><br>
-                <b-button variant="primary-outline" class="border-qty" size="sm">
-                  {{ product.qty }}
-                </b-button>
-              </div>
-              <div class="col-3">
-                <label class="text-gray mb-0">Price:</label><br>
-                <span class="items_price">{{ product.price }}€</span>
+              </figure>
+              <div class="product-data">
+                <span class="title">{{ product.name }} ({{ product.size }})</span>
+                <span>Ref.{{ product.ref_number }}</span>
+                <span>Qty: {{ product.qty }}</span>
+                <span>Price: {{ product.price }}€</span>
               </div>
             </div>
             <hr>
@@ -239,4 +223,44 @@ export default {
 .text-gray{
   color: #25282A66 !important;
 }
+</style>
+
+<style lang="scss" scoped>
+    .product-info {
+        display: flex;
+        gap: 0.5rem;
+
+        figure {
+            width: 100px;
+            height: 100px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .product-data {
+            width: calc(100% - 100px - 0.5rem);
+            display: flex;
+            flex-direction: column;
+            font-size: 18px;
+
+            span {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                &.title {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
 </style>

@@ -109,8 +109,8 @@
             <div class="col-md-6">
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('attachments')" rules="size:5000">
-                  <b-button block variant="outline-primary" @click="onPickFile">
-                    {{ file ? file.name : 'ADD FILE +' }}
+                  <b-button class="file-btn" block variant="outline-primary" @click="onPickFile">
+                    {{ file ? file.name : `${$t('add_file')} +` }}
                   </b-button>
                   <input ref="fileInput" hidden type="file" class="custom-file-input" @change="handleFileUpload($event)">
                   <span class="errors text-danger">{{ errors[0] }}</span>
@@ -232,6 +232,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+.file-btn {
+    text-transform: uppercase;
+}
 .text-lg{
   font-size: 20px;
 }

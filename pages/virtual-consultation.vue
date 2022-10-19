@@ -12,6 +12,7 @@
           {{ $t('customize_your_treatment') }}
         </h2>
         <p>{{ $t('customize_treatment_desc') }}</p>
+        <p>{{ $t('customize_treatment_exp') }}</p>
         <b-button variant="outline-primary" class="px-5 rounded-0" @click="start">
           {{ $t('lets_start') }}!
         </b-button>

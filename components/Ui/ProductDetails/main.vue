@@ -144,6 +144,12 @@ export default {
         .subtitle {
             font-size: 40px;
             font-weight: 500;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         hr {
@@ -159,10 +165,16 @@ export default {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
 
             .desc {
                 text-transform: uppercase;
                 font-size: 24px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .price {

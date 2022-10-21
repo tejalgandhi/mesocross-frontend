@@ -272,6 +272,10 @@ export default {
                     align-items: center;
                     gap: 0.5rem;
                     text-transform: uppercase;
+
+                    @media screen and (max-width: 768px){
+                        flex-direction: column;
+                    }
                     span {
                         font-weight: 200;
                         font-size: 18px;

@@ -6,7 +6,7 @@
           <img v-if="isInWhishlist(product)" :src="require('@/assets/img/Heart_icon_selected.svg')" alt="image" class="wishicon">
           <img v-else src="@/assets/img/heart-icon.svg" alt="image" class="wishicon">
         </a>
-        <article @click="goTo(productLink(product.slug))">
+        <nuxt-link class="article" :to="`/product-detail/${product.slug}` + (segmentId ? `?segment=${segmentId}` : '')">
           <div
             class="product_box"
             @mouseover="hoveredImage = index"
@@ -34,7 +34,7 @@
             </div>
             <div class="content_box d-flex align-items-end justify-content-center text-center text-uppercase">
               <div class="product-info">
-               <span class="category">{{ product.category }}</span>
+                <span class="category">{{ product.category }}</span>
                 <label>{{ product.name }}</label>
                 <hr>
                 <span class="desc">{{ product.short_description }}</span>
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-        </article>
+        </nuxt-link>
       </div>
       <div v-if="products.length === 0" class="my-5 col-12 text-center">
         <h3>{{ $t('no_product_found') }}</h3>
@@ -106,10 +106,6 @@ export default {
     }
   },
 
-  mounted () {
-    console.log(this.products)
-  },
-
   methods: {
     ...mapActions({
       fetchProducts: 'product/fetchProducts',
@@ -160,7 +156,7 @@ export default {
   opacity: 1;
 }
 
-article {
+.article {
     cursor: pointer;
 
     .img_box {

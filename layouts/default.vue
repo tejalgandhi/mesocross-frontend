@@ -100,8 +100,15 @@ export default {
 
     async getUser () {
       const user = await this.$axios.get('/user')
-      this.setLoggedinUser(user.data)
       this.userLoaded = true
+      if (user.status !== 200) {
+        this.setLoggedinUser({})
+        await this.$auth.logout()
+        localStorage.clear()
+        this.$router.push('/')
+        return
+      }
+      this.setLoggedinUser(user.data)
     },
 
     setBackground () {

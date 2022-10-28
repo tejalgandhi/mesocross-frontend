@@ -77,9 +77,13 @@ export default {
   },
 
   mounted () {
-    if (localStorage['auth._token.local'] && localStorage['auth._token.local'] !== '' && localStorage['auth._token.local'] !== 'false') {
-      this.getUser()
-      return
+    if (localStorage.vuex) {
+      const data = JSON.parse(localStorage.vuex)
+      if (data.user.loggedIn) {
+        this.getUser()
+        return
+      }
+      this.userLoaded = true
     }
     this.userLoaded = true
   },

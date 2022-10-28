@@ -76,13 +76,17 @@ export default {
     this.setWishListData([])
   },
 
-  mounted () {
+  async mounted () {
     if (localStorage.vuex) {
       const data = JSON.parse(localStorage.vuex)
       if (data.user.loggedIn) {
         this.getUser()
         return
       }
+      this.setLoggedinUser({})
+      await this.$auth.logout()
+      localStorage.clear()
+      this.$router.push('/')
       this.userLoaded = true
     }
     this.userLoaded = true

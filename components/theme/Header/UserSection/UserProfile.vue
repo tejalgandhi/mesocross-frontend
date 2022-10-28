@@ -12,7 +12,7 @@
           {{ loggedinUser.name }}
         </nuxt-link>
         <div class="tabs">
-          <nuxt-link v-if="$auth.user.type === 1" to="/dashboard">
+          <nuxt-link to="/dashboard">
             {{ $t('personal_profile') }}
           </nuxt-link>
           <nuxt-link v-if="$auth.user.type === 2" to="/dashboard?tab=company">

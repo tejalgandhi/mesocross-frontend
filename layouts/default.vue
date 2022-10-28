@@ -1,5 +1,5 @@
 <template>
-  <div class="bg" :class="{custom: customBg}" :style="{background: pageBackground}">
+  <div v-if="userLoaded" class="bg" :class="{custom: customBg}" :style="{background: pageBackground}">
     <ThemeHeader />
     <UiSidetab v-if="openedTab !== ''" :title="openedTab" @close="openedTab = ''" />
     <CommonSearch v-show="search" @click="isClicked(false)" />
@@ -13,6 +13,9 @@
 
     <ThemeFooter />
   </div>
+  <div v-else class="loading full-page">
+    <span class="loader" />
+  </div>
 </template>
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
@@ -25,7 +28,8 @@ export default {
       showFilters: false,
       openedTab: '',
       isCartOpened: false,
-      isWishlistOpened: false
+      isWishlistOpened: false,
+      userLoaded: false
     }
   },
 
@@ -72,6 +76,14 @@ export default {
     this.setWishListData([])
   },
 
+  mounted () {
+    if (localStorage['auth._token.local'] && localStorage['auth._token.local'] !== '' && localStorage['auth._token.local'] !== 'false') {
+      this.getUser()
+      return
+    }
+    this.userLoaded = true
+  },
+
   methods: {
     ...mapActions({
       isClicked: 'isClicked',
@@ -82,8 +94,15 @@ export default {
     ...mapMutations({
       setCartProduct: 'cart/setCartProduct',
       setCategories: 'categories/setCategories',
-      setWishListData: 'cart/setWishListData'
+      setWishListData: 'cart/setWishListData',
+      setLoggedinUser: 'user/setLoggedinUser'
     }),
+
+    async getUser () {
+      const user = await this.$axios.get('/user')
+      this.setLoggedinUser(user.data)
+      this.userLoaded = true
+    },
 
     setBackground () {
       const query = this.$route.query?.segment || undefined
@@ -122,6 +141,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.full-page {
+        height: 100vh;
+    }
     .loader {
         border: 8px solid #7c7b7b42;
         border-radius: 50%;

@@ -40,9 +40,40 @@
             </ValidationProvider>
           </div>
           <div class="form-group">
+            <label for="name">{{ $t('address') }}*</label>
+            <ValidationProvider v-slot="{ errors }" :name="$t('address')" rules="required">
+              <input
+                id="address"
+                ref="address"
+                v-model="signup.address"
+                type="text"
+                class="form-control"
+                aria-describedby="name"
+              >
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group">
+            <label for="name">{{ $t('city') }}*</label>
+            <ValidationProvider v-slot="{ errors }" :name="$t('city')" rules="required">
+              <input
+                id="city"
+                ref="city"
+                v-model="signup.city"
+                type="text"
+                class="form-control"
+                aria-describedby="name"
+              >
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group">
             <label for="selectcountry">{{ $t('country') }}*</label>
             <ValidationProvider v-slot="{ errors }" :name="$t('country')" rules="required">
               <select id="selectcountry" v-model="signup.country_code" class="form-control">
+                <option :value="''">
+                  Select a Country
+                </option>
                 <option v-for="country in countries" :key="country.iso_code" :value="country.iso_code">
                   {{ country.label }}
                 </option>
@@ -51,13 +82,38 @@
             </ValidationProvider>
           </div>
           <div class="form-group">
+            <label for="postal_code">{{ $t('postal_code') }}*</label>
+            <ValidationProvider v-slot="{ errors }" :name="$t('postal_code')" rules="required">
+              <input
+                id="postal_code"
+                ref="postal_code"
+                v-model="signup.postal_code"
+                type="text"
+                class="form-control"
+                aria-describedby="postal_code"
+              >
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group">
             <label for="companyPhoneNumber">{{ $t('company_phone_number') }}*</label>
+            <vue-country-code
+              :dropdown-options="{
+                enabledCountryCode:true,
+                disabledDialCode: false
+              }"
+              :disabled-fetching-country="false"
+              :enabled-country-code="true"
+              :preferred-countries="['pt','es']"
+              :enable-search-field="true"
+              @onSelect="onSelectCompany"
+            />
             <ValidationProvider v-slot="{ errors }" :name="$t('company_phone_number')" rules="required">
               <input
                 id="companyPhoneNumber"
                 v-model="signup.company_phone_number"
                 type="text"
-                class="form-control"
+                class="form-control phone-input"
                 aria-describedby="name"
               >
               <span class="errors">{{ errors[0] }}</span>
@@ -67,6 +123,9 @@
             <label for="Industry sector">{{ $t('industry_sector') }}*</label>
             <ValidationProvider v-slot="{ errors }" :name="$t('industry_sector')" rules="required">
               <select id="industry_sector" v-model="signup.industry_sector" class="form-control">
+                <option :value="undefined">
+                  Select a Sector
+                </option>
                 <option v-for="(sector, index) in industry_sectors" :key="index" :value="sector.value">
                   {{ sector.label }}
                 </option>
@@ -186,6 +245,9 @@
             <label for="position">{{ $t('position') }}*</label>
             <ValidationProvider v-slot="{ errors }" :name="$t('position')" rules="required">
               <select id="selectposition" v-model="signup.position" class="form-control">
+                <option :value="undefined">
+                  Select a Position
+                </option>
                 <option v-for="(position, index) in positions" :key="index" :value="position.value">
                   {{ position.label }}
                 </option>
@@ -296,8 +358,13 @@ export default {
         type: 2,
         company_name: '',
         nif: '',
+        address: '',
+        postal_code: '',
+        city: '',
         country_code: '',
         company_phone_number: '',
+        company_dial_code: '',
+        company_iso_alpha2: '',
         company_website: '',
         first_name: '',
         surname: '',
@@ -310,8 +377,8 @@ export default {
         password: '',
         confirmPassword: '',
         email_marketing: '',
-        position: '',
-        industry_sector: '',
+        position: undefined,
+        industry_sector: undefined,
         other_sector: '',
         other_position: ''
       },
@@ -330,13 +397,13 @@ export default {
         { value: 'Beauty Consultant', label: 'Beauty Consultant' },
         { value: 'Beauty Advisor', label: 'Beauty Advisor' },
         { value: 'Physician', label: 'Physician' },
-        { value: 'other', label: 'Other (please describe)' }
+        { value: '', label: 'Other (please describe)' }
       ],
       industry_sectors: [
         { value: 'Beauty Clinic', label: this.$t('beauty_clinic') },
         { value: 'Spa Clinic', label: this.$t('spa_clinic') },
         { value: 'Distributor', label: this.$t('distributor') },
-        { value: 'other', label: this.$t('other_please_describe') }
+        { value: '', label: this.$t('other_please_describe') }
       ]
     }
   },
@@ -396,12 +463,43 @@ export default {
         // this.signup.phone_number = concateCodeWithPhone(this.signup.internationalCode, this.signup.personal_phone)
         this.$emit('user-data', this.signup)
       }
+    },
+    onSelectCompany ({ iso2, dialCode }) {
+      this.signup.company_dial_code = dialCode
+      this.signup.company_iso_alpha2 = iso2
     }
   }
 }
 </script>
 
 <style>
+.errors {
+  color: #cf0000;
+}
+
+.icon-down1 {
+  height: 12px !important;
+  width: 12px !important;
+  transform: rotate(-90deg);
+}
+</style>
+
+<style lang="scss" scoped>
+option, select {
+    text-transform: capitalize;
+}
+.vue-country-select {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.phone-input {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  width: 78%;
+}
+</style>
+
+<style >
 .errors {
   color: #cf0000;
 }

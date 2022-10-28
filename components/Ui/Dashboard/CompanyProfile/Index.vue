@@ -93,7 +93,7 @@ export default {
               type: 'text',
               name: 'city',
               tag: 'city',
-              value: this.user.region || ''
+              value: this.user.city || ''
             }
           ]
         },

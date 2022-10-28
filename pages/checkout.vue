@@ -183,7 +183,7 @@ export default {
       this.$router.push({ path: '/thankyou' })
     },
     continueCheckout () {
-      if (this.tabIndex === 3) { // PLACE AN ORDER
+      if (this.tabIndex === 3) {
         this.$store.commit('setLoading', true, { root: true })
         this.$axios.post('/order/store', this.orderPayload).then(({ data }) => {
           return this.frontPayment.pay({
@@ -205,16 +205,15 @@ export default {
         }).finally(() => {
           this.$store.commit('setLoading', false, { root: true })
         })
-      } else if (!this.address && this.tabIndex === 1) {
+      } else if (this.tabIndex === 1 && !this.address) {
         this.$toast.error(this.$t('checkout.please_add_or_select_your_address'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
+      } else if (this.tabIndex === 1 && (!this.address.address_first_line || !this.address.post_code)) {
+        this.$toast.error(this.$t('checkout.please_select_a_valid_address'), { duration: 3000, position: 'top-right' })
       } else if (this.tabIndex === 2 && this.selectedCard === 'add_card') {
         this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
       } else {
         this.tabIndex++
       }
-      // else if (this.tabIndex === 2 && this.selectedCard === 0) {
-      // this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right' })
-      // }
     },
     handlePayment (data) {
       if (this.orderPayload.ali_pay) {

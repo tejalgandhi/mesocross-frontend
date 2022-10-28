@@ -37,12 +37,6 @@ export default {
         flex-direction: column;
         gap: 0.2rem;
 
-        &.disabled {
-            input {
-                background: #E0E0E0;
-            }
-        }
-
         label {
             font-weight: 500;
             text-transform: capitalize;

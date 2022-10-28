@@ -834,7 +834,7 @@ font-weight: bold;}
   display: block;
 }
 .welcome .vue-country-select .dropdown{
-  padding:7px;
+  padding: 10px 7px;
 }
 
 .welcome .vue-country-select .dropdown-list{

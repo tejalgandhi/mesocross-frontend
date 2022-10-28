@@ -170,7 +170,7 @@ export default {
             name: 'vat_number',
             tag: 'nif',
             value: this.user.nif,
-            disabled: this.user?.nif?.length
+            disabled: this.user?.nif?.length || false
           })
 
         this.fields.splice(1, 0, {

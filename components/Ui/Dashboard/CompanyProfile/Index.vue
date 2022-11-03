@@ -43,8 +43,7 @@ export default {
 
   methods: {
     async getERPData () {
-      const response = await this.$axios.get('user')
-      console.log(response)
+      await this.$axios.get('user')
       this.dataToFields()
     },
 
@@ -160,13 +159,14 @@ export default {
       const form = this.finalData
       form.iso_alpha = form.iso_alpha2
       form.phone_number = form.phone_no
+      form.email = this.user.email
       const response = await this.$axios.post('change-personal-details', form)
 
       if (response.status !== 200) {
         this.$toast.error(response.data.message, { duration: 5000, position: 'top-right' })
       }
 
-      this.getUser()
+      this.getERPData()
       this.$toast.success(response.data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
     }
   }

@@ -73,13 +73,13 @@ export default {
             {
               type: 'text',
               name: 'address',
-              tag: 'address',
+              tag: 'company_address_first_line',
               value: this.user.address
             },
             {
               type: 'text',
               name: 'postal_code',
-              tag: 'postal_code',
+              tag: 'company_postal_code',
               value: this.user.postal_code
             },
             {
@@ -91,7 +91,7 @@ export default {
             {
               type: 'text',
               name: 'city',
-              tag: 'city',
+              tag: 'company_city',
               value: this.user.city || ''
             }
           ]
@@ -158,9 +158,10 @@ export default {
     async sendData () {
       const form = this.finalData
       form.iso_alpha = form.iso_alpha2
-      form.phone_number = form.phone_no
-      form.email = this.user.email
-      const response = await this.$axios.post('change-personal-details', form)
+      form.company_phone_number = form.phone_no
+      form.company_email = this.user.email
+
+      const response = await this.$axios.post('user/store-company-data', form)
 
       if (response.status !== 200) {
         this.$toast.error(response.data.message, { duration: 5000, position: 'top-right' })

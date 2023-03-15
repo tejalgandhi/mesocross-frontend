@@ -1,9 +1,9 @@
 <template>
   <main class="main-header" :class="{mobile: isMobile()}">
+    <CommonAccessPrice />
     <template v-if="!isMobile()">
       <div class="topbar container-fluid">
         <div class="lang_part d-md-flex" @mouseover="isActive = 0">
-          <CommonAccessPrice />
           <CommonCountrySwitcher :country="country" @newCountry="handleNewCountry" />
           <CommonLangSwitcher />
         </div>

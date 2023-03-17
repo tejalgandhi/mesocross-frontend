@@ -231,7 +231,7 @@ export default {
             this.$toast.success(data.message, { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
             this.$bvModal.hide('subscribeModal')
           } else {
-            this.$toast.error('Something went wrong', { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
+            this.$toast.error(data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           }
           this.toggleSubmit(true)
         }

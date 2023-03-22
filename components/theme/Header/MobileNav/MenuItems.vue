@@ -21,7 +21,7 @@
     </transition>
     <div class="user">
       <CommonLangSwitcher />
-      <span class="semi-bold">My Account</span>
+      <span v-if="$auth.$state.loggedIn" class="semi-bold">My Account</span>
       <template v-if="!$auth.$state.loggedIn">
         <span class="log text-uppercase" @click=";goTo('/login'), $emit('close')">login / register</span>
       </template>

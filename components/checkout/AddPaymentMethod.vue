@@ -194,7 +194,7 @@ export default {
     async addPayment () {
       if (await this.$refs.formObserver.validate()) {
         try {
-          const  response  =  await this.paymentInstance.createNewCard({
+          const response = await this.paymentInstance.createNewCard({
             number: this.paymentObj.number,
             expiry_date: this.paymentObj.expiry_date,
             cvc: this.paymentObj.cvc
@@ -203,11 +203,10 @@ export default {
           console.log(response)
           this.$nuxt.$emit('fetch-cards')
           this.setIsAddPayment(false)
-          if(typeof response.errors === 'undefined'){
+          if (typeof response.errors === 'undefined') {
             this.$toast.success(this.$t('card_added_successfully'), { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-          }
-          else{
-            this.$toast.error(this.$t('something_went_wrong'), { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
+          } else {
+            this.$toast.error(response.errors, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           }
         } catch (err) {
           this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000, position: 'top-right', className: 'custom-toast-error-class' })

@@ -95,7 +95,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        z-index: 100;
+        z-index: 50;
 
         @media screen and (max-width: 768px){
             flex-direction: row;

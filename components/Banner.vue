@@ -27,7 +27,7 @@
       <div v-if="data" class="banner-content">
         <div class="container-fluid">
           <div class="row">
-            <div v-if="data.page !== 'home'" class="col-md-12 text-center mx-auto">
+            <div v-if="data.page !== 'home'" class="col-md-12 text-center mx-auto" :style="{ color : data.text_color }">
               <h1 class="text-uppercase banner-title font-weight-bold mb-3">
                 {{ data.title || data.name || '' }}
               </h1>

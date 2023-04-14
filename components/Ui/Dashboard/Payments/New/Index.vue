@@ -64,6 +64,7 @@ export default {
     },
 
     async sendData () {
+      console.log('new')
       const form = this.card
       form.type = form.type.name.toLowerCase()
 

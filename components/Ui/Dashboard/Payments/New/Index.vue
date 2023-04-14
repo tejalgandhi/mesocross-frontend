@@ -74,7 +74,7 @@ export default {
       console.log(response)
       console.log(response.status)
 
-      if (response.status !== 200) {
+      if (response.data.status !== 200) {
         this.$toast.error(response.data.message, { duration: 5000 }, 'top-right')
         return
       }

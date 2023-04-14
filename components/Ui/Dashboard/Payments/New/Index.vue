@@ -64,23 +64,19 @@ export default {
     },
 
     async sendData () {
-      console.log('new')
       const form = this.card
       form.type = form.type.name.toLowerCase()
+      try {
+        const response = await this.$axios.post('/stripe/create-card', this.card)
 
-      const response = await this.$axios.post('/stripe/create-card', this.card)
-
-      console.log('response')
-      console.log(response)
-
-      if (response.data.status !== 200) {
-        this.$toast.error(response.data.message, { duration: 5000 }, 'top-right')
-        return
+        if (response.data.status !== 200) {
+          this.$toast.error(response.data.message, { duration: 5000 }, 'top-right')
+          return
+        }
+        this.$toast.success(response.data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
+      } catch (err) {
+        this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000, position: 'top-right', className: 'custom-toast-error-class' })
       }
-
-      this.$toast.success(response.data.message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
-      this.$emit('back')
-      this.$emit('update')
     }
   }
 }

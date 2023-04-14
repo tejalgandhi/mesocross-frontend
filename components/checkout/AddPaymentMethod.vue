@@ -201,9 +201,6 @@ export default {
           })
           this.$nuxt.$emit('fetch-cards')
           this.setIsAddPayment(false)
-          console.log('response')
-          console.log(response.errors)
-          console.log('in')
           if (typeof response.errors === 'undefined') {
             this.$toast.success(this.$t('card_added_successfully'), { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
           } else {

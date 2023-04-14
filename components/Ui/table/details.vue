@@ -71,6 +71,7 @@ export default {
             background: white;
             border-radius: 4px;
             z-index: 1;
+            color: black;
 
             .header {
                 height: 5rem;

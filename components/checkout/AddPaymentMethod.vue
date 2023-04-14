@@ -203,10 +203,11 @@ export default {
           this.setIsAddPayment(false)
           console.log('response')
           console.log(response.errors)
+          console.log('in')
           if (typeof response.errors === 'undefined') {
             this.$toast.success(this.$t('card_added_successfully'), { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
           } else {
-            this.$toast.error(response.errors, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
+            this.$toast.error(response.errors.message, { duration: 5000, position: 'top-right', className: 'custom-toast-error-class' })
           }
         } catch (err) {
           this.$toast.error(err?.response?.data?.message || err.message, { duration: 10000, position: 'top-right', className: 'custom-toast-error-class' })

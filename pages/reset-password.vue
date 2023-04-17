@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  auth: 'guest',
+  auth: false,
   data () {
     return {
       form: {
@@ -100,6 +100,7 @@ export default {
       try {
         const res = await this.$axios.get(`/verify-password-token?token=${this.form.token}`)
         if (res.status) {
+          console.log(1)
           this.tokenVerified = true
         }
       } catch (e) {

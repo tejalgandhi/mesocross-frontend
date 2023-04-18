@@ -48,10 +48,10 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  auth: false,
+  layout: 'default-no-auth',
+  auth: 'guest',
   data () {
     return {
       form: {
@@ -100,7 +100,6 @@ export default {
       try {
         const res = await this.$axios.get(`/verify-password-token?token=${this.form.token}`)
         if (res.status) {
-          console.log(1)
           this.tokenVerified = true
         }
       } catch (e) {
@@ -116,7 +115,11 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style scoped>
+  .tab-content {
+    margin: 50px auto;
+  }
+  .form-group .eye {
+    bottom: 32px;
+  }
 </style>

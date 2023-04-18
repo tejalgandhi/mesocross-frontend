@@ -48,10 +48,9 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  layouts: 'default-no-auth',
+  layout: 'default-no-auth',
   auth: 'guest',
   data () {
     return {
@@ -116,7 +115,11 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style scoped>
+  .tab-content {
+    margin: 50px auto;
+  }
+  .form-group .eye {
+    bottom: 32px;
+  }
 </style>

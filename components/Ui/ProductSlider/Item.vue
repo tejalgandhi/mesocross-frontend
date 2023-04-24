@@ -1,7 +1,7 @@
 <template>
   <article @click="goTo">
     <figure>
-      <img :src="data.feature_image" alt="product_image">
+      <nuxt-img :src="data.feature_image" alt="product_image" />
     </figure>
     <div class="info">
       <header>

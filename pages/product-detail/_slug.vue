@@ -33,7 +33,7 @@
       <div class="items">
         <div class="product-info">
           <figure v-if="product.category_image">
-            <img :src="product.category_image" alt="category_icon">
+            <nuxt-img :src="product.category_image" alt="category_icon" />
           </figure>
           <div class="info">
             <span class="bold">{{ product.category }}</span>
@@ -43,7 +43,7 @@
           </div>
         </div>
         <figure class="icon">
-          <img :src="product.feature_image" alt="product_image">
+          <nuxt-img :src="product.feature_image" alt="product_image" />
         </figure>
         <div class="price" :class="{'space-between': priceHover && isLoggedin}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
           <span v-if="isLoggedin">{{ selectedSize.price }}€</span>

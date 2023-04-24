@@ -18,7 +18,7 @@
           <div class="mx-4 my-4">
             <nuxt-link :to="`/product-detail/${product.slug}`">
               <div class="my-3">
-                <img :src="product.feature_image" alt="image">
+                <nuxt-img :src="product.feature_image" alt="image" />
               </div>
               <div class="customize-product-content">
                 <p class="font-18 text-dark mb-2">

@@ -16,10 +16,10 @@
       <div class="row">
         <div v-if="content.content" v-html="content.content" />
         <figure v-if="content.media">
-          <img
+          <nuxt-img
             :src="content.media"
             alt="media"
-          >
+          />
         </figure>
       </div>
     </div>

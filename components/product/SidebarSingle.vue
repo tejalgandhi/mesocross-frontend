@@ -3,7 +3,7 @@
     <div class="text-light product-sidebar">
       <nuxt-link class="text-decoration-none row align-items-center" :to="`/product-detail/${product.slug}`">
         <div class="col-auto pr-0">
-          <img :src="product.feature_image" class="product-img" alt="image">
+          <nuxt-img :src="product.feature_image" class="product-img" alt="image" />
         </div>
         <div class="col">
           <h6 class="text-uppercase">

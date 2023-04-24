@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <img :src="data.data" :alt="data.name">
+    <nuxt-img :src="data.data" :alt="data.name" />
   </div>
 </template>
 

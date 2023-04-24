@@ -2,7 +2,7 @@
   <section class="our-mission" :class="{first}">
     <figure class="bg">
       <div v-if="data.media" class="bg-overlay" />
-      <img v-if="data.media" :src="data.media" alt="background">
+      <nuxt-img v-if="data.media" :src="data.media" alt="background" />
       <span v-else class="white" />
     </figure>
     <article>

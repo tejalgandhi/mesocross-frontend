@@ -13,7 +13,7 @@
           <div v-for="(product, index) in products" :key="index" class="panel-body mb-4">
             <div class="product-info">
               <figure>
-                <img :src="product.feature_image" class="img-fluid product-thumb mx-auto d-block" alt="image">
+                <nuxt-img :src="product.feature_image" class="img-fluid product-thumb mx-auto d-block" alt="image" />
               </figure>
               <div class="product-data">
                 <span class="title">{{ product.name }} ({{ product.size }})</span>

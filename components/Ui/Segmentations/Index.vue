@@ -1,7 +1,7 @@
 <template>
   <div class="segmentation">
     <figure @click="goTo(`/products/${data.slug}`)">
-      <img v-if="data.category_image" :src="spacesURL + data.category_image" :alt="data.category.toLowerCase()">
+      <nuxt-img v-if="data.category_image" :src="spacesURL + data.category_image" :alt="data.category.toLowerCase()" />
     </figure>
     <div class="categories">
       <template v-for="(item, i) in data.childrens">

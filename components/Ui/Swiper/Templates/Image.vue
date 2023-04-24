@@ -1,7 +1,7 @@
 <template>
   <article id="swipe-item" @click="goTo">
     <figure>
-      <img :src="data.image" alt="icon">
+      <nuxt-img :src="data.image" alt="icon" />
     </figure>
     <span>
       {{ data.name }}

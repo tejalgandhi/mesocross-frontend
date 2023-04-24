@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <ul class="align-items-center">
           <li v-for="(certificate, index) in certificates" :key="index">
-            <a :href="certificate.document_file" target="_blank"><img class="img-fluid" :src="certificate.image"></a>
+            <a :href="certificate.document_file" target="_blank"><nuxt-img class="img-fluid" :src="certificate.image" /></a>
           </li>
           <!-- <li><a href="#"><img class="img-fluid" src="https://mesosystem.com/assets/images/norte.png"></a></li>
           <li><a href="#"><img class="img-fluid" src="https://mesosystem.com/assets/images/pr.png"></a></li>

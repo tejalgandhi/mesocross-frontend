@@ -3,7 +3,7 @@
     <div class="product-item">
       <img v-if="isWishList" src="@/assets/img/close.svg" alt="image" class="close cursor-pointer" @click="removeWishlist">
       <nuxt-link class="text-decoration-none" :to="`/product-detail/${product.slug}`">
-        <img :src="product.feature_image" class="product-image" alt="image">
+        <nuxt-img :src="product.feature_image" class="product-image" alt="image" />
         <div class="desc_box py-4">
           <div v-if="className=='product-slide'" class="product-type">
             <span>core</span>

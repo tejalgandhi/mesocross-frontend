@@ -4,7 +4,7 @@
       <div v-for="(document, index) in documents" :key="index" class="col-lg-4 mb-3">
         <div class="course_box">
           <div class="img_box">
-            <img :src="document.image" alt="image">
+            <nuxt-img :src="document.image" alt="image" />
           </div>
           <div class="content_box">
             <small style="font-weight: 500">{{ document.treatment_solution_name }}</small><br>

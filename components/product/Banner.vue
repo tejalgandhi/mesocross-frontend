@@ -1,8 +1,8 @@
 <template>
   <div class="banner">
     <div class="container-fluid position-relative px-0 px-md-3">
-      <img v-if="data.banner" :src="data.banner" alt="image">
-      <img v-else :src="data.image" alt="image">
+      <nuxt-img v-if="data.banner" :src="data.banner" alt="image" />
+      <nuxt-img v-else :src="data.image" alt="image" />
       <div class="content">
         <h1 v-if="data.title">
           {{ data.title }}

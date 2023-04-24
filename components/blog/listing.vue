@@ -5,7 +5,7 @@
         <nuxt-link :to="`/blog-detail/${product.slug}`">
           <div class="course_box">
             <div class="img_box">
-              <img :src="product.image" alt="image">
+              <nuxt-img :src="product.image" alt="image" />
             </div>
             <div class="content_box">
               <small>{{ product.treatment_solution_name }}</small><br>

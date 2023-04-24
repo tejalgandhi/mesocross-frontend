@@ -8,7 +8,7 @@
         <nuxt-link v-if="children.slug && children.slug" :to="children | slug" class="p-0 d-block" style="line-height: normal">
           <div class="blog-item">
             <div class="img-div">
-              <img :src="children.image" alt="image">
+              <nuxt-img :src="children.image" alt="image" />
             </div>
             <div class="pb-4 pt-3" :inner-html.prop="children.short_description | stringLimit" />
             {{ children.name }}

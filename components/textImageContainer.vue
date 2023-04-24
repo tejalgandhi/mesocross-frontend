@@ -2,7 +2,7 @@
 <template>
   <section :class="{reverse}">
     <figure class="image-section">
-      <img :src="data.media" alt="image">
+      <nuxt-img :src="data.media" alt="image" />
     </figure>
     <article class="content-section">
       <h2>{{ data.title }}</h2>

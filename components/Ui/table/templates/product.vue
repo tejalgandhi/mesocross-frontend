@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <figure v-if="data.image">
-      <nuxt-img :src="data.image" alt="product_image" />
+      <nuxt-img :src="data.image" alt="product_image" format="webp" quality="100" sizes="xs:256 md:512" />
     </figure>
     <div class="info">
       <span>{{ data.name }}</span>

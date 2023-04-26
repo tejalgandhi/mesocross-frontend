@@ -28,10 +28,20 @@
           >
         </div>
         <figure ref="image">
-          <nuxt-img :src="data.image_2" alt="image" @load="checkSliderImageWidth" />
+          <nuxt-img :src="data.image_2"
+          alt="image"
+          @load="checkSliderImageWidth"
+          format="webp"
+          quality="100"
+          sizes="xs:256 md:512" />
         </figure>
         <figure>
-          <nuxt-img :src="data.image" alt="image" :style="{clipPath: `polygon(0 0,${slider}% 0,${slider}% 100%, 0 100%)`}" />
+          <nuxt-img :src="data.image"
+          alt="image"
+          :style="{clipPath: `polygon(0 0,${slider}% 0,${slider}% 100%, 0 100%)`}"
+          format="webp"
+          quality="100"
+          sizes="xs:256 md:512" />
         </figure>
       </div>
       <div class="side">

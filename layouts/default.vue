@@ -109,6 +109,8 @@ export default {
     async getUser () {
       const user = await this.$axios.get('/user')
       this.userLoaded = true
+      console.log('user')
+      console.log(user)
       if (user.status !== 200) {
         this.setLoggedinUser({})
         await this.$auth.logout()

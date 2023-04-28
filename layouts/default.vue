@@ -108,18 +108,21 @@ export default {
 
     async getUser () {
       console.log('in')
-      const user = await this.$axios.get('/user')
-      this.userLoaded = true
-      console.log('user')
-      console.log(user)
-      if (user.status !== 200) {
-        this.setLoggedinUser({})
-        await this.$auth.logout()
-        localStorage.clear()
-        this.$router.push('/')
-        return
+      try {
+        this.userLoaded = true
+        const user = await this.$axios.get('/user')
+                  .then((res) => {
+                    this.setLoggedinUser(res.data)
+                  })
+                  .catch((error) => {
+                    this.setLoggedinUser({})
+                    this.$auth.logout()
+                    localStorage.clear()
+                    this.$router.push('/')
+                    return
+                  })
+      } catch (err) {
       }
-      this.setLoggedinUser(user.data)
     },
 
     setBackground () {

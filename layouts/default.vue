@@ -107,6 +107,7 @@ export default {
     }),
 
     async getUser () {
+      console.log('in')
       const user = await this.$axios.get('/user')
       this.userLoaded = true
       console.log('user')

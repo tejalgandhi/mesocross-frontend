@@ -33,7 +33,7 @@
       <div class="items">
         <div class="product-info">
           <figure v-if="product.category_image">
-            <nuxt-img :src="product.category_image" alt="category_icon" />
+            <nuxt-img :src="product.category_image || ''" alt="category_icon" />
           </figure>
           <div class="info">
             <span class="bold">{{ product.category }}</span>
@@ -41,10 +41,10 @@
             <hr>
             <span>{{ selectedSize.name }}</span>
           </div>
+          <figure class="icon">
+            <nuxt-img :src="product.feature_image || ''" alt="product_image" />
+          </figure>
         </div>
-        <figure class="icon">
-          <nuxt-img :src="product.feature_image || ''" alt="product_image" />
-        </figure>
         <div class="price" :class="{'space-between': priceHover && isLoggedin}" @mouseenter="priceHover = true" @mouseleave="priceHover = false" @click="addToBag">
           <span v-if="isLoggedin">{{ selectedSize.price }}€</span>
           <span v-else>{{ $t('log_in_to_see_price') }}</span>
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <HomeProductGroup v-if="product && product.slug" :title="'related_products'" :api="`/get-related-products?slug=${product.slug}`" :is-new="true" />
+    <!-- <HomeProductGroup v-if="product && product.slug" :title="'related_products'" :api="`/get-related-products?slug=${product.slug}`" :is-new="true" /> -->
   </div>
 </template>
 
@@ -257,14 +257,15 @@ export default {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-
-                @media screen and (max-width: 768px){
-                    flex-direction: column;
-                }
+                width: 100%;
 
                 figure {
                     width: 32px;
                     height: 32px;
+
+                    @media screen and (max-width: 768px){
+                      width: 20%;
+                    }
 
                     img {
                         width: 100%;
@@ -279,12 +280,20 @@ export default {
                     gap: 0.5rem;
                     text-transform: uppercase;
 
-                    @media screen and (max-width: 768px){
-                        flex-direction: column;
-                    }
                     span {
                         font-weight: 200;
                         font-size: 18px;
+                    }
+
+                    @media screen and (max-width: 768px){
+                        display: flex;
+                        width: 80%;
+                        justify-content: center;
+
+                        span {
+                            font-weight: 200;
+                            font-size: 15px;
+                        }
                     }
 
                     .bold {

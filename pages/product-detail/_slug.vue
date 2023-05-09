@@ -220,6 +220,9 @@ export default {
     }
 
     .add-bar {
+      position: sticky;
+      bottom: 0px;
+      z-index: 50;
         width: 100%;
         background: black;
         text-transform: uppercase;

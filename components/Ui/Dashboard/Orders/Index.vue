@@ -1,22 +1,24 @@
 <template>
-  <section>
-    <UiTable v-if="loaded" :head-items="tabs" :entries="entries" @itemClick="handleItemClick" />
-    <div v-else class="loading">
-      <span class="loader" />
-    </div>
-    <div class="pagination">
-      <span class="item" />
-      <div class="item">
-        <span class="arrow left" :class="{disabled: currentPage <= 1}" @click="handlePage(0)" />
-        <span class="page">{{ currentPage }}</span>
-        <span class="arrow right" :class="{disabled: currentPage >= lastPage}" @click="handlePage(1)" />
-      </div>
-      <div class="item showing">
-        <span>{{ `${$t('showing')}` }} <b>{{ (10 * (currentPage - 1)) + entries.length }}</b> {{ `${$t('of')}` }} <b>{{ totalItems }}</b> {{ `${$t('results').toLowerCase()}` }}</span>
-      </div>
-    </div>
-    <UiTableDetails v-if="Object.keys(toSee).length" :data="toSee" @close="toSee = {}" />
-  </section>
+    <section>
+        <UiTable v-if="loaded" :head-items="tabs" :entries="entries" @itemClick="handleItemClick" />
+        <div v-else class="loading">
+            <span class="loader" />
+        </div>
+        <div class="pagination">
+            <span class="item" />
+            <div class="item">
+                <span class="arrow left" :class="{ disabled: currentPage <= 1 }" @click="handlePage(0)" />
+                <span class="page">{{ currentPage }}</span>
+                <span class="arrow right" :class="{ disabled: currentPage >= lastPage }" @click="handlePage(1)" />
+            </div>
+            <div class="item showing">
+                <span>{{ `${$t('showing')}` }} <b>{{ (10 * (currentPage - 1)) + entries.length }}</b> {{ `${$t('of')}` }}
+                    <b>{{ totalItems }}</b> {{ `${$t('results').toLowerCase()}` }}</span>
+            </div>
+        </div>
+        <UiTableDetails v-if="Object.keys(toSee).length" :data="toSee" @close="toSee = {}" />
+        <UiOrdersCancel v-if="Object.keys(showCancelPopup).length" :data="showCancelPopup" @close="showCancelPopup = {}" />
+    </section>
 </template>
 
 <script>
@@ -28,7 +30,8 @@ export default {
         'order.date',
         'order.number',
         'order.payment_method',
-        'order.total_amount'
+        'order.total_amount',
+        'order.cancel'
       ],
       activeTab: 0,
       currentPage: 1,
@@ -38,7 +41,8 @@ export default {
       entries: [],
       fullData: [],
       toSee: {},
-      API_PATH: process.env.API_PATH
+      API_PATH: process.env.API_PATH,
+      showCancelPopup: {}
     }
   },
 
@@ -75,7 +79,8 @@ export default {
       if (window.innerWidth < 768) {
         this.tabs = [
           'order.number',
-          'order.total_amount'
+          'order.total_amount',
+          'order.cancel'
         ]
         return
       }
@@ -84,7 +89,8 @@ export default {
         'order.date',
         'order.number',
         'order.payment_method',
-        'order.total_amount'
+        'order.total_amount',
+        'order.cancel'
       ]
     },
 
@@ -99,8 +105,15 @@ export default {
       this.handleData(this.fullData)
     },
 
-    handleItemClick (id) {
+    handleItemClick (clicked) {
+      const id = clicked.id
       const item = this.fullData.filter(el => el.id === id)[0]
+
+      if (clicked.tag === 'cancel') {
+        this.showCancelPopup = item
+        return
+      }
+
       this.toSee = {
         title: `${this.$t('order.order')} #${String(item.id).padStart(5, '0')}`,
         date: item.created_at,
@@ -157,10 +170,15 @@ export default {
             template: 'normal',
             name: 'total_amount',
             data: `${el.total}€`
+          },
+          {
+            template: 'cancel',
+            name: 'cancel',
+            data: this.$t('order.cancel_order')
           }
         ]
 
-        if (this.tabs.length === 2) {
+        if (this.tabs.length === 3) {
           entries.splice(2, 1)
           entries.splice(0, 1)
         }
@@ -185,109 +203,110 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    section {
-        width: 100%;
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .tabs {
         display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
+        position: relative;
+        user-select: none;
 
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            position: relative;
-            user-select: none;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            width: 10rem;
+            height: 2px;
+            background: black;
+            transition: 0.2s;
+        }
 
+        &.right {
             &::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: 0px;
-                width: 10rem;
-                height: 2px;
-                background: black;
-                transition: 0.2s;
-            }
-
-            &.right {
-                &::after {
-                   left: 11rem;
-                }
-            }
-
-            span {
-                cursor: pointer;
-                position: relative;
-                width: 10rem;
-                text-align: center;
-                padding: 10px 0;
-                font-size: 20px;
-
-                &.active {
-                    font-weight: 500;
-                }
+                left: 11rem;
             }
         }
 
-        .emtpy {
-            height: 685px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        span {
+            cursor: pointer;
+            position: relative;
+            width: 10rem;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 20px;
 
-        .pagination {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-
-            .item {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 0.5rem;
-                width: 33%;
-
-                .arrow {
-                    width: 8px;
-                    height: 8px;
-                    border: solid 1px;
-                    border-color: black black transparent transparent;
-                    cursor: pointer;
-
-                    &.disabled {
-                        opacity: 0.4;
-                        cursor: unset;
-                    }
-
-                    &.right {
-                        transform: rotate(45deg);
-                    }
-
-                    &.left {
-                        transform: rotate(-135deg);
-                    }
-                }
-            }
-
-            .showing {
-                display: flex;
-                justify-content: flex-end;
-                span {
-                    font-size: 12px;
-
-                    b {
-                        font-size: 12px;
-                    }
-                }
-            }
-
-            .page {
-                padding: 5px 10px;
-                border: solid 1px grey;
-                border-radius: 4px;
+            &.active {
+                font-weight: 500;
             }
         }
     }
+
+    .emtpy {
+        height: 685px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            width: 33%;
+
+            .arrow {
+                width: 8px;
+                height: 8px;
+                border: solid 1px;
+                border-color: black black transparent transparent;
+                cursor: pointer;
+
+                &.disabled {
+                    opacity: 0.4;
+                    cursor: unset;
+                }
+
+                &.right {
+                    transform: rotate(45deg);
+                }
+
+                &.left {
+                    transform: rotate(-135deg);
+                }
+            }
+        }
+
+        .showing {
+            display: flex;
+            justify-content: flex-end;
+
+            span {
+                font-size: 12px;
+
+                b {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .page {
+            padding: 5px 10px;
+            border: solid 1px grey;
+            border-radius: 4px;
+        }
+    }
+}
 </style>

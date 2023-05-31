@@ -14,16 +14,16 @@
             <div class="row mb-25">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="cancel_reason">{{ $t('description') }} * </label>
+                  <label for="cancel_reason">{{ $t('subject') }} * </label>
                   <div class="position-relative">
-                    <ValidationProvider v-slot="{ errors }" :name="$t('description')" rules="required">
-                      <input v-model="form.cancel_reason" type="textarea" :placeholder="$t('description')" class="form-control">
+                    <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
+                      <input v-model="form.cancel_reason" type="textarea" :placeholder="$t('subject')" class="form-control">
                       <span class="errors text-danger">{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <b-button block type="submit" variant="primary">
                   {{ $t('Send') }}
                 </b-button>
@@ -111,7 +111,7 @@ export default {
         width: 95%;
         height: 95%;
         max-width: 500px;
-        max-height: 700px;
+        max-height: 350px;
         background: rgb(0, 0, 0);
         border-radius: 4px;
         z-index: 1;
@@ -153,7 +153,7 @@ export default {
                 &::after {
                     content: '';
                     position: absolute;
-                    width: 16px;
+                    width: 26px;
                     height: 1px;
                     background: black;
                 }

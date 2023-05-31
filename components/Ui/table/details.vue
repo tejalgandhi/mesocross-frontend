@@ -1,28 +1,34 @@
 <template>
-    <div class="details-container">
-        <div class="overlay" @click="$emit('close')" />
-        <div class="details">
-            <div class="header">
-                <h2>{{ data.title }}</h2>
-                <span>{{ $t('order.created_at') }} {{ localeDate }}</span>
-                <span class="close" @click="$emit('close')" />
-            </div>
-            <div class="items">
-                <template v-if="data.products">
-                    <template v-for="(item, i) in data.products">
-                        <UiTableTemplatesProduct :key="`product-${i}`" :data="item" />
-                    </template>
-                </template>
-                <template v-for="(item, index) in data.items">
-                    <UiTableTemplatesDetailTotalValue
-                        v-if="item.template === 'total-value' || item.template === 'sub-value'" :key="`value-${index}`"
-                        :light="item.template === 'sub-value'" :data="item" />
-                    <UiTableTemplatesDetailMultipleBoolean v-else-if="item.template === 'multiple-boolean'"
-                        :key="`boolean-${index}`" :data="item" />
-                </template>
-            </div>
-        </div>
+  <div class="details-container">
+    <div class="overlay" @click="$emit('close')" />
+    <div class="details">
+      <div class="header">
+        <h2>{{ data.title }}</h2>
+        <span>{{ $t('order.created_at') }} {{ localeDate }}</span>
+        <span class="close" @click="$emit('close')" />
+      </div>
+      <div class="items">
+        <template v-if="data.products">
+          <template v-for="(item, i) in data.products">
+            <UiTableTemplatesProduct :key="`product-${i}`" :data="item" />
+          </template>
+        </template>
+        <template v-for="(item, index) in data.items">
+          <UiTableTemplatesDetailTotalValue
+            v-if="item.template === 'total-value' || item.template === 'sub-value'"
+            :key="`value-${index}`"
+            :light="item.template === 'sub-value'"
+            :data="item"
+          />
+          <UiTableTemplatesDetailMultipleBoolean
+            v-else-if="item.template === 'multiple-boolean'"
+            :key="`boolean-${index}`"
+            :data="item"
+          />
+        </template>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

@@ -17,7 +17,7 @@
             </div>
         </div>
         <UiTableDetails v-if="Object.keys(toSee).length" :data="toSee" @close="toSee = {}" />
-        <UiOrdersCancel v-if="Object.keys(showCancelPopup).length" :data="showCancelPopup" @close="showCancelPopup = {}" />
+        <UiOrdersCancel v-if="Object.keys(showCancelPopup).length" :show-modal="Object.keys(showCancelPopup).length" :data="showCancelPopup" @close="showCancelPopup = {}" />
     </section>
 </template>
 
@@ -80,7 +80,7 @@ export default {
         this.tabs = [
           'order.number',
           'order.total_amount',
-          'order.cancel'
+          'cancel'
         ]
         return
       }
@@ -90,7 +90,7 @@ export default {
         'order.number',
         'order.payment_method',
         'order.total_amount',
-        'order.cancel'
+        'cancel'
       ]
     },
 
@@ -174,7 +174,7 @@ export default {
           {
             template: 'cancel',
             name: 'cancel',
-            data: this.$t('order.cancel_order')
+            data: this.$t('cancel')
           }
         ]
 

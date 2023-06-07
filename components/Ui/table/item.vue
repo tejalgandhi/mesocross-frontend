@@ -1,5 +1,5 @@
 <template>
-  <UiTableTemplatesNormal v-if="data.template === 'normal'" :data="data" />
+  <UiTableTemplatesNormal v-if="data.template === 'normal' || data.template === 'cancel'" :data="data" />
   <UiTableTemplatesDate v-else-if="data.template === 'date'" :data="data" />
   <UiTableTemplatesBoolean v-else-if="data.template === 'boolean'" :data="data" />
   <UiTableTemplatesPrice v-else-if="data.template === 'price'" :data="data" />
@@ -19,18 +19,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .item {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        // border-right: solid 1px $beige;
-        user-select: none;
-        cursor: pointer;
-        text-align: center;
+.item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // border-right: solid 1px $beige;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
 
-        &:last-of-type {
-            border-right: unset;
-        }
+    &:last-of-type {
+        border-right: unset;
     }
+}
 </style>

@@ -8,6 +8,6 @@ const routes = [
     name: 'category-product',
     path: '/products/:categorySlug',
     component: 'pages/products.vue'
-  },
+  }
 ]
 export default routes

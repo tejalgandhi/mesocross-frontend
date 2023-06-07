@@ -45,5 +45,8 @@ export default {
       const iswish = wishList.findIndex(pr => checkId(pr, product) && checkSize(pr, product)) > -1
       return iswish
     }
+  },
+  getDiscount (state) {
+    return state.discount
   }
 }

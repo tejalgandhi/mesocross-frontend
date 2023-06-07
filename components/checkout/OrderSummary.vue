@@ -6,7 +6,6 @@
       </h5>
       <div v-if="discount <= 0" class="discount coupon_code p-2 mb-3">
         <label class="block" for="">{{ $t('checkout.add_promo_code') }}</label>
-        <label class="block" for="">{{ discount }}</label>
         <ValidationObserver ref="formObserver">
           <form id="discountForm" enctype="multipart/form-data" @submit.prevent="submit">
             <input

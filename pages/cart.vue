@@ -54,10 +54,6 @@
               <h5 class="mb-3">
                 {{ $t('order_summary') }}
               </h5>
-              <div class="promo-code p-4 mb-4">
-                <label>Insert your promo code</label>
-                <input type="text" class="form-control border-0" placeholder="Enter promo code">
-              </div>
               <div class="prod_detail">
                 <div class="product d-flex justify-content-between font-weight-bold">
                   <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <strong class="ml-3">{{ subTotal }} €</strong>

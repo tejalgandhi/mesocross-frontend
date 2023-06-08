@@ -49,15 +49,5 @@ export default {
     } catch (e) {
       commit('setLoading', false, { root: true })
     }
-  },
-  applyDiscount ({ getters, commit }, flag) {
-    if (flag) {
-      const { subTotal } = getters
-      const discountPer = Number(process.env.stripeCommisionPer)
-      const discount = (subTotal * discountPer) / 100
-      commit('setDiscount', discount.toFixed(2))
-    } else {
-      commit('setDiscount', 0)
-    }
   }
 }

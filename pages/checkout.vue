@@ -157,7 +157,6 @@ export default {
       this.$router.push('/login')
     }
     // this.$axios.get('/stripe/create-customer')
-    this.$store.dispatch('cart/applyDiscount', false)
     this.frontPayment = await this.$store.dispatch('payment/payment')
   },
   methods: {

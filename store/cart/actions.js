@@ -49,5 +49,18 @@ export default {
     } catch (e) {
       commit('setLoading', false, { root: true })
     }
+  },
+  async applyDiscount ({ commit }, payload) {
+    if (payload !== '' && payload !== 'undefined' && payload.code !== '') {
+      const code = payload.code
+      const { data } = await this.$axios.$get('/discount/check?code=' + code)
+      if (data.valid_coupon) {
+        commit('setDiscount', data.discount_amount)
+        commit('setDiscountString', payload.code)
+      } else {
+        commit('setDiscount', 0)
+        commit('setDiscountString', '')
+      }
+    }
   }
 }

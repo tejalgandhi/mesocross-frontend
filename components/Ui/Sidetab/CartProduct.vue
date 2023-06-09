@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   props: {
     product: {
@@ -49,12 +49,16 @@ export default {
   computed: {
     price () {
       return Math.round(((this.product.price * this.product.qty) + Number.EPSILON) * 100) / 100
-    }
+    },
+    ...mapState({
+      discount_string: state => state.cart.discount_string
+    })
   },
 
   methods: {
     ...mapActions({
-      addToCart: 'cart/addToCart'
+      addToCart: 'cart/addToCart',
+      applyDiscount: 'cart/applyDiscount'
     }),
 
     updateQty (flag) {
@@ -65,12 +69,14 @@ export default {
       product.flag = flag
       product.is_update = 1
       this.addToCart(product)
+      this.applyDiscount({ code: this.discount_string })
     },
 
     deleteProduct () {
       const product = { ...this.product }
       product.flag = 3
       this.addToCart(product)
+      this.applyDiscount({ code: this.discount_string })
     }
   }
 }

@@ -59,7 +59,7 @@
                   <label> {{ totalUnits }} {{ $t('units') }} ({{ products.length }} X {{ $t('products') }})</label> <strong class="ml-3">{{ subTotal }} €</strong>
                 </div>
                 <div class="d-flex justify-content-between">
-                  <label>{{ $t('discount') }}</label> <span>0 €</span>
+                  <label>{{ $t('discount') }}</label> <span>{{ discount }} €</span>
                 </div>
                 <div class="d-flex justify-content-between py-2 mt-2 mb-4 border-top">
                   <label>{{ $t('total') }}</label> <strong>{{ subTotal }} €</strong>
@@ -94,7 +94,9 @@ export default {
   computed: {
     ...mapState({
       products: state => state.cart.products,
-      isUserLoggedIn: state => state.user.loggedIn
+      isUserLoggedIn: state => state.user.loggedIn,
+      discount: state => state.cart.discount,
+      discount_string: state => state.cart.discount_string
     }),
     ...mapGetters({
       totalProductPrice: 'cart/totalProductPrice',
@@ -102,12 +104,19 @@ export default {
       totalUnits: 'cart/totalUnits'
     })
   },
-  mounted () {
+  async mounted () {
     if (!this.isUserLoggedIn) {
       this.setCartProduct([])
     } else {
       this.getCart()
       this.getRecentlyViewedProducts()
+    }
+    if (this.discount) {
+      const url = `discount/check?code=${this.discount_string}`
+      const { code, data } = await this.$axios.$get(url)
+      if (code === 200 && data.valid_coupon) {
+        this.setDiscount(data.discount_amount)
+      }
     }
   },
   methods: {
@@ -119,7 +128,9 @@ export default {
       getCart: 'cart/getCart'
     }),
     ...mapMutations({
-      setCartProduct: 'cart/setCartProduct'
+      setCartProduct: 'cart/setCartProduct',
+      setDiscount: 'cart/setDiscount',
+      setDiscountString: 'cart/setDiscountString'
     })
   }
 }

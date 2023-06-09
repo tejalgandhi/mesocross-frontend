@@ -55,15 +55,16 @@ export default {
     },
 
     ...mapState({
-      wishList: state => state.cart.wishList
+      wishList: state => state.cart.wishList,
+      discount_string: state => state.cart.discount_string
     })
   },
-
   methods: {
     deletecart () {
       const product = { ...this.product }
       product.flag = 3
       this.addToCart(product)
+      this.applyDiscount({ code: this.discount_string })
       this.$toast.success('Product Deleted from cart successfully.', { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
     },
     updateQty (flag) {
@@ -74,6 +75,7 @@ export default {
       product.flag = flag
       product.is_update = 1
       this.addToCart(product)
+      this.applyDiscount({ code: this.discount_string })
       this.$toast.success('Product Quantity is updated.', { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
     },
     addToWishlist () {
@@ -91,7 +93,8 @@ export default {
     },
     ...mapActions({
       addToCart: 'cart/addToCart',
-      addWishList: 'cart/addWishList'
+      addWishList: 'cart/addWishList',
+      applyDiscount: 'cart/applyDiscount'
     })
   }
 }

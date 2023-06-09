@@ -78,14 +78,25 @@ export default {
       selectedCard: state => state.user.selectedCard,
       products: state => state.cart.products,
       shippingCharge: state => state.cart.shippingCharge,
-      discount: state => state.cart.discount
+      discount: state => state.cart.discount,
+      discount_string: state => state.cart.discount_string
     }),
     ...mapGetters({
       totalProductPrice: 'cart/totalProductPrice',
       totalUnits: 'cart/totalUnits',
       subTotal: 'cart/subTotal',
-      getDiscount: 'cart/getDiscount'
+      getDiscount: 'cart/getDiscount',
+      getDiscountString: 'cart/getDiscountString'
     })
+  },
+  async mounted () {
+    if (this.discount) {
+      const url = `discount/check?code=${this.discount_string}`
+      const { code, data } = await this.$axios.$get(url)
+      if (code === 200 && data.valid_coupon) {
+        this.setDiscount(data.discount_amount)
+      }
+    }
   },
   methods: {
     async submit () {
@@ -101,6 +112,7 @@ export default {
             this.$toast.success(message, { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
 
             this.setDiscount(data.discount_amount)
+            this.setDiscountString(this.form.code)
           } else {
             this.$toast.error(message, { duration: 5000, position: 'top-right', className: 'custom-toast-success-class' })
           }
@@ -112,7 +124,8 @@ export default {
       }
     },
     ...mapMutations({
-      setDiscount: 'cart/setDiscount'
+      setDiscount: 'cart/setDiscount',
+      setDiscountString: 'cart/setDiscountString'
     })
   }
 }

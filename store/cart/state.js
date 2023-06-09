@@ -9,5 +9,6 @@ export default () => ({
   isSingleDay: 1,
   shippings: [],
   cartData: [],
-  discount: 0
+  discount: 0,
+  discount_string: ''
 })

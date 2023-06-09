@@ -21,5 +21,8 @@ export default {
   },
   setDiscount (state, payload) {
     state.discount = payload
+  },
+  setDiscountString (state, payload) {
+    state.discount_string = payload
   }
 }

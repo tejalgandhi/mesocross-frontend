@@ -48,5 +48,8 @@ export default {
   },
   getDiscount (state) {
     return state.discount
+  },
+  getDiscountString (state) {
+    return state.discount_string
   }
 }

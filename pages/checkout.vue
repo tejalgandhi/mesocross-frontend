@@ -193,6 +193,8 @@ export default {
               this.handlePayment(data)
             } else if (data.status) {
               // this.setCartProduct([])
+              this.setDiscount(0)
+              this.setDiscountString('')
               this.$router.push({ path: '/thankyou' })
               this.$toast.success(this.$t('checkout.order_placed_successfully'), { duration: 3000, position: 'top-right', className: 'custom-toast-success-class' })
             }
@@ -237,7 +239,9 @@ export default {
     },
     ...mapMutations({
       setCartProduct: 'cart/setCartProduct',
-      setIsAddPayment: 'user/setIsAddPayment'
+      setIsAddPayment: 'user/setIsAddPayment',
+      setDiscount: 'cart/setDiscount',
+      setDiscountString: 'cart/setDiscountString'
     })
   }
 }

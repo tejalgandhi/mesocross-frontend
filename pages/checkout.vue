@@ -121,9 +121,7 @@ export default {
         selected_card: this.selectedCard,
         productCode: this.shippingProductCode,
         localproductCode: this.shippingLocalProductCode,
-        promo_code: '',
-        discount_type: '',
-        discount_price: this.discountPrice,
+        code: this.discountCode,
         shipping_price: this.shippingCharge,
         sub_total: this.subTotal,
         total: this.totalProductPrice,
@@ -142,6 +140,7 @@ export default {
       shippingCharge: state => state.cart.shippingCharge,
       shippingLocalProductCode: state => state.cart.shippingLocalProductCode,
       discountPrice: state => state.cart.discount,
+      discountCode: state => state.cart.discount_string,
       shippingProductName: state => state.cart.shippingProductName
     }),
     ...mapGetters({

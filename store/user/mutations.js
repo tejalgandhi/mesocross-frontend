@@ -54,11 +54,6 @@ export default {
     state.userCards = payload
   },
   setSelectedCard (state, payload) {
-    if (payload === 0) {
-      this.dispatch('cart/applyDiscount', true, { root: true })
-    } else {
-      this.dispatch('cart/applyDiscount', false, { root: true })
-    }
     state.selectedCard = payload
   }
 

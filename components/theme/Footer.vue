@@ -145,10 +145,19 @@
                   <img src="@/assets/img/visa.svg" alt="">
                 </figure>
                 <figure>
+                  <img src="@/assets/img/amex-icon.svg" alt="">
+                </figure>
+                <figure>
+                  <img src="@/assets/img/mb-icon-white.svg" alt="">
+                </figure>
+                <figure>
                   <img src="@/assets/img/paypal.svg" alt="">
                 </figure>
                 <figure>
-                  <img src="@/assets/img/applepay.svg" alt="">
+                  <img src="@/assets/img/alipay-icon.svg" alt="">
+                </figure>
+                <figure>
+                  <img src="@/assets/img/wechatpay-icon.svg" alt="">
                 </figure>
               </div>
             </div>
@@ -288,13 +297,17 @@ footer {
       opacity: 1;
       border-color: #ffffff !important;
     }
+
     .logos {
-        border-radius: 10px;
-        img {
-            margin-right: 17px;
-        }
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         figure {
-            margin: 0;
+            width: 30px;
+
+            img {
+                width: 100%;
+            }
         }
     }
     figure.brand-logo{

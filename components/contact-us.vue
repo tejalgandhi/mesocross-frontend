@@ -10,10 +10,11 @@
     </div>
     <div class="mc-contact-details">
       <div class="row">
-        <div class="col-12 col-sm-12 col-md-6">
+        <div class="col-12 col-sm-12 col-md-12">
           <div class="contact-info">
-            <p>{{ $t('We_are_available_monday_to_friday') }} 09:00 - 18:00 GMT</p>
-            <a href="tel:+351 227 347 125">(+351) 227 347 125 </a>
+            <p>{{ $t('We_are_available_monday_to_friday') }}<br> 09:00 - 18:00 GMT</p>
+            <span>{{ $t('telephone') }} <a href="tel:+351 227 347 125">(+351) 227 347 125</a> ({{ $t('call_national_network') }})</span><br>
+            <span>{{ $t('cell_phone') }} <a href="tel:+351 924 188 704">(+351) 924 188 704</a> ({{ $t('call_national_mobile_network') }})</span><br>
           </div>
         </div>
       </div>

@@ -37,7 +37,6 @@
                       <b-dropdown-item v-if="!sort.needsLogIn || (sort.needsLogIn && isLoggedin)" :key="i" @click="sortType = [sort.type, sort.tag]">
                         {{ $t(sort.name) }}
                       </b-dropdown-item>
-
                     </template>
                   </b-dropdown>
                 </div>

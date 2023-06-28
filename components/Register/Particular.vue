@@ -114,6 +114,24 @@
             </ValidationProvider>
           </div>
           <div class="form-group">
+            <label for="language">{{ $t('language') }}</label>
+            <ValidationProvider v-slot="{ errors }" :name="$t('language')">
+              <select
+                id="language"
+                ref="language"
+                v-model="signup.language"
+                type="text"
+                class="form-control"
+                aria-describedby="language"
+              >
+                <option v-for="language in $i18n.locales" :key="language.code" :value="language.code">
+                  {{ $t(language.name.toLowerCase()) }}
+                </option>
+              </select>
+              <span class="errors">{{ errors[0] }}</span>
+            </ValidationProvider>
+          </div>
+          <div class="form-group">
             <ValidationProvider v-slot="{ errors }" name="Phone Number" rules="required">
               <label for="companyPhoneNumber">{{ $t('phone_number') }}*</label>
               <div class="d-flex">
@@ -230,6 +248,7 @@ export default {
         city: '', // RID
         district: '', // RID
         phone: '',
+        language: this.$i18n.locale,
         phone_number: '',
         dial_code: '',
         iso_alpha2: '',

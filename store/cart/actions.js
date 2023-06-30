@@ -53,7 +53,6 @@ export default {
   async applyDiscount ({ commit }, payload) {
     if (payload !== '' && payload !== 'undefined' && payload.code !== '') {
       const code = payload.code
-
       const { data } = await this.$axios.$get('/discount/check?code=' + code)
       if (data.valid_coupon) {
         commit('setDiscount', data.discount_amount)

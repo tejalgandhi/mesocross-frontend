@@ -36,6 +36,7 @@ export default {
   },
   async getShippingCharge ({ rootState, commit }) {
     try {
+
       commit('setLoading', true, { root: true })
       commit('setShippingCharge', [])
       commit('setShippingCharge', { shipping_charge: 0, productCode: '', localProductCode: '' })

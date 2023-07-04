@@ -41,10 +41,6 @@ export default {
     state.loggedIn = payload
   },
   setLoggedinUser (state, payload) {
-    const { language } = payload
-    if (typeof (language) === 'string' && language !== this.$i18n.locale) {
-      this.$i18n.setLocale(language)
-    }
     state.loggedinUser = payload
   },
   setIsAddPayment (state, payload) {

@@ -148,6 +148,8 @@ export default {
 
     handleData (data) {
       this.entries = data.map((el) => {
+        console.log(el.payment_method)
+        console.log(this.$t(`order.method.${el.payment_method}`))
         const entries = [
           {
             template: 'date',

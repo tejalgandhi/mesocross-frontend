@@ -61,15 +61,11 @@ export default {
               this.successRes = true
             })
             .catch((error) => {
-              if (error.response.status === 404) {
-                this.errorRes = true
-                this.errorMsg = 'User doesn\'t exist with given email. '
-              } else if (error.response.status === 429) {
+              if (error.response.status === 429) {
                 this.errorRes = true
                 this.errorMsg = 'Too many attampt please try after sometime. '
               } else if (error.response.status === 500) {
-                this.errorRes = true
-                this.errorMsg = error.response.data.message
+                this.successRes = true
               }
             })
         }

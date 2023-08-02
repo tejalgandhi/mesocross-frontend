@@ -96,7 +96,7 @@ export default {
 
     async getData () {
       this.loaded = true
-      const response = await this.$axios.get('orders')
+      const response = await this.$axios.get(`/orders?page=${this.currentPage}`)
 
       this.loaded = true
       this.fullData = response.data.data
@@ -272,7 +272,7 @@ section {
                 width: 8px;
                 height: 8px;
                 border: solid 1px;
-                border-color: black black transparent transparent;
+                border-color: white white transparent transparent;
                 cursor: pointer;
 
                 &.disabled {

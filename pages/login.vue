@@ -20,7 +20,7 @@
                       class="form-control"
                       aria-describedby="emailHelp"
                     >
-                    <small class="errors text-danger">{{ errors[0] }}</small>
+                    <small class="errors text-danger">{{ errors && errors.length > 0 ? emailError(errors) : '' }}</small>
                   </ValidationProvider>
                 </div>
                 <div class="form-group">
@@ -31,7 +31,7 @@
                       <a @click="showPassword(passwordType)">
                         <img :src="require(`~/assets/img/${passwordImage}`)" alt="eye" class="eye"></a>
                     </div>
-                    <small class="errors text-danger">{{ errors[0] }}</small>
+                    <small class="errors text-danger">{{ errors && errors.length > 0 ? passwordError(errors) : '' }}</small>
                   </ValidationProvider>
                 </div>
                 <div class="form-group text-right">
@@ -132,7 +132,23 @@ export default {
       getWishList: 'cart/getWishList',
       setSearch: 'setSearch',
       getIsSubscribed: 'training/getIsSubscribed'
-    })
+    }),
+
+    emailError (errors) {
+      if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.email.required')
+      } else {
+        return this.$t('validation.custom.email.valid')
+      }
+    },
+    passwordError (errors) {
+      if (errors && errors.length > 0 && typeof errors[0] === 'object' && 'numeric' in errors[0]) {
+        return this.$t('validation.custom.password.params')
+      } else if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.password.required')
+      }
+      return this.$t('validation.custom.password.required')
+    }
   }
 }
 </script>

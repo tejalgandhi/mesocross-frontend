@@ -29,7 +29,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.company_name.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -50,7 +50,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.address.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -64,7 +64,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.city.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -78,7 +78,7 @@
                   {{ country.label }}
                 </option>
               </select>
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.country.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -92,7 +92,7 @@
                 class="form-control"
                 aria-describedby="postal_code"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.postal_code.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -116,7 +116,7 @@
                 class="form-control phone-input"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.company_phone_number.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -130,7 +130,7 @@
                   {{ sector.label }}
                 </option>
               </select>
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.industry_sector.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div v-show="otherSector" class="form-group">
@@ -143,7 +143,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.industry_sector.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -156,7 +156,7 @@
                 class="form-control"
                 aria-describedby="company_websiteHelp"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.website.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <button type="button" class="btn btn-primary continue" @click="nextButton()">
@@ -194,7 +194,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.first_name.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -207,7 +207,7 @@
                 class="form-control"
                 aria-describedby="surname"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.surname.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -231,14 +231,14 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.phone_number.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
             <label for="email">{{ $t('email') }}*</label>
             <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required|email_exists">
               <input id="email" v-model="signup.email" type="email" class="form-control" aria-describedby="emailHelp">
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.email.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -256,7 +256,7 @@
                   {{ $t(language.name.toLowerCase()) }}
                 </option>
               </select>
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.language.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -270,7 +270,7 @@
                   {{ position.label }}
                 </option>
               </select>
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.position.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <div v-show="otherPosition" class="form-group">
@@ -283,7 +283,7 @@
                 class="form-control"
                 aria-describedby="name"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.position.required') : '' }}</span>
             </ValidationProvider>
           </div>
           <button type="button" class="btn btn-primary continue" @click="nextButton()">
@@ -319,7 +319,7 @@
                 :type="passwordType"
                 class="form-control"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? passwordError(errors, 'password') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-group">
@@ -332,7 +332,7 @@
                 class="form-control"
                 :state="errors[0] ? false : (valid ? true : null)"
               >
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? passwordError(errors, 'repeat_password') : '' }}</span>
             </ValidationProvider>
           </div>
           <div class="form-check mb-3">
@@ -486,6 +486,16 @@ export default {
     onSelectCompany ({ iso2, dialCode }) {
       this.signup.company_dial_code = dialCode
       this.signup.company_iso_alpha2 = iso2
+    },
+    passwordError (errors, field) {
+      if (errors[0] === 'validation.min') {
+        return this.$t('validation.custom.password.params')
+      } else if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.password.required')
+      } else if (field === 'repeat_password') {
+        return this.$t('validation.custom.password.equal')
+      }
+      return this.$t('validation.custom.password.required')
     }
   }
 }

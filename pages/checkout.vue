@@ -215,6 +215,7 @@ export default {
         this.$toast.error(this.$t('checkout.please_add_or_select_your_card'), { duration: 3000, position: 'top-right', className: 'custom-toast-error-class' })
       } else {
         this.tabIndex++
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     },
     handlePayment (data) {

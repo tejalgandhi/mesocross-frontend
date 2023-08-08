@@ -19,7 +19,7 @@
                   <label for="email">Email</label>
                   <ValidationProvider v-slot="{ errors }" name="Email" rules="required">
                     <input id="email" v-model="form.email" type="email" class="form-control" aria-describedby="emailHelp">
-                    <span class="errors">{{ errors[0] }}</span>
+                    <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.email.required') : '' }}</span>
                   </ValidationProvider>
                 </div>
 

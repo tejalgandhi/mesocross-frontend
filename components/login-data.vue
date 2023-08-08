@@ -13,7 +13,7 @@
             <ValidationProvider v-slot="{ errors }" :name="$t('current_password')" rules="required">
               <label>{{ $t('current_password') }} *</label>
               <input v-model="data.password" type="password" class="form-control">
-              <span class="errors">{{ errors[0] }}</span>
+              <span class="errors">{{ errors && errors.length > 0 ? passwordError(errors, 'password') : '' }}</span>
             </ValidationProvider>
           </div>
         </div>
@@ -21,14 +21,14 @@
           <ValidationProvider v-slot="{ errors }" :name="$t('new_password')" rules="required" vid="new_password">
             <label>{{ $t('new_password') }} *</label>
             <input v-model="data.new_password" type="password" class="form-control">
-            <span class="errors">{{ errors[0] }}</span>
+            <span class="errors">{{ errors && errors.length > 0 ? passwordError(errors, 'password') : '' }}</span>
           </ValidationProvider>
         </div>
         <div class="form-group col-lg-6">
           <ValidationProvider v-slot="{ errors }" :name="$t('repeat_new_password')" rules="required|confirmed:new_password">
             <label>{{ $t('repeat_new_password') }} *</label>
             <input v-model="data.confirm_password" type="password" class="form-control">
-            <span class="errors">{{ errors[0] }}</span>
+            <span class="errors">{{ errors && errors.length > 0 ? passwordError(errors, 'repeat_password') : '' }}</span>
           </ValidationProvider>
         </div>
         <div class="col-md-12 py-4">
@@ -72,6 +72,16 @@ export default {
           this.errorMessage = this.$t('invalid_credentials')
         }
       }
+    },
+    passwordError (errors, field) {
+      if (errors && errors.length > 0 && typeof errors[0] === 'object' && 'numeric' in errors[0]) {
+        return this.$t('validation.custom.password.params')
+      } else if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.password.required')
+      } else if (field === 'repeat_password') {
+        return this.$t('validation.custom.password.equal')
+      }
+      return this.$t('validation.custom.password.required')
     }
   }
 }

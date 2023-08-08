@@ -41,7 +41,7 @@
                             class="form-control"
                             aria-describedby="emailHelp"
                           >
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <small class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.email.required') : '' }}</small>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -52,7 +52,7 @@
                             <a @click="showPassword(passwordType)">
                               <img :src="require(`~/assets/img/${passwordImage}`)" alt="eye" class="eye"></a>
                           </div>
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <small class="errors text-danger">{{ errors && errors.length > 0 ? passwordError(errors, 'password') : '' }}</small>
                         </ValidationProvider>
                       </div>
                       <div class="form-group text-right">
@@ -167,6 +167,16 @@ export default {
     hideModal () {
       this.setPricePopup(false)
       this.$bvModal.hide('price')
+    },
+    passwordError (errors, field) {
+      if (errors && errors.length > 0 && typeof errors[0] === 'object' && 'numeric' in errors[0]) {
+        return this.$t('validation.custom.password.params')
+      } else if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.password.required')
+      } else if (field === 'repeat_password') {
+        return this.$t('validation.custom.password.equal')
+      }
+      return this.$t('validation.custom.password.required')
     }
   }
 }

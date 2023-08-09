@@ -203,7 +203,7 @@
           </div>
           <div class="form-check mb-3">
             <input id="exampleCheck1" v-model="privacyPolicy" type="checkbox" class="form-check-input">
-            <label class="form-check-label" for="exampleCheck1">{{ $t('register_term') }}</label>
+            <label class="form-check-label" for="exampleCheck1">{{ $t('register_term') }}*</label>
           </div>
           <div class="form-check">
             <input id="emailMarketing" v-model="signup.email_marketing" type="checkbox" class="form-check-input">

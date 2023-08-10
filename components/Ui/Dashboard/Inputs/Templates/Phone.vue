@@ -7,6 +7,7 @@
           enabledCountryCode:true,
           disabledDialCode: false
         }"
+        :default-country="value.iso_alpha2"
         :disabled-fetching-country="false"
         :enabled-country-code="true"
         :preferred-countries="topCountries"

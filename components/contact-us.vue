@@ -28,7 +28,7 @@
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('name')" rules="required">
                   <input v-model="form.name" type="text" class="form-control">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.first_name.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>
@@ -37,7 +37,7 @@
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('email')" rules="required">
                   <input v-model="form.email" type="email" class="form-control">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.email.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>
@@ -53,7 +53,7 @@
                       {{ country.label }}
                     </option>
                   </select>
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.country.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>
@@ -75,7 +75,7 @@
                   />
                   <input id="companyPhoneNumber" v-model="form.phone_number" type="text" class="form-control phone-input" aria-describedby="name">
                 </div>
-                <span class="errors text-danger">{{ errors[0] }}</span>
+                <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.phone_number.required') : '' }}</span>
               </ValidationProvider>
             </div>
             <div class="col-12">
@@ -83,7 +83,7 @@
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('subject')" rules="required">
                   <input v-model="form.subject" type="text" class="form-control">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.subject.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>
@@ -92,7 +92,7 @@
               <div class="position-relative">
                 <ValidationProvider v-slot="{ errors }" :name="$t('message')" rules="required">
                   <textarea id="comment" v-model="form.message" class="form-control" rows="5" />
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.message.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>

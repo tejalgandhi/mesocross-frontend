@@ -113,7 +113,7 @@
                     {{ file ? file.name : `${$t('add_file')} +` }}
                   </b-button>
                   <input ref="fileInput" hidden type="file" class="custom-file-input" @change="handleFileUpload($event)">
-                  <span class="errors text-danger">{{ errors[0] }}</span>
+                  <span class="errors">{{ errors && errors.length > 0 ? $t('validation.custom.attachments.required') : '' }}</span>
                 </ValidationProvider>
               </div>
             </div>

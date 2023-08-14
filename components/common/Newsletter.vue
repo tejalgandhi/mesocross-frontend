@@ -39,7 +39,7 @@
                             class="form-control"
                             aria-describedby="nameHelp"
                           >
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <span class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.first_name.required') : '' }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -52,7 +52,7 @@
                             class="form-control"
                             aria-describedby="surnameHelp"
                           >
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <span class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.surname.required') : '' }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -78,7 +78,7 @@
                               aria-describedby="phoneHelp"
                             >
                           </div>
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <span class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.phone_number.required') : '' }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -91,7 +91,7 @@
                             class="form-control"
                             aria-describedby="emailHelp"
                           >
-                          <small class="errors text-danger">{{ errors[0] }}</small>
+                          <small class="errors text-danger">{{ errors && errors.length > 0 ? emailError(errors) : '' }}</small>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -105,7 +105,7 @@
                               {{ country.label }}
                             </option>
                           </select>
-                          <span class="errors text-danger">{{ errors[0] }}</span>
+                          <span class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.country.required') : '' }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -125,7 +125,7 @@
                               {{ $t('spanish') }}
                             </option>
                           </select>
-                          <span class="errors text-danger">{{ errors[0] }}</span>
+                          <span class="errors text-danger">{{ errors && errors.length > 0 ? $t('validation.custom.language.required') : '' }}</span>
                         </ValidationProvider>
                       </div>
                       <div class="form-group">
@@ -237,6 +237,13 @@ export default {
         }
       } catch (err) {
 
+      }
+    },
+    emailError (errors) {
+      if (errors[0] === 'The :attribute field is required.') {
+        return this.$t('validation.custom.email.required')
+      } else {
+        return this.$t('validation.custom.email.valid')
       }
     }
   }
